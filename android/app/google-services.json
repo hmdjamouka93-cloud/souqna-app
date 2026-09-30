@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "918382954850",
+    "project_id": "souanqapp",
+    "storage_bucket": "souanqapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918382954850:android:91d6577d1acf036bc0843b",
+        "android_client_info": {
+          "package_name": "com.example.souqna_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8xRlmU82_GPQXu1USdRNaMqbKiLLdpHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918382954850:android:02e7c4b5ba73bdc1c0843b",
+        "android_client_info": {
+          "package_name": "com.mycompany.souqnaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8xRlmU82_GPQXu1USdRNaMqbKiLLdpHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918382954850:android:e60ca6e6798bfae5c0843b",
+        "android_client_info": {
+          "package_name": "com.souqna.marketplace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8xRlmU82_GPQXu1USdRNaMqbKiLLdpHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
