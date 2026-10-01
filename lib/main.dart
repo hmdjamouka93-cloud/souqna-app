@@ -9,8 +9,8 @@ void main() async {
 }
 
 class AppColors {
-  static const Color background = Color(0xFF15171C);
-  static const Color card = Color(0xFF1F2228);
+  static const Color background = Color(0xFF1E2128);
+  static const Color card = Color(0xFF2A2E36);
   static const Color accent = Color(0xFFA0285A);
   static const Color textPrimary = Colors.white;
   static const Color textSecondary = Color(0xFFB0B0B8);
