@@ -5,67 +5,37 @@ class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
 
   static const List<_Brand> _brands = [
-    _Brand(name: 'جميع الإعلانات', logo: ''),
-    _Brand(
-      name: 'سيات',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/SEAT_Logo_2012.svg/240px-SEAT_Logo_2012.svg.png',
-    ),
-    _Brand(
-      name: 'بيجو',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Peugeot_Logo_2021.svg/240px-Peugeot_Logo_2021.svg.png',
-    ),
-    _Brand(
-      name: 'رونو',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Renault_2021_Text.svg/240px-Renault_2021_Text.svg.png',
-    ),
-    _Brand(
-      name: 'كيا',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/KIA_logo3.svg/240px-KIA_logo3.svg.png',
-    ),
-    _Brand(
-      name: 'سيتروين',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Citroen_2022.svg/240px-Citroen_2022.svg.png',
-    ),
-    _Brand(
-      name: 'تويوتا',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/240px-Toyota_carlogo.svg.png',
-    ),
-    _Brand(
-      name: 'هيونداي',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Hyundai_Motor_Company_logo.svg/240px-Hyundai_Motor_Company_logo.svg.png',
-    ),
-    _Brand(
-      name: 'فولكس واجن',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/240px-Volkswagen_logo_2019.svg.png',
-    ),
-    _Brand(
-      name: 'نيسان',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nissan_2020_logo.svg/240px-Nissan_2020_logo.svg.png',
-    ),
-    _Brand(
-      name: 'مرسيدس',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Benz_Logo_2010.svg/240px-Mercedes-Benz_Logo_2010.svg.png',
-    ),
-    _Brand(
-      name: 'بي إم دبليو',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/240px-BMW.svg.png',
-    ),
-    _Brand(
-      name: 'شيفروليه',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Chevrolet-logo.svg/240px-Chevrolet-logo.svg.png',
-    ),
-    _Brand(
-      name: 'ميتسوبيشي',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Mitsubishi_logo.svg/240px-Mitsubishi_logo.svg.png',
-    ),
-    _Brand(
-      name: 'جي إم سي',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/GMC_logo.svg/240px-GMC_logo.svg.png',
-    ),
-    _Brand(
-      name: 'لكزس',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Lexus_division_emblem.svg/240px-Lexus_division_emblem.svg.png',
-    ),
+    _Brand(name: 'جميع الإعلانات', slug: ''),
+    _Brand(name: 'رونو', slug: 'renault'),
+    _Brand(name: 'بيجو', slug: 'peugeot'),
+    _Brand(name: 'سيتروين', slug: 'citroen'),
+    _Brand(name: 'سيات', slug: 'seat'),
+    _Brand(name: 'فولكس واجن', slug: 'volkswagen'),
+    _Brand(name: 'تويوتا', slug: 'toyota'),
+    _Brand(name: 'هيونداي', slug: 'hyundai'),
+    _Brand(name: 'كيا', slug: 'kia'),
+    _Brand(name: 'نيسان', slug: 'nissan'),
+    _Brand(name: 'فيات', slug: 'fiat'),
+    _Brand(name: 'سكودا', slug: 'skoda'),
+    _Brand(name: 'فورد', slug: 'ford'),
+    _Brand(name: 'شيفروليه', slug: 'chevrolet'),
+    _Brand(name: 'سوزوكي', slug: 'suzuki'),
+    _Brand(name: 'ميتسوبيشي', slug: 'mitsubishi'),
+    _Brand(name: 'مازدا', slug: 'mazda'),
+    _Brand(name: 'هوندا', slug: 'honda'),
+    _Brand(name: 'جيلي', slug: 'geely'),
+    _Brand(name: 'بي واي دي', slug: 'byd'),
+    _Brand(name: 'إم جي', slug: 'mg'),
+    _Brand(name: 'مرسيدس', slug: 'mercedes'),
+    _Brand(name: 'بي إم دبليو', slug: 'bmw'),
+    _Brand(name: 'أودي', slug: 'audi'),
+    _Brand(name: 'فولفو', slug: 'volvo'),
+    _Brand(name: 'جيب', slug: 'jeep'),
+    _Brand(name: 'لاند روفر', slug: 'landrover'),
+    _Brand(name: 'لكزس', slug: 'lexus'),
+    _Brand(name: 'إنفينيتي', slug: 'infiniti'),
+    _Brand(name: 'بورش', slug: 'porsche'),
+    _Brand(name: 'تسلا', slug: 'tesla'),
   ];
 
   @override
@@ -155,7 +125,8 @@ class CarsScreen extends StatelessWidget {
   }
 
   Widget _brandCard(_Brand brand) {
-    final isAll = brand.logo.isEmpty;
+    final isAll = brand.slug.isEmpty;
+    final logoUrl = 'https://cdn.simpleicons.org/${brand.slug}/white';
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -169,28 +140,29 @@ class CarsScreen extends StatelessWidget {
                 child: Center(
                   child: Text('جميع الإعلانات',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.accent, fontSize: 14,
+                    style: TextStyle(color: AppColors.accent, fontSize: 13,
                       fontWeight: FontWeight.bold)),
                 ),
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
                   Text(brand.name,
-                    style: const TextStyle(color: Colors.white, fontSize: 13,
-                      fontWeight: FontWeight.bold)),
+                    style: const TextStyle(color: Colors.white, fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center),
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(12),
                     child: Image.network(
-                      brand.logo,
+                      logoUrl,
                       fit: BoxFit.contain,
-                      height: 45,
+                      height: 40,
                       loadingBuilder: (context, child, progress) {
                         if (progress == null) return child;
                         return const SizedBox(
-                          width: 40, height: 40,
+                          width: 32, height: 32,
                           child: Center(
                             child: CircularProgressIndicator(
                               color: AppColors.accent, strokeWidth: 2),
@@ -199,7 +171,7 @@ class CarsScreen extends StatelessWidget {
                       },
                       errorBuilder: (_, __, ___) => const Icon(
                         Icons.directions_car,
-                        color: Colors.white24, size: 36),
+                        color: Colors.white24, size: 32),
                     ),
                   ),
                   const Spacer(),
@@ -212,6 +184,6 @@ class CarsScreen extends StatelessWidget {
 
 class _Brand {
   final String name;
-  final String logo;
-  const _Brand({required this.name, required this.logo});
+  final String slug;
+  const _Brand({required this.name, required this.slug});
 }
