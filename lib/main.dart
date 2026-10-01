@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 
@@ -96,7 +97,7 @@ class _MainShellState extends State<MainShell> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _navItem(icon: Icons.home_outlined, label: 'الرئيسية', index: 0),
-          _navItem(icon: Icons.accessibility_new, label: 'اعلاناتي', index: 1),
+          _navItem(icon: Symbols.person_raised_hand, label: 'اعلاناتي', index: 1),
           const SizedBox(width: 56),
           _navItem(icon: Icons.more_horiz, label: 'المزيد', index: 3),
         ],
