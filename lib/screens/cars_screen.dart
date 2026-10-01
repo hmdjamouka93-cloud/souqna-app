@@ -6,38 +6,86 @@ class CarsScreen extends StatelessWidget {
 
   static const List<_Brand> _brands = [
     _Brand(name: 'جميع الإعلانات', logo: ''),
-    _Brand(name: 'سيات', logo: 'https://logo.clearbit.com/seat.com'),
-    _Brand(name: 'بيجو', logo: 'https://logo.clearbit.com/peugeot.com'),
-    _Brand(name: 'رونو', logo: 'https://logo.clearbit.com/renault.com'),
-    _Brand(name: 'كيا', logo: 'https://logo.clearbit.com/kia.com'),
-    _Brand(name: 'سيتروين', logo: 'https://logo.clearbit.com/citroen.com'),
-    _Brand(name: 'تويوتا', logo: 'https://logo.clearbit.com/toyota.com'),
-    _Brand(name: 'هيونداي', logo: 'https://logo.clearbit.com/hyundai.com'),
-    _Brand(name: 'فولكس واجن', logo: 'https://logo.clearbit.com/vw.com'),
-    _Brand(name: 'نيسان', logo: 'https://logo.clearbit.com/nissan-global.com'),
-    _Brand(name: 'مرسيدس', logo: 'https://logo.clearbit.com/mercedes-benz.com'),
-    _Brand(name: 'بي إم دبليو', logo: 'https://logo.clearbit.com/bmw.com'),
-    _Brand(name: 'شيفروليه', logo: 'https://logo.clearbit.com/chevrolet.com'),
-    _Brand(name: 'ميتسوبيشي', logo: 'https://logo.clearbit.com/mitsubishi-motors.com'),
-    _Brand(name: 'جي إم سي', logo: 'https://logo.clearbit.com/gmc.com'),
-    _Brand(name: 'لكزس', logo: 'https://logo.clearbit.com/lexus.com'),
+    _Brand(
+      name: 'سيات',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/SEAT_Logo_2012.svg/240px-SEAT_Logo_2012.svg.png',
+    ),
+    _Brand(
+      name: 'بيجو',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Peugeot_Logo_2021.svg/240px-Peugeot_Logo_2021.svg.png',
+    ),
+    _Brand(
+      name: 'رونو',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Renault_2021_Text.svg/240px-Renault_2021_Text.svg.png',
+    ),
+    _Brand(
+      name: 'كيا',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/KIA_logo3.svg/240px-KIA_logo3.svg.png',
+    ),
+    _Brand(
+      name: 'سيتروين',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Citroen_2022.svg/240px-Citroen_2022.svg.png',
+    ),
+    _Brand(
+      name: 'تويوتا',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/240px-Toyota_carlogo.svg.png',
+    ),
+    _Brand(
+      name: 'هيونداي',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Hyundai_Motor_Company_logo.svg/240px-Hyundai_Motor_Company_logo.svg.png',
+    ),
+    _Brand(
+      name: 'فولكس واجن',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/240px-Volkswagen_logo_2019.svg.png',
+    ),
+    _Brand(
+      name: 'نيسان',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nissan_2020_logo.svg/240px-Nissan_2020_logo.svg.png',
+    ),
+    _Brand(
+      name: 'مرسيدس',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Benz_Logo_2010.svg/240px-Mercedes-Benz_Logo_2010.svg.png',
+    ),
+    _Brand(
+      name: 'بي إم دبليو',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/240px-BMW.svg.png',
+    ),
+    _Brand(
+      name: 'شيفروليه',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Chevrolet-logo.svg/240px-Chevrolet-logo.svg.png',
+    ),
+    _Brand(
+      name: 'ميتسوبيشي',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Mitsubishi_logo.svg/240px-Mitsubishi_logo.svg.png',
+    ),
+    _Brand(
+      name: 'جي إم سي',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/GMC_logo.svg/240px-GMC_logo.svg.png',
+    ),
+    _Brand(
+      name: 'لكزس',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Lexus_division_emblem.svg/240px-Lexus_division_emblem.svg.png',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: _buildAppBar(context),
-      body: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          const SizedBox(height: 8),
-          _buildAdBanner(),
-          const SizedBox(height: 16),
-          _buildSectionTitle('الأقسام الفرعية'),
-          _buildBrandsGrid(),
-          const SizedBox(height: 20),
-        ],
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: _buildAppBar(context),
+        body: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const SizedBox(height: 8),
+            _buildAdBanner(),
+            const SizedBox(height: 16),
+            _buildSectionTitle('الأقسام الفرعية'),
+            _buildBrandsGrid(),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -134,10 +182,11 @@ class CarsScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold)),
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(10),
                     child: Image.network(
                       brand.logo,
                       fit: BoxFit.contain,
+                      height: 45,
                       loadingBuilder: (context, child, progress) {
                         if (progress == null) return child;
                         return const SizedBox(
