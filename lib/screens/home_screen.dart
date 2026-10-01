@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 _buildBanner(),
                 _buildSearchBar(),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
                 _buildSectionTitle('المركبات'),
                 _buildVehiclesGrid(),
                 const SizedBox(height: 20),
@@ -29,7 +29,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// الهيدر العلوي
   Widget _buildHeader() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -62,7 +61,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// مساحة الإعلان
   Widget _buildBanner() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -88,7 +86,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// شريط البحث
   Widget _buildSearchBar() {
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
@@ -111,35 +108,21 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// عنوان القسم
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            width: 40,
-            height: 3,
-            decoration: BoxDecoration(
-              color: AppColors.accent,
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-        ],
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Text(
+        title,
+        textAlign: TextAlign.right,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
 
-  /// شبكة أقسام المركبات
   Widget _buildVehiclesGrid() {
     return GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -149,14 +132,13 @@ class HomeScreen extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: 1.5,
+        childAspectRatio: 1.4,
       ),
       itemCount: _vehiclesItems.length,
       itemBuilder: (context, i) => _vehicleCard(_vehiclesItems[i]),
     );
   }
 
-  /// كارت قسم واحد
   Widget _vehicleCard(_VehicleItem item) {
     return GestureDetector(
       onTap: () {},
@@ -188,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.7),
+                    Colors.black.withOpacity(0.75),
                     Colors.transparent,
                   ],
                 ),
@@ -222,45 +204,21 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-/// نموذج قسم مركبة
 class _VehicleItem {
   final String name;
   final String image;
   const _VehicleItem({required this.name, required this.image});
 }
 
-/// قائمة أقسام المركبات (8 أقسام)
-const List<_VehicleItem> _vehiclesItems = [
-  _VehicleItem(
-    name: 'سيارات',
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600',
-  ),
-  _VehicleItem(
-    name: 'شاحنات',
-    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=600',
-  ),
-  _VehicleItem(
-    name: 'دراجات',
-    image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600',
-  ),
-  _VehicleItem(
-    name: 'حافلات',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600',
-  ),
-  _VehicleItem(
-    name: 'معارض السيارات',
-    image: 'https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=600',
-  ),
-  _VehicleItem(
-    name: 'ايجار السيارات',
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600',
-  ),
-  _VehicleItem(
-    name: 'معدات ثقيلة',
-    image: 'https://images.unsplash.com/photo-1579412847947-7f0a9e58fc31?w=600',
-  ),
-  _VehicleItem(
-    name: 'قطع غيار',
-    image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600',
-  ),
+const String _base = 'https://raw.githubusercontent.com/hmdjamouka93-cloud/souqna-app/main/images';
+
+final List<_VehicleItem> _vehiclesItems = [
+  _VehicleItem(name: 'سيارات', image: '$_base/img3.jpg'),
+  _VehicleItem(name: 'شاحنات', image: '$_base/img5.jpg'),
+  _VehicleItem(name: 'دراجات', image: '$_base/img2.jpg'),
+  _VehicleItem(name: 'حافلات', image: '$_base/img4.jpg'),
+  _VehicleItem(name: 'معارض السيارات', image: '$_base/img7.jpg'),
+  _VehicleItem(name: 'ايجار السيارات', image: '$_base/img8.png'),
+  _VehicleItem(name: 'معدات ثقيلة', image: '$_base/img6.jpg'),
+  _VehicleItem(name: 'قطع غيار', image: '$_base/img1.jpg'),
 ];
