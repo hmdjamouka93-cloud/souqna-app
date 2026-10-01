@@ -4,63 +4,49 @@ import '../main.dart';
 class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
 
+  // slug = Simple Icons | wiki = Wikimedia SVG path
   static const List<_Brand> _brands = [
-    _Brand(name: 'جميع الإعلانات', slug: ''),
-    _Brand(name: 'رونو', slug: 'renault'),
-    _Brand(name: 'بيجو', slug: 'peugeot'),
-    _Brand(name: 'سيتروين', slug: 'citroen'),
-    _Brand(name: 'سيات', slug: 'seat'),
-    _Brand(name: 'فولكس واجن', slug: 'volkswagen'),
-    _Brand(name: 'تويوتا', slug: 'toyota'),
-    _Brand(name: 'هيونداي', slug: 'hyundai'),
-    _Brand(name: 'كيا', slug: 'kia'),
-    _Brand(name: 'نيسان', slug: 'nissan'),
-    _Brand(name: 'فيات', slug: 'fiat'),
-    _Brand(name: 'سكودا', slug: 'skoda'),
-    _Brand(name: 'فورد', slug: 'ford'),
-    _Brand(name: 'شيفروليه', slug: 'chevrolet'),
-    _Brand(name: 'سوزوكي', slug: 'suzuki'),
-    _Brand(name: 'ميتسوبيشي', slug: 'mitsubishi'),
-    _Brand(name: 'مازدا', slug: 'mazda'),
-    _Brand(name: 'هوندا', slug: 'honda'),
-    _Brand(name: 'جيلي', slug: 'geely'),
-    _Brand(name: 'بي واي دي', slug: 'byd'),
-    _Brand(name: 'إم جي', slug: 'mg'),
-    _Brand(name: 'مرسيدس', slug: 'mercedes'),
-    _Brand(name: 'بي إم دبليو', slug: 'bmw'),
-    _Brand(name: 'أودي', slug: 'audi'),
-    _Brand(name: 'فولفو', slug: 'volvo'),
-    _Brand(name: 'جيب', slug: 'jeep'),
-    _Brand(name: 'لاند روفر', slug: 'landrover'),
-    _Brand(name: 'لكزس', slug: 'lexus'),
-    _Brand(name: 'إنفينيتي', slug: 'infiniti'),
-    _Brand(name: 'بورش', slug: 'porsche'),
-    _Brand(name: 'تسلا', slug: 'tesla'),
-    _Brand(name: 'بوغاتي', slug: 'bugatti'),
-    _Brand(name: 'مازيراتي', slug: 'maserati'),
-    _Brand(name: 'لامبورغيني', slug: 'lamborghini'),
-    _Brand(name: 'فيراري', slug: 'ferrari'),
-    _Brand(name: 'بنتلي', slug: 'bentley'),
-    _Brand(name: 'رولز رويس', slug: 'rollsroyce'),
-    _Brand(name: 'أستون مارتن', slug: 'astonmartin'),
-    _Brand(name: 'ماكلارين', slug: 'mclaren'),
-    _Brand(name: 'لوتس', slug: 'lotus'),
-    _Brand(name: 'ألفا روميو', slug: 'alfaromeo'),
-    _Brand(name: 'دودج', slug: 'dodge'),
-    _Brand(name: 'كرايسلر', slug: 'chrysler'),
-    _Brand(name: 'كاديلاك', slug: 'cadillac'),
-    _Brand(name: 'لينكولن', slug: 'lincoln'),
-    _Brand(name: 'جينيسيس', slug: 'genesis'),
-    _Brand(name: 'أكيورا', slug: 'acura'),
-    _Brand(name: 'إنفينيتي', slug: 'infiniti'),
-    _Brand(name: 'داسيا', slug: 'dacia'),
-    _Brand(name: 'شيري', slug: 'chery'),
-    _Brand(name: 'هافال', slug: 'haval'),
-    _Brand(name: 'شانجان', slug: 'changan'),
-    _Brand(name: 'أوبل', slug: 'opel'),
-    _Brand(name: 'روفر', slug: 'rover'),
-    _Brand(name: 'إيسوزو', slug: 'isuzu'),
-    _Brand(name: 'سانغ يونغ', slug: 'ssangyong'),
+    _Brand(name: 'جميع الإعلانات', slug: '', wiki: ''),
+    _Brand(name: 'رونو', slug: 'renault', wiki: ''),
+    _Brand(name: 'بيجو', slug: 'peugeot', wiki: ''),
+    _Brand(name: 'سيتروين', slug: 'citroen', wiki: ''),
+    _Brand(name: 'سيات', slug: 'seat', wiki: ''),
+    _Brand(name: 'فولكس واجن', slug: 'volkswagen', wiki: ''),
+    _Brand(name: 'تويوتا', slug: 'toyota', wiki: ''),
+    _Brand(name: 'هيونداي', slug: 'hyundai', wiki: ''),
+    _Brand(name: 'كيا', slug: 'kia', wiki: ''),
+    _Brand(name: 'نيسان', slug: 'nissan', wiki: ''),
+    _Brand(name: 'فيات', slug: 'fiat', wiki: ''),
+    _Brand(name: 'سكودا', slug: 'skoda', wiki: ''),
+    _Brand(name: 'فورد', slug: 'ford', wiki: ''),
+    _Brand(name: 'شيفروليه', slug: 'chevrolet', wiki: ''),
+    _Brand(name: 'سوزوكي', slug: 'suzuki', wiki: ''),
+    _Brand(name: 'ميتسوبيشي', slug: 'mitsubishi', wiki: ''),
+    _Brand(name: 'مازدا', slug: 'mazda', wiki: ''),
+    _Brand(name: 'هوندا', slug: 'honda', wiki: ''),
+    _Brand(name: 'إم جي', slug: 'mg', wiki: ''),
+    _Brand(name: 'مرسيدس', slug: '', wiki: '9/90/Mercedes-Benz_Logo_2010.svg'),
+    _Brand(name: 'بي إم دبليو', slug: 'bmw', wiki: ''),
+    _Brand(name: 'أودي', slug: 'audi', wiki: ''),
+    _Brand(name: 'فولفو', slug: 'volvo', wiki: ''),
+    _Brand(name: 'جيب', slug: 'jeep', wiki: ''),
+    _Brand(name: 'لاند روفر', slug: '', wiki: 'a/a1/Land_Rover_logo.svg'),
+    _Brand(name: 'لكزس', slug: '', wiki: '1/17/Lexus_division_emblem.svg'),
+    _Brand(name: 'إنفينيتي', slug: 'infiniti', wiki: ''),
+    _Brand(name: 'بورش', slug: 'porsche', wiki: ''),
+    _Brand(name: 'تسلا', slug: 'tesla', wiki: ''),
+    _Brand(name: 'ألفا روميو', slug: '', wiki: 'd/d7/Alfa_Romeo_logo.svg'),
+    _Brand(name: 'جينيسيس', slug: '', wiki: '7/7d/Genesis_Motors_logo.svg'),
+    _Brand(name: 'كاديلاك', slug: 'cadillac', wiki: ''),
+    _Brand(name: 'كرايسلر', slug: 'chrysler', wiki: ''),
+    _Brand(name: 'دودج', slug: '', wiki: 'b/be/Dodge_logo.svg'),
+    _Brand(name: 'لينكولن', slug: '', wiki: '6/6c/Lincoln_Motor_Company_logo.svg'),
+    _Brand(name: 'أوبل', slug: 'opel', wiki: ''),
+    _Brand(name: 'داسيا', slug: 'dacia', wiki: ''),
+    _Brand(name: 'جيلي', slug: '', wiki: '8/8e/Geely_Logo_2019.svg'),
+    _Brand(name: 'بي واي دي', slug: '', wiki: '1/1f/BYD_Auto_2022_logo.svg'),
+    _Brand(name: 'شيري', slug: '', wiki: '4/4a/Chery_logo.svg'),
+    _Brand(name: 'هافال', slug: '', wiki: '7/7c/Haval_logo.svg'),
   ];
 
   @override
@@ -149,9 +135,32 @@ class CarsScreen extends StatelessWidget {
     );
   }
 
+  String _getLogoUrl(_Brand brand) {
+    if (brand.slug.isNotEmpty) {
+      return 'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120';
+    }
+    return 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/${brand.wiki}&output=png&w=120&h=120';
+  }
+
   Widget _brandCard(_Brand brand) {
-    final isAll = brand.slug.isEmpty;
-    final logoUrl = 'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120';
+    final isAll = brand.slug.isEmpty && brand.wiki.isEmpty;
+    if (isAll) {
+      return Container(
+        decoration: BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(10),
+          child: Center(
+            child: Text('جميع الإعلانات',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColors.accent, fontSize: 13,
+                fontWeight: FontWeight.bold)),
+          ),
+        ),
+      );
+    }
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -159,49 +168,39 @@ class CarsScreen extends StatelessWidget {
           color: AppColors.card,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: isAll
-            ? const Padding(
-                padding: EdgeInsets.all(10),
-                child: Center(
-                  child: Text('جميع الإعلانات',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.accent, fontSize: 13,
-                      fontWeight: FontWeight.bold)),
-                ),
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 6),
-                  Text(brand.name,
-                    style: const TextStyle(color: Colors.white, fontSize: 12,
-                      fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Image.network(
-                      logoUrl,
-                      fit: BoxFit.contain,
-                      height: 40,
-                      loadingBuilder: (context, child, progress) {
-                        if (progress == null) return child;
-                        return const SizedBox(
-                          width: 32, height: 32,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.accent, strokeWidth: 2),
-                          ),
-                        );
-                      },
-                      errorBuilder: (_, __, ___) => const Icon(
-                        Icons.directions_car,
-                        color: Colors.white24, size: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 6),
+            Text(brand.name,
+              style: const TextStyle(color: Colors.white, fontSize: 12,
+                fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Image.network(
+                _getLogoUrl(brand),
+                fit: BoxFit.contain,
+                height: 40,
+                loadingBuilder: (context, child, progress) {
+                  if (progress == null) return child;
+                  return const SizedBox(
+                    width: 32, height: 32,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.accent, strokeWidth: 2),
                     ),
-                  ),
-                  const Spacer(),
-                ],
+                  );
+                },
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.directions_car,
+                  color: Colors.white24, size: 32),
               ),
+            ),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
@@ -210,5 +209,6 @@ class CarsScreen extends StatelessWidget {
 class _Brand {
   final String name;
   final String slug;
-  const _Brand({required this.name, required this.slug});
+  final String wiki;
+  const _Brand({required this.name, required this.slug, required this.wiki});
 }
