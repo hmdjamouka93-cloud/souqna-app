@@ -47,6 +47,23 @@ class CarsScreen extends StatelessWidget {
     _Brand(name: 'بي واي دي', slug: '', wiki: '1/1f/BYD_Auto_2022_logo.svg'),
     _Brand(name: 'شيري', slug: '', wiki: '4/4a/Chery_logo.svg'),
     _Brand(name: 'هافال', slug: '', wiki: '7/7c/Haval_logo.svg'),
+    _Brand(name: 'بوغاتي', slug: 'bugatti', wiki: ''),
+    _Brand(name: 'لامبورغيني', slug: 'lamborghini', wiki: ''),
+    _Brand(name: 'فيراري', slug: 'ferrari', wiki: ''),
+    _Brand(name: 'مازيراتي', slug: 'maserati', wiki: ''),
+    _Brand(name: 'بنتلي', slug: 'bentley', wiki: ''),
+    _Brand(name: 'رولز رويس', slug: 'rollsroyce', wiki: ''),
+    _Brand(name: 'أستون مارتن', slug: 'astonmartin', wiki: ''),
+    _Brand(name: 'ماكلارين', slug: 'mclaren', wiki: ''),
+    _Brand(name: 'لوتس', slug: 'lotus', wiki: ''),
+    _Brand(name: 'أكيورا', slug: 'acura', wiki: ''),
+    _Brand(name: 'روفر', slug: 'rover', wiki: ''),
+    _Brand(name: 'إيسوزو', slug: 'isuzu', wiki: ''),
+    _Brand(name: 'شانجان', slug: 'changan', wiki: ''),
+    _Brand(name: 'سانغ يونغ', slug: 'ssangyong', wiki: ''),
+    _Brand(name: 'كوبرا', slug: 'cupra', wiki: ''),
+    _Brand(name: 'سمارت', slug: 'smart', wiki: ''),
+    _Brand(name: 'ميني', slug: 'mini', wiki: ''),
   ];
 
   @override
