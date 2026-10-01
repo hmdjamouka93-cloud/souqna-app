@@ -98,7 +98,7 @@ class _MainShellState extends State<MainShell> {
           _navItem(icon: Icons.home_outlined, label: 'الرئيسية', index: 0),
           _navItem(icon: Icons.person_outline, label: 'اعلاناتي', index: 1),
           const SizedBox(width: 56),
-          _navItem(icon: Icons.gavel_outlined, label: 'مزايدة', index: 2),
+          _navItem(icon: Icons.grid_view_outlined, label: "الأقسام", index: 2),
           _navItem(icon: Icons.more_horiz, label: 'المزيد', index: 3),
         ],
       ),
