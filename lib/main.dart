@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 
@@ -9,14 +8,13 @@ void main() async {
   runApp(const SouqnaApp());
 }
 
-/// ألوان التطبيق الموحدة
 class AppColors {
-  static const Color background = Color(0xFF0A0A0F);
-  static const Color card = Color(0xFF1A1A22);
+  static const Color background = Color(0xFF15171C);
+  static const Color card = Color(0xFF1F2228);
   static const Color accent = Color(0xFFA0285A);
   static const Color textPrimary = Colors.white;
   static const Color textSecondary = Color(0xFFB0B0B8);
-  static const Color iconInactive = Color(0xFF666670);
+  static const Color iconInactive = Color(0xFF7A7A85);
 }
 
 class SouqnaApp extends StatelessWidget {
@@ -42,10 +40,8 @@ class SouqnaApp extends StatelessWidget {
   }
 }
 
-/// الهيكل الرئيسي: NavBar + الصفحات
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
-
   @override
   State<MainShell> createState() => _MainShellState();
 }
@@ -67,10 +63,9 @@ class _MainShellState extends State<MainShell> {
     );
   }
 
-  /// زر إضافة إعلان (FAB)
   Widget _buildFab() {
     return Container(
-      margin: const EdgeInsets.only(top: 12),
+      margin: const EdgeInsets.only(top: 14),
       child: FloatingActionButton(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -78,58 +73,90 @@ class _MainShellState extends State<MainShell> {
           );
         },
         backgroundColor: AppColors.accent,
-        elevation: 6,
+        elevation: 8,
         shape: const CircleBorder(),
-        child: const Icon(Icons.add, color: Colors.white, size: 30),
+        child: const Icon(Icons.add, color: Colors.white, size: 32),
       ),
     );
   }
 
-  /// الشريط السفلي
   Widget _buildBottomNav() {
     return BottomAppBar(
       color: AppColors.background,
       shape: const CircularNotchedRectangle(),
-      notchMargin: 8,
-      height: 62,
+      notchMargin: 10,
+      height: 65,
       padding: EdgeInsets.zero,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navItem(icon: Icons.home_outlined, label: 'الرئيسية', index: 0),
-          _navItem(icon: Symbols.person_raised_hand, label: 'اعلاناتي', index: 1),
-          const SizedBox(width: 56),
-          _navItem(icon: Icons.more_horiz, label: 'المزيد', index: 3),
+          _navItemIcon(Icons.home_outlined, 'الرئيسية', 0),
+          _navItemImage('images/icon_myads.png', 'اعلاناتي', 1),
+          const SizedBox(width: 55),
+          _navItemIcon(Icons.favorite_border, 'المفضلة', 2),
+          _navItemIcon(Icons.more_horiz, 'المزيد', 3),
         ],
       ),
     );
   }
 
-  Widget _navItem({
-    required IconData icon,
-    required String label,
-    required int index,
-  }) {
+  Widget _navItemIcon(IconData icon, String label, int index) {
     final isActive = _currentIndex == index;
     return InkWell(
       onTap: () => setState(() => _currentIndex = index),
       borderRadius: BorderRadius.circular(10),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
               color: isActive ? AppColors.accent : AppColors.iconInactive,
-              size: 24,
+              size: 23,
             ),
             const SizedBox(height: 2),
             Text(
               label,
               style: TextStyle(
                 color: isActive ? AppColors.accent : AppColors.iconInactive,
-                fontSize: 10,
+                fontSize: 9,
+                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _navItemImage(String asset, String label, int index) {
+    final isActive = _currentIndex == index;
+    return InkWell(
+      onTap: () => setState(() => _currentIndex = index),
+      borderRadius: BorderRadius.circular(10),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                isActive ? AppColors.accent : AppColors.iconInactive,
+                BlendMode.srcIn,
+              ),
+              child: Image.asset(
+                asset,
+                width: 23,
+                height: 23,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: TextStyle(
+                color: isActive ? AppColors.accent : AppColors.iconInactive,
+                fontSize: 9,
                 fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
               ),
             ),
