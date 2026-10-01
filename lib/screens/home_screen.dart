@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'cars_screen.dart';
+import 'cars_screen.dart';
 
 /// الشاشة الرئيسية
 class HomeScreen extends StatelessWidget {
@@ -142,7 +143,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context, _VehicleItem item) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.card,
