@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'cars_screen.dart';
-import 'cars_screen.dart';
 
 /// الشاشة الرئيسية
 class HomeScreen extends StatelessWidget {
@@ -12,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          _buildHeader(),
+          _buildHeader(context),
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -31,7 +30,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Row(
