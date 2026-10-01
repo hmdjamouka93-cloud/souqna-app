@@ -151,7 +151,7 @@ class CarsScreen extends StatelessWidget {
 
   Widget _brandCard(_Brand brand) {
     final isAll = brand.slug.isEmpty;
-    final logoUrl = 'https://cdn.simpleicons.org/${brand.slug}/white';
+    final logoUrl = 'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120';
     return GestureDetector(
       onTap: () {},
       child: Container(
