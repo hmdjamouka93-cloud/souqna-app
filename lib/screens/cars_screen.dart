@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
-import '../widgets/app_drawer.dart';
 
 class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
@@ -24,18 +23,12 @@ class CarsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      drawer: const AppDrawer(),
       appBar: _buildAppBar(context),
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
           const SizedBox(height: 8),
           _buildAdBanner(),
-          const SizedBox(height: 12),
-          _buildSectionTitle('الإعلانات حسب النوع'),
-          _buildTypeChips(),
-          const SizedBox(height: 12),
-          _buildShowroomsBanner(),
           const SizedBox(height: 16),
           _buildSectionTitle('الأقسام الفرعية'),
           _buildBrandsGrid(),
@@ -68,17 +61,17 @@ class CarsScreen extends StatelessWidget {
   Widget _buildAdBanner() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
-      height: 110,
+      height: 100,
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.accent.withOpacity(0.3), width: 1),
+        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
       ),
       child: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.campaign_outlined, color: AppColors.accent, size: 32),
+            Icon(Icons.campaign_outlined, color: AppColors.accent, size: 30),
             SizedBox(height: 6),
             Text('مساحة إعلانية',
               style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
@@ -90,64 +83,9 @@ class CarsScreen extends StatelessWidget {
 
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: Text(title,
         style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-    );
-  }
-
-  Widget _buildTypeChips() {
-    final types = ['للبيع', 'مطلوب', 'للبدل', 'سيارات الحوادث'];
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: types.map((t) => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          decoration: BoxDecoration(
-            color: AppColors.card,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text(t, style: const TextStyle(color: Colors.white, fontSize: 13)),
-        )).toList(),
-      ),
-    );
-  }
-
-  Widget _buildShowroomsBanner() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.accent,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 18),
-          const Spacer(),
-          Column(
-            children: const [
-              Text('معارض السيارات',
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-              SizedBox(height: 4),
-              Text('اضغط هنا لاستعراض كافة معارض السيارات',
-                style: TextStyle(color: Colors.white, fontSize: 12)),
-            ],
-          ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: const Text('جديد',
-              style: TextStyle(color: AppColors.accent, fontSize: 11, fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ),
     );
   }
 
