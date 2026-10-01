@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import 'cars_screen.dart';
 
 /// الشاشة الرئيسية
 class HomeScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.menu, color: Colors.white, size: 26),
-            onPressed: () {},
+            onPressed: () => Scaffold.of(context).openDrawer(),
           ),
           const Expanded(
             child: Center(
@@ -54,7 +55,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.notifications_none,
                 color: Colors.white, size: 26),
-            onPressed: () {},
+            onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ],
       ),
@@ -135,11 +136,11 @@ class HomeScreen extends StatelessWidget {
         childAspectRatio: 1.4,
       ),
       itemCount: _vehiclesItems.length,
-      itemBuilder: (context, i) => _vehicleCard(_vehiclesItems[i]),
+      itemBuilder: (context, i) => _vehicleCard(context, _vehiclesItems[i]),
     );
   }
 
-  Widget _vehicleCard(_VehicleItem item) {
+  Widget _vehicleCard(BuildContext context, _VehicleItem item) {
     return GestureDetector(
       onTap: () {},
       child: Container(
