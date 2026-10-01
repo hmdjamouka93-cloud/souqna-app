@@ -63,6 +63,10 @@ flutter:
 
   assets:
     - images/icon_myads.png
+    - images/logos/mercedes.png
+
+  assets:
+    - images/icon_myads.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
