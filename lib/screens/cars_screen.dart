@@ -5,18 +5,22 @@ class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
 
   static const List<_Brand> _brands = [
-    _Brand(name: 'جميع الإعلانات', logo: '', count: 24068),
-    _Brand(name: 'تويوتا', logo: 'https://logo.clearbit.com/toyota.com'),
-    _Brand(name: 'نيسان', logo: 'https://logo.clearbit.com/nissan-global.com'),
-    _Brand(name: 'ميتسوبيشي', logo: 'https://logo.clearbit.com/mitsubishi-motors.com'),
-    _Brand(name: 'شيفروليه', logo: 'https://logo.clearbit.com/chevrolet.com'),
-    _Brand(name: 'جي إم سي', logo: 'https://logo.clearbit.com/gmc.com'),
-    _Brand(name: 'بي إم دبليو', logo: 'https://logo.clearbit.com/bmw.com'),
-    _Brand(name: 'مرسيدس', logo: 'https://logo.clearbit.com/mercedes-benz.com'),
-    _Brand(name: 'لكزس', logo: 'https://logo.clearbit.com/lexus.com'),
-    _Brand(name: 'هيونداي', logo: 'https://logo.clearbit.com/hyundai.com'),
+    _Brand(name: 'جميع الإعلانات', logo: ''),
+    _Brand(name: 'سيات', logo: 'https://logo.clearbit.com/seat.com'),
+    _Brand(name: 'بيجو', logo: 'https://logo.clearbit.com/peugeot.com'),
+    _Brand(name: 'رونو', logo: 'https://logo.clearbit.com/renault.com'),
     _Brand(name: 'كيا', logo: 'https://logo.clearbit.com/kia.com'),
+    _Brand(name: 'سيتروين', logo: 'https://logo.clearbit.com/citroen.com'),
+    _Brand(name: 'تويوتا', logo: 'https://logo.clearbit.com/toyota.com'),
+    _Brand(name: 'هيونداي', logo: 'https://logo.clearbit.com/hyundai.com'),
     _Brand(name: 'فولكس واجن', logo: 'https://logo.clearbit.com/vw.com'),
+    _Brand(name: 'نيسان', logo: 'https://logo.clearbit.com/nissan-global.com'),
+    _Brand(name: 'مرسيدس', logo: 'https://logo.clearbit.com/mercedes-benz.com'),
+    _Brand(name: 'بي إم دبليو', logo: 'https://logo.clearbit.com/bmw.com'),
+    _Brand(name: 'شيفروليه', logo: 'https://logo.clearbit.com/chevrolet.com'),
+    _Brand(name: 'ميتسوبيشي', logo: 'https://logo.clearbit.com/mitsubishi-motors.com'),
+    _Brand(name: 'جي إم سي', logo: 'https://logo.clearbit.com/gmc.com'),
+    _Brand(name: 'لكزس', logo: 'https://logo.clearbit.com/lexus.com'),
   ];
 
   @override
@@ -112,37 +116,41 @@ class CarsScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: isAll
-            ? Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('مشاهدة جميع\nالإعلانات',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 12,
-                        fontWeight: FontWeight.bold, height: 1.3)),
-                    const SizedBox(height: 8),
-                    Text('${brand.count}',
-                      style: const TextStyle(color: AppColors.accent, fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-                  ],
+            ? const Padding(
+                padding: EdgeInsets.all(10),
+                child: Center(
+                  child: Text('جميع الإعلانات',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: AppColors.accent, fontSize: 14,
+                      fontWeight: FontWeight.bold)),
                 ),
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 8),
                   Text(brand.name,
-                    style: const TextStyle(color: Colors.white, fontSize: 12,
+                    style: const TextStyle(color: Colors.white, fontSize: 13,
                       fontWeight: FontWeight.bold)),
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(14),
                     child: Image.network(
                       brand.logo,
                       fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) => const Icon(Icons.directions_car,
-                        color: Colors.white24, size: 32),
+                      loadingBuilder: (context, child, progress) {
+                        if (progress == null) return child;
+                        return const SizedBox(
+                          width: 40, height: 40,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.accent, strokeWidth: 2),
+                          ),
+                        );
+                      },
+                      errorBuilder: (_, __, ___) => const Icon(
+                        Icons.directions_car,
+                        color: Colors.white24, size: 36),
                     ),
                   ),
                   const Spacer(),
@@ -156,6 +164,5 @@ class CarsScreen extends StatelessWidget {
 class _Brand {
   final String name;
   final String logo;
-  final int count;
-  const _Brand({required this.name, required this.logo, this.count = 0});
+  const _Brand({required this.name, required this.logo});
 }
