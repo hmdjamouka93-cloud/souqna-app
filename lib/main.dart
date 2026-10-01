@@ -96,9 +96,8 @@ class _MainShellState extends State<MainShell> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _navItem(icon: Icons.home_outlined, label: 'الرئيسية', index: 0),
-          _navItem(icon: Icons.person_outline, label: 'اعلاناتي', index: 1),
+          _navItem(icon: Icons.accessibility_new, label: 'اعلاناتي', index: 1),
           const SizedBox(width: 56),
-          _navItem(icon: Icons.grid_view_outlined, label: "الأقسام", index: 2),
           _navItem(icon: Icons.more_horiz, label: 'المزيد', index: 3),
         ],
       ),
