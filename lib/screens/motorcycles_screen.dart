@@ -14,21 +14,21 @@ class MotorcyclesScreen extends StatelessWidget {
     _BrandGroup(
       title: 'دراجات اقتصادية',
       brands: [
-        _Brand(name: 'VMS', slug: 'vms'),
-        _Brand(name: 'Keeway', slug: 'keeway'),
-        _Brand(name: 'Lifan', slug: 'lifan'),
-        _Brand(name: 'Bajaj', slug: 'bajaj'),
-        _Brand(name: 'Hero', slug: 'hero'),
-        _Brand(name: 'TVS', slug: 'tvs'),
-        _Brand(name: 'Haojue', slug: 'haojue'),
+        _Brand(name: 'VMS', slug: '', asset: 'images/logos/vms.png'),
+        _Brand(name: 'Keeway', slug: '', asset: 'images/logos/keeway.png'),
+        _Brand(name: 'Lifan', slug: '', asset: 'images/logos/lifan.png'),
+        _Brand(name: 'Bajaj', slug: '', asset: 'images/logos/bajaj.png'),
+        _Brand(name: 'Hero', slug: '', asset: 'images/logos/hero.png'),
+        _Brand(name: 'TVS', slug: '', asset: 'images/logos/tvs.png'),
+        _Brand(name: 'Haojue', slug: '', asset: 'images/logos/haojue.png'),
       ],
     ),
     _BrandGroup(
       title: 'سكوترات',
       brands: [
         _Brand(name: 'فيسبا', slug: 'vespa'),
-        _Brand(name: 'بياجيو', slug: 'piaggio'),
-        _Brand(name: 'SYM', slug: 'sym'),
+        _Brand(name: 'بياجيو', slug: '', asset: 'images/logos/piaggio.png'),
+        _Brand(name: 'SYM', slug: '', asset: 'images/logos/sym.png'),
         _Brand(name: 'هوندا', slug: 'honda'),
         _Brand(name: 'ياماها', slug: 'yamaha'),
       ],
@@ -38,21 +38,21 @@ class MotorcyclesScreen extends StatelessWidget {
       brands: [
         _Brand(name: 'KTM', slug: 'ktm'),
         _Brand(name: 'دوكاتي', slug: 'ducati'),
-        _Brand(name: 'كاواساكي', slug: 'kawasaki'),
+        _Brand(name: 'كاواساكي', slug: '', asset: 'images/logos/kawasaki.png'),
         _Brand(name: 'ياماها', slug: 'yamaha'),
         _Brand(name: 'هوندا', slug: 'honda'),
         _Brand(name: 'بي إم دبليو', slug: 'bmw'),
-        _Brand(name: 'أبريليا', slug: 'aprilia'),
-        _Brand(name: 'بينيلي', slug: 'benelli'),
-        _Brand(name: 'رويال إنفيلد', slug: 'royalenfield'),
-        _Brand(name: 'MV أجوستا', slug: 'mvagusta'),
+        _Brand(name: 'أبريليا', slug: '', asset: 'images/logos/aprilia.png'),
+        _Brand(name: 'بينيلي', slug: '', asset: 'images/logos/benelli.png'),
+        _Brand(name: 'رويال إنفيلد', slug: '', asset: 'images/logos/royalenfield.png'),
+        _Brand(name: 'MV أجوستا', slug: '', asset: 'images/logos/mvagusta.png'),
       ],
     ),
     _BrandGroup(
       title: 'دراجات كهربائية',
       brands: [
-        _Brand(name: 'NIU', slug: 'niu'),
-        _Brand(name: 'Sur-Ron', slug: 'surron'),
+        _Brand(name: 'NIU', slug: '', asset: 'images/logos/niu.png'),
+        _Brand(name: 'Sur-Ron', slug: '', asset: 'images/logos/surron.png'),
       ],
     ),
     _BrandGroup(
@@ -216,22 +216,14 @@ class MotorcyclesScreen extends StatelessWidget {
                 height: 40,
                 width: double.infinity,
                 child: Center(
-                  child: Image.network(
-                    'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
-                    fit: BoxFit.contain,
-                    loadingBuilder: (context, child, progress) {
-                      if (progress == null) return child;
-                      return const SizedBox(
-                        width: 28, height: 28,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.accent, strokeWidth: 2),
+                  child: brand.asset.isNotEmpty
+                      ? Image.asset(brand.asset, fit: BoxFit.contain)
+                      : Image.network(
+                          'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, __, ___) => const Icon(
+                            Icons.two_wheeler, color: Colors.white24, size: 32),
                         ),
-                      );
-                    },
-                    errorBuilder: (_, __, ___) => const Icon(
-                      Icons.two_wheeler, color: Colors.white24, size: 32),
-                  ),
                 ),
               ),
             ),
@@ -246,7 +238,8 @@ class MotorcyclesScreen extends StatelessWidget {
 class _Brand {
   final String name;
   final String slug;
-  const _Brand({required this.name, required this.slug});
+  final String asset;
+  const _Brand({required this.name, required this.slug, this.asset = ''});
 }
 
 class _BrandGroup {
