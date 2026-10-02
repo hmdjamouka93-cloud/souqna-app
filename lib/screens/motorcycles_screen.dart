@@ -4,21 +4,63 @@ import '../main.dart';
 class MotorcyclesScreen extends StatelessWidget {
   const MotorcyclesScreen({super.key});
 
-  static const List<_Brand> _brands = [
-    _Brand(name: 'جميع الإعلانات', slug: '__all__'),
-    _Brand(name: 'هوندا', slug: 'honda'),
-    _Brand(name: 'ياماها', slug: 'yamaha'),
-    _Brand(name: 'سوزوكي', slug: 'suzuki'),
-    _Brand(name: 'كاواساكي', slug: 'kawasaki'),
-    _Brand(name: 'دوكاتي', slug: 'ducati'),
-    _Brand(name: 'بي إم دبليو', slug: 'bmw'),
-    _Brand(name: 'هارلي ديفيدسون', slug: 'harleydavidson'),
-    _Brand(name: 'أبريليا', slug: 'aprilia'),
-    _Brand(name: 'KTM', slug: 'ktm'),
-    _Brand(name: 'بياجيو', slug: 'piaggio'),
-    _Brand(name: 'فيسبا', slug: 'vespa'),
-    _Brand(name: 'بينيلي', slug: 'benelli'),
-    _Brand(name: 'دراجات أخرى', slug: '__other__'),
+  static const List<_BrandGroup> _groups = [
+    _BrandGroup(
+      title: 'جميع الإعلانات',
+      brands: [
+        _Brand(name: 'مشاهدة جميع الإعلانات', slug: '__all__'),
+      ],
+    ),
+    _BrandGroup(
+      title: 'دراجات اقتصادية',
+      brands: [
+        _Brand(name: 'VMS', slug: 'vms'),
+        _Brand(name: 'Keeway', slug: 'keeway'),
+        _Brand(name: 'Lifan', slug: 'lifan'),
+        _Brand(name: 'Bajaj', slug: 'bajaj'),
+        _Brand(name: 'Hero', slug: 'hero'),
+        _Brand(name: 'TVS', slug: 'tvs'),
+        _Brand(name: 'Haojue', slug: 'haojue'),
+      ],
+    ),
+    _BrandGroup(
+      title: 'سكوترات',
+      brands: [
+        _Brand(name: 'فيسبا', slug: 'vespa'),
+        _Brand(name: 'بياجيو', slug: 'piaggio'),
+        _Brand(name: 'SYM', slug: 'sym'),
+        _Brand(name: 'هوندا', slug: 'honda'),
+        _Brand(name: 'ياماها', slug: 'yamaha'),
+      ],
+    ),
+    _BrandGroup(
+      title: 'دراجات رياضية',
+      brands: [
+        _Brand(name: 'KTM', slug: 'ktm'),
+        _Brand(name: 'دوكاتي', slug: 'ducati'),
+        _Brand(name: 'كاواساكي', slug: 'kawasaki'),
+        _Brand(name: 'ياماها', slug: 'yamaha'),
+        _Brand(name: 'هوندا', slug: 'honda'),
+        _Brand(name: 'بي إم دبليو', slug: 'bmw'),
+        _Brand(name: 'أبريليا', slug: 'aprilia'),
+        _Brand(name: 'بينيلي', slug: 'benelli'),
+        _Brand(name: 'رويال إنفيلد', slug: 'royalenfield'),
+        _Brand(name: 'MV أجوستا', slug: 'mvagusta'),
+      ],
+    ),
+    _BrandGroup(
+      title: 'دراجات كهربائية',
+      brands: [
+        _Brand(name: 'NIU', slug: 'niu'),
+        _Brand(name: 'Sur-Ron', slug: 'surron'),
+      ],
+    ),
+    _BrandGroup(
+      title: 'دراجات أخرى',
+      brands: [
+        _Brand(name: 'ماركات أخرى', slug: '__other__'),
+      ],
+    ),
   ];
 
   @override
@@ -33,9 +75,8 @@ class MotorcyclesScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 8),
             _buildAdBanner(),
-            const SizedBox(height: 16),
-            _buildSectionTitle('الأقسام الفرعية'),
-            _buildBrandsGrid(),
+            const SizedBox(height: 8),
+            ..._groups.map((g) => _buildGroup(g)).toList(),
             const SizedBox(height: 20),
           ],
         ),
@@ -86,24 +127,28 @@ class MotorcyclesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-      child: Text(title,
-        style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-    );
-  }
-
-  Widget _buildBrandsGrid() {
-    return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0,
-      ),
-      itemCount: _brands.length,
-      itemBuilder: (context, i) => _brandCard(_brands[i]),
+  Widget _buildGroup(_BrandGroup group) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+          child: Text(group.title,
+            style: const TextStyle(color: Colors.white, fontSize: 16,
+              fontWeight: FontWeight.bold)),
+        ),
+        GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10,
+            childAspectRatio: 1.0,
+          ),
+          itemCount: group.brands.length,
+          itemBuilder: (context, i) => _brandCard(group.brands[i]),
+        ),
+      ],
     );
   }
 
@@ -114,12 +159,12 @@ class MotorcyclesScreen extends StatelessWidget {
           color: AppColors.card,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Padding(
-          padding: EdgeInsets.all(10),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
           child: Center(
-            child: Text('جميع الإعلانات',
+            child: Text(brand.name,
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.accent, fontSize: 13,
+              style: const TextStyle(color: AppColors.accent, fontSize: 13,
                 fontWeight: FontWeight.bold)),
           ),
         ),
@@ -202,4 +247,10 @@ class _Brand {
   final String name;
   final String slug;
   const _Brand({required this.name, required this.slug});
+}
+
+class _BrandGroup {
+  final String title;
+  final List<_Brand> brands;
+  const _BrandGroup({required this.title, required this.brands});
 }
