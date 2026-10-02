@@ -6,6 +6,7 @@ import 'trucks_screen.dart';
 import 'motorcycles_screen.dart';
 import 'showrooms_screen.dart';
 import 'car_rental_screen.dart';
+import 'heavy_equipment_screen.dart';
 
 /// الشاشة الرئيسية
 class HomeScreen extends StatelessWidget {
@@ -147,7 +148,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context, _VehicleItem item) {
     return GestureDetector(
-      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else if (item.name == "حافلات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen())); } else if (item.name == "شاحنات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const TrucksScreen())); } else if (item.name == "دراجات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const MotorcyclesScreen())); } else if (item.name == "معارض السيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowroomsScreen())); } else if (item.name == "ايجار السيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarRentalScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
+      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else if (item.name == "حافلات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen())); } else if (item.name == "شاحنات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const TrucksScreen())); } else if (item.name == "دراجات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const MotorcyclesScreen())); } else if (item.name == "معارض السيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowroomsScreen())); } else if (item.name == "ايجار السيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarRentalScreen())); } else if (item.name == "معدات ثقيلة") { Navigator.push(context, MaterialPageRoute(builder: (context) => const HeavyEquipmentScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.card,
