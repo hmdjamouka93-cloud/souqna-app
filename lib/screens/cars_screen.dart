@@ -227,7 +227,10 @@ class CarsScreen extends StatelessWidget {
 
   double _logoHeight(String name) {
     const large = ['دودج', 'كرايسلر', 'بنتلي', 'ماكلارين', 'أستون مارتن', 'هافال'];
-    return large.contains(name) ? 65 : 40;
+    const small = ['شيري', 'جيلي'];
+    if (large.contains(name)) return 65;
+    if (small.contains(name)) return 28;
+    return 40;
   }
 
   Widget _buildLogo(_Brand brand) {
