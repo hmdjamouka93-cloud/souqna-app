@@ -213,7 +213,7 @@ class CarsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12),
               child: SizedBox(
-                height: 55,
+                height: _logoHeight(brand.name),
                 width: double.infinity,
                 child: Center(child: _buildLogo(brand)),
               ),
@@ -223,6 +223,11 @@ class CarsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double _logoHeight(String name) {
+    const large = ['دودج', 'كرايسلر', 'بنتلي', 'ماكلارين', 'أستون مارتن', 'هافال'];
+    return large.contains(name) ? 65 : 40;
   }
 
   Widget _buildLogo(_Brand brand) {
