@@ -62,6 +62,7 @@ class CarsScreen extends StatelessWidget {
     _Brand(name: 'هافال', slug: '', wiki: '', asset: 'images/logos/haval.png'),
     _Brand(name: 'سانغ يونغ', slug: '', wiki: '', asset: 'images/logos/ssangyong.png'),
     _Brand(name: 'فينفاست', slug: '', wiki: '', asset: 'images/logos/vinfast.png'),
+    _Brand(name: 'سيارات أخرى', slug: '', wiki: '', asset: '__other__'),
   ];
 
   @override
@@ -151,6 +152,30 @@ class CarsScreen extends StatelessWidget {
   }
 
   Widget _brandCard(_Brand brand) {
+    if (brand.asset == '__other__') {
+      return GestureDetector(
+        onTap: () {},
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.more_horiz, color: AppColors.accent, size: 32),
+                SizedBox(height: 6),
+                Text('سيارات أخرى',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: AppColors.accent, fontSize: 12,
+                    fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     final isAll = brand.slug.isEmpty && brand.wiki.isEmpty && brand.asset.isEmpty;
     if (isAll) {
       return Container(
@@ -188,7 +213,8 @@ class CarsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12),
               child: SizedBox(
-                height: 40,
+                height: 55,
+                width: double.infinity,
                 child: Center(child: _buildLogo(brand)),
               ),
             ),
