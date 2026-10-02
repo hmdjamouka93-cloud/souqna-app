@@ -143,7 +143,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context, _VehicleItem item) {
     return GestureDetector(
-      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
+      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else if (item.name == "حافلات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.card,
