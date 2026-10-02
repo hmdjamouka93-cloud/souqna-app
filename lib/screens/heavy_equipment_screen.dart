@@ -9,32 +9,32 @@ class HeavyEquipmentScreen extends StatelessWidget {
     _Item(
       name: 'ثلاجات',
       slug: 'refrigerators',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80',
+      image: 'images/equipment/refrigerators.jpg',
     ),
     _Item(
       name: 'الرافعات الشوكية',
       slug: 'forklifts',
-      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80',
+      image: 'images/equipment/forklifts.jpg',
     ),
     _Item(
       name: 'قطع غيار',
       slug: 'spare_parts',
-      image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80',
+      image: 'images/equipment/spare_parts.jpg',
     ),
     _Item(
       name: 'معدات الخرسانة',
       slug: 'concrete',
-      image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=600&q=80',
+      image: 'images/equipment/concrete.jpg',
     ),
     _Item(
       name: 'الرافعات',
       slug: 'cranes',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80',
+      image: 'images/equipment/cranes.jpg',
     ),
     _Item(
       name: 'قلابات وحفارات',
       slug: 'dump_excavators',
-      image: 'https://images.unsplash.com/photo-1579412847947-7f0a9e58fc31?w=600&q=80',
+      image: 'images/equipment/dump_excavators.jpg',
     ),
     _Item(name: 'معدات أخرى', slug: '__other__', image: ''),
   ];
@@ -186,7 +186,7 @@ class HeavyEquipmentScreen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.network(
+            Image.asset(
               item.image,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, progress) {
