@@ -30,7 +30,7 @@ class MotorcyclesScreen extends StatelessWidget {
         _Brand(name: 'بياجيو', slug: '', asset: 'images/logos/piaggio.png'),
         _Brand(name: 'SYM', slug: '', asset: 'images/logos/sym.png'),
         _Brand(name: 'هوندا', slug: 'honda'),
-        _Brand(name: 'ياماها', slug: 'yamaha'),
+        _Brand(name: 'ياماها', slug: '', asset: 'images/logos/yamaha.png'),
       ],
     ),
     _BrandGroup(
@@ -39,7 +39,7 @@ class MotorcyclesScreen extends StatelessWidget {
         _Brand(name: 'KTM', slug: 'ktm'),
         _Brand(name: 'دوكاتي', slug: 'ducati'),
         _Brand(name: 'كاواساكي', slug: '', asset: 'images/logos/kawasaki.png'),
-        _Brand(name: 'ياماها', slug: 'yamaha'),
+        _Brand(name: 'ياماها', slug: '', asset: 'images/logos/yamaha.png'),
         _Brand(name: 'هوندا', slug: 'honda'),
         _Brand(name: 'بي إم دبليو', slug: 'bmw'),
         _Brand(name: 'أبريليا', slug: '', asset: 'images/logos/aprilia.png'),
@@ -152,6 +152,15 @@ class MotorcyclesScreen extends StatelessWidget {
     );
   }
 
+
+  double _logoHeight(String name) {
+    const small = ['VMS', 'Keeway', 'Lifan', 'Bajaj', 'Hero', 'TVS', 'Haojue',
+                   'SYM', 'Piaggio', 'Kawasaki', 'Aprilia', 'Benelli',
+                   'Royal Enfield', 'رويال إنفيلد', 'MV Agusta', 'MV أجوستا', 'NIU', 'Sur-Ron'];
+    if (small.contains(name)) return 28;
+    return 40;
+  }
+
   Widget _brandCard(_Brand brand) {
     if (brand.slug == '__all__') {
       return Container(
@@ -213,7 +222,7 @@ class MotorcyclesScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12),
               child: SizedBox(
-                height: 40,
+                height: _logoHeight(brand.name),
                 width: double.infinity,
                 child: Center(
                   child: brand.asset.isNotEmpty
