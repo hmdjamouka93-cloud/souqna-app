@@ -110,7 +110,7 @@ class BusesScreen extends StatelessWidget {
 
   Widget _brandCard(_Brand brand) {
     // "جميع الإعلانات"
-    final isAll = brand.slug.isEmpty && brand.name != 'حافلات أخرى';
+    final isAll = brand.slug.isEmpty && brand.asset.isEmpty && brand.name != 'حافلات أخرى';
     if (isAll) {
       return Container(
         decoration: BoxDecoration(
