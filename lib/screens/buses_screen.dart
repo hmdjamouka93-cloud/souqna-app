@@ -6,19 +6,19 @@ class BusesScreen extends StatelessWidget {
 
   static const List<_Brand> _brands = [
     _Brand(name: 'جميع الإعلانات', slug: ''),
-    _Brand(name: 'هيغر', slug: 'higer'),
-    _Brand(name: 'يوتونغ', slug: 'yutong'),
-    _Brand(name: 'كينغ لونغ', slug: 'kinglong'),
-    _Brand(name: 'غولدن دراغون', slug: 'goldendragon'),
+    _Brand(name: 'هيغر', slug: '', asset: 'images/logos/higer.png'),
+    _Brand(name: 'يوتونغ', slug: '', asset: 'images/logos/yutong.png'),
+    _Brand(name: 'كينغ لونغ', slug: '', asset: 'images/logos/kinglong.png'),
+    _Brand(name: 'غولدن دراغون', slug: '', asset: 'images/logos/goldendragon.png'),
     _Brand(name: 'هيونداي', slug: 'hyundai'),
     _Brand(name: 'تويوتا', slug: 'toyota'),
-    _Brand(name: 'مرسيدس', slug: 'mercedes'),
+    _Brand(name: 'مرسيدس', slug: '', asset: 'images/logos/mercedes.png'),
     _Brand(name: 'فولفو', slug: 'volvo'),
     _Brand(name: 'سكانيا', slug: 'scania'),
     _Brand(name: 'مان', slug: 'man'),
     _Brand(name: 'إيفيكو', slug: 'iveco'),
-    _Brand(name: 'سيترا', slug: 'setra'),
-    _Brand(name: 'دايو', slug: 'daewoo'),
+    _Brand(name: 'سيترا', slug: '', asset: 'images/logos/setra.png'),
+    _Brand(name: 'دايو', slug: '', asset: 'images/logos/daewoo.png'),
     _Brand(name: 'حافلات أخرى', slug: '__other__'),
   ];
 
@@ -176,22 +176,24 @@ class BusesScreen extends StatelessWidget {
                 height: 40,
                 width: double.infinity,
                 child: Center(
-                  child: Image.network(
-                    'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
-                    fit: BoxFit.contain,
-                    loadingBuilder: (context, child, progress) {
-                      if (progress == null) return child;
-                      return const SizedBox(
-                        width: 28, height: 28,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.accent, strokeWidth: 2),
+                  child: brand.asset.isNotEmpty
+                      ? Image.asset(brand.asset, fit: BoxFit.contain)
+                      : Image.network(
+                          'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
+                          fit: BoxFit.contain,
+                          loadingBuilder: (context, child, progress) {
+                            if (progress == null) return child;
+                            return const SizedBox(
+                              width: 28, height: 28,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.accent, strokeWidth: 2),
+                              ),
+                            );
+                          },
+                          errorBuilder: (_, __, ___) => const Icon(
+                            Icons.directions_bus, color: Colors.white24, size: 32),
                         ),
-                      );
-                    },
-                    errorBuilder: (_, __, ___) => const Icon(
-                      Icons.directions_bus, color: Colors.white24, size: 32),
-                  ),
                 ),
               ),
             ),
@@ -206,5 +208,6 @@ class BusesScreen extends StatelessWidget {
 class _Brand {
   final String name;
   final String slug;
-  const _Brand({required this.name, required this.slug});
+  final String asset;
+  const _Brand({required this.name, required this.slug, this.asset = ''});
 }
