@@ -189,10 +189,6 @@ class HeavyEquipmentScreen extends StatelessWidget {
             Image.asset(
               item.image,
               fit: BoxFit.cover,
-              loadingBuilder: (context, child, progress) {
-                if (progress == null) return child;
-                return Container(color: AppColors.card);
-              },
               errorBuilder: (_, __, ___) => Container(
                 color: AppColors.card,
                 child: const Icon(Icons.construction,
