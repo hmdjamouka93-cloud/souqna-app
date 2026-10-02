@@ -24,4 +24,19 @@ flutter:
   uses-material-design: true
   assets:
     - images/icon_myads.png
+    - images/logos/alfaromeo.png
+    - images/logos/chery.png
+    - images/logos/cupra.png
+    - images/logos/dodge.png
+    - images/logos/geely.png
+    - images/logos/genesis.png
+    - images/logos/haval.png
+    - images/logos/isuzu.png
+    - images/logos/landrover.png
+    - images/logos/lexus.png
+    - images/logos/lincoln.png
+    - images/logos/lotus.png
     - images/logos/mercedes.png
+    - images/logos/rover.png
+    - images/logos/ssangyong.png
+    - images/logos/vinfast.png
