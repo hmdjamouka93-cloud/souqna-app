@@ -3,6 +3,7 @@ import '../main.dart';
 import 'cars_screen.dart';
 import 'buses_screen.dart';
 import 'trucks_screen.dart';
+import 'motorcycles_screen.dart';
 
 /// الشاشة الرئيسية
 class HomeScreen extends StatelessWidget {
@@ -144,7 +145,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context, _VehicleItem item) {
     return GestureDetector(
-      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else if (item.name == "حافلات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen())); } else if (item.name == "شاحنات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const TrucksScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
+      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else if (item.name == "حافلات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen())); } else if (item.name == "شاحنات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const TrucksScreen())); } else if (item.name == "دراجات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const MotorcyclesScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.card,
