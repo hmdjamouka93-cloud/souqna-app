@@ -14,12 +14,12 @@ class TrucksScreen extends StatelessWidget {
     _Brand(name: 'داف', slug: 'daf'),
     _Brand(name: 'رينو', slug: 'renault'),
     _Brand(name: 'إيسوزو', slug: '', asset: 'images/logos/isuzu.png'),
-    _Brand(name: 'هينو', slug: 'hino'),
+    _Brand(name: 'هينو', slug: '', asset: 'images/logos/hino.png'),
     _Brand(name: 'ميتسوبيشي', slug: 'mitsubishi'),
-    _Brand(name: 'سينوتراك', slug: 'sinotruk'),
-    _Brand(name: 'شاكمان', slug: 'shacman'),
-    _Brand(name: 'فاو', slug: 'faw'),
-    _Brand(name: 'دونغ فينغ', slug: 'dongfeng'),
+    _Brand(name: 'سينوتراك', slug: '', asset: 'images/logos/sinotruk.png'),
+    _Brand(name: 'شاكمان', slug: '', asset: 'images/logos/shacman.png'),
+    _Brand(name: 'فاو', slug: '', asset: 'images/logos/faw.png'),
+    _Brand(name: 'دونغ فينغ', slug: '', asset: 'images/logos/dongfeng.png'),
     _Brand(name: 'شاحنات أخرى', slug: '__other__'),
   ];
 
