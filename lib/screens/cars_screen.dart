@@ -15,6 +15,7 @@ class CarsScreen extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.zero,
           children: [
+            Container(color: Colors.red, padding: EdgeInsets.all(20), child: Text('TEST v3', style: TextStyle(color: Colors.white, fontSize: 40))),
             const SizedBox(height: 8),
             _buildAdBanner(),
             const SizedBox(height: 16),
