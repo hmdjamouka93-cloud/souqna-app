@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
 import 'buses_screen.dart';
@@ -60,9 +61,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.notifications_none,
-                color: Colors.white, size: 26),
-            onPressed: () => Scaffold.of(context).openDrawer(),
+            icon: const Icon(Icons.notifications_none, color: Colors.white, size: 26),
+            onPressed: () {},
           ),
         ],
       ),
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.card,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.accent.withOpacity(0.3), width: 1),
+        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
       ),
       child: const Center(
         child: Column(
@@ -102,8 +102,7 @@ class HomeScreen extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'ابحث في السوق...',
           hintStyle: const TextStyle(color: AppColors.textSecondary),
-          prefixIcon:
-              const Icon(Icons.search, color: AppColors.textSecondary),
+          prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
           filled: true,
           fillColor: AppColors.card,
           border: OutlineInputBorder(
@@ -132,24 +131,69 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildVehiclesGrid() {
-    return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 1.4,
-      ),
-      itemCount: _vehiclesItems.length,
-      itemBuilder: (context, i) => _vehicleCard(context, _vehiclesItems[i]),
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('type', isEqualTo: 'vehicle')
+          .orderBy('order')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = snapshot.data?.docs ?? [];
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 1.4,
+          ),
+          itemCount: docs.length,
+          itemBuilder: (context, i) {
+            final data = docs[i].data() as Map<String, dynamic>;
+            final name = (data['name'] ?? '').toString();
+            final image = (data['image'] ?? '').toString();
+            return _vehicleCard(context, name, image);
+          },
+        );
+      },
     );
   }
 
-  Widget _vehicleCard(BuildContext context, _VehicleItem item) {
+  Widget _vehicleCard(BuildContext context, String name, String image) {
     return GestureDetector(
-      onTap: () { if (item.name == "سيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen())); } else if (item.name == "حافلات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen())); } else if (item.name == "شاحنات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const TrucksScreen())); } else if (item.name == "دراجات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const MotorcyclesScreen())); } else if (item.name == "معارض السيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowroomsScreen())); } else if (item.name == "ايجار السيارات") { Navigator.push(context, MaterialPageRoute(builder: (context) => const CarRentalScreen())); } else if (item.name == "معدات ثقيلة") { Navigator.push(context, MaterialPageRoute(builder: (context) => const HeavyEquipmentScreen())); } else if (item.name == "قطع غيار") { Navigator.push(context, MaterialPageRoute(builder: (context) => const SparePartsScreen())); } else { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(item.name + " - قريبا"))); } },
+      onTap: () => _navigateToCategory(context, name),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.card,
@@ -160,7 +204,7 @@ class HomeScreen extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.network(
-              item.image,
+              image,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, progress) {
                 if (progress == null) return child;
@@ -168,8 +212,11 @@ class HomeScreen extends StatelessWidget {
               },
               errorBuilder: (context, error, stack) => Container(
                 color: AppColors.card,
-                child: const Icon(Icons.image_outlined,
-                    color: Colors.white24, size: 40),
+                child: const Icon(
+                  Icons.image_outlined,
+                  color: Colors.white24,
+                  size: 40,
+                ),
               ),
             ),
             Container(
@@ -178,7 +225,7 @@ class HomeScreen extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.75),
+                    Colors.black.withValues(alpha: 0.75),
                     Colors.transparent,
                   ],
                 ),
@@ -189,7 +236,7 @@ class HomeScreen extends StatelessWidget {
               right: 10,
               left: 10,
               child: Text(
-                item.name,
+                name,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
@@ -210,23 +257,28 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+  void _navigateToCategory(BuildContext context, String name) {
+    if (name == 'سيارات') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen()));
+    } else if (name == 'حافلات') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen()));
+    } else if (name == 'شاحنات') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const TrucksScreen()));
+    } else if (name == 'دراجات') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const MotorcyclesScreen()));
+    } else if (name == 'معارض السيارات') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowroomsScreen()));
+    } else if (name == 'ايجار السيارات') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const CarRentalScreen()));
+    } else if (name == 'معدات ثقيلة') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HeavyEquipmentScreen()));
+    } else if (name == 'قطع غيار') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const SparePartsScreen()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$name - قريباً')),
+      );
+    }
+  }
 }
-
-class _VehicleItem {
-  final String name;
-  final String image;
-  const _VehicleItem({required this.name, required this.image});
-}
-
-const String _base = 'https://raw.githubusercontent.com/hmdjamouka93-cloud/souqna-app/main/images';
-
-final List<_VehicleItem> _vehiclesItems = [
-  _VehicleItem(name: 'سيارات', image: '$_base/img3.jpg'),
-  _VehicleItem(name: 'شاحنات', image: '$_base/img5.jpg'),
-  _VehicleItem(name: 'دراجات', image: '$_base/img2.jpg'),
-  _VehicleItem(name: 'حافلات', image: '$_base/img4.jpg'),
-  _VehicleItem(name: 'معارض السيارات', image: '$_base/img7.jpg'),
-  _VehicleItem(name: 'ايجار السيارات', image: '$_base/img8.png'),
-  _VehicleItem(name: 'معدات ثقيلة', image: '$_base/img6.jpg'),
-  _VehicleItem(name: 'قطع غيار', image: '$_base/img1.jpg'),
-];
