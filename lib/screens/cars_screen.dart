@@ -76,43 +76,13 @@ class CarsScreen extends StatelessWidget {
   }
 
   Widget _buildBrandsGrid() {
-    return FutureBuilder<QuerySnapshot>(
-      future: _loadBrands(),
-      builder: (context, snapshot) {
-        String status;
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          status = 'Loading...';
-        } else if (snapshot.hasError) {
-          status = 'Error: ${snapshot.error}';
-        } else {
-          final docs = snapshot.data?.docs ?? [];
-          status = docs.isEmpty ? 'Empty' : 'Count: ${docs.length}';
-        }
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              padding: const EdgeInsets.all(10),
-              color: Colors.black45,
-              child: Text(
-                status,
-                style: const TextStyle(color: Colors.yellow, fontSize: 14),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 12),
-            if (snapshot.connectionState == ConnectionState.waiting)
-              const Padding(
-                padding: EdgeInsets.all(32),
-                child: Center(child: CircularProgressIndicator(color: AppColors.accent)),
-              )
-            else if (snapshot.hasData && (snapshot.data?.docs.isNotEmpty ?? false))
-              _buildGrid(snapshot.data!.docs),
-          ],
-        );
-      },
+    return const Padding(
+      padding: EdgeInsets.all(20),
+      child: Text(
+        'AAAAAAA - TEST BIG TEXT',
+        style: TextStyle(color: Colors.red, fontSize: 40),
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
