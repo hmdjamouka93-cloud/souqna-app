@@ -76,3 +76,19 @@ flutter:
     - images/equipment/concrete.jpg
     - images/equipment/spare_parts.jpg
     - images/equipment/dump_excavators.jpg
+    - images/spare_parts/brakes.jpg
+    - images/spare_parts/cooling.jpg
+    - images/spare_parts/battery.jpg
+    - images/spare_parts/transmission.jpg
+    - images/spare_parts/oils.jpg
+    - images/spare_parts/cables.jpg
+    - images/spare_parts/mirrors.jpg
+    - images/spare_parts/interior.jpg
+    - images/spare_parts/filters.jpg
+    - images/spare_parts/tires.jpg
+    - images/spare_parts/electrical.jpg
+    - images/spare_parts/body.jpg
+    - images/spare_parts/lights.jpg
+    - images/spare_parts/rims.jpg
+    - images/spare_parts/engine.jpg
+    - images/spare_parts/other.jpg
