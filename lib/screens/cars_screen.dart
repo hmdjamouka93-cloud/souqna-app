@@ -5,13 +5,6 @@ import '../main.dart';
 class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
 
-  Future<QuerySnapshot> _loadBrands() {
-    return FirebaseFirestore.instance
-        .collection('SubCategories')
-        .where('categoryId', isEqualTo: 'سيارات')
-        .get();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -76,60 +69,74 @@ class CarsScreen extends StatelessWidget {
   }
 
   Widget _buildBrandsGrid() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(12),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 1.0,
-      ),
-      itemCount: 9,
-      itemBuilder: (context, i) => Container(
-        color: Colors.red,
-        child: Center(
-          child: Text(
-            'BOX $i',
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+    return FutureBuilder<QuerySnapshot>(
+      future: FirebaseFirestore.instance
+          .collection('SubCategories')
+          .where('categoryId', isEqualTo: 'سيارات')
+          .get(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'خطأ: ${snapshot.error}',
+              style: const TextStyle(color: Colors.red, fontSize: 14),
+            ),
+          );
+        }
+        final docs = snapshot.data?.docs ?? [];
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد ماركات',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          );
+        }
+
+        final sorted = List<QueryDocumentSnapshot>.from(docs)
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+
+        final List<_Brand> brands = [];
+        brands.add(const _Brand(name: 'جميع الإعلانات', image: '__all__'));
+        for (final doc in sorted) {
+          final data = doc.data() as Map<String, dynamic>;
+          brands.add(_Brand(
+            name: (data['name'] ?? '').toString(),
+            image: (data['image'] ?? '').toString(),
+          ));
+        }
+        brands.add(const _Brand(name: 'سيارات أخرى', image: '__other__'));
+
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 1.0,
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildGrid(List<QueryDocumentSnapshot> docs) {
-    final sorted = List<QueryDocumentSnapshot>.from(docs)
-      ..sort((a, b) {
-        final ao = (a.data() as Map)['order'] ?? 0;
-        final bo = (b.data() as Map)['order'] ?? 0;
-        return (ao as int).compareTo(bo as int);
-      });
-
-    final List<_Brand> brands = [];
-    brands.add(const _Brand(name: 'جميع الإعلانات', image: '__all__'));
-    for (final doc in sorted) {
-      final data = doc.data() as Map<String, dynamic>;
-      brands.add(_Brand(
-        name: (data['name'] ?? '').toString(),
-        image: (data['image'] ?? '').toString(),
-      ));
-    }
-    brands.add(const _Brand(name: 'سيارات أخرى', image: '__other__'));
-
-    return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 1.0,
-      ),
-      itemCount: brands.length,
-      itemBuilder: (context, i) => _brandCard(brands[i]),
+          itemCount: brands.length,
+          itemBuilder: (context, i) => _brandCard(brands[i]),
+        );
+      },
     );
   }
 
@@ -148,8 +155,7 @@ class CarsScreen extends StatelessWidget {
               SizedBox(height: 6),
               Text('سيارات أخرى',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.accent, fontSize: 12, fontWeight: FontWeight.bold)),
+                  style: TextStyle(color: AppColors.accent, fontSize: 12, fontWeight: FontWeight.bold)),
             ],
           ),
         ),
@@ -167,8 +173,7 @@ class CarsScreen extends StatelessWidget {
           child: Center(
             child: Text('جميع الإعلانات',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
+                style: TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
           ),
         ),
       );
@@ -184,8 +189,7 @@ class CarsScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 6),
           Text(brand.name,
-              style: const TextStyle(
-                  color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center),
           const Spacer(),
           Padding(
