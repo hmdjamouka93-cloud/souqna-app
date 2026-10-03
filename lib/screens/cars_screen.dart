@@ -5,17 +5,33 @@ import '../main.dart';
 class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
 
+  Future<QuerySnapshot> _loadBrands() {
+    return FirebaseFirestore.instance
+        .collection('SubCategories')
+        .where('categoryId', isEqualTo: 'سيارات')
+        .get();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
-        appBar: _buildAppBar(context),
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          elevation: 0,
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: const Text('سيارات',
+              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+        ),
         body: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(color: Colors.red, padding: EdgeInsets.all(20), child: Text('TEST v3', style: TextStyle(color: Colors.white, fontSize: 40))),
             const SizedBox(height: 8),
             _buildAdBanner(),
             const SizedBox(height: 16),
@@ -25,28 +41,6 @@ class CarsScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.background,
-      elevation: 0,
-      centerTitle: true,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
-        onPressed: () => Navigator.pop(context),
-      ),
-      title: const Text(
-        'سيارات',
-        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-      ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.notifications_none, color: Colors.white, size: 24),
-          onPressed: () {},
-        ),
-      ],
     );
   }
 
@@ -65,7 +59,8 @@ class CarsScreen extends StatelessWidget {
           children: [
             Icon(Icons.campaign_outlined, color: AppColors.accent, size: 30),
             SizedBox(height: 6),
-            Text('مساحة إعلانية', style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+            Text('مساحة إعلانية',
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           ],
         ),
       ),
@@ -75,89 +70,104 @@ class CarsScreen extends StatelessWidget {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-      child: Text(
-        title,
-        style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-      ),
+      child: Text(title,
+          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
     );
   }
 
   Widget _buildBrandsGrid() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection('SubCategories')
-          .where('categoryId', isEqualTo: 'سيارات')
-          .snapshots(),
+    return FutureBuilder<QuerySnapshot>(
+      future: _loadBrands(),
       builder: (context, snapshot) {
+        String status;
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Padding(
-            padding: EdgeInsets.all(32),
-            child: Center(child: CircularProgressIndicator(color: AppColors.accent)),
-          );
+          status = 'Loading...';
+        } else if (snapshot.hasError) {
+          status = 'Error: ${snapshot.error}';
+        } else {
+          final docs = snapshot.data?.docs ?? [];
+          status = docs.isEmpty ? 'Empty' : 'Count: ${docs.length}';
         }
-        if (snapshot.hasError) {
-          return const Padding(
-            padding: EdgeInsets.all(32),
-            child: Center(
-              child: Text('خطأ في تحميل البيانات', style: TextStyle(color: Colors.white)),
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 12),
+              padding: const EdgeInsets.all(10),
+              color: Colors.black45,
+              child: Text(
+                status,
+                style: const TextStyle(color: Colors.yellow, fontSize: 14),
+                textAlign: TextAlign.center,
+              ),
             ),
-          );
-        }
-
-        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
-          ..sort((a, b) {
-            final ao = (a.data() as Map)['order'] ?? 0;
-            final bo = (b.data() as Map)['order'] ?? 0;
-            return (ao as int).compareTo(bo as int);
-          });
-
-        final List<_Brand> brands = [];
-        brands.add(const _Brand(name: 'جميع الإعلانات', image: '__all__'));
-        for (final doc in docs) {
-          final data = doc.data() as Map<String, dynamic>;
-          brands.add(_Brand(
-            name: (data['name'] ?? '').toString(),
-            image: (data['image'] ?? '').toString(),
-          ));
-        }
-        brands.add(const _Brand(name: 'سيارات أخرى', image: '__other__'));
-
-        return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 1.0,
-          ),
-          itemCount: brands.length,
-          itemBuilder: (context, i) => _brandCard(brands[i]),
+            const SizedBox(height: 12),
+            if (snapshot.connectionState == ConnectionState.waiting)
+              const Padding(
+                padding: EdgeInsets.all(32),
+                child: Center(child: CircularProgressIndicator(color: AppColors.accent)),
+              )
+            else if (snapshot.hasData && (snapshot.data?.docs.isNotEmpty ?? false))
+              _buildGrid(snapshot.data!.docs),
+          ],
         );
       },
     );
   }
 
+  Widget _buildGrid(List<QueryDocumentSnapshot> docs) {
+    final sorted = List<QueryDocumentSnapshot>.from(docs)
+      ..sort((a, b) {
+        final ao = (a.data() as Map)['order'] ?? 0;
+        final bo = (b.data() as Map)['order'] ?? 0;
+        return (ao as int).compareTo(bo as int);
+      });
+
+    final List<_Brand> brands = [];
+    brands.add(const _Brand(name: 'جميع الإعلانات', image: '__all__'));
+    for (final doc in sorted) {
+      final data = doc.data() as Map<String, dynamic>;
+      brands.add(_Brand(
+        name: (data['name'] ?? '').toString(),
+        image: (data['image'] ?? '').toString(),
+      ));
+    }
+    brands.add(const _Brand(name: 'سيارات أخرى', image: '__other__'));
+
+    return GridView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.0,
+      ),
+      itemCount: brands.length,
+      itemBuilder: (context, i) => _brandCard(brands[i]),
+    );
+  }
+
   Widget _brandCard(_Brand brand) {
     if (brand.image == '__other__') {
-      return GestureDetector(
-        onTap: () {},
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.card,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.more_horiz, color: AppColors.accent, size: 32),
-                SizedBox(height: 6),
-                Text('سيارات أخرى', textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.accent, fontSize: 12, fontWeight: FontWeight.bold)),
-              ],
-            ),
+      return Container(
+        decoration: BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.more_horiz, color: AppColors.accent, size: 32),
+              SizedBox(height: 6),
+              Text('سيارات أخرى',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColors.accent, fontSize: 12, fontWeight: FontWeight.bold)),
+            ],
           ),
         ),
       );
@@ -172,39 +182,39 @@ class CarsScreen extends StatelessWidget {
         child: const Padding(
           padding: EdgeInsets.all(10),
           child: Center(
-            child: Text('جميع الإعلانات', textAlign: TextAlign.center,
-                style: TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
+            child: Text('جميع الإعلانات',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
           ),
         ),
       );
     }
 
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.card,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 6),
-            Text(brand.name,
-                style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: SizedBox(
-                height: _logoHeight(brand.name),
-                width: double.infinity,
-                child: Center(child: _buildLogo(brand)),
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 6),
+          Text(brand.name,
+              style: const TextStyle(
+                  color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: SizedBox(
+              height: _logoHeight(brand.name),
+              width: double.infinity,
+              child: Center(child: _buildLogo(brand)),
             ),
-            const Spacer(),
-          ],
-        ),
+          ),
+          const Spacer(),
+        ],
       ),
     );
   }
@@ -234,7 +244,8 @@ class CarsScreen extends StatelessWidget {
           ),
         );
       },
-      errorBuilder: (_, __, ___) => const Icon(Icons.directions_car, color: Colors.white24, size: 32),
+      errorBuilder: (_, __, ___) =>
+          const Icon(Icons.directions_car, color: Colors.white24, size: 32),
     );
   }
 }
@@ -244,4 +255,3 @@ class _Brand {
   final String image;
   const _Brand({required this.name, required this.image});
 }
-// v2 marker 1791064700
