@@ -135,7 +135,6 @@ class HomeScreen extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('Categories')
           .where('type', isEqualTo: 'vehicle')
-          .orderBy('order')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -157,7 +156,12 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        final docs = snapshot.data?.docs ?? [];
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
         if (docs.isEmpty) {
           return const Padding(
             padding: EdgeInsets.all(32),
