@@ -76,12 +76,25 @@ class CarsScreen extends StatelessWidget {
   }
 
   Widget _buildBrandsGrid() {
-    return const Padding(
-      padding: EdgeInsets.all(20),
-      child: Text(
-        'AAAAAAA - TEST BIG TEXT',
-        style: TextStyle(color: Colors.red, fontSize: 40),
-        textAlign: TextAlign.center,
+    return GridView.builder(
+      padding: const EdgeInsets.all(12),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.0,
+      ),
+      itemCount: 9,
+      itemBuilder: (context, i) => Container(
+        color: Colors.red,
+        child: Center(
+          child: Text(
+            'BOX $i',
+            style: const TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
       ),
     );
   }
