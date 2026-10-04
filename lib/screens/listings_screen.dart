@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import 'car_detail_screen.dart';
 
 class ListingsScreen extends StatefulWidget {
   final String subCategoryId;
@@ -52,6 +53,15 @@ class _ListingsScreenState extends State<ListingsScreen> {
     }
   }
 
+  void _openDetail(Map<String, dynamic> item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CarDetailScreen(ad: item),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -96,73 +106,76 @@ class _ListingsScreenState extends State<ListingsScreen> {
     final images = item['images'] as List<String>;
     final img = images.isNotEmpty ? images.first : '';
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          AspectRatio(
-            aspectRatio: 16 / 10,
-            child: img.isEmpty
-                ? Container(
-                    color: Colors.black26,
-                    child: const Icon(Icons.directions_car,
-                        color: Colors.white24, size: 60),
-                  )
-                : Image.network(
-                    img,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
+    return GestureDetector(
+      onTap: () => _openDetail(item),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        decoration: BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AspectRatio(
+              aspectRatio: 16 / 10,
+              child: img.isEmpty
+                  ? Container(
                       color: Colors.black26,
                       child: const Icon(Icons.directions_car,
                           color: Colors.white24, size: 60),
+                    )
+                  : Image.network(
+                      img,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Container(
+                        color: Colors.black26,
+                        child: const Icon(Icons.directions_car,
+                            color: Colors.white24, size: 60),
+                      ),
                     ),
-                  ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(item['title'],
-                    style: const TextStyle(color: Colors.white, fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis),
-                const SizedBox(height: 6),
-                Text('${item['price']} د.ج',
-                    style: const TextStyle(color: AppColors.accent,
-                        fontSize: 16, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    const Icon(Icons.location_on_outlined,
-                        color: AppColors.textSecondary, size: 14),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(item['location'],
-                          style: const TextStyle(color: AppColors.textSecondary,
-                              fontSize: 12),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis),
-                    ),
-                    const Icon(Icons.chat_bubble_outline,
-                        color: AppColors.textSecondary, size: 14),
-                    const SizedBox(width: 4),
-                    const Text('0',
-                        style: TextStyle(color: AppColors.textSecondary,
-                            fontSize: 12)),
-                  ],
-                ),
-              ],
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(item['title'],
+                      style: const TextStyle(color: Colors.white, fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis),
+                  const SizedBox(height: 6),
+                  Text('${item['price']} د.ج',
+                      style: const TextStyle(color: AppColors.accent,
+                          fontSize: 16, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      const Icon(Icons.location_on_outlined,
+                          color: AppColors.textSecondary, size: 14),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(item['location'],
+                            style: const TextStyle(color: AppColors.textSecondary,
+                                fontSize: 12),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis),
+                      ),
+                      const Icon(Icons.chat_bubble_outline,
+                          color: AppColors.textSecondary, size: 14),
+                      const SizedBox(width: 4),
+                      const Text('0',
+                          style: TextStyle(color: AppColors.textSecondary,
+                              fontSize: 12)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
