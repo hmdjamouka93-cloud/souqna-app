@@ -10,7 +10,6 @@ class CarsScreen extends StatefulWidget {
 
 class _CarsScreenState extends State<CarsScreen> {
   bool _loading = true;
-  String _status = 'INIT';
   List<Map<String, dynamic>> _brands = [];
 
   @override
@@ -20,10 +19,7 @@ class _CarsScreenState extends State<CarsScreen> {
   }
 
   Future<void> _load() async {
-    setState(() {
-      _loading = true;
-      _status = 'LOADING';
-    });
+    setState(() => _loading = true);
     try {
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
@@ -42,15 +38,21 @@ class _CarsScreenState extends State<CarsScreen> {
       setState(() {
         _brands = list;
         _loading = false;
-        _status = 'OK: ${list.length}';
       });
     } catch (e) {
       if (!mounted) return;
-      setState(() {
-        _loading = false;
-        _status = 'ERR: $e';
-      });
+      setState(() => _loading = false);
     }
+  }
+
+  double _logoHeight(String name) {
+    // شعارات Gemini الكبيرة (PNG) - تحتاج حجم أصغر
+    const gemini = ['مارسيدس', 'شيري', 'جيلي', 'لوتس', 'دودج', 'غريت وول', 'ايسوزو', 'لاند روفر'];
+    // شعارات عريضة (banner) تحتاج حجم أكبر
+    const wide = ['كرايسلر', 'بنتلي', 'بينتلي', 'ماكلارين', 'أستون مارتن'];
+    if (gemini.contains(name)) return 26;
+    if (wide.contains(name)) return 55;
+    return 40;
   }
 
   @override
@@ -73,43 +75,11 @@ class _CarsScreenState extends State<CarsScreen> {
         body: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(
-              color: Colors.yellow,
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                _status,
-                style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 12),
-            if (_loading)
-              const Padding(
-                padding: EdgeInsets.all(32),
-                child: Center(child: CircularProgressIndicator(color: AppColors.accent)),
-              )
-            else if (_brands.isEmpty)
-              const Padding(
-                padding: EdgeInsets.all(32),
-                child: Center(
-                  child: Text('لا توجد ماركات',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                ),
-              )
-            else
-              GridView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1.0,
-                ),
-                itemCount: _brands.length,
-                itemBuilder: (context, i) => _card(_brands[i]),
-              ),
+            const SizedBox(height: 8),
+            _buildAdBanner(),
+            const SizedBox(height: 16),
+            _buildSectionTitle('الأقسام الفرعية'),
+            _buildContent(),
             const SizedBox(height: 20),
           ],
         ),
@@ -117,7 +87,94 @@ class _CarsScreenState extends State<CarsScreen> {
     );
   }
 
-  Widget _card(Map<String, dynamic> b) {
+  Widget _buildAdBanner() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      height: 100,
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
+      ),
+      child: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.campaign_outlined, color: AppColors.accent, size: 30),
+            SizedBox(height: 6),
+            Text('مساحة إعلانية',
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+      child: Text(title,
+          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+    );
+  }
+
+  Widget _buildContent() {
+    if (_loading) {
+      return const Padding(
+        padding: EdgeInsets.all(32),
+        child: Center(child: CircularProgressIndicator(color: AppColors.accent)),
+      );
+    }
+    if (_brands.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(32),
+        child: Center(
+          child: Text('لا توجد ماركات',
+              style: TextStyle(color: Colors.white, fontSize: 16)),
+        ),
+      );
+    }
+    return GridView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.0,
+      ),
+      itemCount: _brands.length + 2,
+      itemBuilder: (context, i) {
+        if (i == 0) return _specialCard('جميع الإعلانات');
+        if (i == _brands.length + 1) return _specialCard('سيارات أخرى');
+        return _brandCard(_brands[i - 1]);
+      },
+    );
+  }
+
+  Widget _specialCard(String label) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Center(
+          child: Text(label,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
+        ),
+      ),
+    );
+  }
+
+  Widget _brandCard(Map<String, dynamic> b) {
+    final name = (b['name'] as String).trim();
+    final image = (b['image'] as String).trim();
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.card,
@@ -127,25 +184,31 @@ class _CarsScreenState extends State<CarsScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 6),
-          Text(b['name'],
-              style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Text(name,
+                style: const TextStyle(
+                    color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis),
+          ),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8),
             child: SizedBox(
-              height: 40,
+              height: _logoHeight(name),
               width: double.infinity,
-              child: (b['image'] as String).isEmpty
-                  ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
-                  : Image.network(
-                      b['image'],
-                      fit: BoxFit.contain,
-                      errorBuilder: (_, __, ___) =>
-                          const Icon(Icons.directions_car, color: Colors.white24, size: 32),
-                    ),
+              child: Center(
+                child: image.isEmpty
+                    ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
+                    : Image.network(
+                        image,
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, __, ___) =>
+                            const Icon(Icons.directions_car, color: Colors.white24, size: 32),
+                      ),
+              ),
             ),
           ),
           const Spacer(),
