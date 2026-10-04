@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import 'listings_screen.dart';
 
 class CarsScreen extends StatefulWidget {
   const CarsScreen({super.key});
@@ -19,7 +20,6 @@ class _CarsScreenState extends State<CarsScreen> {
   }
 
   Future<void> _load() async {
-    setState(() => _loading = true);
     try {
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
@@ -28,6 +28,7 @@ class _CarsScreenState extends State<CarsScreen> {
       final list = snap.docs.map((d) {
         final x = d.data();
         return {
+          'id': d.id,
           'name': (x['name'] ?? '').toString(),
           'image': (x['image'] ?? '').toString(),
           'order': (x['order'] ?? 0) is int ? x['order'] : 0,
@@ -46,13 +47,23 @@ class _CarsScreenState extends State<CarsScreen> {
   }
 
   double _logoHeight(String name) {
-    // شعارات Gemini الكبيرة (PNG) - تحتاج حجم أصغر
     const gemini = ['مارسيدس', 'شيري', 'جيلي', 'لوتس', 'دودج', 'غريت وول', 'ايسوزو', 'لاند روفر'];
-    // شعارات عريضة (banner) تحتاج حجم أكبر
-    const wide = ['كرايسلر', 'بنتلي', 'بينتلي', 'ماكلارين', 'أستون مارتن'];
+    const wide = ['كرايسلر', 'بنتلي', 'بينتلي', 'هافال'];
     if (gemini.contains(name)) return 26;
     if (wide.contains(name)) return 55;
     return 40;
+  }
+
+  void _openBrand(Map<String, dynamic> b) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ListingsScreen(
+          subCategoryId: b['id'],
+          brandName: b['name'],
+        ),
+      ),
+    );
   }
 
   @override
@@ -144,30 +155,8 @@ class _CarsScreenState extends State<CarsScreen> {
         mainAxisSpacing: 10,
         childAspectRatio: 1.0,
       ),
-      itemCount: _brands.length + 2,
-      itemBuilder: (context, i) {
-        if (i == 0) return _specialCard('جميع الإعلانات');
-        if (i == _brands.length + 1) return _specialCard('سيارات أخرى');
-        return _brandCard(_brands[i - 1]);
-      },
-    );
-  }
-
-  Widget _specialCard(String label) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Center(
-          child: Text(label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
-        ),
-      ),
+      itemCount: _brands.length,
+      itemBuilder: (context, i) => _brandCard(_brands[i]),
     );
   }
 
@@ -175,44 +164,47 @@ class _CarsScreenState extends State<CarsScreen> {
     final name = (b['name'] as String).trim();
     final image = (b['image'] as String).trim();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 6),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(name,
-                style: const TextStyle(
-                    color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: SizedBox(
-              height: _logoHeight(name),
-              width: double.infinity,
-              child: Center(
-                child: image.isEmpty
-                    ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
-                    : Image.network(
-                        image,
-                        fit: BoxFit.contain,
-                        errorBuilder: (_, __, ___) =>
-                            const Icon(Icons.directions_car, color: Colors.white24, size: 32),
-                      ),
+    return GestureDetector(
+      onTap: () => _openBrand(b),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Text(name,
+                  style: const TextStyle(
+                      color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: SizedBox(
+                height: _logoHeight(name),
+                width: double.infinity,
+                child: Center(
+                  child: image.isEmpty
+                      ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
+                      : Image.network(
+                          image,
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, __, ___) =>
+                              const Icon(Icons.directions_car, color: Colors.white24, size: 32),
+                        ),
+                ),
               ),
             ),
-          ),
-          const Spacer(),
-        ],
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
