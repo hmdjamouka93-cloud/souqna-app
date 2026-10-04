@@ -16,19 +16,31 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   int _likes = 24;
   int _currentPage = 0;
 
-  static const List<String> _gallery = [
-    'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80',
-    'https://images.unsplash.com/photo-1594502184342-2e12f877aa73?w=800&q=80',
-    'https://images.unsplash.com/photo-1605893477799-b99e3b8b93fe?w=800&q=80',
-    'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80',
-  ];
+  List<String> get _images {
+    final imgs = widget.ad['images'];
+    if (imgs is List && imgs.isNotEmpty) {
+      return imgs.map((e) => e.toString()).toList();
+    }
+    return <String>[];
+  }
 
-  static const List<Map<String, String>> _similarAds = [
-    {'title': 'تويوتا برادو 2005', 'price': '330000 د.ج',
-     'img': 'https://images.unsplash.com/photo-1594502184342-2e12f877aa73?w=400&q=80'},
-    {'title': 'نيسان اكس تريل 2016', 'price': '240000 د.ج',
-     'img': 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&q=80'},
-  ];
+  String get _title => (widget.ad['title'] ?? '').toString();
+  String get _location => (widget.ad['location'] ?? '').toString();
+  String get _description => (widget.ad['description'] ?? '').toString();
+  String get _price {
+    final p = widget.ad['price'] ?? 0;
+    if (p is int) {
+      final s = p.toString();
+      final buf = StringBuffer();
+      for (int i = 0; i < s.length; i++) {
+        buf.write(s[i]);
+        final rem = s.length - 1 - i;
+        if (rem > 0 && rem % 3 == 0) buf.write(',');
+      }
+      return '${buf.toString()} د.ج';
+    }
+    return '$p د.ج';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +58,6 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             const SizedBox(height: 12),
             _buildSellerCard(),
             const SizedBox(height: 16),
-            _buildSpecsGrid(),
-            const SizedBox(height: 16),
             _buildDescription(),
             const SizedBox(height: 16),
             _buildReactions(),
@@ -55,10 +65,6 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             _buildAdBanner(),
             const SizedBox(height: 16),
             const CommentsSection(),
-            const SizedBox(height: 16),
-            _buildSimilarAds('إعلانات ذات صلة'),
-            const SizedBox(height: 12),
-            _buildSimilarAds('إعلانات أخرى لنفس البائع'),
             const SizedBox(height: 20),
           ],
         ),
@@ -76,8 +82,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         onPressed: () => Navigator.pop(context),
       ),
       title: const Text('تفاصيل السيارة',
-        style: TextStyle(color: Colors.white, fontSize: 16,
-          fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
           icon: const Icon(Icons.star_border, color: Colors.white, size: 22),
@@ -88,38 +93,51 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   }
 
   Widget _buildGallery() {
+    if (_images.isEmpty) {
+      return Container(
+        height: 240,
+        color: Colors.black26,
+        child: const Center(
+          child: Icon(Icons.directions_car, color: Colors.white24, size: 80),
+        ),
+      );
+    }
     return Stack(
       children: [
         SizedBox(
           height: 240,
           child: PageView.builder(
-            itemCount: _gallery.length,
+            itemCount: _images.length,
             onPageChanged: (i) => setState(() => _currentPage = i),
-            itemBuilder: (context, i) => Image.network(_gallery[i],
+            itemBuilder: (context, i) => Image.network(
+              _images[i],
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) => Container(
                 color: Colors.black26,
                 child: const Icon(Icons.directions_car,
-                  color: Colors.white24, size: 60),
-              )),
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(_gallery.length, (i) => Container(
-              width: 8, height: 8,
-              margin: const EdgeInsets.symmetric(horizontal: 3),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _currentPage == i ? Colors.white : Colors.white38,
+                    color: Colors.white24, size: 60),
               ),
-            )),
+            ),
           ),
         ),
+        if (_images.length > 1)
+          Positioned(
+            bottom: 10,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(_images.length, (i) => Container(
+                width: 8,
+                height: 8,
+                margin: const EdgeInsets.symmetric(horizontal: 3),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _currentPage == i ? Colors.white : Colors.white38,
+                ),
+              )),
+            ),
+          ),
       ],
     );
   }
@@ -130,27 +148,25 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              const Icon(Icons.access_time, color: AppColors.textSecondary, size: 14),
-              const SizedBox(width: 4),
-              const Text('منذ 3 أيام',
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
-              const Spacer(),
-              const Text('28',
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
-              const SizedBox(width: 4),
-              const Icon(Icons.visibility, color: AppColors.textSecondary, size: 14),
-            ],
-          ),
+          Text(_title,
+              style: const TextStyle(color: Colors.white, fontSize: 18,
+                  fontWeight: FontWeight.bold)),
           const SizedBox(height: 6),
-          Text(widget.ad['title'],
-            style: const TextStyle(color: Colors.white, fontSize: 18,
-              fontWeight: FontWeight.bold)),
+          if (_location.isNotEmpty)
+            Row(
+              children: [
+                const Icon(Icons.location_on_outlined,
+                    color: AppColors.textSecondary, size: 14),
+                const SizedBox(width: 4),
+                Text(_location,
+                    style: const TextStyle(color: AppColors.textSecondary,
+                        fontSize: 12)),
+              ],
+            ),
           const SizedBox(height: 8),
-          Text(widget.ad['price'],
-            style: const TextStyle(color: AppColors.accent, fontSize: 20,
-              fontWeight: FontWeight.bold)),
+          Text(_price,
+              style: const TextStyle(color: AppColors.accent, fontSize: 20,
+                  fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -176,19 +192,20 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text('أس في موتورز',
-                  style: TextStyle(color: Colors.white, fontSize: 14,
-                    fontWeight: FontWeight.bold)),
+                Text('البائع',
+                    style: TextStyle(color: Colors.white, fontSize: 14,
+                        fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
-                Text('50 متابع',
-                  style: TextStyle(color: AppColors.textSecondary, fontSize: 11)),
+                Text('مستخدم سوقنا',
+                    style: TextStyle(color: AppColors.textSecondary,
+                        fontSize: 11)),
               ],
             ),
           ),
           _smallBtn('تابع', () {}),
           const SizedBox(width: 6),
           _smallBtn('اتصال', () async {
-            final uri = Uri.parse('tel:+21370466633');
+            final uri = Uri.parse('tel:+213000000000');
             if (await canLaunchUrl(uri)) await launchUrl(uri);
           }),
         ],
@@ -206,92 +223,26 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(label,
-          style: const TextStyle(color: AppColors.accent, fontSize: 12,
-            fontWeight: FontWeight.bold)),
-      ),
-    );
-  }
-
-  Widget _buildSpecsGrid() {
-    final specs = [
-      ['القسم', 'سيارات'],
-      ['نوع الإعلان', 'للبيع'],
-      ['الفئة', 'رام'],
-      ['الموديل', '1500'],
-      ['المتور', 'دودج'],
-      ['سنة الصنع', '2025'],
-      ['نوع القير', 'اوتوماتيك'],
-      ['نوع المركبة', 'بيكاب'],
-      ['كم', '20000'],
-      ['نوع الوقود', 'بنزين'],
-      ['عدد الأسطوانات', '6'],
-      ['سعة المحرك', '3000 سي سي'],
-      ['الحالة', 'مستعمل - ممتازة'],
-      ['تحت الضمان', 'نعم'],
-      ['اللون', 'أبيض'],
-      ['المدينة', 'الدوحة'],
-    ];
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          childAspectRatio: 1.5,
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 4,
-        ),
-        itemCount: specs.length,
-        itemBuilder: (context, i) => Container(
-          decoration: BoxDecoration(
-            color: Colors.black26,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(specs[i][0],
-                style: const TextStyle(color: AppColors.textSecondary,
-                  fontSize: 10)),
-              const SizedBox(height: 4),
-              Text(specs[i][1],
-                style: const TextStyle(color: Colors.white, fontSize: 12,
-                  fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
+            style: const TextStyle(color: AppColors.accent, fontSize: 12,
+                fontWeight: FontWeight.bold)),
       ),
     );
   }
 
   Widget _buildDescription() {
+    if (_description.isEmpty) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text('الوصف',
-            style: TextStyle(color: Colors.white, fontSize: 15,
-              fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          Text(
-            'دودج رام ار تي 2025\n'
-            'الموديل: 2025\n'
-            'الممشى: 20.000 كم فقط\n'
-            'وارد الدوحة تحت الضمان سرفس مجاني\n'
-            'السعر: 328.000 د.ج\n\n'
-            'المواصفات:\n'
-            'محرك بنزول 6 سلندر ناقل حركة أوتوماتيك دفع رباعي '
-            'شاشة كاميرا خلفية وحساسات 5 مقاعد جلد فتحة سقف '
-            'بانوراما تشغيل عن بعد سيارة قوية ومناسبة للاستخدام اليومي والسفر والبر.',
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
-          ),
+        children: [
+          const Text('الوصف',
+              style: TextStyle(color: Colors.white, fontSize: 15,
+                  fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          Text(_description,
+              style: const TextStyle(color: Colors.white, fontSize: 13,
+                  height: 1.7)),
         ],
       ),
     );
@@ -313,7 +264,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           )),
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.share, 'مشاركة', () {
-            Share.share('شوف هذه السيارة: ${widget.ad['title']} - ${widget.ad['price']}');
+            Share.share('شوف هذه السيارة: $_title - $_price');
           })),
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () {
@@ -334,19 +285,19 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         decoration: BoxDecoration(
           color: AppColors.card,
           border: Border.all(
-            color: active ? AppColors.accent : Colors.white24, width: 1),
+              color: active ? AppColors.accent : Colors.white24, width: 1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon,
-              color: active ? AppColors.accent : Colors.white, size: 16),
+                color: active ? AppColors.accent : Colors.white, size: 16),
             const SizedBox(width: 6),
             Text(label,
-              style: TextStyle(
-                color: active ? AppColors.accent : Colors.white,
-                fontSize: 12)),
+                style: TextStyle(
+                    color: active ? AppColors.accent : Colors.white,
+                    fontSize: 12)),
           ],
         ),
       ),
@@ -369,72 +320,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             Icon(Icons.campaign_outlined, color: AppColors.accent, size: 30),
             SizedBox(height: 6),
             Text('مساحة إعلانية',
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildSimilarAds(String title) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-          child: Text(title,
-            style: const TextStyle(color: Colors.white, fontSize: 14,
-              fontWeight: FontWeight.bold)),
-        ),
-        SizedBox(
-          height: 180,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            itemCount: _similarAds.length,
-            itemBuilder: (context, i) => _similarAdCard(_similarAds[i]),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _similarAdCard(Map<String, String> ad) {
-    return Container(
-      width: 150,
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-        color: AppColors.card,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Image.network(ad['img']!, fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
-                color: Colors.black26,
-                child: const Icon(Icons.directions_car,
-                  color: Colors.white24, size: 32),
-              )),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(6),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(ad['title']!,
-                  style: const TextStyle(color: Colors.white, fontSize: 11),
-                  maxLines: 1, overflow: TextOverflow.ellipsis),
-                const SizedBox(height: 2),
-                Text(ad['price']!,
-                  style: const TextStyle(color: AppColors.accent, fontSize: 12,
-                    fontWeight: FontWeight.bold)),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
