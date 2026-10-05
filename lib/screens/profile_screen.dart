@@ -125,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: const Text('تسجيل الخروج',
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          content: const Text('متأكد راك حاب تخرج؟',
+          content: const Text('هل أنت متأكد من تسجيل الخروج؟',
               style: TextStyle(color: _textSec)),
           actions: [
             TextButton(

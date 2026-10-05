@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final pass = _passCtrl.text;
 
     if (email.isEmpty || pass.isEmpty) {
-      setState(() => _error = 'عمّر الإيميل وكلمة السر');
+      setState(() => _error = 'الرجاء إدخال البريد الإلكتروني وكلمة المرور');
       return;
     }
 
@@ -54,9 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
       } else if (s.contains('wrong-password')) {
         msg = 'كلمة السر غالطة';
       } else if (s.contains('invalid-email')) {
-        msg = 'الإيميل ماشي صحيح';
+        msg = 'البريد الإلكتروني غير صحيح';
       } else if (s.contains('invalid-credential')) {
-        msg = 'الإيميل ولا كلمة السر غالطين';
+        msg = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
       } else if (s.contains('network')) {
         msg = 'تأكد من الاتصال بالإنترنت';
       }
@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'ما عندكش حساب؟',
+                      'ليس لديك حساب؟',
                       style: TextStyle(color: _textSec, fontSize: 14),
                     ),
                     TextButton(
@@ -195,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       },
                       child: const Text(
-                        'سجل دوك',
+                        'سجل الآن',
                         style: TextStyle(
                           color: _accent,
                           fontSize: 14,

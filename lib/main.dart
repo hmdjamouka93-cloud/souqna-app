@@ -75,10 +75,10 @@ class _MainShellState extends State<MainShell> {
             context,
             () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('إضافة إعلان جديد - قريب')),
+                const SnackBar(content: Text('إضافة إعلان جديد - قريباً')),
               );
             },
-            message: 'خاصك تسجل باش تحط إعلان',
+            message: 'يجب تسجيل الدخول لإضافة إعلان',
           );
         },
         backgroundColor: AppColors.accent,

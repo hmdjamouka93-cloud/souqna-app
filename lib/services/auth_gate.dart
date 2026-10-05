@@ -8,7 +8,7 @@ import '../screens/login_screen.dart';
 Future<void> requireAuth(
   BuildContext context,
   VoidCallback onAuthed, {
-  String message = 'خاصك تسجل باش تكمل',
+  String message = 'يجب تسجيل الدخول للمتابعة',
 }) async {
   if (AuthService.isLoggedIn) {
     onAuthed();

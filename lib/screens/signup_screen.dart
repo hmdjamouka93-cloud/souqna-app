@@ -42,7 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
       return;
     }
     if (email.isEmpty || !email.contains('@')) {
-      setState(() => _error = 'الإيميل ماشي صحيح');
+      setState(() => _error = 'البريد الإلكتروني غير صحيح');
       return;
     }
     if (phone.length < 9) {
@@ -50,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
       return;
     }
     if (pass.length < 6) {
-      setState(() => _error = 'كلمة السر لازم 6 حروف ولا أكثر');
+      setState(() => _error = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
       return;
     }
 
@@ -74,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
       if (s.contains('email-already-in-use')) {
         msg = 'هاد الإيميل مستعمل من قبل';
       } else if (s.contains('invalid-email')) {
-        msg = 'الإيميل ماشي صحيح';
+        msg = 'البريد الإلكتروني غير صحيح';
       } else if (s.contains('weak-password')) {
         msg = 'كلمة السر ضعيفة (6 حروف على الأقل)';
       } else if (s.contains('network')) {
@@ -201,7 +201,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 12),
                 const Center(
                   child: Text(
-                    'رقم هاتفك غادي يبان للناس في إعلاناتك وتعليقاتك',
+                    'سيظهر رقم هاتفك للآخرين في إعلاناتك وتعليقاتك',
                     textAlign: TextAlign.center,
                     style: TextStyle(color: _textSec, fontSize: 12),
                   ),
