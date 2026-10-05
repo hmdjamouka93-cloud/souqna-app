@@ -16,6 +16,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   http: ^1.2.2
   cupertino_icons: ^1.0.8
+  firebase_auth: ^5.7.0
 
 dev_dependencies:
   flutter_test:
