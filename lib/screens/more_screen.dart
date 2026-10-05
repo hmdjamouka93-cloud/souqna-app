@@ -7,6 +7,7 @@ import '../main.dart';
 import '../services/auth_service.dart';
 import 'login_screen.dart';
 import 'profile_screen.dart';
+import 'about_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -255,19 +256,10 @@ class MoreScreen extends StatelessWidget {
   // ============ قائمة الإعدادات ============
   Widget _buildSettingsList(BuildContext context) {
     final items = [
-      _ListItem('عن سوقنا', Icons.info_outline,
-          () {
-        showAboutDialog(
-          context: context,
-          applicationName: 'سوقنا',
-          applicationVersion: '1.0.0',
-          children: [
-            const Text(
-              'تطبيق سوق جزائري للإعلانات المبوبة.\n\n'
-              'يسهل عليك البيع والشراء في كل المجالات.',
-              style: TextStyle(fontSize: 13),
-            ),
-          ],
+      _ListItem('عن سوقنا', Icons.info_outline, () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const AboutScreen()),
         );
       }),
       _ListItem('شارك سوقنا', Icons.share_outlined, () {
