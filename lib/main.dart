@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'widgets/app_drawer.dart';
+import 'services/auth_gate.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,8 +71,14 @@ class _MainShellState extends State<MainShell> {
       margin: const EdgeInsets.only(top: 14),
       child: FloatingActionButton(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('إضافة إعلان جديد')),
+          requireAuth(
+            context,
+            () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('إضافة إعلان جديد - قريب')),
+              );
+            },
+            message: 'خاصك تسجل باش تحط إعلان',
           );
         },
         backgroundColor: AppColors.accent,

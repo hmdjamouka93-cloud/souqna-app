@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../main.dart';
+import '../services/auth_service.dart';
+import '../screens/login_screen.dart';
+import '../screens/profile_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -36,6 +40,7 @@ class AppDrawer extends StatelessWidget {
           children: [
             _buildHeader(context),
             _buildSearch(),
+                                            _buildAuthTile(context),
             const SizedBox(height: 8),
             Expanded(child: _buildList(context)),
           ],
@@ -84,11 +89,58 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
+  Widget _buildAuthTile(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: AuthService.authStateChanges,
+      builder: (context, snapshot) {
+        final logged = snapshot.connectionState == ConnectionState.waiting
+            ? AuthService.isLoggedIn
+            : snapshot.data != null;
+        return ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+          leading: Icon(
+            logged ? Icons.person_outline : Icons.login_outlined,
+            color: AppColors.accent,
+            size: 22,
+          ),
+          title: Text(
+            logged ? 'حسابي' : 'تسجيل الدخول',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.right,
+          ),
+          trailing: const Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColors.textSecondary,
+            size: 14,
+          ),
+          onTap: () {
+            Navigator.pop(context);
+            if (logged) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
+              );
+            }
+          },
+        );
+      },
+    );
+  }
+
   Widget _buildList(BuildContext context) {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       itemCount: _items.length,
-      separatorBuilder: (_, __) => const Divider(
+      separatorBuilder: (_, _) => const Divider(
         color: Colors.white12, height: 1, indent: 16, endIndent: 16,
       ),
       itemBuilder: (context, i) {
