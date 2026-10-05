@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'widgets/app_drawer.dart';
 import 'services/auth_gate.dart';
+import 'screens/more_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -112,7 +113,16 @@ class _MainShellState extends State<MainShell> {
   Widget _navItemIcon(IconData icon, String label, int index) {
     final isActive = _currentIndex == index;
     return InkWell(
-      onTap: () => setState(() => _currentIndex = index),
+      onTap: () {
+        if (index == 3) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const MoreScreen()),
+          );
+        } else {
+          setState(() => _currentIndex = index);
+        }
+      },
       borderRadius: BorderRadius.circular(10),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
