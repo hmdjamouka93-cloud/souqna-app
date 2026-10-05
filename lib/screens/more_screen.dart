@@ -8,6 +8,7 @@ import '../services/auth_service.dart';
 import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'about_screen.dart';
+import 'my_ads_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -171,8 +172,9 @@ class MoreScreen extends StatelessWidget {
           );
           return;
         }
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('إعلاناتي - قريباً')),
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const MyAdsScreen()),
         );
       }),
       _GridItem('المفضلة', Icons.star_border, const Color(0xFFF9A825), () {
