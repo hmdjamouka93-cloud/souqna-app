@@ -4,6 +4,7 @@ import 'screens/home_screen.dart';
 import 'widgets/app_drawer.dart';
 import 'services/auth_gate.dart';
 import 'screens/more_screen.dart';
+import 'screens/post_ad_chooser_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,8 +76,11 @@ class _MainShellState extends State<MainShell> {
           requireAuth(
             context,
             () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('إضافة إعلان جديد - قريباً')),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const PostAdChooserScreen(),
+                ),
               );
             },
             message: 'يجب تسجيل الدخول لإضافة إعلان',
