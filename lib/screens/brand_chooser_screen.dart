@@ -111,21 +111,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Container(
-              color: Colors.yellow,
-              padding: const EdgeInsets.all(6),
-              width: double.infinity,
-              child: Text(
-                _debugMsg,
-                style: const TextStyle(color: Colors.black, fontSize: 10),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Expanded(child: _buildBody()),
-          ],
-        ),
+        body: _buildBody(),
       ),
     );
   }
