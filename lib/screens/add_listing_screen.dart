@@ -9,10 +9,14 @@ import '../services/cloudinary_service.dart';
 class AddListingScreen extends StatefulWidget {
   final String categoryId;
   final String categoryName;
+  final String? subCategoryId;
+  final String? subCategoryName;
   const AddListingScreen({
     super.key,
     required this.categoryId,
     required this.categoryName,
+    this.subCategoryId,
+    this.subCategoryName,
   });
 
   @override
@@ -114,7 +118,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
         'images': urls,
         'userId': user.uid,
         'phone': phone,
-        'subCategoryId': widget.categoryId,
+        'subCategoryId': widget.subCategoryId ?? '',
         'categoryName': widget.categoryName,
         'createdAt': FieldValue.serverTimestamp(),
       });

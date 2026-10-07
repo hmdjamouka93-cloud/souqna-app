@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
-import 'category_chooser_screen.dart';
+import 'brand_chooser_screen.dart';
+import 'add_listing_screen.dart';
 
-class PostAdChooserScreen extends StatefulWidget {
-  const PostAdChooserScreen({super.key});
+class CategoryChooserScreen extends StatefulWidget {
+  final String mainCategoryId;
+  final String mainCategoryName;
+  const CategoryChooserScreen({
+    super.key,
+    required this.mainCategoryId,
+    required this.mainCategoryName,
+  });
 
   @override
-  State<PostAdChooserScreen> createState() => _PostAdChooserScreenState();
+  State<CategoryChooserScreen> createState() => _CategoryChooserScreenState();
 }
 
-class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
+class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
   bool _loading = true;
   List<Map<String, dynamic>> _items = [];
 
@@ -22,8 +29,10 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
 
   Future<void> _load() async {
     try {
-      final snap =
-          await FirebaseFirestore.instance.collection('MainCategories').get();
+      final snap = await FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: widget.mainCategoryId)
+          .get();
 
       final list = snap.docs.map((d) {
         final x = d.data();
@@ -49,16 +58,36 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
     }
   }
 
-  void _pickMain(Map<String, dynamic> mc) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => CategoryChooserScreen(
-          mainCategoryId: mc['id'],
-          mainCategoryName: mc['name'],
+  Future<void> _pickCategory(Map<String, dynamic> cat) async {
+    final subSnap = await FirebaseFirestore.instance
+        .collection('SubCategories')
+        .where('categoryId', isEqualTo: cat['name'])
+        .limit(1)
+        .get();
+
+    if (!mounted) return;
+
+    if (subSnap.docs.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => BrandChooserScreen(
+            categoryId: cat['id'],
+            categoryName: cat['name'],
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => AddListingScreen(
+            categoryId: cat['id'],
+            categoryName: cat['name'],
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -76,9 +105,9 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                 color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
-            'اختر القسم',
-            style: TextStyle(
+          title: Text(
+            widget.mainCategoryName,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -114,17 +143,17 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
         mainAxisSpacing: 14,
         childAspectRatio: 1.1,
       ),
-      itemBuilder: (_, i) => _mainCard(_items[i]),
+      itemBuilder: (_, i) => _categoryCard(_items[i]),
     );
   }
 
-  Widget _mainCard(Map<String, dynamic> mc) {
-    final imageUrl = mc['image'] as String;
+  Widget _categoryCard(Map<String, dynamic> cat) {
+    final imageUrl = cat['image'] as String;
     return Material(
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () => _pickMain(mc),
+        onTap: () => _pickCategory(cat),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.card,
@@ -170,7 +199,7 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                 right: 12,
                 left: 12,
                 child: Text(
-                  mc['name'],
+                  cat['name'],
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     color: Colors.white,
