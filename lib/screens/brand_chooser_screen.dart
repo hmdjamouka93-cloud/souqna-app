@@ -19,6 +19,8 @@ class BrandChooserScreen extends StatefulWidget {
 class _BrandChooserScreenState extends State<BrandChooserScreen> {
   bool _loading = true;
   List<Map<String, dynamic>> _items = [];
+  int _totalSubs = 0;
+  String _debugMsg = '';
 
   @override
   void initState() {
@@ -28,37 +30,30 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
 
   Future<void> _load() async {
     try {
-      // نجيبو كل الـ SubCategories ونفلترو client-side
-      // (باش نتفاداو مشكل الحروف المخفية)
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
           .get();
 
-      final targetName = widget.categoryName
-          .replaceAll(RegExp('[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
-          .replaceAll('\u00A0', ' ')
-          .trim();
+      _totalSubs = snap.size;
 
-      final filtered = snap.docs.where((d) {
-        final catId = (d.data()['categoryId'] ?? '').toString()
-            .replaceAll(RegExp('[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
-            .replaceAll('\u00A0', ' ')
-            .trim();
-        return catId == targetName;
-      }).toList();
-
-      final list = filtered.map((d) {
+      final list = <Map<String, dynamic>>[];
+      for (final d in snap.docs) {
         final x = d.data();
-        return {
-          'id': d.id,
-          'name': (x['name'] ?? '').toString().trim(),
-          'image': (x['image'] ?? '').toString(),
-          'order': x['order'] ?? 0,
-        };
-      }).toList();
+        final catId = (x['categoryId'] ?? '').toString().trim();
+        if (catId == widget.categoryName.trim()) {
+          list.add({
+            'id': d.id,
+            'name': (x['name'] ?? '').toString().trim(),
+            'image': (x['image'] ?? '').toString(),
+            'order': x['order'] ?? 0,
+          });
+        }
+      }
 
       list.sort((a, b) =>
           (a['order'] as num).compareTo(b['order'] as num));
+
+      _debugMsg = 'Category: "${widget.categoryName}" | Total: $_totalSubs | Matched: ${list.length}';
 
       if (!mounted) return;
       setState(() {
@@ -66,6 +61,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         _loading = false;
       });
     } catch (e) {
+      _debugMsg = 'ERROR: $e';
       if (!mounted) return;
       setState(() => _loading = false);
     }
@@ -109,7 +105,21 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             ),
           ),
         ),
-        body: _buildBody(),
+        body: Column(
+          children: [
+            Container(
+              color: Colors.yellow,
+              padding: const EdgeInsets.all(6),
+              width: double.infinity,
+              child: Text(
+                _debugMsg,
+                style: const TextStyle(color: Colors.black, fontSize: 10),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Expanded(child: _buildBody()),
+          ],
+        ),
       ),
     );
   }
