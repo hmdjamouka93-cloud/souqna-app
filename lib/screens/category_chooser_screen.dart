@@ -65,13 +65,13 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
         .get();
 
     final targetName = (cat['name'] ?? '').toString()
-        .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+        .replaceAll(RegExp('[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
         .replaceAll('\u00A0', ' ')
         .trim();
 
     final hasSubs = subSnap.docs.any((d) {
       final catId = (d.data()['categoryId'] ?? '').toString()
-          .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+          .replaceAll(RegExp('[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
           .replaceAll('\u00A0', ' ')
           .trim();
       return catId == targetName;
@@ -160,7 +160,6 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
   }
 
   Widget _categoryCard(Map<String, dynamic> cat) {
-    final imageUrl = cat['image'] as String;
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -174,74 +173,20 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
               color: AppColors.accent.withValues(alpha: 0.25),
             ),
           ),
-          clipBehavior: Clip.antiAlias,
-          child: imageUrl.isEmpty
-              ? Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(6),
-                    child: Text(
-                      cat['name'],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
-              : Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Image.network(
-                      imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(6),
-                          child: Text(
-                            cat['name'],
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.black.withValues(alpha: 0.7),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      right: 8,
-                      left: 8,
-                      child: Text(
-                        cat['name'],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(blurRadius: 6, color: Colors.black87),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                cat['name'],
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
+            ),
+          ),
         ),
       ),
     );

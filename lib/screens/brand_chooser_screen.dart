@@ -35,13 +35,13 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           .get();
 
       final targetName = widget.categoryName
-          .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+          .replaceAll(RegExp('[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
           .replaceAll('\u00A0', ' ')
           .trim();
 
       final filtered = snap.docs.where((d) {
         final catId = (d.data()['categoryId'] ?? '').toString()
-            .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+            .replaceAll(RegExp('[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
             .replaceAll('\u00A0', ' ')
             .trim();
         return catId == targetName;
