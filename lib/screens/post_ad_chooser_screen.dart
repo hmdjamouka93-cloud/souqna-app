@@ -35,8 +35,14 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
         };
       }).toList();
 
-      list.sort((a, b) =>
-          (a['order'] as num).compareTo(b['order'] as num));
+      // نرتبو بأمان (order ممكن يكون String ولا num)
+      list.sort((a, b) {
+        final oa = a['order'];
+        final ob = b['order'];
+        final na = oa is num ? oa.toInt() : int.tryParse(oa.toString()) ?? 0;
+        final nb = ob is num ? ob.toInt() : int.tryParse(ob.toString()) ?? 0;
+        return na.compareTo(nb);
+      });
 
       if (!mounted) return;
       setState(() {
