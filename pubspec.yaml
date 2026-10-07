@@ -97,3 +97,15 @@ flutter:
     - images/spare_parts/engine.jpg
     - images/spare_parts/other.jpg
     - images/spare_parts/workshops.jpg
+    - images/logos/datsun.png
+    - images/logos/byd.png
+    - images/logos/foton.png
+    - images/logos/jaguar.png
+    - images/logos/maybach.png
+    - images/logos/hummer.png
+    - images/logos/gmc.png
+    - images/logos/daihatsu.png
+    - images/logos/proton.png
+    - images/logos/jas.png
+    - images/logos/alpine.png
+    - images/logos/other_cars.png
