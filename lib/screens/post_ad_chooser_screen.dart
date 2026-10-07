@@ -109,10 +109,10 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
       padding: const EdgeInsets.all(16),
       itemCount: _items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 14,
-        mainAxisSpacing: 14,
-        childAspectRatio: 1.1,
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 0.85,
       ),
       itemBuilder: (_, i) => _mainCard(_items[i]),
     );
