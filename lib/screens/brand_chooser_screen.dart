@@ -164,21 +164,24 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: imageUrl.isNotEmpty
-                    ? Image.network(
-                        imageUrl,
-                        fit: BoxFit.contain,
-                        errorBuilder: (_, _, _) => const Icon(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: imageUrl.isNotEmpty
+                      ? Image.network(
+                          imageUrl,
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, _, _) => const Icon(
+                            Icons.directions_car,
+                            color: Colors.white24,
+                            size: 40,
+                          ),
+                        )
+                      : const Icon(
                           Icons.directions_car,
                           color: Colors.white24,
                           size: 40,
                         ),
-                      )
-                    : const Icon(
-                        Icons.directions_car,
-                        color: Colors.white24,
-                        size: 40,
-                      ),
+                ),
               ),
               const SizedBox(height: 6),
               Text(
