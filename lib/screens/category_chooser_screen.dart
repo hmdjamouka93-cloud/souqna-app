@@ -59,15 +59,27 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
   }
 
   Future<void> _pickCategory(Map<String, dynamic> cat) async {
+    // نجيبو كل الـ SubCategories ونفلترو client-side
     final subSnap = await FirebaseFirestore.instance
         .collection('SubCategories')
-        .where('categoryId', isEqualTo: cat['name'])
-        .limit(1)
         .get();
+
+    final targetName = (cat['name'] ?? '').toString()
+        .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+        .replaceAll('\u00A0', ' ')
+        .trim();
+
+    final hasSubs = subSnap.docs.any((d) {
+      final catId = (d.data()['categoryId'] ?? '').toString()
+          .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+          .replaceAll('\u00A0', ' ')
+          .trim();
+      return catId == targetName;
+    });
 
     if (!mounted) return;
 
-    if (subSnap.docs.isNotEmpty) {
+    if (hasSubs) {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -138,10 +150,10 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       padding: const EdgeInsets.all(16),
       itemCount: _items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 14,
-        mainAxisSpacing: 14,
-        childAspectRatio: 1.1,
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 0.85,
       ),
       itemBuilder: (_, i) => _categoryCard(_items[i]),
     );
@@ -163,56 +175,73 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
             ),
           ),
           clipBehavior: Clip.antiAlias,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              if (imageUrl.isNotEmpty)
-                Image.network(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) => Container(
-                    color: Colors.black26,
-                    child: const Icon(Icons.category_outlined,
-                        color: Colors.white24, size: 50),
+          child: imageUrl.isEmpty
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Text(
+                      cat['name'],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 )
-              else
-                Container(
-                  color: Colors.black26,
-                  child: const Icon(Icons.category_outlined,
-                      color: Colors.white24, size: 50),
+              : Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, _, _) => Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: Text(
+                            cat['name'],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withValues(alpha: 0.7),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      right: 8,
+                      left: 8,
+                      child: Text(
+                        cat['name'],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(blurRadius: 6, color: Colors.black87),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withValues(alpha: 0.75),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 12,
-                right: 12,
-                left: 12,
-                child: Text(
-                  cat['name'],
-                  textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(blurRadius: 6, color: Colors.black87),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

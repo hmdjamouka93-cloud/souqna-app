@@ -28,12 +28,26 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
 
   Future<void> _load() async {
     try {
+      // نجيبو كل الـ SubCategories ونفلترو client-side
+      // (باش نتفاداو مشكل الحروف المخفية)
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
-          .where('categoryId', isEqualTo: widget.categoryName)
           .get();
 
-      final list = snap.docs.map((d) {
+      final targetName = widget.categoryName
+          .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+          .replaceAll('\u00A0', ' ')
+          .trim();
+
+      final filtered = snap.docs.where((d) {
+        final catId = (d.data()['categoryId'] ?? '').toString()
+            .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+            .replaceAll('\u00A0', ' ')
+            .trim();
+        return catId == targetName;
+      }).toList();
+
+      final list = filtered.map((d) {
         final x = d.data();
         return {
           'id': d.id,
