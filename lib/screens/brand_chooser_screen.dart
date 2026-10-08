@@ -165,7 +165,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(4),
                   child: imageUrl.isNotEmpty
                       ? Image.network(
                           imageUrl,
