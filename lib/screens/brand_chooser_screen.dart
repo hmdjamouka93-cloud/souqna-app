@@ -138,7 +138,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 0.85,
+        childAspectRatio: 1.6,
       ),
       itemBuilder: (_, i) => _brandCard(_items[i]),
     );
