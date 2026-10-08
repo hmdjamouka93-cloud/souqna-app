@@ -135,7 +135,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       padding: const EdgeInsets.all(16),
       itemCount: _items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
         childAspectRatio: 0.85,
