@@ -138,7 +138,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         crossAxisCount: 3,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.0,
+        childAspectRatio: 0.85,
       ),
       itemBuilder: (_, i) => _brandCard(_items[i]),
     );
@@ -165,7 +165,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(4),
+                  padding: EdgeInsets.zero,
                   child: imageUrl.isNotEmpty
                       ? Image.network(
                           imageUrl,
@@ -183,7 +183,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                         ),
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 2),
               Text(
                 brand['name'],
                 textAlign: TextAlign.center,
