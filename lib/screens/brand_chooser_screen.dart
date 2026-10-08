@@ -138,7 +138,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.6,
+        childAspectRatio: 1.3,
       ),
       itemBuilder: (_, i) => _brandCard(_items[i]),
     );
@@ -169,7 +169,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   child: imageUrl.isNotEmpty
                       ? Image.network(
                           imageUrl,
-                          fit: BoxFit.contain,
+                          fit: BoxFit.fill,
                           errorBuilder: (_, _, _) => const Icon(
                             Icons.directions_car,
                             color: Colors.white24,
