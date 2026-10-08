@@ -64,7 +64,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             const SizedBox(height: 16),
             _buildAdBanner(),
             const SizedBox(height: 16),
-            const CommentsSection(),
+            CommentsSection(listingId: (widget.ad['id'] ?? '').toString()),
             const SizedBox(height: 20),
           ],
         ),

@@ -102,7 +102,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
             const SizedBox(height: 16),
             _buildAdBanner(),
             const SizedBox(height: 16),
-            const CommentsSection(),
+            const CommentsSection(listingId: ''),
             const SizedBox(height: 20),
           ],
         ),
