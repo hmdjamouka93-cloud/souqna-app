@@ -47,6 +47,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
           'location': (x['location'] ?? '').toString(),
           'description': (x['description'] ?? '').toString(),
           'images': (x['images'] as List?)?.cast<String>() ?? <String>[],
+          'userId': (x['userId'] ?? '').toString(),
         };
       }).toList();
 
