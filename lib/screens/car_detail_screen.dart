@@ -60,6 +60,15 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         body: ListView(
           padding: EdgeInsets.zero,
           children: [
+            Container(
+              color: Colors.yellow,
+              padding: const EdgeInsets.all(6),
+              child: Text(
+                'MyUID: ${AuthService.currentUser?.uid ?? "NULL"}\nAdUID: ${widget.ad["userId"] ?? "NULL"}',
+                style: const TextStyle(color: Colors.black, fontSize: 9),
+                textAlign: TextAlign.center,
+              ),
+            ),
             _buildGallery(),
             const SizedBox(height: 10),
             _buildHeader(),
@@ -142,6 +151,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
+    final myUid = AuthService.currentUser?.uid ?? 'NOT_LOGGED';
+    final adUid = (widget.ad['userId'] ?? '').toString();
     return AppBar(
       backgroundColor: AppColors.background,
       elevation: 0,
@@ -150,8 +161,10 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('تفاصيل السيارة',
-          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+      title: Text(
+        myUid == adUid ? 'MATCH' : 'NO:$myUid|$adUid',
+        style: const TextStyle(color: Colors.yellow, fontSize: 10),
+      ),
       actions: [
         IconButton(
           icon: const Icon(Icons.star_border, color: Colors.white, size: 22),
