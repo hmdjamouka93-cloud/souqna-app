@@ -15,7 +15,7 @@ class CarDetailScreen extends StatefulWidget {
 
 class _CarDetailScreenState extends State<CarDetailScreen> {
   bool _isLiked = false;
-  int _likes = 24;
+  int _likes = 0;
   int _currentPage = 0;
 
   List<String> get _images {
@@ -24,6 +24,12 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       return imgs.map((e) => e.toString()).toList();
     }
     return <String>[];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLikes();
   }
 
   String get _title => (widget.ad['title'] ?? '').toString();
@@ -318,6 +324,44 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     );
   }
 
+  Future<void> _loadLikes() async {
+    final id = (widget.ad['id'] ?? '').toString();
+    if (id.isEmpty) return;
+    try {
+      final doc = await FirebaseFirestore.instance
+          .collection('listings')
+          .doc(id)
+          .get();
+      final likes = (doc.data()?['likes'] ?? 0) as int;
+      if (mounted) setState(() => _likes = likes);
+    } catch (_) {}
+  }
+
+  Future<void> _toggleLike() async {
+    final user = AuthService.currentUser;
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('يجب تسجيل الدخول للإعجاب')),
+      );
+      return;
+    }
+    final id = (widget.ad['id'] ?? '').toString();
+    if (id.isEmpty) return;
+
+    final newLiked = !_isLiked;
+    final newLikes = _likes + (newLiked ? 1 : -1);
+    setState(() {
+      _isLiked = newLiked;
+      _likes = newLikes < 0 ? 0 : newLikes;
+    });
+    try {
+      await FirebaseFirestore.instance
+          .collection('listings')
+          .doc(id)
+          .update({'likes': _likes});
+    } catch (_) {}
+  }
+
   Widget _buildReactions() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -326,10 +370,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           Expanded(child: _reactionBtn(
             _isLiked ? Icons.thumb_up : Icons.thumb_up_alt_outlined,
             'إعجاب ($_likes)',
-            () => setState(() {
-              _isLiked = !_isLiked;
-              _likes += _isLiked ? 1 : -1;
-            }),
+            _toggleLike,
             active: _isLiked,
           )),
           const SizedBox(width: 8),
