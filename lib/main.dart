@@ -4,6 +4,7 @@ import 'screens/home_screen.dart';
 import 'widgets/app_drawer.dart';
 import 'services/auth_gate.dart';
 import 'screens/more_screen.dart';
+import 'screens/my_ads_screen.dart';
 import 'screens/post_ad_chooser_screen.dart';
 
 void main() async {
@@ -105,7 +106,20 @@ class _MainShellState extends State<MainShell> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _navItemIcon(Icons.home_outlined, 'الرئيسية', 0),
-          _navItemImage('images/icon_myads.png', 'اعلاناتي', 1),
+          _navItemImage('images/icon_myads.png', 'اعلاناتي', 1,
+              onTapCustom: () {
+            requireAuth(
+              context,
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const MyAdsScreen()),
+                );
+              },
+              message: 'يجب تسجيل الدخول لعرض إعلاناتك',
+            );
+          }),
           const SizedBox(width: 55),
           _navItemIcon(Icons.favorite_border, 'المفضلة', 2),
           _navItemIcon(Icons.more_horiz, 'المزيد', 3),
@@ -153,10 +167,11 @@ class _MainShellState extends State<MainShell> {
     );
   }
 
-  Widget _navItemImage(String asset, String label, int index) {
+  Widget _navItemImage(String asset, String label, int index,
+      {VoidCallback? onTapCustom}) {
     final isActive = _currentIndex == index;
     return InkWell(
-      onTap: () => setState(() => _currentIndex = index),
+      onTap: onTapCustom ?? () => setState(() => _currentIndex = index),
       borderRadius: BorderRadius.circular(10),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),

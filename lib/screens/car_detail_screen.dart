@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../main.dart';
+import '../services/auth_service.dart';
 import '../widgets/comments_section.dart';
 
 class CarDetailScreen extends StatefulWidget {
@@ -72,6 +74,67 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     );
   }
 
+  Future<void> _confirmDelete() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: AlertDialog(
+          backgroundColor: AppColors.card,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)),
+          title: const Text('حذف الإعلان',
+              style: TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
+          content: const Text('هل أنت متأكد من حذف هذا الإعلان نهائياً؟',
+              style: TextStyle(color: AppColors.textSecondary)),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('إلغاء',
+                  style: TextStyle(color: AppColors.textSecondary)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent),
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('حذف',
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (ok != true) return;
+
+    final id = (widget.ad['id'] ?? '').toString();
+    if (id.isEmpty) return;
+
+    try {
+      final comments = await FirebaseFirestore.instance
+          .collection('comments')
+          .where('listingId', isEqualTo: id)
+          .get();
+      for (final c in comments.docs) {
+        await c.reference.delete();
+      }
+      await FirebaseFirestore.instance
+          .collection('listings')
+          .doc(id)
+          .delete();
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('تم حذف الإعلان')),
+      );
+      Navigator.pop(context);
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('فشل حذف الإعلان')),
+      );
+    }
+  }
+
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       backgroundColor: AppColors.background,
@@ -88,6 +151,13 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           icon: const Icon(Icons.star_border, color: Colors.white, size: 22),
           onPressed: () {},
         ),
+        if (AuthService.currentUser?.uid ==
+            (widget.ad['userId'] ?? '').toString())
+          IconButton(
+            icon: const Icon(Icons.delete_outline,
+                color: Colors.redAccent, size: 22),
+            onPressed: _confirmDelete,
+          ),
       ],
     );
   }
