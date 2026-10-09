@@ -278,7 +278,15 @@ class HomeScreen extends StatelessWidget {
         ),
       );
     } else if (name == 'دراجات') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const MotorcyclesScreen()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CarsScreen(
+            categoryName: 'دراجات',
+            screenTitle: 'دراجات',
+          ),
+        ),
+      );
     } else if (name == 'معارض السيارات') {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowroomsScreen()));
     } else if (name == 'ايجار السيارات') {
