@@ -162,28 +162,24 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           padding: const EdgeInsets.all(6),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.zero,
-                  child: imageUrl.isNotEmpty
-                      ? Image.network(
-                          imageUrl,
-                          fit: BoxFit.contain,
-                          width: 60,
-                          height: 60,
-                          errorBuilder: (_, _, _) => const Icon(
-                            Icons.directions_car,
-                            color: Colors.white24,
-                            size: 40,
-                          ),
-                        )
-                      : const Icon(
+              children: [
+              SizedBox(
+                height: 60,
+                child: imageUrl.isNotEmpty
+                    ? Image.network(
+                        imageUrl,
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, _, _) => const Icon(
                           Icons.directions_car,
                           color: Colors.white24,
                           size: 40,
                         ),
-                ),
+                      )
+                    : const Icon(
+                        Icons.directions_car,
+                        color: Colors.white24,
+                        size: 40,
+                      ),
               ),
               const SizedBox(height: 2),
               Text(
