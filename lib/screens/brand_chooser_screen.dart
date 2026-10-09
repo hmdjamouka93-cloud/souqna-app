@@ -172,7 +172,18 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              SizedBox(
+              if (brandName == 'سيارات اخرى')
+                const Text(
+                  'سيارات اخرى',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              else
+                SizedBox(
                 width: size,
                 height: size,
                 child: imageUrl.isNotEmpty
@@ -191,6 +202,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                         size: 40,
                       ),
               ),
+              if (brandName != 'سيارات اخرى') ...[
               const SizedBox(height: 2),
               Text(
                 brand['name'],
@@ -203,6 +215,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
+              ],
             ],
           ),
         ),
