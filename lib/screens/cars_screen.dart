@@ -196,6 +196,8 @@ class _CarsScreenState extends State<CarsScreen> {
                       : Image.network(
                           image,
                           fit: BoxFit.contain,
+                          width: 60,
+                          height: 60,
                           errorBuilder: (_, __, ___) =>
                               const Icon(Icons.directions_car, color: Colors.white24, size: 32),
                         ),
