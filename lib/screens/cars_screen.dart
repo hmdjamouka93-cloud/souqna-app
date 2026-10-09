@@ -35,6 +35,14 @@ class _CarsScreenState extends State<CarsScreen> {
         };
       }).toList();
       list.sort((a, b) => (a['order'] as int).compareTo(b['order'] as int));
+
+      // نزيدو "جميع الإعلانات" في البداية
+      list.insert(0, {
+        'id': '',
+        'name': 'جميع الإعلانات',
+        'image': '',
+        'order': -1,
+      });
       if (!mounted) return;
       setState(() {
         _brands = list;
@@ -165,6 +173,65 @@ class _CarsScreenState extends State<CarsScreen> {
   Widget _brandCard(Map<String, dynamic> b) {
     final name = (b['name'] as String).trim();
     final image = (b['image'] as String).trim();
+
+    // "جميع الإعلانات"
+    if (name == 'جميع الإعلانات') {
+      return GestureDetector(
+        onTap: () => _openBrand(b),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Center(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                'جميع الإعلانات',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppColors.accent,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    // "سيارات اخرى"
+    if (name == 'سيارات اخرى') {
+      return GestureDetector(
+        onTap: () => _openBrand(b),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('•••',
+                    style: TextStyle(
+                        color: AppColors.accent,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+                SizedBox(height: 4),
+                Text('سيارات اخرى',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.accent,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 
     return GestureDetector(
       onTap: () => _openBrand(b),
