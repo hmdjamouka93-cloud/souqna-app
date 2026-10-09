@@ -46,12 +46,14 @@ class _CarsScreenState extends State<CarsScreen> {
     }
   }
 
-  double _logoHeight(String name) {
-    const gemini = ['مارسيدس', 'شيري', 'جيلي', 'لوتس', 'دودج', 'غريت وول', 'ايسوزو', 'لاند روفر'];
-    const wide = ['كرايسلر', 'بنتلي', 'بينتلي', 'هافال'];
-    if (gemini.contains(name)) return 26;
-    if (wide.contains(name)) return 55;
-    return 40;
+  static const _bigLogos = [
+    'جيلي', 'شيري', 'فوتون', 'بي واي دي', 'لاند روفر', 'جاكوار',
+    'مارسيدس', 'مايباخ', 'لوتس', 'هامر', 'جاك', 'هافال',
+    'فورتينغ', 'بروتون', 'جيتور', 'ايسوزو', 'كرايسلر',
+  ];
+
+  double _logoSize(String name) {
+    return _bigLogos.contains(name) ? 80.0 : 45.0;
   }
 
   void _openBrand(Map<String, dynamic> b) {
@@ -186,22 +188,18 @@ class _CarsScreenState extends State<CarsScreen> {
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(4),
               child: SizedBox(
-                height: _logoHeight(name),
-                width: double.infinity,
-                child: Center(
-                  child: image.isEmpty
-                      ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
-                      : Image.network(
-                          image,
-                          fit: BoxFit.contain,
-                          width: 60,
-                          height: 60,
-                          errorBuilder: (_, __, ___) =>
-                              const Icon(Icons.directions_car, color: Colors.white24, size: 32),
-                        ),
-                ),
+                width: _logoSize(name),
+                height: _logoSize(name),
+                child: image.isEmpty
+                    ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
+                    : Image.network(
+                        image,
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, __, ___) =>
+                            const Icon(Icons.directions_car, color: Colors.white24, size: 32),
+                      ),
               ),
             ),
             const Spacer(),
