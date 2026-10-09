@@ -144,8 +144,17 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
     );
   }
 
+  static const _bigLogos = [
+    'جيلي', 'شيري', 'فوتون', 'بي واي دي', 'لاند روفر', 'جاكوار',
+    'مارسيدس', 'مايباخ', 'لوتس', 'هامر', 'جاك', 'هافال',
+    'فورتينغ', 'بروتون', 'جيتور', 'ايسوزو', 'كرايسلر',
+  ];
+
   Widget _brandCard(Map<String, dynamic> brand) {
     final imageUrl = brand['image'] as String;
+    final brandName = (brand['name'] ?? '').toString().trim();
+    final big = _bigLogos.contains(brandName);
+    final size = big ? 80.0 : 45.0;
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -164,8 +173,8 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
               SizedBox(
-                width: 45,
-                height: 45,
+                width: size,
+                height: size,
                 child: imageUrl.isNotEmpty
                     ? Image.network(
                         imageUrl,
