@@ -173,13 +173,17 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
               if (brandName == 'سيارات اخرى')
-                const Text(
-                  'سيارات اخرى',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                const Expanded(
+                  child: Center(
+                    child: Text(
+                      'سيارات اخرى',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 )
               else
