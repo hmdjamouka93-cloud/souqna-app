@@ -266,7 +266,15 @@ class HomeScreen extends StatelessWidget {
     if (name == 'سيارات') {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen()));
     } else if (name == 'حافلات') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const BusesScreen()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CarsScreen(
+            categoryName: 'حافلات',
+            screenTitle: 'حافلات',
+          ),
+        ),
+      );
     } else if (name == 'شاحنات') {
       Navigator.push(
         context,
