@@ -164,8 +164,8 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
               SizedBox(
-                width: 60,
-                height: 60,
+                width: 45,
+                height: 45,
                 child: imageUrl.isNotEmpty
                     ? Image.network(
                         imageUrl,
