@@ -4,7 +4,14 @@ import '../main.dart';
 import 'listings_screen.dart';
 
 class CarsScreen extends StatefulWidget {
-  const CarsScreen({super.key});
+  final String categoryName;
+  final String screenTitle;
+  const CarsScreen({
+    super.key,
+    this.categoryName = 'سيارات',
+    this.screenTitle = 'سيارات',
+  });
+
   @override
   State<CarsScreen> createState() => _CarsScreenState();
 }
@@ -23,7 +30,7 @@ class _CarsScreenState extends State<CarsScreen> {
     try {
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
-          .where('categoryId', isEqualTo: 'سيارات')
+          .where('categoryId', isEqualTo: widget.categoryName)
           .get();
       final list = snap.docs.map((d) {
         final x = d.data();
@@ -90,8 +97,8 @@ class _CarsScreenState extends State<CarsScreen> {
             icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text('سيارات',
-              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          title: Text(widget.screenTitle,
+              style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         body: ListView(
           padding: EdgeInsets.zero,
@@ -202,7 +209,7 @@ class _CarsScreenState extends State<CarsScreen> {
     }
 
     // "سيارات اخرى"
-    if (name == 'سيارات اخرى') {
+    if (name == 'سيارات اخرى' || name == 'شاحنات أخرى' || name == 'حافلات أخرى') {
       return GestureDetector(
         onTap: () => _openBrand(b),
         child: Container(
@@ -210,17 +217,17 @@ class _CarsScreenState extends State<CarsScreen> {
             color: AppColors.card,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Center(
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('•••',
+                const Text('•••',
                     style: TextStyle(
                         color: AppColors.accent,
                         fontSize: 20,
                         fontWeight: FontWeight.bold)),
-                SizedBox(height: 4),
-                Text('سيارات اخرى',
+                const SizedBox(height: 4),
+                Text(name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.accent,
