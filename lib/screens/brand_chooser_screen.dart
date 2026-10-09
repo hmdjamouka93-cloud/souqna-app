@@ -135,10 +135,10 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       padding: const EdgeInsets.all(16),
       itemCount: _items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 1.3,
+        childAspectRatio: 1.0,
       ),
       itemBuilder: (_, i) => _brandCard(_items[i]),
     );
@@ -159,7 +159,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
               color: AppColors.accent.withValues(alpha: 0.2),
             ),
           ),
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(6),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
