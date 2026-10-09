@@ -43,6 +43,17 @@ class _CommentsSectionState extends State<CommentsSection> {
           'text': text,
           'createdAt': FieldValue.serverTimestamp(),
         });
+
+        // نزيدو عدد التعليقات
+        try {
+          await FirebaseFirestore.instance
+              .collection('listings')
+              .doc(widget.listingId)
+              .update({
+            'commentsCount': FieldValue.increment(1),
+          });
+        } catch (_) {}
+
         _controller.clear();
       } catch (e) {
         if (mounted) {

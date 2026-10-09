@@ -41,6 +41,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
           'description': (x['description'] ?? '').toString(),
           'images': (x['images'] as List?)?.cast<String>() ?? <String>[],
           'userId': (x['userId'] ?? '').toString(),
+          'commentsCount': (x['commentsCount'] ?? 0) as int,
         };
       }).toList();
       if (!mounted) return;
@@ -167,7 +168,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                       const Icon(Icons.chat_bubble_outline,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
-                      const Text('0',
+                      Text('${item['commentsCount'] ?? 0}',
                           style: TextStyle(color: AppColors.textSecondary,
                               fontSize: 12)),
                     ],
