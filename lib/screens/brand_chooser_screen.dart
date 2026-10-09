@@ -170,6 +170,8 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                       ? Image.network(
                           imageUrl,
                           fit: BoxFit.contain,
+                          width: 60,
+                          height: 60,
                           errorBuilder: (_, _, _) => const Icon(
                             Icons.directions_car,
                             color: Colors.white24,
