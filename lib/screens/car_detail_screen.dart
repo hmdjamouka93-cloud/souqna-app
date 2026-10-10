@@ -365,14 +365,33 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text('البائع',
                     style: TextStyle(color: Colors.white, fontSize: 14,
                         fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
-                Text('مستخدم سوقنا',
-                    style: TextStyle(color: AppColors.textSecondary,
-                        fontSize: 11)),
+                Row(
+                  children: [
+                    if ((widget.ad['isPro'] ?? false) == true)
+                      const Padding(
+                        padding: EdgeInsets.only(left: 4),
+                        child: Icon(Icons.verified,
+                            color: AppColors.accent, size: 12),
+                      ),
+                    Flexible(
+                      child: Text(
+                        (widget.ad['isPro'] == true &&
+                                (widget.ad['storeName'] ?? '').toString().isNotEmpty)
+                            ? widget.ad['storeName'].toString()
+                            : 'مستخدم سوقنا',
+                        style: const TextStyle(
+                            color: AppColors.textSecondary, fontSize: 11),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

@@ -130,9 +130,11 @@ class _AddListingScreenState extends State<AddListingScreen> {
         return;
       }
 
-      // 2. جيب رقم الهاتف من Firestore
+      // 2. جيب بيانات المستخدم من Firestore
       final userData = await AuthService.getUserData();
       final phone = (userData?['phone'] ?? '').toString();
+      final storeName = (userData?['storeName'] ?? '').toString();
+      final proTypes = (userData?['proTypes'] as List?)?.cast<String>() ?? [];
 
       if (_isEdit) {
         // ===== وضع التعديل =====
@@ -168,6 +170,9 @@ class _AddListingScreenState extends State<AddListingScreen> {
           'views': 0,
           'commentsCount': 0,
           'likes': 0,
+          'storeName': storeName,
+          'isPro': proTypes.isNotEmpty,
+          'proTypes': proTypes,
         });
 
         if (!mounted) return;

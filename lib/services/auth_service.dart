@@ -24,6 +24,7 @@ class AuthService {
       'phone': phone.trim(),
       'name': (name ?? '').trim(),
       'proTypes': <String>[],
+      'storeName': '',
       'createdAt': FieldValue.serverTimestamp(),
     });
     return cred;

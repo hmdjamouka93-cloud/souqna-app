@@ -43,6 +43,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
           'userId': (x['userId'] ?? '').toString(),
           'commentsCount': (x['commentsCount'] ?? 0) as int,
           'views': (x['views'] ?? 0) as int,
+          'storeName': (x['storeName'] ?? '').toString(),
+          'isPro': (x['isPro'] ?? false) as bool,
         };
       }).toList();
       if (!mounted) return;
@@ -144,6 +146,28 @@ class _ListingsScreenState extends State<ListingsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (item['isPro'] == true && (item['storeName'] ?? '').toString().isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.verified,
+                              color: AppColors.accent, size: 14),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              item['storeName'].toString(),
+                              style: const TextStyle(
+                                  color: AppColors.accent,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   Text(item['title'],
                       style: const TextStyle(color: Colors.white, fontSize: 15,
                           fontWeight: FontWeight.bold),
