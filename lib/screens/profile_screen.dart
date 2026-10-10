@@ -13,6 +13,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? _email;
   String? _phone;
   String? _name;
+  String? _storeName;
+  List<String> _proTypes = [];
   int _count = 0;
   String? _error;
 
@@ -45,6 +47,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         _email = u.email;
         _phone = data?['phone'] ?? '—';
         _name = data?['name'] ?? '';
+        _storeName = (data?['storeName'] ?? '').toString();
+        _proTypes = (data?['proTypes'] as List?)?.cast<String>() ?? [];
         _count = count;
         _loading = false;
       });
@@ -55,6 +59,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
         _loading = false;
       });
     }
+  }
+
+  Future<void> _editStoreName() async {
+    final ctrl = TextEditingController(text: _storeName ?? '');
+    final newName = await showDialog<String>(
+      context: context,
+      builder: (ctx) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: AlertDialog(
+          backgroundColor: _card,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)),
+          title: const Text('اسم المعرض / المحل',
+              style: TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
+          content: TextField(
+            controller: ctrl,
+            maxLength: 40,
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
+              hintText: 'مثال: معرض النخبة للسيارات',
+              hintStyle: TextStyle(color: _textSec),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: _textSec),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: _accent),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('إلغاء',
+                  style: TextStyle(color: _textSec)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: _accent),
+              onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
+              child: const Text('حفظ',
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    if (newName == null) return;
+    await AuthService.updateStoreName(newName);
+    if (!mounted) return;
+    setState(() => _storeName = newName);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('تم تحديث اسم المحل')),
+    );
   }
 
   Future<void> _editPhone() async {
@@ -204,6 +263,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onEdit: _editPhone,
                         ),
                         const SizedBox(height: 12),
+                        if (_proTypes.isNotEmpty) ...[
+                          _infoTile(
+                            icon: Icons.storefront,
+                            label: 'اسم المعرض / المحل',
+                            value: (_storeName == null || _storeName!.isEmpty)
+                                ? 'لم يُحدَّد بعد'
+                                : _storeName!,
+                            onEdit: _editStoreName,
+                          ),
+                          const SizedBox(height: 12),
+                        ],
                         _infoTile(
                           icon: Icons.list_alt,
                           label: 'عدد إعلاناتي',

@@ -59,6 +59,15 @@ class AuthService {
     });
   }
 
+  /// يحدث اسم المحل/المعرض
+  static Future<void> updateStoreName(String storeName) async {
+    final u = _auth.currentUser;
+    if (u == null) return;
+    await _db.collection('users').doc(u.uid).update({
+      'storeName': storeName.trim(),
+    });
+  }
+
   /// يتحقق واش المستخدم عندو نوع pro معين
   /// مثال: isProUser('showroom')
   static Future<bool> isProUser(String type) async {
