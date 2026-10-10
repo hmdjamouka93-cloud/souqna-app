@@ -49,6 +49,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
           'images': (x['images'] as List?)?.cast<String>() ?? <String>[],
           'userId': (x['userId'] ?? '').toString(),
           'commentsCount': (x['commentsCount'] ?? 0) as int,
+          'views': (x['views'] ?? 0) as int,
         };
       }).toList();
 
@@ -219,6 +220,17 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      const Icon(Icons.visibility_outlined,
+                          color: AppColors.textSecondary, size: 14),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${item['views'] ?? 0}',
+                        style: const TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 12,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
                       const Icon(Icons.chat_bubble_outline,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),

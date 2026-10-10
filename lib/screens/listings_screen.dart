@@ -42,6 +42,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
           'images': (x['images'] as List?)?.cast<String>() ?? <String>[],
           'userId': (x['userId'] ?? '').toString(),
           'commentsCount': (x['commentsCount'] ?? 0) as int,
+          'views': (x['views'] ?? 0) as int,
         };
       }).toList();
       if (!mounted) return;
@@ -131,7 +132,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   : Image.network(
                       img,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_, _, _) => Container(
                         color: Colors.black26,
                         child: const Icon(Icons.directions_car,
                             color: Colors.white24, size: 60),
@@ -165,12 +166,19 @@ class _ListingsScreenState extends State<ListingsScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis),
                       ),
+                      const Icon(Icons.visibility_outlined,
+                          color: AppColors.textSecondary, size: 14),
+                      const SizedBox(width: 4),
+                      Text('${item['views'] ?? 0}',
+                          style: const TextStyle(
+                              color: AppColors.textSecondary, fontSize: 12)),
+                      const SizedBox(width: 10),
                       const Icon(Icons.chat_bubble_outline,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Text('${item['commentsCount'] ?? 0}',
-                          style: TextStyle(color: AppColors.textSecondary,
-                              fontSize: 12)),
+                          style: const TextStyle(
+                              color: AppColors.textSecondary, fontSize: 12)),
                     ],
                   ),
                 ],

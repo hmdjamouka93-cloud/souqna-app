@@ -5,6 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/favorites_service.dart';
+import '../services/views_service.dart';
 import '../widgets/comments_section.dart';
 
 class CarDetailScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   void initState() {
     super.initState();
     _loadLikes();
+    ViewsService.trackView((widget.ad['id'] ?? '').toString());
   }
 
   String get _title => (widget.ad['title'] ?? '').toString();
@@ -287,6 +289,35 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           Text(_price,
               style: const TextStyle(color: AppColors.accent, fontSize: 20,
                   fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          StreamBuilder<DocumentSnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('listings')
+                .doc((widget.ad['id'] ?? '').toString())
+                .snapshots(),
+            builder: (context, snapshot) {
+              final data = snapshot.data?.data() as Map<String, dynamic>?;
+              final views = (data?['views'] ?? 0) as int;
+              final comments = (data?['commentsCount'] ?? 0) as int;
+              return Row(
+                children: [
+                  const Icon(Icons.visibility_outlined,
+                      color: AppColors.textSecondary, size: 14),
+                  const SizedBox(width: 4),
+                  Text('$views مشاهدة',
+                      style: const TextStyle(
+                          color: AppColors.textSecondary, fontSize: 12)),
+                  const SizedBox(width: 14),
+                  const Icon(Icons.chat_bubble_outline,
+                      color: AppColors.textSecondary, size: 14),
+                  const SizedBox(width: 4),
+                  Text('$comments تعليق',
+                      style: const TextStyle(
+                          color: AppColors.textSecondary, fontSize: 12)),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );
