@@ -11,12 +11,14 @@ class AddListingScreen extends StatefulWidget {
   final String categoryName;
   final String? subCategoryId;
   final String? subCategoryName;
+  final Map<String, dynamic>? existingListing;
   const AddListingScreen({
     super.key,
     required this.categoryId,
     required this.categoryName,
     this.subCategoryId,
     this.subCategoryName,
+    this.existingListing,
   });
 
   @override
@@ -31,8 +33,25 @@ class _AddListingScreenState extends State<AddListingScreen> {
 
   final _picker = ImagePicker();
   final List<File> _images = [];
+  final List<String> _existingImageUrls = [];
   bool _loading = false;
   String? _error;
+
+  bool get _isEdit => widget.existingListing != null;
+
+  @override
+  void initState() {
+    super.initState();
+    if (_isEdit) {
+      final x = widget.existingListing!;
+      _titleCtrl.text = (x['title'] ?? '').toString();
+      _descCtrl.text = (x['description'] ?? '').toString();
+      _priceCtrl.text = (x['price'] ?? 0).toString();
+      _locCtrl.text = (x['location'] ?? '').toString();
+      final imgs = (x['images'] as List?)?.cast<String>() ?? [];
+      _existingImageUrls.addAll(imgs);
+    }
+  }
 
   @override
   void dispose() {
@@ -95,11 +114,17 @@ class _AddListingScreenState extends State<AddListingScreen> {
     });
 
     try {
-      // 1. رفع الصور على Cloudinary
-      final urls = await CloudinaryService.uploadImages(_images);
-      if (urls.isEmpty) {
+      // 1. رفع الصور الجديدة على Cloudinary (إذا كاين)
+      final newUrls = _images.isEmpty
+          ? <String>[]
+          : await CloudinaryService.uploadImages(_images);
+
+      // نجمعو الصور القديمة + الجديدة
+      final allUrls = [..._existingImageUrls, ...newUrls];
+
+      if (allUrls.isEmpty) {
         setState(() {
-          _error = 'فشل رفع الصور، حاول مرة أخرى';
+          _error = 'أضف صورة واحدة على الأقل';
           _loading = false;
         });
         return;
@@ -109,29 +134,55 @@ class _AddListingScreenState extends State<AddListingScreen> {
       final userData = await AuthService.getUserData();
       final phone = (userData?['phone'] ?? '').toString();
 
-      // 3. حفظ الإعلان في Firestore
-      await FirebaseFirestore.instance.collection('listings').add({
-        'title': title,
-        'description': desc,
-        'price': price,
-        'location': loc,
-        'images': urls,
-        'userId': user.uid,
-        'phone': phone,
-        'subCategoryId': widget.subCategoryId ?? '',
-        'categoryName': widget.categoryName,
-        'createdAt': FieldValue.serverTimestamp(),
-      });
+      if (_isEdit) {
+        // ===== وضع التعديل =====
+        final id = (widget.existingListing!['id'] ?? '').toString();
+        await FirebaseFirestore.instance
+            .collection('listings')
+            .doc(id)
+            .update({
+          'title': title,
+          'description': desc,
+          'price': price,
+          'location': loc,
+          'images': allUrls,
+        });
 
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم نشر الإعلان بنجاح')),
-      );
-      Navigator.pop(context);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('تم تحديث الإعلان بنجاح')),
+        );
+      } else {
+        // ===== وضع الإضافة =====
+        await FirebaseFirestore.instance.collection('listings').add({
+          'title': title,
+          'description': desc,
+          'price': price,
+          'location': loc,
+          'images': allUrls,
+          'userId': user.uid,
+          'phone': phone,
+          'subCategoryId': widget.subCategoryId ?? '',
+          'categoryName': widget.categoryName,
+          'createdAt': FieldValue.serverTimestamp(),
+          'views': 0,
+          'commentsCount': 0,
+          'likes': 0,
+        });
+
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('تم نشر الإعلان بنجاح')),
+        );
+      }
+
+      Navigator.pop(context, true);
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ في النشر، حاول مرة أخرى';
+        _error = _isEdit
+            ? 'خطأ في التعديل، حاول مرة أخرى'
+            : 'خطأ في النشر، حاول مرة أخرى';
         _loading = false;
       });
     }
@@ -152,7 +203,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            widget.categoryName,
+            _isEdit ? 'تعديل الإعلان' : widget.categoryName,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
@@ -227,9 +278,9 @@ class _AddListingScreenState extends State<AddListingScreen> {
                             strokeWidth: 2.5,
                           ),
                         )
-                      : const Text(
-                          'نشر الإعلان',
-                          style: TextStyle(
+                      : Text(
+                          _isEdit ? 'حفظ التعديل' : 'نشر الإعلان',
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -246,12 +297,56 @@ class _AddListingScreenState extends State<AddListingScreen> {
   }
 
   Widget _imagesGrid() {
+    final totalCount = _images.length + _existingImageUrls.length;
     return SizedBox(
       height: 100,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          if (_images.length < 5)
+          // الصور القديمة
+          ...List.generate(_existingImageUrls.length, (i) {
+            return Stack(
+              children: [
+                Container(
+                  width: 100,
+                  margin: const EdgeInsets.only(left: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.network(
+                    _existingImageUrls[i],
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, _, _) => Container(
+                      color: Colors.black26,
+                      child: const Icon(Icons.broken_image,
+                          color: Colors.white24, size: 30),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 4,
+                  right: 12,
+                  child: GestureDetector(
+                    onTap: () => setState(
+                        () => _existingImageUrls.removeAt(i)),
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        color: Colors.redAccent,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.close,
+                          color: Colors.white, size: 14),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }),
+          if (totalCount < 5)
             GestureDetector(
               onTap: _pickImage,
               child: Container(

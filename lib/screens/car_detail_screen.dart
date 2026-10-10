@@ -6,6 +6,7 @@ import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/favorites_service.dart';
 import '../services/views_service.dart';
+import 'add_listing_screen.dart';
 import '../widgets/comments_section.dart';
 
 class CarDetailScreen extends StatefulWidget {
@@ -115,6 +116,22 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     }
   }
 
+  Future<void> _editListing() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => AddListingScreen(
+          categoryId: (widget.ad['categoryName'] ?? '').toString(),
+          categoryName: (widget.ad['categoryName'] ?? '').toString(),
+          existingListing: widget.ad,
+        ),
+      ),
+    );
+    if (result == true && mounted) {
+      Navigator.pop(context);
+    }
+  }
+
   Future<void> _confirmDelete() async {
     final ok = await showDialog<bool>(
       context: context,
@@ -205,6 +222,11 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         ),
         if (AuthService.currentUser?.uid ==
             (widget.ad['userId'] ?? '').toString())
+          IconButton(
+            icon: const Icon(Icons.edit_outlined,
+                color: Colors.white, size: 22),
+            onPressed: _editListing,
+          ),
           IconButton(
             icon: const Icon(Icons.delete_outline,
                 color: Colors.redAccent, size: 22),
