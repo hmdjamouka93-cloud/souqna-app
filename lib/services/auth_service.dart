@@ -58,6 +58,22 @@ class AuthService {
     });
   }
 
+  /// يتحقق واش المستخدم عندو نوع pro معين
+  /// مثال: isProUser('showroom')
+  static Future<bool> isProUser(String type) async {
+    final data = await getUserData();
+    if (data == null) return false;
+    final list = (data['proTypes'] as List?)?.cast<String>() ?? [];
+    return list.contains(type);
+  }
+
+  /// يجيب قائمة proTypes
+  static Future<List<String>> getProTypes() async {
+    final data = await getUserData();
+    if (data == null) return [];
+    return (data['proTypes'] as List?)?.cast<String>() ?? [];
+  }
+
   static Future<int> countMyListings() async {
     final u = _auth.currentUser;
     if (u == null) return 0;

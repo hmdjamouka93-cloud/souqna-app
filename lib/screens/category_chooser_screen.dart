@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import '../services/auth_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'brand_chooser_screen.dart';
 import 'add_listing_screen.dart';
 
@@ -64,7 +66,98 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
     }
   }
 
+  /// خريطة الأقسام اللي تحتاج تصريح
+  static const _proCategories = {
+    'معارض السيارات': 'showroom',
+    'ايجار السيارات': 'rental',
+    'معدات ثقيلة': 'equipment_shop',
+    'قطع غيار': 'spare_parts_shop',
+    'ملابس': 'clothing_store',
+    'خدمات': 'service_shop',
+  };
+
+  void _showProRequiredDialog(String categoryName) {
+    showDialog(
+      context: context,
+      builder: (ctx) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: AlertDialog(
+          backgroundColor: AppColors.card,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)),
+          title: const Text(
+            'تحتاج تصريح',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          content: Text(
+            'قسم "$categoryName" مخصص لأصحاب المحلات والمعارض.\n\n'
+            'إذا كنت صاحب معرض أو محل، تواصل معنا للحصول على التصريح.',
+            style: const TextStyle(
+                color: AppColors.textSecondary, fontSize: 14, height: 1.6),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('إلغاء',
+                  style: TextStyle(color: AppColors.textSecondary)),
+            ),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.accent),
+              onPressed: () {
+                Navigator.pop(ctx);
+                _contactAdmin();
+              },
+              icon: const Icon(Icons.email_outlined,
+                  color: Colors.white, size: 18),
+              label: const Text('تواصل معنا',
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _contactAdmin() async {
+    final messenger = ScaffoldMessenger.of(context);
+    final uri = Uri(
+      scheme: 'mailto',
+      path: 'souqna.dz@gmail.com',
+      query: 'subject=طلب تصريح لصاحب معرض/محل',
+    );
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+      } else {
+        messenger.showSnackBar(
+          const SnackBar(
+              content: Text('راسلنا على souqna.dz@gmail.com')),
+        );
+      }
+    } catch (_) {
+      messenger.showSnackBar(
+        const SnackBar(
+            content: Text('راسلنا على souqna.dz@gmail.com')),
+      );
+    }
+  }
+
   Future<void> _pickCategory(Map<String, dynamic> cat) async {
+    final catName = (cat['name'] ?? '').toString().trim();
+
+    // نتحققو واش القسم يحتاج تصريح
+    final proType = _proCategories[catName];
+    if (proType != null) {
+      final isPro = await AuthService.isProUser(proType);
+      if (!isPro) {
+        if (!mounted) return;
+        _showProRequiredDialog(catName);
+        return;
+      }
+    }
+
     // نجيبو كل الـ SubCategories ونفلترو client-side
     final subSnap = await FirebaseFirestore.instance
         .collection('SubCategories')
