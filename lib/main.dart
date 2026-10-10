@@ -5,6 +5,7 @@ import 'widgets/app_drawer.dart';
 import 'services/auth_gate.dart';
 import 'screens/more_screen.dart';
 import 'screens/my_ads_screen.dart';
+import 'screens/favorites_screen.dart';
 import 'screens/post_ad_chooser_screen.dart';
 
 void main() async {
@@ -132,7 +133,18 @@ class _MainShellState extends State<MainShell> {
     final isActive = _currentIndex == index;
     return InkWell(
       onTap: () {
-        if (index == 3) {
+        if (index == 2) {
+          requireAuth(
+            context,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const FavoritesScreen()),
+              );
+            },
+            message: 'يجب تسجيل الدخول لعرض المفضلة',
+          );
+        } else if (index == 3) {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const MoreScreen()),

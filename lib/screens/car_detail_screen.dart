@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
+import '../services/favorites_service.dart';
 import '../widgets/comments_section.dart';
 
 class CarDetailScreen extends StatefulWidget {
@@ -80,6 +81,38 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     );
   }
 
+  Future<void> _toggleFavorite(bool isFav) async {
+    if (AuthService.currentUser == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('يجب تسجيل الدخول للحفظ في المفضلة')),
+      );
+      return;
+    }
+    final id = (widget.ad['id'] ?? '').toString();
+    if (id.isEmpty) return;
+
+    try {
+      if (isFav) {
+        await FavoritesService.removeFavorite(id);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('تم الحذف من المفضلة')),
+        );
+      } else {
+        await FavoritesService.addFavorite(id);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('تم الإضافة للمفضلة')),
+        );
+      }
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('فشل، حاول مرة أخرى')),
+      );
+    }
+  }
+
   Future<void> _confirmDelete() async {
     final ok = await showDialog<bool>(
       context: context,
@@ -153,9 +186,20 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       title: const Text('تفاصيل السيارة',
           style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.star_border, color: Colors.white, size: 22),
-          onPressed: () {},
+        StreamBuilder<bool>(
+          stream: FavoritesService.favoriteStream(
+              (widget.ad['id'] ?? '').toString()),
+          builder: (context, snapshot) {
+            final isFav = snapshot.data ?? false;
+            return IconButton(
+              icon: Icon(
+                isFav ? Icons.star : Icons.star_border,
+                color: isFav ? AppColors.accent : Colors.white,
+                size: 22,
+              ),
+              onPressed: () => _toggleFavorite(isFav),
+            );
+          },
         ),
         if (AuthService.currentUser?.uid ==
             (widget.ad['userId'] ?? '').toString())
@@ -188,7 +232,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             itemBuilder: (context, i) => Image.network(
               _images[i],
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 color: Colors.black26,
                 child: const Icon(Icons.directions_car,
                     color: Colors.white24, size: 60),
