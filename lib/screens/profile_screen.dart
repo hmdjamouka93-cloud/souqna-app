@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import '../services/showroom_service.dart';
+import 'create_showroom_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,6 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? _name;
   String? _storeName;
   List<String> _proTypes = [];
+  Map<String, dynamic>? _showroom;
   int _count = 0;
   String? _error;
 
@@ -43,12 +46,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final data = await AuthService.getUserData();
       final count = await AuthService.countMyListings();
       if (!mounted) return;
+      final showroom = await ShowroomService.getMyShowroom();
+      if (!mounted) return;
       setState(() {
         _email = u.email;
         _phone = data?['phone'] ?? '—';
         _name = data?['name'] ?? '';
         _storeName = (data?['storeName'] ?? '').toString();
         _proTypes = (data?['proTypes'] as List?)?.cast<String>() ?? [];
+        _showroom = showroom;
         _count = count;
         _loading = false;
       });
@@ -59,6 +65,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         _loading = false;
       });
     }
+  }
+
+  Future<void> _openShowroom() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CreateShowroomScreen(existing: _showroom),
+      ),
+    );
+    if (result == true && mounted) _load();
   }
 
   Future<void> _editStoreName() async {
@@ -280,7 +296,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           value: '$_count',
                         ),
 
-                        const SizedBox(height: 30),
+                        if (_proTypes.contains('showroom')) ...[
+                          const SizedBox(height: 12),
+                          SizedBox(
+                            height: 52,
+                            child: OutlinedButton.icon(
+                              onPressed: _openShowroom,
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(
+                                    color: _accent, width: 1.5),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                              icon: const Icon(Icons.storefront,
+                                  color: _accent),
+                              label: Text(
+                                _showroom == null
+                                    ? 'إنشاء معرضي'
+                                    : 'إدارة معرضي',
+                                style: const TextStyle(
+                                    color: _accent,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ],
+                        const SizedBox(height: 12),
                         SizedBox(
                           height: 52,
                           child: OutlinedButton.icon(
