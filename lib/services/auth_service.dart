@@ -23,6 +23,7 @@ class AuthService {
       'email': email.trim(),
       'phone': phone.trim(),
       'name': (name ?? '').trim(),
+      'proTypes': <String>[],
       'createdAt': FieldValue.serverTimestamp(),
     });
     return cred;

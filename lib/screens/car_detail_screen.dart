@@ -221,7 +221,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           },
         ),
         if (AuthService.currentUser?.uid ==
-            (widget.ad['userId'] ?? '').toString())
+            (widget.ad['userId'] ?? '').toString()) ...[
           IconButton(
             icon: const Icon(Icons.edit_outlined,
                 color: Colors.white, size: 22),
@@ -232,6 +232,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 color: Colors.redAccent, size: 22),
             onPressed: _confirmDelete,
           ),
+          ],
       ],
     );
   }
