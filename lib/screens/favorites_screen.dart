@@ -79,10 +79,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             Icon(Icons.star_border,
                 size: 80, color: AppColors.iconInactive),
             SizedBox(height: 16),
-            Text('ما كاينش إعلانات محفوظة',
+            Text('لا توجد إعلانات محفوظة',
                 style: TextStyle(color: Colors.white, fontSize: 16)),
             SizedBox(height: 8),
-            Text('أضف إعلانات للمفضلة باش تلقاهم هنا',
+            Text('أضف إعلانات إلى المفضلة لتجدها هنا',
                 style: TextStyle(
                     color: AppColors.textSecondary, fontSize: 13)),
           ],
