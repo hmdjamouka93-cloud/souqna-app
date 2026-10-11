@@ -5,7 +5,7 @@ import 'cars_screen.dart';
 import 'buses_screen.dart';
 import 'trucks_screen.dart';
 import 'motorcycles_screen.dart';
-import 'showrooms_screen.dart';
+import 'showrooms_list_screen.dart';
 import 'car_rental_screen.dart';
 import 'heavy_equipment_screen.dart';
 import 'spare_parts_screen.dart';
@@ -296,7 +296,10 @@ class HomeScreen extends StatelessWidget {
         ),
       );
     } else if (name == 'معارض السيارات') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const ShowroomsScreen()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ShowroomsListScreen()),
+      );
     } else if (name == 'ايجار السيارات') {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const CarRentalScreen()));
     } else if (name == 'معدات ثقيلة') {

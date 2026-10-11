@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/cloudinary_service.dart';
+import '../services/showroom_service.dart';
+import 'create_showroom_screen.dart';
 
 class AddListingScreen extends StatefulWidget {
   final String categoryId;
@@ -136,6 +138,74 @@ class _AddListingScreenState extends State<AddListingScreen> {
       final storeName = (userData?['storeName'] ?? '').toString();
       final proTypes = (userData?['proTypes'] as List?)?.cast<String>() ?? [];
 
+      // 3. إذا القسم "معارض السيارات" → نلقاو معرض المستخدم
+      String showroomId = '';
+      String finalStoreName = storeName;
+
+      if (widget.categoryName == 'معارض السيارات') {
+        final showroom = await ShowroomService.getMyShowroom();
+        if (showroom == null) {
+          // ما عندوش معرض → نوقفو ونطلبو منو ينشئ واحد
+          if (!mounted) return;
+          setState(() => _loading = false);
+          final goCreate = await showDialog<bool>(
+            context: context,
+            builder: (ctx) => Directionality(
+              textDirection: TextDirection.rtl,
+              child: AlertDialog(
+                backgroundColor: AppColors.card,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                title: const Text('خاصك تنشئ معرض',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold)),
+                content: const Text(
+                  'باش تنشر سيارة في معارض السيارات، خاصك تنشئ معرض أولاً.\n\n'
+                  'المعرض كيخلي اسمك وشعارك يبانو على كل سياراتك.',
+                  style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 14,
+                      height: 1.6),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(ctx, false),
+                    child: const Text('إلغاء',
+                        style: TextStyle(color: AppColors.textSecondary)),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.accent),
+                    onPressed: () => Navigator.pop(ctx, true),
+                    child: const Text('إنشاء معرض',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ],
+              ),
+            ),
+          );
+          if (goCreate == true && mounted) {
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => const CreateShowroomScreen()),
+            );
+            if (result != true) return;
+            final showroom2 = await ShowroomService.getMyShowroom();
+            showroomId = (showroom2?['id'] ?? '').toString();
+            if (showroomId.isEmpty) return;
+          } else {
+            return;
+          }
+        } else {
+          showroomId = (showroom['id'] ?? '').toString();
+          // نستعملو اسم المعرض للـ storeName
+          final sName = (showroom['name'] ?? '').toString();
+          if (sName.isNotEmpty) finalStoreName = sName;
+        }
+      }
+
       if (_isEdit) {
         // ===== وضع التعديل =====
         final id = (widget.existingListing!['id'] ?? '').toString();
@@ -166,11 +236,12 @@ class _AddListingScreenState extends State<AddListingScreen> {
           'phone': phone,
           'subCategoryId': widget.subCategoryId ?? '',
           'categoryName': widget.categoryName,
+          'showroomId': showroomId,
           'createdAt': FieldValue.serverTimestamp(),
           'views': 0,
           'commentsCount': 0,
           'likes': 0,
-          'storeName': storeName,
+          'storeName': finalStoreName,
           'isPro': proTypes.isNotEmpty,
           'proTypes': proTypes,
         });
