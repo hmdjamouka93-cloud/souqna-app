@@ -306,7 +306,15 @@ class HomeScreen extends StatelessWidget {
         MaterialPageRoute(builder: (context) => const RentalsListScreen()),
       );
     } else if (name == 'معدات ثقيلة') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HeavyEquipmentScreen()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CarsScreen(
+            categoryName: 'معدات ثقيلة',
+            screenTitle: 'معدات ثقيلة',
+          ),
+        ),
+      );
     } else if (name == 'قطع غيار') {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const SparePartsScreen()));
     } else {
