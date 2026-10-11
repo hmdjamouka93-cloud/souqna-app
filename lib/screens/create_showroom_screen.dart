@@ -7,7 +7,12 @@ import '../services/auth_service.dart';
 
 class CreateShowroomScreen extends StatefulWidget {
   final Map<String, dynamic>? existing;
-  const CreateShowroomScreen({super.key, this.existing});
+  final String type;
+  const CreateShowroomScreen({
+    super.key,
+    this.existing,
+    this.type = 'showroom',
+  });
 
   @override
   State<CreateShowroomScreen> createState() => _CreateShowroomScreenState();
@@ -70,7 +75,9 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
     final phone = _phoneCtrl.text.trim();
 
     if (name.isEmpty) {
-      setState(() => _error = 'اكتب اسم المعرض');
+      setState(() => _error = widget.type == 'rental'
+          ? 'اكتب اسم الوكالة'
+          : 'اكتب اسم المعرض');
       return;
     }
     if (loc.isEmpty) {
@@ -108,6 +115,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
           location: loc,
           phone: phone,
           logo: _newLogo!,
+          type: widget.type,
         );
         if (id == null) throw Exception();
       }
@@ -137,7 +145,9 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            _isEdit ? 'تعديل المعرض' : 'إنشاء معرض',
+            _isEdit
+                ? (widget.type == 'rental' ? 'تعديل وكالة الإيجار' : 'تعديل المعرض')
+                : (widget.type == 'rental' ? 'إنشاء وكالة إيجار' : 'إنشاء معرض'),
             style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -176,17 +186,19 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              const Center(
+              Center(
                 child: Text(
-                  'شعار المعرض',
-                  style: TextStyle(
+                  widget.type == 'rental' ? 'شعار الوكالة' : 'شعار المعرض',
+                  style: const TextStyle(
                       color: AppColors.textSecondary, fontSize: 12),
                 ),
               ),
               const SizedBox(height: 24),
 
-              _label('اسم المعرض'),
-              _field(_nameCtrl, 'مثال: معرض النخبة للسيارات'),
+              _label(widget.type == 'rental' ? 'اسم الوكالة' : 'اسم المعرض'),
+              _field(_nameCtrl, widget.type == 'rental'
+                  ? 'مثال: أس في موتورز'
+                  : 'مثال: معرض النخبة للسيارات'),
               const SizedBox(height: 16),
 
               _label('العنوان'),
@@ -230,7 +242,11 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
                           child: CircularProgressIndicator(
                               color: Colors.white, strokeWidth: 2.5))
                       : Text(
-                          _isEdit ? 'حفظ التعديل' : 'إنشاء المعرض',
+                          _isEdit
+                              ? 'حفظ التعديل'
+                              : (widget.type == 'rental'
+                                  ? 'إنشاء الوكالة'
+                                  : 'إنشاء المعرض'),
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,

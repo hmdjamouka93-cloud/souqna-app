@@ -7,13 +7,14 @@ class ShowroomService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   /// يجيب معرض المستخدم الحالي (إذا عندو واحد)
-  static Future<Map<String, dynamic>?> getMyShowroom() async {
+  static Future<Map<String, dynamic>?> getMyShowroom({String type = 'showroom'}) async {
     final user = AuthService.currentUser;
     if (user == null) return null;
     try {
       final snap = await _db
           .collection('showrooms')
           .where('userId', isEqualTo: user.uid)
+          .where('type', isEqualTo: type)
           .limit(1)
           .get();
       if (snap.docs.isEmpty) return null;
@@ -30,6 +31,7 @@ class ShowroomService {
     required String location,
     required String phone,
     required File logo,
+    String type = 'showroom',
   }) async {
     final user = AuthService.currentUser;
     if (user == null) return null;
@@ -46,6 +48,7 @@ class ShowroomService {
         'location': location.trim(),
         'phone': phone.trim(),
         'logo': logoUrl,
+        'type': type,
         'createdAt': FieldValue.serverTimestamp(),
       });
       return ref.id;
@@ -80,10 +83,11 @@ class ShowroomService {
   }
 
   /// يجيب كل المعارض (للجمهور)
-  static Future<List<Map<String, dynamic>>> getAllShowrooms() async {
+  static Future<List<Map<String, dynamic>>> getAllShowrooms({String type = 'showroom'}) async {
     try {
       final snap = await _db
           .collection('showrooms')
+          .where('type', isEqualTo: type)
           .orderBy('createdAt', descending: true)
           .get();
       return snap.docs.map((d) {
