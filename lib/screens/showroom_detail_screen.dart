@@ -62,7 +62,6 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
     final logo = (widget.showroom['logo'] ?? '').toString();
     final name = (widget.showroom['name'] ?? '').toString();
     final location = (widget.showroom['location'] ?? '').toString();
-    final phone = (widget.showroom['phone'] ?? '').toString();
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -269,13 +268,15 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                       child: const Icon(Icons.directions_car,
                           color: Colors.white24, size: 60),
                     )
-                  : Image.network(img,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Container(
-                            color: Colors.black26,
-                            child: const Icon(Icons.directions_car,
-                                color: Colors.white24, size: 60),
-                          )),
+                  : Container(
+                      color: Colors.black26,
+                      child: Image.network(img,
+                          fit: BoxFit.contain,
+                          errorBuilder: (_, _, _) => const Center(
+                                child: Icon(Icons.directions_car,
+                                    color: Colors.white24, size: 60),
+                              )),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.all(12),
