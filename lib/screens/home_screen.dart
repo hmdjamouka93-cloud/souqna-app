@@ -316,7 +316,15 @@ class HomeScreen extends StatelessWidget {
         ),
       );
     } else if (name == 'قطع غيار') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const SparePartsScreen()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CarsScreen(
+            categoryName: 'قطع غيار',
+            screenTitle: 'قطع غيار',
+          ),
+        ),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$name - قريباً')),
