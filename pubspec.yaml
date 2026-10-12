@@ -98,6 +98,14 @@ flutter:
     - images/spare_parts/engine.jpg
     - images/spare_parts/other.jpg
     - images/spare_parts/workshops.jpg
+    - images/real_estate/apartment_sale.jpg
+    - images/real_estate/apartment_rent.jpg
+    - images/real_estate/villa_sale.jpg
+    - images/real_estate/villa_rent.jpg
+    - images/real_estate/land.jpg
+    - images/real_estate/shop.jpg
+    - images/real_estate/office.jpg
+    - images/real_estate/warehouse.jpg
     - images/logos/datsun.png
     - images/logos/byd.png
     - images/logos/foton.png
