@@ -137,17 +137,88 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
     );
   }
 
-  static const _bigLogos = [
-    'جيلي', 'شيري', 'فوتون', 'بي واي دي', 'لاند روفر', 'جاكوار',
-    'مارسيدس', 'مايباخ', 'لوتس', 'هامر', 'جاك', 'هافال',
-    'فورتينغ', 'بروتون', 'جيتور', 'ايسوزو', 'كرايسلر',
-  ];
 
   Widget _brandCard(Map<String, dynamic> brand) {
-    final imageUrl = brand['image'] as String;
+    final imageUrl = (brand['image'] ?? '').toString();
     final brandName = (brand['name'] ?? '').toString().trim();
-    final big = _bigLogos.contains(brandName);
-    final size = big ? 80.0 : 45.0;
+
+    // إلا كاين صورة → Stack (صورة + نص فوقها)
+    if (imageUrl.isNotEmpty) {
+      return Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(14),
+          onTap: () => _pickBrand(brand),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.card,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) => Container(
+                    color: AppColors.card,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: Text(
+                          brandName,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                // تدرج أسود في الأسفل
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withValues(alpha: 0.75),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 8,
+                  right: 4,
+                  left: 4,
+                  child: Text(
+                    brandName,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(blurRadius: 4, color: Colors.black87),
+                      ],
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    // إلا ما كاينش صورة → نص في الوسط فقط
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -161,59 +232,21 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
               color: AppColors.accent.withValues(alpha: 0.2),
             ),
           ),
-          padding: const EdgeInsets.all(6),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-              if (brandName == 'سيارات اخرى')
-                const Expanded(
-                  child: Center(
-                    child: Text(
-                      'سيارات اخرى',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
-              else
-                SizedBox(
-                width: size,
-                height: size,
-                child: imageUrl.isNotEmpty
-                    ? Image.network(
-                        imageUrl,
-                        fit: BoxFit.contain,
-                        errorBuilder: (_, _, _) => const Icon(
-                          Icons.directions_car,
-                          color: Colors.white24,
-                          size: 40,
-                        ),
-                      )
-                    : const Icon(
-                        Icons.directions_car,
-                        color: Colors.white24,
-                        size: 40,
-                      ),
-              ),
-              if (brandName != 'سيارات اخرى') ...[
-              const SizedBox(height: 2),
-              Text(
-                brand['name'],
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                brandName,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
                 ),
-                maxLines: 1,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
-              ],
-            ],
+            ),
           ),
         ),
       ),
