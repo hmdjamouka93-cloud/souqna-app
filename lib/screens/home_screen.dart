@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
+import 'brand_chooser_screen.dart';
 import 'showrooms_list_screen.dart';
 import 'rentals_list_screen.dart';
 
@@ -389,13 +390,18 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       );
-    } else if (name == 'العقارات') {
+    } else if (name == 'سكن للايجار' ||
+        name == 'سكن للبيع' ||
+        name == 'اثاث' ||
+        name == 'محلات للايجار' ||
+        name == 'محلات للبيع' ||
+        name == 'اراضي') {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const CarsScreen(
-            categoryName: 'العقارات',
-            screenTitle: 'العقارات',
+          builder: (context) => BrandChooserScreen(
+            categoryId: '',
+            categoryName: name,
           ),
         ),
       );
