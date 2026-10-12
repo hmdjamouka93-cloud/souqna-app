@@ -320,6 +320,16 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       );
+    } else if (name == 'العقارات') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CarsScreen(
+            categoryName: 'العقارات',
+            screenTitle: 'العقارات',
+          ),
+        ),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$name - قريباً')),
