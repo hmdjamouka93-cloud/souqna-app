@@ -19,8 +19,6 @@ class BrandChooserScreen extends StatefulWidget {
 class _BrandChooserScreenState extends State<BrandChooserScreen> {
   bool _loading = true;
   List<Map<String, dynamic>> _items = [];
-  int _totalSubs = 0;
-  String _debugMsg = '';
 
   @override
   void initState() {
@@ -33,8 +31,6 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
           .get();
-
-      _totalSubs = snap.size;
 
       final list = <Map<String, dynamic>>[];
       for (final d in snap.docs) {
@@ -59,15 +55,12 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         return na.compareTo(nb);
       });
 
-      _debugMsg = 'Category: "${widget.categoryName}" | Total: $_totalSubs | Matched: ${list.length}';
-
       if (!mounted) return;
       setState(() {
         _items = list;
         _loading = false;
       });
     } catch (e) {
-      _debugMsg = 'ERROR: $e';
       if (!mounted) return;
       setState(() => _loading = false);
     }

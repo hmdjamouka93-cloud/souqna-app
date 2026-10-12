@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../services/showroom_service.dart';
-import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
 import 'showroom_detail_screen.dart';
 import 'create_showroom_screen.dart';
@@ -35,12 +34,6 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
 
   Future<void> _openCreateShowroom() async {
     requireAuth(context, () async {
-      final isPro = await AuthService.isProUser('showroom');
-      if (!isPro) {
-        if (!mounted) return;
-        _showProRequiredDialog();
-        return;
-      }
       if (!mounted) return;
       final result = await Navigator.push(
         context,
@@ -49,45 +42,6 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
       );
       if (result == true) _load();
     }, message: 'يجب تسجيل الدخول لإنشاء معرض');
-  }
-
-  void _showProRequiredDialog() {
-    showDialog(
-      context: context,
-      builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
-        child: AlertDialog(
-          backgroundColor: AppColors.card,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)),
-          title: const Text('تحتاج تصريح',
-              style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold)),
-          content: const Text(
-            'إنشاء معرض مخصص لأصحاب المعارض الموثقين.\\n\\n'
-            'تواصل معنا للحصول على التصريح.',
-            style: TextStyle(
-                color: AppColors.textSecondary, fontSize: 14, height: 1.6),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('إلغاء',
-                  style: TextStyle(color: AppColors.textSecondary)),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.accent),
-              onPressed: () {
-                Navigator.pop(ctx);
-              },
-              child: const Text('حسناً',
-                  style: TextStyle(color: Colors.white)),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   void _openShowroom(Map<String, dynamic> showroom) {

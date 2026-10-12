@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
-import 'buses_screen.dart';
-import 'trucks_screen.dart';
-import 'motorcycles_screen.dart';
 import 'showrooms_list_screen.dart';
 import 'rentals_list_screen.dart';
-import 'heavy_equipment_screen.dart';
-import 'spare_parts_screen.dart';
 
 /// الشاشة الرئيسية
 class HomeScreen extends StatelessWidget {
