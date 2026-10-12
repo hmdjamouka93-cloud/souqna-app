@@ -61,6 +61,14 @@ class _CarsScreenState extends State<CarsScreen> {
     }
   }
 
+  // أقسام كتستعمل صور (ماشي شعارات) → cover + حجم كبير
+  static const _photoCategories = [
+    'قطع غيار',
+    'معدات ثقيلة',
+    'معارض السيارات',
+    'ايجار السيارات',
+  ];
+
   static const _bigLogos = [
     'جيلي', 'شيري', 'فوتون', 'بي واي دي', 'لاند روفر', 'جاكوار',
     'مارسيدس', 'مايباخ', 'لوتس', 'هامر', 'جاك', 'هافال',
@@ -68,6 +76,7 @@ class _CarsScreenState extends State<CarsScreen> {
   ];
 
   double _logoSize(String name) {
+    if (_photoCategories.contains(widget.categoryName)) return 100.0;
     return _bigLogos.contains(name) ? 80.0 : 45.0;
   }
 
@@ -270,8 +279,10 @@ class _CarsScreenState extends State<CarsScreen> {
                     ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
                     : Image.network(
                         image,
-                        fit: BoxFit.contain,
-                        errorBuilder: (_, __, ___) =>
+                        fit: _photoCategories.contains(widget.categoryName)
+                            ? BoxFit.cover
+                            : BoxFit.contain,
+                        errorBuilder: (_, _, _) =>
                             const Icon(Icons.directions_car, color: Colors.white24, size: 32),
                       ),
               ),
