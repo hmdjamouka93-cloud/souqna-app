@@ -189,6 +189,7 @@ class _CarsScreenState extends State<CarsScreen> {
   Widget _brandCard(Map<String, dynamic> b) {
     final name = (b['name'] as String).trim();
     final image = (b['image'] as String).trim();
+    final isPhoto = _photoCategories.contains(widget.categoryName);
 
     // "جميع الإعلانات"
     if (name == 'جميع الإعلانات') {
@@ -201,7 +202,7 @@ class _CarsScreenState extends State<CarsScreen> {
           ),
           child: const Center(
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(8),
               child: Text(
                 'جميع الإعلانات',
                 textAlign: TextAlign.center,
@@ -217,8 +218,79 @@ class _CarsScreenState extends State<CarsScreen> {
       );
     }
 
-    // "سيارات اخرى"
-    if (name == 'سيارات اخرى' || name == 'شاحنات أخرى' || name == 'حافلات أخرى') {
+    // "أنواع أخرى" (سيارات اخرى، شاحنات أخرى، إلخ)
+    final isOther = name.contains('أخرى') ||
+        name.contains('اخرى') ||
+        name.contains('معدات أخرى');
+
+    // ============ أقسام الصور (قطع غيار، معدات، معارض، إيجار) ============
+    if (isPhoto) {
+      return GestureDetector(
+        onTap: () => _openBrand(b),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.card,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              if (image.isNotEmpty)
+                Image.network(
+                  image,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) => Container(
+                    color: Colors.black26,
+                    child: const Icon(Icons.image_outlined,
+                        color: Colors.white24, size: 40),
+                  ),
+                )
+              else
+                Container(
+                  color: Colors.black26,
+                  child: const Icon(Icons.image_outlined,
+                      color: Colors.white24, size: 40),
+                ),
+              // تدرج أسود في الأسفل
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withValues(alpha: 0.75),
+                    ],
+                  ),
+                ),
+              ),
+              // النص في الأسفل
+              Positioned(
+                bottom: 8,
+                right: 6,
+                left: 6,
+                child: Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    shadows: [Shadow(blurRadius: 4, color: Colors.black87)],
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // ============ "أنواع أخرى" (نص وردي في الوسط) ============
+    if (isOther) {
       return GestureDetector(
         onTap: () => _openBrand(b),
         child: Container(
@@ -238,7 +310,7 @@ class _CarsScreenState extends State<CarsScreen> {
                 const SizedBox(height: 4),
                 Text(name,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColors.accent,
                         fontSize: 12,
                         fontWeight: FontWeight.bold)),
@@ -249,6 +321,7 @@ class _CarsScreenState extends State<CarsScreen> {
       );
     }
 
+    // ============ شعارات (تويوتا، بيجو، إلخ) ============
     return GestureDetector(
       onTap: () => _openBrand(b),
       child: Container(
@@ -264,7 +337,9 @@ class _CarsScreenState extends State<CarsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(name,
                   style: const TextStyle(
-                      color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis),
@@ -276,18 +351,18 @@ class _CarsScreenState extends State<CarsScreen> {
                 width: _logoSize(name),
                 height: _logoSize(name),
                 child: image.isEmpty
-                    ? const Icon(Icons.directions_car, color: Colors.white24, size: 32)
+                    ? const Icon(Icons.directions_car,
+                        color: Colors.white24, size: 32)
                     : Image.network(
                         image,
-                        fit: _photoCategories.contains(widget.categoryName)
-                            ? BoxFit.cover
-                            : BoxFit.contain,
-                        errorBuilder: (_, _, _) =>
-                            const Icon(Icons.directions_car, color: Colors.white24, size: 32),
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, _, _) => const Icon(
+                            Icons.directions_car,
+                            color: Colors.white24,
+                            size: 32),
                       ),
               ),
             ),
-            const Spacer(),
           ],
         ),
       ),
