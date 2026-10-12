@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget {
                 _buildSectionTitle('المركبات'),
                 _buildVehiclesGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('أقسام أخرى'),
-                _buildOtherGrid(),
+                _buildSectionTitle('العقارات'),
+                _buildRealEstateGrid(),
                 const SizedBox(height: 20),
               ],
             ),
@@ -194,11 +194,11 @@ class HomeScreen extends StatelessWidget {
   }
 
 
-  Widget _buildOtherGrid() {
+  Widget _buildRealEstateGrid() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('Categories')
-          .where('type', isEqualTo: 'general')
+          .where('mainCategoryId', isEqualTo: 'real_estate')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
