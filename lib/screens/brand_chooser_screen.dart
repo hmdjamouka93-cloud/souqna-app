@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'add_listing_screen.dart';
+import 'listings_screen.dart';
 
 class BrandChooserScreen extends StatefulWidget {
   final String categoryId;
@@ -55,6 +56,14 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         return na.compareTo(nb);
       });
 
+      // نزيدو "جميع الإعلانات" في الأول
+      list.insert(0, {
+        'id': '__all__',
+        'name': 'جميع الإعلانات',
+        'image': '',
+        'order': -1,
+      });
+
       if (!mounted) return;
       setState(() {
         _items = list;
@@ -67,14 +76,49 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
   }
 
   void _pickBrand(Map<String, dynamic> brand) {
+    final id = (brand['id'] ?? '').toString();
+    final name = (brand['name'] ?? '').toString();
+
+    // "جميع الإعلانات" → ListingsScreen (كل إعلانات القسم)
+    if (id == '__all__') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ListingsScreen(
+            subCategoryId: '',
+            brandName: name,
+            categoryName: widget.categoryName,
+          ),
+        ),
+      );
+      return;
+    }
+
+    // "أنواع أخرى" → AddListingScreen (ماشي عرض)
+    if (name.contains('أخرى') || name.contains('اخرى')) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => AddListingScreen(
+            categoryId: widget.categoryId,
+            categoryName: widget.categoryName,
+            subCategoryId: id,
+            subCategoryName: name,
+          ),
+        ),
+      );
+      return;
+    }
+
+    // باقي الأنواع → AddListingScreen
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => AddListingScreen(
           categoryId: widget.categoryId,
           categoryName: widget.categoryName,
-          subCategoryId: brand['id'],
-          subCategoryName: brand['name'],
+          subCategoryId: id,
+          subCategoryName: name,
         ),
       ),
     );

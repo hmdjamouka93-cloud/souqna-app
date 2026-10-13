@@ -6,10 +6,12 @@ import 'car_detail_screen.dart';
 class ListingsScreen extends StatefulWidget {
   final String subCategoryId;
   final String brandName;
+  final String? categoryName;
   const ListingsScreen({
     super.key,
     required this.subCategoryId,
     required this.brandName,
+    this.categoryName,
   });
   @override
   State<ListingsScreen> createState() => _ListingsScreenState();
@@ -27,10 +29,14 @@ class _ListingsScreenState extends State<ListingsScreen> {
 
   Future<void> _load() async {
     try {
-      final snap = await FirebaseFirestore.instance
-          .collection('listings')
-          .where('subCategoryId', isEqualTo: widget.subCategoryId)
-          .get();
+      final query = widget.categoryName != null && widget.categoryName!.isNotEmpty
+          ? FirebaseFirestore.instance
+              .collection('listings')
+              .where('categoryName', isEqualTo: widget.categoryName)
+          : FirebaseFirestore.instance
+              .collection('listings')
+              .where('subCategoryId', isEqualTo: widget.subCategoryId);
+      final snap = await query.get();
       final list = snap.docs.map((d) {
         final x = d.data();
         return {
