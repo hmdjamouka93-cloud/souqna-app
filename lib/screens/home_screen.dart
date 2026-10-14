@@ -178,22 +178,25 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 1.4,
-          ),
-          itemCount: docs.length,
-          itemBuilder: (context, i) {
-            final data = docs[i].data() as Map<String, dynamic>;
-            final name = (data['name'] ?? '').toString();
-            final image = (data['image'] ?? '').toString();
-            return _vehicleCard(context, name, image);
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 10) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
           },
         );
       },
@@ -244,22 +247,25 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 1.4,
-          ),
-          itemCount: docs.length,
-          itemBuilder: (context, i) {
-            final data = docs[i].data() as Map<String, dynamic>;
-            final name = (data['name'] ?? '').toString();
-            final image = (data['image'] ?? '').toString();
-            return _vehicleCard(context, name, image);
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 10) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
           },
         );
       },
@@ -310,22 +316,25 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 1.4,
-          ),
-          itemCount: docs.length,
-          itemBuilder: (context, i) {
-            final data = docs[i].data() as Map<String, dynamic>;
-            final name = (data['name'] ?? '').toString();
-            final image = (data['image'] ?? '').toString();
-            return _vehicleCard(context, name, image);
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 10) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
           },
         );
       },
@@ -376,22 +385,25 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 1.4,
-          ),
-          itemCount: docs.length,
-          itemBuilder: (context, i) {
-            final data = docs[i].data() as Map<String, dynamic>;
-            final name = (data['name'] ?? '').toString();
-            final image = (data['image'] ?? '').toString();
-            return _vehicleCard(context, name, image);
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 10) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
           },
         );
       },
