@@ -113,6 +113,7 @@ flutter:
     - images/electronics/video_games.jpg
     - images/electronics/cameras.jpg
     - images/electronics/smart_devices.jpg
+    - assets/data/algeria.json
     - images/logos/datsun.png
     - images/logos/byd.png
     - images/logos/foton.png
