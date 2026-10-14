@@ -27,7 +27,7 @@ class CloudinaryService {
         return data['secure_url'] as String?;
       }
       return null;
-    } catch (e) {
+    } catch (e) { print("CLOUDINARY_ERR: $e");
       return null;
     }
   }

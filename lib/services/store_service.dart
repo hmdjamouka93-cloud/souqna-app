@@ -64,7 +64,7 @@ class StoreService {
         'createdAt': FieldValue.serverTimestamp(),
       });
       return ref.id;
-    } catch (_) {
+    } catch (e) { print("CREATE_STORE_ERR: $e");
       return null;
     }
   }

@@ -170,7 +170,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
       }
       if (!mounted) return;
       Navigator.pop(context, true);
-    } catch (_) {
+    } catch (e) { print("SUBMIT_ERR: $e");
       if (!mounted) return;
       setState(() {
         _error = 'خطأ، حاول مرة أخرى';
