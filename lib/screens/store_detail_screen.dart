@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
+import 'create_product_screen.dart';
 
 class StoreDetailScreen extends StatefulWidget {
   final Map<String, dynamic> store;
@@ -59,6 +60,25 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
+        floatingActionButton: _isOwner
+            ? FloatingActionButton.extended(
+                backgroundColor: AppColors.accent,
+                onPressed: () async {
+                  final r = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CreateProductScreen(
+                        storeId: (widget.store['id'] ?? '').toString(),
+                      ),
+                    ),
+                  );
+                  if (r == true) setState(() {});
+                },
+                icon: const Icon(Icons.add, color: Colors.white),
+                label: const Text('أضف منتج',
+                    style: TextStyle(color: Colors.white)),
+              )
+            : null,
         body: CustomScrollView(
           slivers: [
             // غلاف
