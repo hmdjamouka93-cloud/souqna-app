@@ -192,6 +192,7 @@ class HomeScreen extends StatelessWidget {
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
+                    height: cardWidth / 1.4,
                     child: _vehicleCard(context, name, image),
                   );
                 }).toList(),
@@ -261,6 +262,7 @@ class HomeScreen extends StatelessWidget {
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
+                    height: cardWidth / 1.4,
                     child: _vehicleCard(context, name, image),
                   );
                 }).toList(),
@@ -330,6 +332,7 @@ class HomeScreen extends StatelessWidget {
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
+                    height: cardWidth / 1.4,
                     child: _vehicleCard(context, name, image),
                   );
                 }).toList(),
@@ -399,6 +402,7 @@ class HomeScreen extends StatelessWidget {
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
+                    height: cardWidth / 1.4,
                     child: _vehicleCard(context, name, image),
                   );
                 }).toList(),
