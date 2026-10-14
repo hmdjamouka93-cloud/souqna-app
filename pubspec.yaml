@@ -107,6 +107,12 @@ flutter:
     - images/real_estate/office.jpg
     - images/real_estate/warehouse.jpg
     - images/real_estate/furniture.jpg
+    - images/electronics/phones.jpg
+    - images/electronics/computers.jpg
+    - images/electronics/home_appliances.jpg
+    - images/electronics/video_games.jpg
+    - images/electronics/cameras.jpg
+    - images/electronics/smart_devices.jpg
     - images/logos/datsun.png
     - images/logos/byd.png
     - images/logos/foton.png
