@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
 import 'brand_chooser_screen.dart';
+import 'stores_list_screen.dart';
 import 'showrooms_list_screen.dart';
 import 'rentals_list_screen.dart';
 
@@ -547,6 +548,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       );
+    } else if (name == 'ملابس نسائية' ||
+        name == 'ملابس رجالية' ||
+        name == 'ملابس اطفال' ||
+        name == 'اكسسوارات') {
+      // أقسام الملابس → نظام المتاجر
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => StoresListScreen(categoryName: name),
+        ),
+      );
     } else if (name == 'سكن للايجار' ||
         name == 'سكن للبيع' ||
         name == 'اثاث' ||
@@ -558,11 +570,7 @@ class HomeScreen extends StatelessWidget {
         name == 'اجهزة منزلية' ||
         name == 'العاب فيديو' ||
         name == 'كاميرات' ||
-        name == 'اجهزة ذكية' ||
-        name == 'ملابس نسائية' ||
-        name == 'ملابس رجالية' ||
-        name == 'ملابس اطفال' ||
-        name == 'اكسسوارات') {
+        name == 'اجهزة ذكية') {
       Navigator.push(
         context,
         MaterialPageRoute(
