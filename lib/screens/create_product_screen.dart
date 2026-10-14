@@ -170,10 +170,10 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
       }
       if (!mounted) return;
       Navigator.pop(context, true);
-    } catch (_) {
+    } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ، حاول مرة أخرى';
+        _error = 'خطأ: $e';
         _loading = false;
       });
     }

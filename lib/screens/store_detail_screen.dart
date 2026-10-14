@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
+import '../services/store_service.dart';
 import 'create_product_screen.dart';
 
 class StoreDetailScreen extends StatefulWidget {
@@ -31,6 +32,46 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     final uri = Uri.parse('https://wa.me/$clean');
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  Future<void> _confirmDelete() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: AlertDialog(
+          backgroundColor: AppColors.card,
+          title: const Text('حذف المتجر',
+              style: TextStyle(color: Colors.white)),
+          content: const Text(
+            'هل أنت متأكد من حذف متجرك؟\n\n'
+            'يمكنك استرجاعه خلال 7 أيام من خلال التواصل معنا.\n'
+            'بعد 7 أيام سيتم حذفه نهائياً.',
+            style: TextStyle(color: Colors.white70, height: 1.6),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('إلغاء',
+                  style: TextStyle(color: AppColors.textSecondary)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('حذف',
+                  style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (ok != true) return;
+    final id = (widget.store['id'] ?? '').toString();
+    final done = await StoreService.deleteStore(id);
+    if (!mounted) return;
+    if (done) {
+      Navigator.pop(context, 'deleted');
     }
   }
 
@@ -92,12 +133,18 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                 onPressed: () => Navigator.pop(context),
               ),
               actions: [
-                if (_isOwner)
+                if (_isOwner) ...[
                   IconButton(
                     icon: const Icon(Icons.edit_outlined,
                         color: Colors.white, size: 22),
                     onPressed: _openEdit,
                   ),
+                  IconButton(
+                    icon: const Icon(Icons.delete_outline,
+                        color: Colors.white, size: 22),
+                    onPressed: _confirmDelete,
+                  ),
+                ],
               ],
               flexibleSpace: FlexibleSpaceBar(
                 background: cover.isNotEmpty

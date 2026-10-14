@@ -72,8 +72,9 @@ class ProductService {
         'createdAt': FieldValue.serverTimestamp(),
       });
       return ref.id;
-    } catch (_) {
-      return null;
+    } catch (e) {
+      print('CREATE_PRODUCT_ERR: $e');
+      rethrow;
     }
   }
 

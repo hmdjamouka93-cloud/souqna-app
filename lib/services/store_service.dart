@@ -17,6 +17,7 @@ class StoreService {
           .collection('stores')
           .where('userId', isEqualTo: user.uid)
           .where('categoryName', isEqualTo: categoryName)
+          .where('isDeleted', isNotEqualTo: true)
           .limit(1)
           .get();
       if (snap.docs.isEmpty) return null;
@@ -115,13 +116,27 @@ class StoreService {
     }
   }
 
+  /// soft delete: نحط isDeleted + deletedAt
+  static Future<bool> deleteStore(String id) async {
+    try {
+      await _db.collection('stores').doc(id).update({
+        'isDeleted': true,
+        'deletedAt': FieldValue.serverTimestamp(),
+      });
+      return true;
+    } catch (e) {
+      print('DELETE_STORE_ERR: $e');
+      return false;
+    }
+  }
+
   /// يجيب كل متاجر قسم معين
   static Future<List<Map<String, dynamic>>> getStores(String categoryName) async {
     try {
       final snap = await _db
           .collection('stores')
           .where('categoryName', isEqualTo: categoryName)
-          .orderBy('createdAt', descending: true)
+            .where('isDeleted', isNotEqualTo: true)
           .get();
       return snap.docs.map((d) {
         final x = d.data();
