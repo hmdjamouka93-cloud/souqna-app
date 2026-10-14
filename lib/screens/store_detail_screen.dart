@@ -178,12 +178,15 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               Icons.phone_outlined, 'اتصال', _call,
                               isPrimary: true),
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: _actionBtn(
-                              Icons.chat_outlined, 'واتساب', _whatsapp,
-                              isPrimary: false),
-                        ),
+                    if (!['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال']
+                        .contains((widget.store['categoryName'] ?? '').toString())) ...[
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _actionBtn(
+                          Icons.chat_outlined, 'واتساب', _whatsapp,
+                          isPrimary: false),
+                      ),
+                    ],
                       ],
                     ),
                   ],
