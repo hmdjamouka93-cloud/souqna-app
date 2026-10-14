@@ -94,31 +94,14 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       return;
     }
 
-    // "أنواع أخرى" → AddListingScreen (ماشي عرض)
-    if (name.contains('أخرى') || name.contains('اخرى')) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => AddListingScreen(
-            categoryId: widget.categoryId,
-            categoryName: widget.categoryName,
-            subCategoryId: id,
-            subCategoryName: name,
-          ),
-        ),
-      );
-      return;
-    }
-
-    // باقي الأنواع → AddListingScreen
+    // باقي الأنواع → ListingsScreen (عرض الإعلانات)
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => AddListingScreen(
-          categoryId: widget.categoryId,
-          categoryName: widget.categoryName,
+        builder: (_) => ListingsScreen(
           subCategoryId: id,
-          subCategoryName: name,
+          brandName: name,
+          categoryName: widget.categoryName,
         ),
       ),
     );
