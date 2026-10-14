@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'brand_chooser_screen.dart';
 import 'add_listing_screen.dart';
+import 'create_store_screen.dart';
+import 'create_product_screen.dart';
+import '../services/store_service.dart';
 
 class CategoryChooserScreen extends StatefulWidget {
   final String mainCategoryId;
@@ -83,6 +86,68 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
     });
 
     if (!mounted) return;
+
+    // ==== أقسام الملابس: نتحققو من وجود متجر ====
+    const clothingCats = ['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال'];
+    if (clothingCats.contains(targetName)) {
+      final store = await StoreService.getMyStore(targetName);
+      if (!mounted) return;
+      if (store == null) {
+        await showDialog(
+          context: context,
+          builder: (ctx) => Directionality(
+            textDirection: TextDirection.rtl,
+            child: AlertDialog(
+              backgroundColor: AppColors.card,
+              title: const Text('لا يمكنك الإعلان هنا',
+                  style: TextStyle(color: Colors.white)),
+              content: const Text(
+                'لا يمكنك إضافة إعلان في هذا القسم إلا إذا كنت تملك متجراً.\n\n'
+                'قم بإنشاء متجرك أولاً لعرض منتجاتك هنا.\n\n'
+                'إذا لم ترغب في إنشاء متجر، يمكنك إضافة منتجاتك في قسم "ملابس أخرى".',
+                style: TextStyle(color: Colors.white70, height: 1.6),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('إلغاء',
+                      style: TextStyle(color: AppColors.textSecondary)),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.accent),
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => CreateStoreScreen(
+                          categoryName: targetName,
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text('إنشاء متجر',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+          ),
+        );
+        return;
+      }
+      // عندو متجر → نضيفو منتج مباشرة
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => CreateProductScreen(
+            storeId: (store['id'] ?? '').toString(),
+          ),
+        ),
+      );
+      return;
+    }
+    // ==== نهاية check ====
 
     if (hasSubs) {
       Navigator.push(
