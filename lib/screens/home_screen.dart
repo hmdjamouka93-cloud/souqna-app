@@ -28,6 +28,12 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 _buildSectionTitle('العقارات'),
                 _buildRealEstateGrid(),
+                const SizedBox(height: 24),
+                _buildSectionTitle('الإلكترونيات'),
+                _buildElectronicsGrid(),
+                const SizedBox(height: 24),
+                _buildSectionTitle('الملابس'),
+                _buildClothingGrid(),
                 const SizedBox(height: 20),
               ],
             ),
@@ -200,6 +206,138 @@ class HomeScreen extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('Categories')
           .where('mainCategoryId', isEqualTo: 'real_estate')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 1.4,
+          ),
+          itemCount: docs.length,
+          itemBuilder: (context, i) {
+            final data = docs[i].data() as Map<String, dynamic>;
+            final name = (data['name'] ?? '').toString();
+            final image = (data['image'] ?? '').toString();
+            return _vehicleCard(context, name, image);
+          },
+        );
+      },
+    );
+  }
+
+
+  Widget _buildElectronicsGrid() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: 'electronics')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 1.4,
+          ),
+          itemCount: docs.length,
+          itemBuilder: (context, i) {
+            final data = docs[i].data() as Map<String, dynamic>;
+            final name = (data['name'] ?? '').toString();
+            final image = (data['image'] ?? '').toString();
+            return _vehicleCard(context, name, image);
+          },
+        );
+      },
+    );
+  }
+
+
+  Widget _buildClothingGrid() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: 'clothing')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
