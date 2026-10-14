@@ -395,7 +395,13 @@ class HomeScreen extends StatelessWidget {
         name == 'اثاث' ||
         name == 'محلات للايجار' ||
         name == 'محلات للبيع' ||
-        name == 'اراضي') {
+        name == 'اراضي' ||
+        name == 'هواتف' ||
+        name == 'حواسيب' ||
+        name == 'اجهزة منزلية' ||
+        name == 'العاب فيديو' ||
+        name == 'كاميرات' ||
+        name == 'اجهزة ذكية') {
       Navigator.push(
         context,
         MaterialPageRoute(
