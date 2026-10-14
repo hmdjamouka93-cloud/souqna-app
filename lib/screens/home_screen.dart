@@ -539,7 +539,11 @@ class HomeScreen extends StatelessWidget {
         name == 'اجهزة منزلية' ||
         name == 'العاب فيديو' ||
         name == 'كاميرات' ||
-        name == 'اجهزة ذكية') {
+        name == 'اجهزة ذكية' ||
+        name == 'ملابس نسائية' ||
+        name == 'ملابس رجالية' ||
+        name == 'ملابس اطفال' ||
+        name == 'اكسسوارات') {
       Navigator.push(
         context,
         MaterialPageRoute(
