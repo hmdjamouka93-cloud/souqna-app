@@ -17,9 +17,11 @@ class HomeScreen extends StatelessWidget {
         children: [
           _buildHeader(context),
           Expanded(
-            child: ListView(
+            child: SingleChildScrollView(
               padding: EdgeInsets.zero,
-              children: [
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                 _buildBanner(),
                 _buildSearchBar(),
                 const SizedBox(height: 16),
@@ -36,6 +38,7 @@ class HomeScreen extends StatelessWidget {
                 _buildClothingGrid(),
                 const SizedBox(height: 20),
               ],
+                ),
             ),
           ),
         ],
