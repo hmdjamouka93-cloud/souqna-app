@@ -180,7 +180,7 @@ class HomeScreen extends StatelessWidget {
         }
         return LayoutBuilder(
           builder: (context, constraints) {
-            final cardWidth = (constraints.maxWidth - 10) / 2;
+            final cardWidth = (constraints.maxWidth - 50) / 2;
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Wrap(
@@ -250,7 +250,7 @@ class HomeScreen extends StatelessWidget {
         }
         return LayoutBuilder(
           builder: (context, constraints) {
-            final cardWidth = (constraints.maxWidth - 10) / 2;
+            final cardWidth = (constraints.maxWidth - 50) / 2;
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Wrap(
@@ -320,7 +320,7 @@ class HomeScreen extends StatelessWidget {
         }
         return LayoutBuilder(
           builder: (context, constraints) {
-            final cardWidth = (constraints.maxWidth - 10) / 2;
+            final cardWidth = (constraints.maxWidth - 50) / 2;
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Wrap(
@@ -390,7 +390,7 @@ class HomeScreen extends StatelessWidget {
         }
         return LayoutBuilder(
           builder: (context, constraints) {
-            final cardWidth = (constraints.maxWidth - 10) / 2;
+            final cardWidth = (constraints.maxWidth - 50) / 2;
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Wrap(
