@@ -42,6 +42,18 @@ class StoreService {
     if (user == null) return null;
 
     try {
+      // متجر واحد فقط لكل قسم
+      final existing = await _db
+          .collection('stores')
+          .where('userId', isEqualTo: user.uid)
+          .where('categoryName', isEqualTo: categoryName.trim())
+          .limit(1)
+          .get();
+      if (existing.docs.isNotEmpty) {
+        print('CREATE_STORE_ERR: already have a store');
+        return null;
+      }
+
       final coverUrl = await CloudinaryService.uploadImage(cover);
       if (coverUrl == null) return null;
 

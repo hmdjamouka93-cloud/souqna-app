@@ -156,6 +156,15 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
         );
         if (!ok) throw Exception();
       } else {
+      final existing = await StoreService.getMyStore(widget.categoryName);
+      if (existing != null) {
+        if (!mounted) return;
+        setState(() {
+          _error = 'عندك متجر في هذا القسم من قبل';
+          _loading = false;
+        });
+        return;
+      }
         final id = await StoreService.createStore(
           name: name,
           categoryName: widget.categoryName,
