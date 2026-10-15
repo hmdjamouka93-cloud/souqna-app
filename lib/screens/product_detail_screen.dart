@@ -95,6 +95,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   }
 
   Future<void> _sendOrder() async {
+    if (!AuthService.isLoggedIn) {
+      await requireAuth(context, _sendOrder,
+          message: 'يجب تسجيل الدخول لإرسال الطلب.');
+      return;
+    }
     final fn = _firstNameCtrl.text.trim();
     final ln = _lastNameCtrl.text.trim();
     final phone = _phoneCtrl.text.trim();
