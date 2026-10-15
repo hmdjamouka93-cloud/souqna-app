@@ -471,9 +471,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
           ),
           const Spacer(),
-          Text('المتوفر: $_availableQty',
-              style: const TextStyle(
-                  color: AppColors.textSecondary, fontSize: 12)),
         ],
       ),
     );
