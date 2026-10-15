@@ -12,7 +12,6 @@ class ProductService {
       final snap = await _db
           .collection('store_products')
           .where('storeId', isEqualTo: storeId)
-          .orderBy('createdAt', descending: true)
           .get();
       return snap.docs.map((d) {
         final x = d.data();
