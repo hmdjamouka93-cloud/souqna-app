@@ -44,7 +44,7 @@ class OrderService {
       return ref.id;
     } catch (e) {
       print('CREATE_ORDER_ERR: $e');
-      return null;
+      rethrow;
     }
   }
 

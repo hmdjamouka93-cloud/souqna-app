@@ -183,10 +183,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
         ),
       );
-    } catch (_) {
+    } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ، حاول مرة أخرى';
+        _error = 'خطأ: $e';
         _sending = false;
       });
     }
