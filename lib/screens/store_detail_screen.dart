@@ -352,7 +352,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                       final img = (p['images'] as List).isNotEmpty
                           ? (p['images'] as List).first.toString()
                           : '';
-                      return InkWell(
+                      return Stack(children: [InkWell(
                         onTap: () async {
                           final r = await Navigator.push(
                             context,
@@ -409,7 +409,40 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                             ],
                           ),
                         ),
-                      );
+                      ),
+                      if (_isOwner) Positioned(
+                        top: 6, left: 6,
+                        child: GestureDetector(
+                          onTap: () async {
+                            final ok = await showDialog<bool>(
+                              context: context,
+                              builder: (ctx) => Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: AlertDialog(
+                                  backgroundColor: AppColors.card,
+                                  title: const Text('حذف المنتج', style: TextStyle(color: Colors.white)),
+                                  content: const Text('هل أنت متأكد من حذف هذا المنتج؟', style: TextStyle(color: Colors.white70)),
+                                  actions: [
+                                    TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                                    ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.red), onPressed: () => Navigator.pop(ctx, true), child: const Text('حذف', style: TextStyle(color: Colors.white))),
+                                  ],
+                                ),
+                              ),
+                            );
+                            if (ok == true) {
+                              final id = (p['id'] ?? '').toString();
+                              await ProductService.deleteProduct(id);
+                              _loadProducts();
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: const BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
+                            child: const Icon(Icons.delete_outline, color: Colors.white, size: 18),
+                          ),
+                        ),
+                      ),
+                      ],);
                     },
                     childCount: _products.length,
                   ),
