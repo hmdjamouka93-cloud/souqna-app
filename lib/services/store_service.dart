@@ -153,6 +153,7 @@ class StoreService {
           'phone': (x['phone'] ?? '').toString(),
           'wilaya': (x['wilaya'] ?? '').toString(),
           'daira': (x['daira'] ?? '').toString(),
+            'categoryName': (x['categoryName'] ?? '').toString(),
         };
       }).toList();
     } catch (_) {
