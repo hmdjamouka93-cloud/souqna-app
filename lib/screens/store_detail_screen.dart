@@ -179,6 +179,74 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                     onPressed: _confirmDelete,
                   ),
                 ],
+                if (!_isOwner)
+                  PopupMenuButton<String>(
+                    icon: const Icon(Icons.more_vert, color: Colors.white),
+                    color: AppColors.card,
+                    onSelected: (v) {
+                      if (v == 'report') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('تم إرسال الإبلاغ، شكراً لك')),
+                        );
+                      } else if (v == 'block') {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: AlertDialog(
+                              backgroundColor: AppColors.card,
+                              title: const Text('حظر المتجر',
+                                  style: TextStyle(color: Colors.white)),
+                              content: const Text(
+                                  'هل أنت متأكد من حظر هذا المتجر؟',
+                                  style: TextStyle(color: Colors.white70)),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(ctx),
+                                  child: const Text('إلغاء',
+                                      style: TextStyle(
+                                          color: AppColors.textSecondary)),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.red),
+                                  onPressed: () {
+                                    Navigator.pop(ctx);
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('حظر',
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else if (v == 'share') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('مشاركة المتجر قريباً')),
+                        );
+                      }
+                    },
+                    itemBuilder: (_) => const [
+                      PopupMenuItem(
+                        value: 'report',
+                        child: Text('إبلاغ',
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      PopupMenuItem(
+                        value: 'block',
+                        child: Text('حظر',
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      PopupMenuItem(
+                        value: 'share',
+                        child: Text('نشر المتجر',
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                    ],
+                  ),
               ],
               flexibleSpace: FlexibleSpaceBar(
                 background: cover.isNotEmpty
@@ -271,6 +339,60 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                         ),
                       ],
                     ),
+                      const SizedBox(height: 12),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: AppColors.card,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Text('${_products.length}',
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                                const SizedBox(height: 2),
+                                const Text('منتج',
+                                    style: TextStyle(
+                                        color: AppColors.textSecondary,
+                                        fontSize: 11)),
+                              ],
+                            ),
+                            Container(
+                                width: 1,
+                                height: 30,
+                                color: Colors.white12),
+                            Column(
+                              children: [
+                                const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.star,
+                                        color: Colors.amber, size: 16),
+                                    SizedBox(width: 2),
+                                    Text('0.0',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
+                                const SizedBox(height: 2),
+                                const Text('التقييم',
+                                    style: TextStyle(
+                                        color: AppColors.textSecondary,
+                                        fontSize: 11)),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     const SizedBox(height: 16),
                     Row(
                       children: [
