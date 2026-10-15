@@ -4,7 +4,9 @@ import '../main.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
 import '../services/store_service.dart';
+import '../services/product_service.dart';
 import 'create_product_screen.dart';
+import 'product_detail_screen.dart';
 
 class StoreDetailScreen extends StatefulWidget {
   final Map<String, dynamic> store;
@@ -15,6 +17,25 @@ class StoreDetailScreen extends StatefulWidget {
 }
 
 class _StoreDetailScreenState extends State<StoreDetailScreen> {
+  List<Map<String, dynamic>> _products = [];
+  bool _loadingProducts = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProducts();
+  }
+
+  Future<void> _loadProducts() async {
+    final id = (widget.store['id'] ?? '').toString();
+    final list = await ProductService.getStoreProducts(id);
+    if (!mounted) return;
+    setState(() {
+      _products = list;
+      _loadingProducts = false;
+    });
+  }
+
   bool get _isOwner =>
       AuthService.currentUser?.uid == (widget.store['userId'] ?? '').toString();
 
@@ -273,24 +294,114 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
               ),
             ),
 
-            // رسالة "لا توجد منتجات"
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.all(40),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Icon(Icons.inventory_2_outlined,
-                          size: 60, color: AppColors.iconInactive),
-                      SizedBox(height: 12),
-                      Text('لا توجد منتجات بعد',
-                          style: TextStyle(
-                              color: Colors.white, fontSize: 15)),
-                    ],
+            // المنتجات
+            if (_loadingProducts)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(40),
+                  child: Center(
+                    child: CircularProgressIndicator(color: AppColors.accent),
+                  ),
+                ),
+              )
+            else if (_products.isEmpty)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(40),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Icon(Icons.inventory_2_outlined,
+                            size: 60, color: AppColors.iconInactive),
+                        SizedBox(height: 12),
+                        Text('لا توجد منتجات بعد',
+                            style: TextStyle(
+                                color: Colors.white, fontSize: 15)),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            else
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverGrid(
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.75,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (ctx, i) {
+                      final p = _products[i];
+                      final img = (p['images'] as List).isNotEmpty
+                          ? (p['images'] as List).first.toString()
+                          : '';
+                      return InkWell(
+                        onTap: () async {
+                          final r = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductDetailScreen(
+                                product: p,
+                                store: widget.store,
+                              ),
+                            ),
+                          );
+                          if (r == true) _loadProducts();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.card,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: img.isEmpty
+                                    ? Container(color: AppColors.card)
+                                    : Image.network(img,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (_, _, _) =>
+                                            Container(color: AppColors.card)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      (p['name'] ?? '').toString(),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      '${p['price']} دج',
+                                      style: const TextStyle(
+                                          color: AppColors.accent,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    childCount: _products.length,
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
