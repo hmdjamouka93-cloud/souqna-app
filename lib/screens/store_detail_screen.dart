@@ -7,6 +7,7 @@ import '../services/store_service.dart';
 import '../services/product_service.dart';
 import 'create_product_screen.dart';
 import 'product_detail_screen.dart';
+import 'orders_screen.dart';
 
 class StoreDetailScreen extends StatefulWidget {
   final Map<String, dynamic> store;
@@ -155,6 +156,18 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
               ),
               actions: [
                 if (_isOwner) ...[
+                  IconButton(
+                    icon: const Icon(Icons.receipt_long_outlined,
+                        color: Colors.white, size: 22),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => OrdersScreen(
+                          storeId: (widget.store['id'] ?? '').toString(),
+                        ),
+                      ),
+                    ),
+                  ),
                   IconButton(
                     icon: const Icon(Icons.edit_outlined,
                         color: Colors.white, size: 22),
