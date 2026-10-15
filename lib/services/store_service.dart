@@ -17,12 +17,13 @@ class StoreService {
           .collection('stores')
           .where('userId', isEqualTo: user.uid)
           .where('categoryName', isEqualTo: categoryName)
-          .where('isDeleted', isNotEqualTo: true)
           .limit(1)
           .get();
       if (snap.docs.isEmpty) return null;
       final d = snap.docs.first;
-      return {'id': d.id, ...d.data()};
+      final data = d.data();
+      if (data['isDeleted'] == true) return null;
+      return {'id': d.id, ...data};
     } catch (_) {
       return null;
     }
@@ -136,9 +137,11 @@ class StoreService {
       final snap = await _db
           .collection('stores')
           .where('categoryName', isEqualTo: categoryName)
-            .where('isDeleted', isNotEqualTo: true)
-          .get();
-      return snap.docs.map((d) {
+            .get();
+      return snap.docs.where((d) {
+        final dd = d.data();
+        return dd['isDeleted'] != true;
+      }).map((d) {
         final x = d.data();
         return {
           'id': d.id,
