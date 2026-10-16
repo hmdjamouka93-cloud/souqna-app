@@ -4,6 +4,8 @@ import '../main.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
 import '../services/store_service.dart';
+import '../services/auth_gate.dart';
+import '../services/rating_service.dart';
 import '../services/product_service.dart';
 import 'create_product_screen.dart';
 import 'product_detail_screen.dart';
@@ -20,11 +22,90 @@ class StoreDetailScreen extends StatefulWidget {
 class _StoreDetailScreenState extends State<StoreDetailScreen> {
   List<Map<String, dynamic>> _products = [];
   bool _loadingProducts = true;
+  double _avgRating = 0.0;
+  int _ratingCount = 0;
+  int _myRating = 0;
 
   @override
   void initState() {
     super.initState();
     _loadProducts();
+    _loadRating();
+  }
+
+  Future<void> _loadRating() async {
+    final id = (widget.store['id'] ?? '').toString();
+    final r = await RatingService.getStoreRating(id);
+    final mine = await RatingService.getMyRating(id);
+    if (!mounted) return;
+    setState(() {
+      _avgRating = (r['avg'] ?? 0.0) as double;
+      _ratingCount = (r['count'] ?? 0) as int;
+      _myRating = mine;
+    });
+  }
+
+  Future<void> _openRatingDialog() async {
+    if (_isOwner) return;
+    if (!AuthService.isLoggedIn) {
+      await requireAuth(context, _openRatingDialog,
+          message: 'يجب تسجيل الدخول للتقييم.');
+      return;
+    }
+    int temp = _myRating == 0 ? 5 : _myRating;
+    final result = await showDialog<int>(
+      context: context,
+      builder: (ctx) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: StatefulBuilder(
+          builder: (ctx, setD) => AlertDialog(
+            backgroundColor: AppColors.card,
+            title: const Text('قيّم المتجر',
+                style: TextStyle(color: Colors.white)),
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(5, (i) {
+                final n = i + 1;
+                return IconButton(
+                  onPressed: () => setD(() => temp = n),
+                  icon: Icon(
+                    n <= temp ? Icons.star : Icons.star_border,
+                    color: Colors.amber,
+                    size: 32,
+                  ),
+                );
+              }),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('إلغاء',
+                    style: TextStyle(color: AppColors.textSecondary)),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.accent),
+                onPressed: () => Navigator.pop(ctx, temp),
+                child: const Text('إرسال',
+                    style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (result == null) return;
+    final ok = await RatingService.submitRating(
+      storeId: (widget.store['id'] ?? '').toString(),
+      stars: result,
+    );
+    if (!mounted) return;
+    if (ok) {
+      _loadRating();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('تم إرسال تقييمك، شكراً لك')),
+      );
+    }
   }
 
   Future<void> _loadProducts() async {
@@ -368,27 +449,38 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 width: 1,
                                 height: 30,
                                 color: Colors.white12),
-                            Column(
-                              children: [
-                                const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.star,
-                                        color: Colors.amber, size: 16),
-                                    SizedBox(width: 2),
-                                    Text('0.0',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                                const SizedBox(height: 2),
-                                const Text('التقييم',
-                                    style: TextStyle(
-                                        color: AppColors.textSecondary,
-                                        fontSize: 11)),
-                              ],
+                            GestureDetector(
+                              onTap: _openRatingDialog,
+                              behavior: HitTestBehavior.opaque,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.star,
+                                          color: Colors.amber, size: 16),
+                                      const SizedBox(width: 2),
+                                      Text(
+                                          _avgRating.toStringAsFixed(1),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold)),
+                                      if (_ratingCount > 0)
+                                        Text(' ($_ratingCount)',
+                                            style: const TextStyle(
+                                                color: AppColors.textSecondary,
+                                                fontSize: 11)),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                      _myRating > 0 ? 'تقييمك: $_myRating' : 'التقييم',
+                                      style: const TextStyle(
+                                          color: AppColors.textSecondary,
+                                          fontSize: 11)),
+                                ],
+                              ),
                             ),
                           ],
                         ),
