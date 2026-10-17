@@ -330,14 +330,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         child: Divider(color: Colors.white12),
                       ),
                       const SizedBox(height: 8),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text('التعليقات',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold)),
-                      ),
                       CommentsSection(
                         listingId: (widget.product['id'] ?? '').toString(),
                       ),
