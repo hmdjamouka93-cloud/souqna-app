@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../services/showroom_service.dart';
 import 'create_showroom_screen.dart';
+import 'my_orders_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -323,6 +324,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                         const SizedBox(height: 12),
+              SizedBox(
+                height: 52,
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _accent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const MyOrdersScreen(),
+                    ),
+                  ),
+                  icon: const Icon(Icons.receipt_long, color: Colors.white),
+                  label: const Text('طلباتي',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold)),
+                ),
+              ),
+              const SizedBox(height: 12),
                         SizedBox(
                           height: 52,
                           child: OutlinedButton.icon(

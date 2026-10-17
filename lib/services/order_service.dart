@@ -101,4 +101,55 @@ class OrderService {
       return false;
     }
   }
+
+
+  /// صاحب المتجر يحذف طلب منتهي
+  static Future<bool> deleteOrder(String orderId) async {
+    try {
+      await _db.collection('orders').doc(orderId).delete();
+      return true;
+    } catch (e) {
+      print('DELETE_ORDER_ERR: $e');
+      return false;
+    }
+  }
+
+  /// يجيب طلبات المستخدم الحالي (الزبون)
+  static Future<List<Map<String, dynamic>>> getMyOrders() async {
+    final user = AuthService.currentUser;
+    if (user == null) return [];
+    try {
+      final snap = await _db
+          .collection('orders')
+          .where('userId', isEqualTo: user.uid)
+          .get();
+      final list = snap.docs.map((d) {
+        final x = d.data();
+        return {
+          'id': d.id,
+          'storeId': (x['storeId'] ?? '').toString(),
+          'productName': (x['productName'] ?? '').toString(),
+          'productPrice': x['productPrice'] ?? 0,
+          'productImage': (x['productImage'] ?? '').toString(),
+          'quantity': x['quantity'] ?? 1,
+          'color': (x['color'] ?? '').toString(),
+          'size': (x['size'] ?? '').toString(),
+          'status': (x['status'] ?? 'pending').toString(),
+          'createdAt': x['createdAt'],
+        };
+      }).toList();
+      list.sort((a, b) {
+        final ta = a['createdAt'] as Timestamp?;
+        final tb = b['createdAt'] as Timestamp?;
+        if (ta == null && tb == null) return 0;
+        if (ta == null) return 1;
+        if (tb == null) return -1;
+        return tb.compareTo(ta);
+      });
+      return list;
+    } catch (e) {
+      print('GET_MY_ORDERS_ERR: $e');
+      return [];
+    }
+  }
 }

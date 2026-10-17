@@ -169,7 +169,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
             content: const Text(
-              'غادي يتواصل معك صاحب المتجر قريباً لتأكيد الطلب.',
+              'سيتواصل معك صاحب المتجر قريباً لتأكيد الطلب.',
               style: TextStyle(
                   color: AppColors.textSecondary, fontSize: 14, height: 1.6),
             ),
