@@ -69,16 +69,19 @@ class _SignupScreenState extends State<SignupScreen> {
       if (!mounted) return;
       Navigator.pop(context, true);
     } on Exception catch (e) {
-      String msg = 'خطأ في التسجيل';
+      String msg = 'حدث خطأ في التسجيل، حاول مرة أخرى';
       final s = e.toString();
-      if (s.contains('email-already-in-use')) {
-        msg = 'هاد الإيميل مستعمل من قبل';
+      
+      if (s.contains('رقم الهاتف هذا مستعمل')) {
+        msg = 'رقم الهاتف هذا مستعمل من قبل، يرجى استخدام رقم آخر.';
+      } else if (s.contains('email-already-in-use')) {
+        msg = 'البريد الإلكتروني مستعمل من قبل.';
       } else if (s.contains('invalid-email')) {
-        msg = 'البريد الإلكتروني غير صحيح';
+        msg = 'البريد الإلكتروني غير صحيح.';
       } else if (s.contains('weak-password')) {
-        msg = 'كلمة السر ضعيفة (6 حروف على الأقل)';
+        msg = 'كلمة المرور ضعيفة (6 حروف على الأقل).';
       } else if (s.contains('network')) {
-        msg = 'تأكد من الاتصال بالإنترنت';
+        msg = 'تأكد من الاتصال بالإنترنت.';
       }
       setState(() => _error = msg);
     } finally {

@@ -15,6 +15,18 @@ class AuthService {
     required String phone,
     String? name,
   }) async {
+    // 1. التحقق من رقم الهاتف (كل رقم حساب واحد فقط)
+    final existing = await _db
+        .collection('users')
+        .where('phone', isEqualTo: phone.trim())
+        .limit(1)
+        .get();
+
+    if (existing.docs.isNotEmpty) {
+      throw Exception('رقم الهاتف هذا مستعمل من قبل، يرجى استخدام رقم آخر.');
+    }
+
+    // 2. إنشاء الحساب
     final cred = await _auth.createUserWithEmailAndPassword(
       email: email.trim(),
       password: password,
@@ -27,6 +39,9 @@ class AuthService {
       'storeName': '',
       'createdAt': FieldValue.serverTimestamp(),
     });
+    // 3. إرسال رابط تأكيد الإيميل
+    await cred.user!.sendEmailVerification();
+
     return cred;
   }
 
