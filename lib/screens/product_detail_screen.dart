@@ -67,8 +67,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final name = (data['name'] ?? '').toString().trim();
     final parts = name.split(' ');
     setState(() {
-      _firstNameCtrl.text = parts.isNotEmpty ? parts.first : '';
-      _phoneCtrl.text = (data['phone'] ?? '').toString();
     });
   }
 
@@ -110,7 +108,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final ln = '';
     final phone = _phoneCtrl.text.trim();
 
-    if (fn.isEmpty || ln.isEmpty) {
+    if (fn.isEmpty) {
       setState(() => _error = 'اكتب الاسم واللقب');
       return;
     }
