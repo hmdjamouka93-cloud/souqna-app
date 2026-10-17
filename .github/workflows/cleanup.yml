@@ -1,0 +1,30 @@
+name: Cleanup Deleted Stores
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # يخدم كل يوم في منتصف الليل
+  workflow_dispatch: # يقدر تشغلو يدوياً
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd scripts
+          npm install
+
+      - name: Run cleanup script
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          cd scripts
+          node cleanup_stores.js
