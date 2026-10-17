@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'widgets/app_drawer.dart';
 import 'services/auth_gate.dart';
+import 'services/notification_service.dart';
 import 'screens/more_screen.dart';
 import 'screens/my_ads_screen.dart';
 import 'screens/favorites_screen.dart';
@@ -11,6 +12,7 @@ import 'screens/post_ad_chooser_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await NotificationService.init();
   runApp(const SouqnaApp());
 }
 

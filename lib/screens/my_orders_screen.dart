@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../services/order_service.dart';
+import '../services/notification_service.dart';
 
 class MyOrdersScreen extends StatefulWidget {
   const MyOrdersScreen({super.key});
@@ -17,6 +18,8 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   void initState() {
     super.initState();
     _load();
+    // نفحصو تغييرات الطلبات
+    NotificationService.checkOrderStatusChanges();
   }
 
   Future<void> _load() async {
