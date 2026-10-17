@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'my_orders_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
@@ -67,6 +68,13 @@ class HomeScreen extends StatelessWidget {
                   letterSpacing: 0.5,
                 ),
               ),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white, size: 26),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
             ),
           ),
           IconButton(
