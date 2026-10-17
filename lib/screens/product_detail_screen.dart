@@ -5,6 +5,7 @@ import '../services/auth_gate.dart';
 import '../services/location_service.dart';
 import '../services/order_service.dart';
 import '../services/product_like_service.dart';
+import '../widgets/comments_section.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -323,6 +324,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                       const SizedBox(height: 12),
                       _orderForm(),
+                      const SizedBox(height: 24),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Divider(color: Colors.white12),
+                      ),
+                      const SizedBox(height: 8),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text('التعليقات',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      CommentsSection(
+                        listingId: (widget.product['id'] ?? '').toString(),
+                      ),
                       const SizedBox(height: 24),
                     ],
           ),
