@@ -30,8 +30,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int _quantity = 1;
 
   final _firstNameCtrl = TextEditingController();
-  final _lastNameCtrl = TextEditingController();
-  final _phoneCtrl = TextEditingController();
+    final _phoneCtrl = TextEditingController();
 
   String? _wilayaName;
   String? _wilayaCode;
@@ -67,7 +66,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final parts = name.split(' ');
     setState(() {
       _firstNameCtrl.text = parts.isNotEmpty ? parts.first : '';
-      _lastNameCtrl.text = parts.length > 1 ? parts.sublist(1).join(' ') : '';
       _phoneCtrl.text = (data['phone'] ?? '').toString();
     });
   }
@@ -95,8 +93,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   void dispose() {
     _firstNameCtrl.dispose();
-    _lastNameCtrl.dispose();
-    _phoneCtrl.dispose();
+        _phoneCtrl.dispose();
     super.dispose();
   }
 
@@ -106,8 +103,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           message: 'يجب تسجيل الدخول لإرسال الطلب.');
       return;
     }
-    final fn = _firstNameCtrl.text.trim();
-    final ln = _lastNameCtrl.text.trim();
+    final fullName = _firstNameCtrl.text.trim();
+    final fn = fullName;
+    final ln = '';
     final phone = _phoneCtrl.text.trim();
 
     if (fn.isEmpty || ln.isEmpty) {
@@ -299,34 +297,34 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _gallery(),
-              const SizedBox(height: 16),
-              _header(),
-              const SizedBox(height: 16),
-              _reactionsRow(),
-              const SizedBox(height: 16),
-              if (_colors.isNotEmpty) _colorSection(),
-              if (_sizes.isNotEmpty) _sizeSection(),
-              const SizedBox(height: 8),
-              _quantitySection(),
-              const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Divider(color: Colors.white12),
-              ),
-              const SizedBox(height: 12),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text('معلومات الطلب',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-              ),
-              const SizedBox(height: 12),
-              _orderForm(),
-              const SizedBox(height: 24),
-            ],
+                      _gallery(),
+                      const SizedBox(height: 16),
+                      _header(),
+                      const SizedBox(height: 16),
+                      _reactionsRow(),
+                      const SizedBox(height: 16),
+                      if (_colors.isNotEmpty) _colorSection(),
+                      if (_sizes.isNotEmpty) _sizeSection(),
+                      const SizedBox(height: 8),
+                      _quantitySection(),
+                      const SizedBox(height: 20),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Divider(color: Colors.white12),
+                      ),
+                      const SizedBox(height: 12),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text('معلومات الطلب',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      const SizedBox(height: 12),
+                      _orderForm(),
+                      const SizedBox(height: 24),
+                    ],
           ),
         ),
       ),
@@ -561,14 +559,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              Expanded(child: _field(_firstNameCtrl, 'الاسم')),
-              const SizedBox(width: 8),
-              Expanded(child: _field(_lastNameCtrl, 'اللقب')),
-            ],
-          ),
-          const SizedBox(height: 12),
+          _field(_firstNameCtrl, 'الاسم الكامل (الاسم واللقب)'),
+                  const SizedBox(height: 12),
           _field(_phoneCtrl, 'رقم الهاتف',
               keyboard: TextInputType.phone, ltr: true),
           const SizedBox(height: 12),
