@@ -4,6 +4,7 @@ import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
 import '../services/location_service.dart';
 import '../services/order_service.dart';
+import '../services/product_like_service.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -19,6 +20,10 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  int _likes = 0;
+  int _dislikes = 0;
+  String? _myReaction;
+
   int _currentImage = 0;
   String? _selectedColor;
   String? _selectedSize;
@@ -48,6 +53,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   void initState() {
     super.initState();
+    _loadLikes();
     if (_colors.isNotEmpty) _selectedColor = _colors.first;
     if (_sizes.isNotEmpty) _selectedSize = _sizes.first;
     _loadWilayas();
@@ -197,6 +203,77 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     }
   }
 
+  Future<void> _loadLikes() async {
+    final status = await ProductLikeService.getLikesStatus(
+        (widget.product['id'] ?? '').toString());
+    if (!mounted) return;
+    setState(() {
+      _likes = status['likes'] ?? 0;
+      _dislikes = status['dislikes'] ?? 0;
+      _myReaction = status['myReaction'];
+    });
+  }
+
+  Future<void> _toggleReaction(bool isLike) async {
+    if (!AuthService.isLoggedIn) {
+      await requireAuth(context, () => _toggleReaction(isLike),
+          message: 'يجب تسجيل الدخول للتفاعل مع المنتج.');
+      return;
+    }
+    final ok = await ProductLikeService.toggleReaction(
+      productId: (widget.product['id'] ?? '').toString(),
+      isLike: isLike,
+    );
+    if (ok) _loadLikes();
+  }
+
+  Widget _reactionsRow() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          Expanded(
+            child: OutlinedButton.icon(
+              onPressed: () => _toggleReaction(true),
+              icon: Icon(
+                _myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined,
+                color: _myReaction == 'like' ? AppColors.accent : Colors.white,
+                size: 20,
+              ),
+              label: Text('$_likes',
+                  style: TextStyle(
+                      color: _myReaction == 'like' ? AppColors.accent : Colors.white)),
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    color: _myReaction == 'like' ? AppColors.accent : Colors.white24),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: OutlinedButton.icon(
+              onPressed: () => _toggleReaction(false),
+              icon: Icon(
+                _myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined,
+                color: _myReaction == 'dislike' ? Colors.red : Colors.white,
+                size: 20,
+              ),
+              label: Text('$_dislikes',
+                  style: TextStyle(
+                      color: _myReaction == 'dislike' ? Colors.red : Colors.white)),
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    color: _myReaction == 'dislike' ? Colors.red : Colors.white24),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -225,6 +302,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               _gallery(),
               const SizedBox(height: 16),
               _header(),
+              const SizedBox(height: 16),
+              _reactionsRow(),
               const SizedBox(height: 16),
               if (_colors.isNotEmpty) _colorSection(),
               if (_sizes.isNotEmpty) _sizeSection(),
