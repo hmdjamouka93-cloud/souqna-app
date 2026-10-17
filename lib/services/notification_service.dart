@@ -9,6 +9,13 @@ class NotificationService {
     const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
     const initSettings = InitializationSettings(android: androidSettings);
     await _plugin.initialize(initSettings);
+
+    // طلب إذن الإشعارات لأندرويد 13+
+    final androidImpl = _plugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+    if (androidImpl != null) {
+      await androidImpl.requestNotificationsPermission();
+    }
   }
 
   static Future<void> showNotification(int id, String title, String body) async {

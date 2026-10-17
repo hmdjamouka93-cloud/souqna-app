@@ -211,6 +211,55 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     style: TextStyle(color: Colors.white)),
               ),
             ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: () async {
+                  final ok = await showDialog<bool>(
+                    context: context,
+                    builder: (ctx) => Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: AlertDialog(
+                        backgroundColor: AppColors.card,
+                        title: const Text('حذف الطلب',
+                            style: TextStyle(color: Colors.white)),
+                        content: const Text(
+                            'هل أنت متأكد من حذف هذا الطلب نهائياً؟',
+                            style: TextStyle(color: Colors.white70)),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(ctx, false),
+                            child: const Text('إلغاء',
+                                style: TextStyle(
+                                    color: AppColors.textSecondary)),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red),
+                            onPressed: () => Navigator.pop(ctx, true),
+                            child: const Text('حذف',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                  if (ok == true) {
+                    await OrderService.deleteOrder(o['id']);
+                    _load();
+                  }
+                },
+                icon: const Icon(Icons.delete_outline,
+                    color: Colors.red, size: 18),
+                label: const Text('حذف الطلب',
+                    style: TextStyle(color: Colors.red)),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.red),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ),
         ],
       ),
     );
