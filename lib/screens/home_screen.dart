@@ -567,6 +567,16 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => StoresListScreen(categoryName: name),
         ),
       );
+    } else if (name == 'ملابس أخرى') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CarsScreen(
+            categoryName: 'ملابس أخرى',
+            screenTitle: 'ملابس أخرى',
+          ),
+        ),
+      );
     } else if (name == 'سكن للايجار' ||
         name == 'سكن للبيع' ||
         name == 'اثاث' ||
