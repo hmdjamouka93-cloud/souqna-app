@@ -440,7 +440,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Image.network(
               image,
-              fit: BoxFit.cover,
+              fit: name == 'جميع الإعلانات' ? BoxFit.contain : BoxFit.cover,
               loadingBuilder: (context, child, progress) {
                 if (progress == null) return child;
                 return Container(color: AppColors.card);
@@ -567,13 +567,13 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => StoresListScreen(categoryName: name),
         ),
       );
-    } else if (name == 'ملابس أخرى') {
+    } else if (name == 'جميع الإعلانات') {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => CarsScreen(
-            categoryName: 'ملابس أخرى',
-            screenTitle: 'ملابس أخرى',
+            categoryName: 'جميع الإعلانات',
+            screenTitle: 'جميع الإعلانات',
           ),
         ),
       );

@@ -88,7 +88,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
     if (!mounted) return;
 
     // ==== أقسام الملابس: نتحققو من وجود متجر ====
-    const clothingCats = ['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال'];
+    const clothingCats = ['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال', 'اكسسوارات'];
     if (clothingCats.contains(targetName)) {
       final store = await StoreService.getMyStore(targetName);
       if (!mounted) return;
