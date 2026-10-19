@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'listings_screen.dart';
+import 'create_provider_screen.dart';
+import '../services/auth_service.dart';
+import '../services/auth_gate.dart';
+import '../services/service_provider_service.dart';
 
 class ServicesSubscreen extends StatefulWidget {
   const ServicesSubscreen({super.key});
@@ -59,6 +63,32 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: AppColors.accent,
+          onPressed: () async {
+            if (!AuthService.isLoggedIn) {
+              await requireAuth(context, () {});
+              return;
+            }
+            final existing = await ServiceProviderService.getMyProvider();
+            if (!mounted) return;
+            if (existing != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('لديك بروفايل صانع خدمات بالفعل')),
+              );
+              return;
+            }
+            final r = await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CreateProviderScreen()),
+            );
+            if (r == true) {
+              // ارجع، نحدثو الواجهة إذا لزم
+            }
+          },
+          icon: const Icon(Icons.add, color: Colors.white),
+          label: const Text('أضف خدمتك', style: TextStyle(color: Colors.white)),
+        ),
         appBar: AppBar(
           backgroundColor: AppColors.background,
           elevation: 0,
@@ -115,14 +145,23 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
-                          Image.network(
-                            _items[i]['image'] as String,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => Container(
-                                color: AppColors.card,
-                                child: const Icon(Icons.image_outlined,
-                                    color: AppColors.iconInactive, size: 40)),
-                          ),
+                          if (name == 'جميع الإعلانات')
+                            Container(
+                              color: AppColors.card,
+                              child: const Center(
+                                child: Icon(Icons.list_alt,
+                                    color: AppColors.accent, size: 50),
+                              ),
+                            )
+                          else
+                            Image.network(
+                              _items[i]['image'] as String,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, _, _) => Container(
+                                  color: AppColors.card,
+                                  child: const Icon(Icons.image_outlined,
+                                      color: AppColors.iconInactive, size: 40)),
+                            ),
                           Container(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
