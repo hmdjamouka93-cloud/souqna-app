@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'listings_screen.dart';
+import 'providers_list_screen.dart';
 import 'create_provider_screen.dart';
 import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
@@ -126,10 +127,8 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => ListingsScreen(
-                            subCategoryId: name,
-                            brandName: '',
-                            categoryName: name,
+                          builder: (_) => ProvidersListScreen(
+                            tradeName: name,
                           ),
                         ),
                       );
