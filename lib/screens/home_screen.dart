@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
 import 'clothing_subscreen.dart';
+import 'services_subscreen.dart';
 import 'brand_chooser_screen.dart';
 import 'stores_list_screen.dart';
 import 'showrooms_list_screen.dart';
@@ -39,6 +40,9 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 _buildSectionTitle('الملابس'),
                 _buildClothingGrid(),
+                const SizedBox(height: 24),
+                _buildSectionTitle('الخدمات'),
+                _buildServicesGrid(),
                 const SizedBox(height: 20),
               ],
                 ),
@@ -427,6 +431,75 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildServicesGrid() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: 'services')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 50) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    height: cardWidth / 1.4,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget _vehicleCard(BuildContext context, String name, String image) {
     return GestureDetector(
       onTap: () => _navigateToCategory(context, name),
@@ -573,6 +646,13 @@ class HomeScreen extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => const ClothingSubscreen(),
+        ),
+      );
+    } else if (name == 'خدمات الصيانة') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ServicesSubscreen(),
         ),
       );
     } else if (name == 'سكن للايجار' ||
