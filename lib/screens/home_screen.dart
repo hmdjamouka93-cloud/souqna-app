@@ -3,6 +3,7 @@ import 'my_orders_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
+import 'clothing_subscreen.dart';
 import 'brand_chooser_screen.dart';
 import 'stores_list_screen.dart';
 import 'showrooms_list_screen.dart';
@@ -440,7 +441,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Image.network(
               image,
-              fit: name == 'جميع الإعلانات' ? BoxFit.contain : BoxFit.cover,
+              fit: BoxFit.cover,
               loadingBuilder: (context, child, progress) {
                 if (progress == null) return child;
                 return Container(color: AppColors.card);
@@ -567,14 +568,11 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => StoresListScreen(categoryName: name),
         ),
       );
-    } else if (name == 'جميع الإعلانات') {
+    } else if (name == 'ملابس اخرى') {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CarsScreen(
-            categoryName: 'جميع الإعلانات',
-            screenTitle: 'جميع الإعلانات',
-          ),
+          builder: (context) => const ClothingSubscreen(),
         ),
       );
     } else if (name == 'سكن للايجار' ||
