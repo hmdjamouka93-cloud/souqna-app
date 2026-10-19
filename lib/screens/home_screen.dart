@@ -648,7 +648,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => const ClothingSubscreen(),
         ),
       );
-    } else if (name == 'خدمات الصيانة') {
+    } else if (name == 'خدمات الصيانة' || name == 'خدمات') {
       Navigator.push(
         context,
         MaterialPageRoute(

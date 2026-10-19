@@ -31,6 +31,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
         final x = d.data();
         return {
           'name': (x['name'] ?? '').toString().trim(),
+          'image': (x['image'] ?? '').toString(),
           'order': x['order'] ?? 0,
         };
       }).toList();
@@ -110,15 +111,49 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                         border: Border.all(
                             color: AppColors.accent.withValues(alpha: 0.3)),
                       ),
-                      child: Center(
-                        child: Text(
-                          name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      clipBehavior: Clip.antiAlias,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.network(
+                            _items[i]['image'] as String,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, _, _) => Container(
+                                color: AppColors.card,
+                                child: const Icon(Icons.image_outlined,
+                                    color: AppColors.iconInactive, size: 40)),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black.withValues(alpha: 0.8),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 10,
+                            right: 8,
+                            left: 8,
+                            child: Text(
+                              name,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  shadows: [
+                                    Shadow(
+                                        blurRadius: 6,
+                                        color: Colors.black87),
+                                  ]),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );
