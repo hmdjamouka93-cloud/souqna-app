@@ -152,4 +152,22 @@ class OrderService {
       return [];
     }
   }
+
+  /// يتحقق إذا المستخدم الحالي طلب من هذا المتجر من قبل
+  static Future<bool> hasOrderedFromStore(String storeId) async {
+    final user = AuthService.currentUser;
+    if (user == null) return false;
+    try {
+      final snap = await _db
+          .collection('orders')
+          .where('storeId', isEqualTo: storeId)
+          .where('userId', isEqualTo: user.uid)
+          .limit(1)
+          .get();
+      return snap.docs.isNotEmpty;
+    } catch (e) {
+      print('CHECK_ORDER_ERR: $e');
+      return false;
+    }
+  }
 }

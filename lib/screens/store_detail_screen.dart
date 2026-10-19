@@ -6,6 +6,7 @@ import 'create_store_screen.dart';
 import '../services/store_service.dart';
 import '../services/auth_gate.dart';
 import '../services/rating_service.dart';
+import '../services/order_service.dart';
 import '../services/product_service.dart';
 import 'create_product_screen.dart';
 import 'product_detail_screen.dart';
@@ -52,6 +53,21 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
           message: 'يجب تسجيل الدخول للتقييم.');
       return;
     }
+
+    final storeId = (widget.store['id'] ?? '').toString();
+    final hasOrdered = await OrderService.hasOrderedFromStore(storeId);
+    if (!hasOrdered) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('يجب عليك الطلب من هذا المتجر أولاً لتتمكن من تقييمه.'),
+          backgroundColor: Colors.redAccent,
+          duration: Duration(seconds: 3),
+        ),
+      );
+      return;
+    }
+
     int temp = _myRating == 0 ? 5 : _myRating;
     final result = await showDialog<int>(
       context: context,
