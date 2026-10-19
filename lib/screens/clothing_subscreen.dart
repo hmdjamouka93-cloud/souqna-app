@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
-import 'cars_screen.dart';
+import 'listings_screen.dart';
 
 class ClothingSubscreen extends StatelessWidget {
   const ClothingSubscreen({super.key});
@@ -52,9 +52,10 @@ class ClothingSubscreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => CarsScreen(
+                    builder: (_) => ListingsScreen(
+                      subCategoryId: catName,
+                      brandName: '',
                       categoryName: catName,
-                      screenTitle: catName,
                     ),
                   ),
                 );
