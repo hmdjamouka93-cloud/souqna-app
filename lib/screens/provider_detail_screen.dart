@@ -11,6 +11,8 @@ import 'service_detail_screen.dart';
 import 'service_orders_screen.dart';
 import 'chat_room_screen.dart';
 import '../services/chat_service.dart';
+import '../services/provider_like_service.dart';
+import '../services/auth_gate.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
   final Map<String, dynamic> provider;
@@ -21,6 +23,10 @@ class ProviderDetailScreen extends StatefulWidget {
 }
 
 class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
+  int _likes = 0;
+  int _dislikes = 0;
+  String? _myReaction;
+
   List<Map<String, dynamic>> _services = [];
   bool _loadingServices = true;
 
@@ -41,6 +47,69 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
   void initState() {
     super.initState();
     _loadServices();
+    _loadLikes();
+  }
+
+  Future<void> _loadLikes() async {
+    final status = await ProviderLikeService.getLikesStatus((widget.provider['id'] ?? '').toString());
+    if (!mounted) return;
+    setState(() {
+      _likes = status['likes'] ?? 0;
+      _dislikes = status['dislikes'] ?? 0;
+      _myReaction = status['myReaction'];
+    });
+  }
+
+  Future<void> _toggleReaction(bool isLike) async {
+    if (!AuthService.isLoggedIn) {
+      await requireAuth(context, () => _toggleReaction(isLike),
+          message: 'يجب تسجيل الدخول للتفاعل مع البروفايل.');
+      return;
+    }
+    final ok = await ProviderLikeService.toggleReaction(
+      providerId: (widget.provider['id'] ?? '').toString(),
+      isLike: isLike,
+    );
+    if (ok) _loadLikes();
+  }
+
+  Widget _reactionsRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        OutlinedButton.icon(
+          onPressed: () => _toggleReaction(true),
+          icon: Icon(
+            _myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined,
+            color: _myReaction == 'like' ? AppColors.accent : Colors.white,
+            size: 20,
+          ),
+          label: Text('$_likes',
+              style: TextStyle(color: _myReaction == 'like' ? AppColors.accent : Colors.white)),
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(color: _myReaction == 'like' ? AppColors.accent : Colors.white24),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          ),
+        ),
+        const SizedBox(width: 16),
+        OutlinedButton.icon(
+          onPressed: () => _toggleReaction(false),
+          icon: Icon(
+            _myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined,
+            color: _myReaction == 'dislike' ? Colors.red : Colors.white,
+            size: 20,
+          ),
+          label: Text('$_dislikes',
+              style: TextStyle(color: _myReaction == 'dislike' ? Colors.red : Colors.white)),
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(color: _myReaction == 'dislike' ? Colors.red : Colors.white24),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          ),
+        ),
+      ],
+    );
   }
 
   Future<void> _openChat() async {
@@ -281,6 +350,8 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                         child: Text(bio, style: const TextStyle(color: Colors.white70, fontSize: 14, height: 1.5)),
                       ),
                     ],
+                    const SizedBox(height: 16),
+                    _reactionsRow(),
                     const SizedBox(height: 16),
                     Row(
                       children: [
