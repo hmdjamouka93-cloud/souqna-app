@@ -6,6 +6,11 @@ import 'add_listing_screen.dart';
 import 'create_store_screen.dart';
 import 'create_product_screen.dart';
 import '../services/store_service.dart';
+import '../services/service_provider_service.dart';
+import '../services/auth_service.dart';
+import '../services/auth_gate.dart';
+import 'create_provider_screen.dart';
+import 'create_service_screen.dart';
 
 class CategoryChooserScreen extends StatefulWidget {
   final String mainCategoryId;
@@ -86,6 +91,38 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
     });
 
     if (!mounted) return;
+
+    // ==== أقسام الخدمات ====
+    if (widget.mainCategoryId == 'services' || targetName == 'خدمات الصيانة' || targetName == 'خدمات البناء') {
+      if (!AuthService.isLoggedIn) {
+        await requireAuth(context, () => _pickCategory(cat), message: 'يجب تسجيل الدخول لإضافة خدمة.');
+        return;
+      }
+      
+      final provider = await ServiceProviderService.getMyProvider();
+      if (!mounted) return;
+      
+      if (provider == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('يجب إنشاء بروفايل صانع خدمات أولاً لتتمكن من إضافة خدمة.')),
+        );
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const CreateProviderScreen()),
+        );
+        return;
+      }
+      
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => CreateServiceScreen(
+            providerId: (provider['id'] ?? '').toString(),
+          ),
+        ),
+      );
+      return;
+    }
 
     // ==== أقسام الملابس: نتحققو من وجود متجر ====
     const clothingCats = ['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال', 'اكسسوارات'];

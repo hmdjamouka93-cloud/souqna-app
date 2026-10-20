@@ -65,33 +65,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: AppColors.accent,
-          onPressed: () async {
-            if (!AuthService.isLoggedIn) {
-              await requireAuth(context, () {});
-              return;
-            }
-            final existing = await ServiceProviderService.getMyProvider();
-            if (!mounted) return;
-            if (existing != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('لديك بروفايل صانع خدمات بالفعل')),
-              );
-              return;
-            }
-            final r = await Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const CreateProviderScreen()),
-            );
-            if (r == true) {
-              // ارجع، نحدثو الواجهة إذا لزم
-            }
-          },
-          icon: const Icon(Icons.add, color: Colors.white),
-          label: const Text('أضف خدمتك', style: TextStyle(color: Colors.white)),
-        ),
-        appBar: AppBar(
+                appBar: AppBar(
           backgroundColor: AppColors.background,
           elevation: 0,
           centerTitle: true,
