@@ -7,6 +7,7 @@ import 'create_provider_screen.dart';
 import 'create_service_screen.dart';
 import '../services/service_listing_service.dart';
 import 'service_detail_screen.dart';
+import 'service_orders_screen.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
   final Map<String, dynamic> provider;
@@ -131,6 +132,19 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               ),
               actions: [
                 if (_isOwner) ...[
+                  IconButton(
+                    icon: const Icon(Icons.receipt_long_outlined, color: Colors.white),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ServiceOrdersScreen(
+                            providerId: (widget.provider['id'] ?? '').toString(),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                   IconButton(
                     icon: const Icon(Icons.edit_outlined, color: Colors.white),
                     onPressed: _openEdit,

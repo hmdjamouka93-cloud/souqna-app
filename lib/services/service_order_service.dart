@@ -36,4 +36,51 @@ class ServiceOrderService {
       return null;
     }
   }
+
+  /// يجيب طلبات صانع الخدمة
+  static Future<List<Map<String, dynamic>>> getProviderOrders(String providerId) async {
+    try {
+      final snap = await _db
+          .collection('service_orders')
+          .where('providerId', isEqualTo: providerId)
+          .get();
+      final list = snap.docs.map((d) {
+        final x = d.data();
+        return {
+          'id': d.id,
+          'serviceTitle': (x['serviceTitle'] ?? '').toString(),
+          'clientName': (x['clientName'] ?? '').toString(),
+          'clientPhone': (x['clientPhone'] ?? '').toString(),
+          'wilaya': (x['wilaya'] ?? '').toString(),
+          'daira': (x['daira'] ?? '').toString(),
+          'status': (x['status'] ?? 'pending').toString(),
+          'createdAt': x['createdAt'],
+        };
+      }).toList();
+      
+      list.sort((a, b) {
+        final ta = a['createdAt'] as Timestamp?;
+        final tb = b['createdAt'] as Timestamp?;
+        if (ta == null && tb == null) return 0;
+        if (ta == null) return 1;
+        if (tb == null) return -1;
+        return tb.compareTo(ta);
+      });
+      return list;
+    } catch (e) {
+      print('GET_PROVIDER_ORDERS_ERR: $e');
+      return [];
+    }
+  }
+
+  /// يحدث حالة الطلب
+  static Future<bool> updateStatus(String orderId, String status) async {
+    try {
+      await _db.collection('service_orders').doc(orderId).update({'status': status});
+      return true;
+    } catch (e) {
+      print('UPDATE_ORDER_STATUS_ERR: $e');
+      return false;
+    }
+  }
 }
