@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/service_provider_service.dart';
 import '../services/location_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateProviderScreen extends StatefulWidget {
   final Map<String, dynamic>? existing;
@@ -15,7 +16,9 @@ class CreateProviderScreen extends StatefulWidget {
 
 class _CreateProviderScreenState extends State<CreateProviderScreen> {
   final _nameCtrl = TextEditingController();
-  final _tradeCtrl = TextEditingController();
+  String? _selectedTrade;
+  List<String> _tradesList = [];
+  bool _loadingTrades = true;
   final _bioCtrl = TextEditingController();
   final _phoneCtrl = TextEditingController();
 
@@ -34,14 +37,36 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
   @override
   void initState() {
     super.initState();
+    _loadTrades();
     if (_isEdit) {
       final e = widget.existing!;
       _nameCtrl.text = (e['name'] ?? '').toString();
-      _tradeCtrl.text = (e['trade'] ?? '').toString();
+      _selectedTrade = (e['trade'] ?? '').toString();
       _bioCtrl.text = (e['bio'] ?? '').toString();
       _phoneCtrl.text = (e['phone'] ?? '').toString();
       _wilayaName = (e['wilaya'] ?? '').toString();
       _dairaName = (e['daira'] ?? '').toString();
+    }
+  }
+
+  Future<void> _loadTrades() async {
+    try {
+      final snap = await FirebaseFirestore.instance
+          .collection('SubCategories')
+          .where('categoryId', isEqualTo: 'خدمات الصيانة')
+          .get();
+      
+      final list = snap.docs.map((d) => (d.data()['name'] ?? '').toString()).toList();
+      list.sort();
+      
+      if (mounted) {
+        setState(() {
+          _tradesList = list;
+          _loadingTrades = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) setState(() => _loadingTrades = false);
     }
   }
 
@@ -60,10 +85,10 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
 
   Future<void> _submit() async {
     final name = _nameCtrl.text.trim();
-    final trade = _tradeCtrl.text.trim();
+    final trade = _selectedTrade;
     final phone = _phoneCtrl.text.trim();
 
-    if (name.isEmpty || trade.isEmpty) {
+    if (name.isEmpty || trade == null || trade.isEmpty) {
       setState(() => _error = 'اكتب الاسم والمهنة');
       return;
     }
@@ -209,8 +234,27 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
               _field(_nameCtrl, 'مثال: محمد بن علي'),
               const SizedBox(height: 16),
 
-              _label('المهنة (مثال: سباك، كهربائي...)'),
-              _field(_tradeCtrl, 'اكتب مهنتك'),
+              _label('المهنة'),
+              Container(
+                decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: _loadingTrades
+                    ? const Padding(padding: EdgeInsets.all(16), child: LinearProgressIndicator(color: AppColors.accent))
+                    : DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          value: _selectedTrade,
+                          hint: const Text('اختر مهنتك', style: TextStyle(color: AppColors.textSecondary)),
+                          dropdownColor: AppColors.card,
+                          style: const TextStyle(color: Colors.white),
+                          icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+                          items: _tradesList.map((t) {
+                            return DropdownMenuItem<String>(value: t, child: Text(t));
+                          }).toList(),
+                          onChanged: (v) => setState(() => _selectedTrade = v),
+                        ),
+                      ),
+              ),
               const SizedBox(height: 16),
 
               _label('نبذة عنك (اختياري)'),
