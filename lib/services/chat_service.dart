@@ -85,7 +85,7 @@ class ChatService {
         .collection('chats')
         .doc(chatId)
         .collection('messages')
-        .orderBy('createdAt', descending: false)
+        .orderBy('createdAt', descending: true)
         .snapshots();
   }
 
