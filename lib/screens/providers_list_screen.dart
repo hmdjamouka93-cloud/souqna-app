@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import 'provider_detail_screen.dart';
 
 class ProvidersListScreen extends StatefulWidget {
   final String tradeName;
@@ -32,6 +33,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
         final x = d.data();
         return {
           'id': d.id,
+          'userId': (x['userId'] ?? '').toString(),
           'name': (x['name'] ?? '').toString(),
           'trade': (x['trade'] ?? '').toString(),
           'wilaya': (x['wilaya'] ?? '').toString(),
@@ -91,6 +93,15 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: ListTile(
+                          onTap: () async {
+                            final r = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ProviderDetailScreen(provider: p),
+                              ),
+                            );
+                            if (r == true) _load();
+                          },
                           contentPadding: const EdgeInsets.all(12),
                           leading: CircleAvatar(
                             radius: 25,

@@ -121,4 +121,15 @@ class ServiceProviderService {
       return false;
     }
   }
+
+  /// يحذف بروفايل صانع الخدمة
+  static Future<bool> deleteProvider(String id) async {
+    try {
+      await _db.collection('service_providers').doc(id).delete();
+      return true;
+    } catch (e) {
+      print('DELETE_PROVIDER_ERR: $e');
+      return false;
+    }
+  }
 }
