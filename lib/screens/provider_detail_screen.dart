@@ -4,6 +4,8 @@ import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/service_provider_service.dart';
 import 'create_provider_screen.dart';
+import 'create_service_screen.dart';
+import '../services/service_listing_service.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
   final Map<String, dynamic> provider;
@@ -14,8 +16,27 @@ class ProviderDetailScreen extends StatefulWidget {
 }
 
 class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
+  List<Map<String, dynamic>> _services = [];
+  bool _loadingServices = true;
+
+  Future<void> _loadServices() async {
+    final id = (widget.provider['id'] ?? '').toString();
+    final list = await ServiceListingService.getProviderServices(id);
+    if (!mounted) return;
+    setState(() {
+      _services = list;
+      _loadingServices = false;
+    });
+  }
+
   bool get _isOwner =>
       AuthService.currentUser?.uid == (widget.provider['userId'] ?? '').toString();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadServices();
+  }
 
   Future<void> _call() async {
     final phone = (widget.provider['phone'] ?? '').toString();
@@ -79,6 +100,24 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
+        floatingActionButton: _isOwner
+            ? FloatingActionButton.extended(
+                backgroundColor: AppColors.accent,
+                onPressed: () async {
+                  final r = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CreateServiceScreen(
+                        providerId: (widget.provider['id'] ?? '').toString(),
+                      ),
+                    ),
+                  );
+                  if (r == true) _loadServices();
+                },
+                icon: const Icon(Icons.add, color: Colors.white),
+                label: const Text('أضف خدمة', style: TextStyle(color: Colors.white)),
+              )
+            : null,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -180,6 +219,82 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: const Text('الخدمات المقدمة',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+              ),
+            ),
+            if (_loadingServices)
+              const SliverToBoxAdapter(
+                  child: Center(
+                      child:
+                          CircularProgressIndicator(color: AppColors.accent)))
+            else if (_services.isEmpty)
+              const SliverToBoxAdapter(
+                  child: Center(
+                      child: Text('لا توجد خدمات مضافة',
+                          style: TextStyle(color: Colors.white54))))
+            else
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.75,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, i) {
+                      final s = _services[i];
+                      return Container(
+                        decoration: BoxDecoration(
+                            color: AppColors.card,
+                            borderRadius: BorderRadius.circular(12)),
+                        clipBehavior: Clip.antiAlias,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              child: Image.network(
+                                (s['image'] ?? '').toString(),
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, _, _) =>
+                                    Container(color: AppColors.card),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text((s['title'] ?? '').toString(),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 4),
+                                  Text('${s['price']} د.ج',
+                                      style: const TextStyle(
+                                          color: AppColors.accent,
+                                          fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    childCount: _services.length,
+                  ),
+                ),
+              ),
           ],
         ),
       ),
