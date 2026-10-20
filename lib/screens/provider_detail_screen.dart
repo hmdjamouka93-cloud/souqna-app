@@ -13,6 +13,7 @@ import 'chat_room_screen.dart';
 import '../services/chat_service.dart';
 import '../services/provider_like_service.dart';
 import '../services/provider_rating_service.dart';
+import '../widgets/comments_section.dart';
 import '../services/auth_gate.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
@@ -576,6 +577,27 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                   ),
                 ),
               ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: Text(
+                      'التعليقات',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  CommentsSection(
+                    listingId: (widget.provider['id'] ?? '').toString(),
+                  ),
+                  const SizedBox(height: 32),
+                ],
+              ),
+            ),
           ],
         ),
       ),
