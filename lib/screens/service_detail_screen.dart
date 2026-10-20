@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import 'request_service_screen.dart';
 
 class ServiceDetailScreen extends StatelessWidget {
   final Map<String, dynamic> service;
@@ -131,9 +132,14 @@ class ServiceDetailScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
                         onPressed: () {
-                          // دوك نربطوها بالطلب
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('سيتم تفعيل الطلب قريباً')),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => RequestServiceScreen(
+                                service: service,
+                                provider: provider,
+                              ),
+                            ),
                           );
                         },
                         child: const Text(
