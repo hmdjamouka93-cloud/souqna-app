@@ -8,6 +8,8 @@ import 'create_service_screen.dart';
 import '../services/service_listing_service.dart';
 import 'service_detail_screen.dart';
 import 'service_orders_screen.dart';
+import 'chat_room_screen.dart';
+import '../services/chat_service.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
   final Map<String, dynamic> provider;
@@ -38,6 +40,38 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
   void initState() {
     super.initState();
     _loadServices();
+  }
+
+  Future<void> _openChat() async {
+    final otherUserId = (widget.provider['userId'] ?? '').toString();
+    final otherName = (widget.provider['name'] ?? '').toString();
+    final otherAvatar = (widget.provider['avatar'] ?? '').toString();
+
+    final chatId = await ChatService.getOrCreateChat(
+      otherUserId: otherUserId,
+      otherUserName: otherName,
+      otherUserAvatar: otherAvatar,
+    );
+
+    if (chatId == null || !mounted) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('لا يمكن بدء محادثة مع نفسك')),
+        );
+      }
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ChatRoomScreen(
+          chatId: chatId,
+          otherUserName: otherName,
+          otherUserAvatar: otherAvatar,
+        ),
+      ),
+    );
   }
 
   Future<void> _call() async {
@@ -217,18 +251,40 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                       ),
                     ],
                     const SizedBox(height: 16),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.accent,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: 50,
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.accent,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              ),
+                              onPressed: _call,
+                              icon: const Icon(Icons.phone, color: Colors.white),
+                              label: const Text('اتصال', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                            ),
+                          ),
                         ),
-                        onPressed: _call,
-                        icon: const Icon(Icons.phone, color: Colors.white),
-                        label: const Text('اتصال', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                      ),
+                        if (!_isOwner) ...[
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: SizedBox(
+                              height: 50,
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(color: AppColors.accent, width: 2),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                ),
+                                onPressed: _openChat,
+                                icon: const Icon(Icons.chat_bubble_outline, color: AppColors.accent),
+                                label: const Text('دردشة', style: TextStyle(color: AppColors.accent, fontSize: 16, fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ],
                 ),
