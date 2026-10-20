@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'my_orders_screen.dart';
+import 'chats_list_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
@@ -73,6 +74,13 @@ class HomeScreen extends StatelessWidget {
                   letterSpacing: 0.5,
                 ),
               ),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.chat_bubble_outline, color: Colors.white, size: 26),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ChatsListScreen()),
             ),
           ),
           IconButton(
