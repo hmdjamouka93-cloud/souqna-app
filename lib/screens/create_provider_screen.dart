@@ -285,7 +285,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                         items: wilayas.map((w) {
                           return DropdownMenuItem<String>(
                             value: w['code'].toString(),
-                            child: Text(w['name']),
+                            child: Text('${w['name']} - ${w['code']}'),
                           );
                         }).toList(),
                         onChanged: (v) {
