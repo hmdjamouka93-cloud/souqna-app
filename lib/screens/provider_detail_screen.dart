@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
@@ -166,16 +167,46 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               ),
               actions: [
                 if (_isOwner) ...[
-                  IconButton(
-                    icon: const Icon(Icons.receipt_long_outlined, color: Colors.white),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ServiceOrdersScreen(
-                            providerId: (widget.provider['id'] ?? '').toString(),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('service_orders')
+                        .where('providerId', isEqualTo: (widget.provider['id'] ?? '').toString())
+                        .where('status', isEqualTo: 'pending')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      int count = snapshot.hasData ? snapshot.data!.docs.length : 0;
+                      return Stack(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.receipt_long_outlined, color: Colors.white),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ServiceOrdersScreen(
+                                    providerId: (widget.provider['id'] ?? '').toString(),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        ),
+                          if (count > 0)
+                            Positioned(
+                              right: 8,
+                              top: 8,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Text(
+                                  '$count',
+                                  style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                        ],
                       );
                     },
                   ),
