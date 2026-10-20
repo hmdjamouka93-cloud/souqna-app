@@ -12,6 +12,7 @@ import 'service_orders_screen.dart';
 import 'chat_room_screen.dart';
 import '../services/chat_service.dart';
 import '../services/provider_like_service.dart';
+import '../services/provider_rating_service.dart';
 import '../services/auth_gate.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
@@ -26,6 +27,9 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
   int _likes = 0;
   int _dislikes = 0;
   String? _myReaction;
+  double _avgRating = 0.0;
+  int _ratingCount = 0;
+  int _myRating = 0;
 
   List<Map<String, dynamic>> _services = [];
   bool _loadingServices = true;
@@ -48,6 +52,75 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     super.initState();
     _loadServices();
     _loadLikes();
+    _loadRating();
+  }
+
+  Future<void> _loadRating() async {
+    final id = (widget.provider['id'] ?? '').toString();
+    final r = await ProviderRatingService.getProviderRating(id);
+    final mine = await ProviderRatingService.getMyRating(id);
+    if (!mounted) return;
+    setState(() {
+      _avgRating = (r['avg'] ?? 0.0) as double;
+      _ratingCount = (r['count'] ?? 0) as int;
+      _myRating = mine;
+    });
+  }
+
+  Future<void> _openRatingDialog() async {
+    if (_isOwner) return;
+    if (!AuthService.isLoggedIn) {
+      await requireAuth(context, _openRatingDialog, message: 'يجب تسجيل الدخول للتقييم.');
+      return;
+    }
+    
+    final hasOrdered = await ProviderRatingService.hasOrderedFromProvider((widget.provider['id'] ?? '').toString());
+    if (!hasOrdered) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('يجب عليك طلب خدمة أولاً لتتمكن من تقييمه.'), backgroundColor: Colors.redAccent),
+      );
+      return;
+    }
+
+    int temp = _myRating == 0 ? 5 : _myRating;
+    final result = await showDialog<int>(
+      context: context,
+      builder: (ctx) => Directionality(
+        textDirection: TextDirection.rtl,
+        child: StatefulBuilder(
+          builder: (ctx, setD) => AlertDialog(
+            backgroundColor: AppColors.card,
+            title: const Text('قيّم مقدم الخدمة', style: TextStyle(color: Colors.white)),
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(5, (i) {
+                final n = i + 1;
+                return IconButton(
+                  onPressed: () => setD(() => temp = n),
+                  icon: Icon(n <= temp ? Icons.star : Icons.star_border, color: Colors.amber, size: 32),
+                );
+              }),
+            ),
+            actions: [
+              TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
+                onPressed: () => Navigator.pop(ctx, temp),
+                child: const Text('إرسال', style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (result == null) return;
+    final ok = await ProviderRatingService.submitRating(providerId: (widget.provider['id'] ?? '').toString(), stars: result);
+    if (!mounted) return;
+    if (ok) {
+      _loadRating();
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم إرسال تقييمك، شكراً لك')));
+    }
   }
 
   Future<void> _loadLikes() async {
@@ -73,42 +146,61 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     if (ok) _loadLikes();
   }
 
-  Widget _reactionsRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        OutlinedButton.icon(
-          onPressed: () => _toggleReaction(true),
-          icon: Icon(
-            _myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined,
-            color: _myReaction == 'like' ? AppColors.accent : Colors.white,
-            size: 20,
+  Widget _statsRow() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: AppColors.card,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          // Likes/Dislikes
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () => _toggleReaction(true),
+                child: Row(
+                  children: [
+                    Icon(_myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined, color: _myReaction == 'like' ? AppColors.accent : Colors.white, size: 18),
+                    const SizedBox(width: 4),
+                    Text('$_likes', style: TextStyle(color: _myReaction == 'like' ? AppColors.accent : Colors.white, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              GestureDetector(
+                onTap: () => _toggleReaction(false),
+                child: Row(
+                  children: [
+                    Icon(_myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined, color: _myReaction == 'dislike' ? Colors.red : Colors.white, size: 18),
+                    const SizedBox(width: 4),
+                    Text('$_dislikes', style: TextStyle(color: _myReaction == 'dislike' ? Colors.red : Colors.white, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+            ],
           ),
-          label: Text('$_likes',
-              style: TextStyle(color: _myReaction == 'like' ? AppColors.accent : Colors.white)),
-          style: OutlinedButton.styleFrom(
-            side: BorderSide(color: _myReaction == 'like' ? AppColors.accent : Colors.white24),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          
+          Container(width: 1, height: 30, color: Colors.white12),
+          
+          // Rating
+          GestureDetector(
+            onTap: _openRatingDialog,
+            behavior: HitTestBehavior.opaque,
+            child: Row(
+              children: [
+                const Icon(Icons.star, color: Colors.amber, size: 20),
+                const SizedBox(width: 4),
+                Text(_avgRating.toStringAsFixed(1), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                if (_ratingCount > 0)
+                  Text(' ($_ratingCount)', style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(width: 16),
-        OutlinedButton.icon(
-          onPressed: () => _toggleReaction(false),
-          icon: Icon(
-            _myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined,
-            color: _myReaction == 'dislike' ? Colors.red : Colors.white,
-            size: 20,
-          ),
-          label: Text('$_dislikes',
-              style: TextStyle(color: _myReaction == 'dislike' ? Colors.red : Colors.white)),
-          style: OutlinedButton.styleFrom(
-            side: BorderSide(color: _myReaction == 'dislike' ? Colors.red : Colors.white24),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -351,7 +443,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                       ),
                     ],
                     const SizedBox(height: 16),
-                    _reactionsRow(),
+                    _statsRow(),
                     const SizedBox(height: 16),
                     Row(
                       children: [
