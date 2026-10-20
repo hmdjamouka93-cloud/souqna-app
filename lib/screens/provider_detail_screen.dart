@@ -6,6 +6,7 @@ import '../services/service_provider_service.dart';
 import 'create_provider_screen.dart';
 import 'create_service_screen.dart';
 import '../services/service_listing_service.dart';
+import 'service_detail_screen.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
   final Map<String, dynamic> provider;
@@ -252,7 +253,19 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                   delegate: SliverChildBuilderDelegate(
                     (context, i) {
                       final s = _services[i];
-                      return Container(
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ServiceDetailScreen(
+                                service: s,
+                                provider: widget.provider,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
                         decoration: BoxDecoration(
                             color: AppColors.card,
                             borderRadius: BorderRadius.circular(12)),
@@ -289,6 +302,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                             ),
                           ],
                         ),
+                      ),
                       );
                     },
                     childCount: _services.length,
