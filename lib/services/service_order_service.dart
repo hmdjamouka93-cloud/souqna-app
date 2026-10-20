@@ -22,7 +22,7 @@ class ServiceOrderService {
         'providerId': providerId,
         'serviceId': serviceId,
         'serviceTitle': serviceTitle.trim(),
-        'clientId': user.uid,
+        'userId': user.uid,
         'clientName': clientName.trim(),
         'clientPhone': clientPhone.trim(),
         'wilaya': wilaya.trim(),
