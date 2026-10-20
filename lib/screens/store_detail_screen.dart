@@ -139,10 +139,13 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
       AuthService.currentUser?.uid == (widget.store['userId'] ?? '').toString();
 
   Future<void> _call() async {
-    final phone = (widget.store['phone'] ?? '').toString();
+    final phone = (widget.store['phone'] ?? '').toString().trim();
     if (phone.isEmpty) return;
-    final uri = Uri.parse('tel:$phone');
-    if (await canLaunchUrl(uri)) await launchUrl(uri);
+    final cleanPhone = phone.replaceAll(RegExp(r'[^0-9+]'), '');
+    final uri = Uri.parse('tel:$cleanPhone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
   }
 
   Future<void> _whatsapp() async {
