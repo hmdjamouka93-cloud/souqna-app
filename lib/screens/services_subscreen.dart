@@ -9,7 +9,8 @@ import '../services/auth_gate.dart';
 import '../services/service_provider_service.dart';
 
 class ServicesSubscreen extends StatefulWidget {
-  const ServicesSubscreen({super.key});
+  final String categoryName;
+  const ServicesSubscreen({super.key, required this.categoryName});
 
   @override
   State<ServicesSubscreen> createState() => _ServicesSubscreenState();
@@ -29,7 +30,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
     try {
       final snap = await FirebaseFirestore.instance
           .collection('SubCategories')
-          .where('categoryId', isEqualTo: 'خدمات الصيانة')
+          .where('categoryId', isEqualTo: widget.categoryName)
           .get();
 
       final list = snap.docs.map((d) {
@@ -99,8 +100,8 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                 color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
-            'خدمات الصيانة',
+          title: Text(
+            widget.categoryName,
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,

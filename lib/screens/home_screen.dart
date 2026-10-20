@@ -656,11 +656,11 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => const ClothingSubscreen(),
         ),
       );
-    } else if (name == 'خدمات الصيانة' || name == 'خدمات') {
+    } else if (name == 'خدمات الصيانة' || name == 'خدمات' || name == 'خدمات البناء') {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const ServicesSubscreen(),
+          builder: (context) => ServicesSubscreen(categoryName: name == 'خدمات' ? 'خدمات الصيانة' : name),
         ),
       );
     } else if (name == 'سكن للايجار' ||
