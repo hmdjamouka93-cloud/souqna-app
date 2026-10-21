@@ -99,14 +99,27 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                   final name = _items[i]['name'] as String;
                   return InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ProvidersListScreen(
-                            tradeName: name,
+                      if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ListingsScreen(
+                              subCategoryId: name,
+                              brandName: '',
+                              categoryName: name,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProvidersListScreen(
+                              tradeName: name,
+                            ),
+                          ),
+                        );
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
