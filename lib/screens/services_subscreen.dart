@@ -99,7 +99,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                   final name = _items[i]['name'] as String;
                   return InkWell(
                     onTap: () {
-                      if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات') {
+                      if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
