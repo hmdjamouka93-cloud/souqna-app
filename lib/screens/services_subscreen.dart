@@ -99,7 +99,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                   final name = _items[i]['name'] as String;
                   return InkWell(
                     onTap: () {
-                      if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية' || widget.categoryName == 'الرياضة واللياقة البدنية' || widget.categoryName == 'الصحة والجمال' || widget.categoryName == 'السفر والسياحة' || widget.categoryName == 'خدمات السيارات' || widget.categoryName == 'النظافة ومكافحة الحشرات') {
+                      if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية' || widget.categoryName == 'الرياضة واللياقة البدنية' || widget.categoryName == 'الصحة والجمال' || widget.categoryName == 'السفر والسياحة' || widget.categoryName == 'خدمات السيارات' || widget.categoryName == 'النظافة ومكافحة الحشرات' || widget.categoryName == 'الخدمات القانونية والإدارية' || widget.categoryName == 'الفلاحة والثروة الحيوانية' || widget.categoryName == 'الدعاية والإعلان والطباعة') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
