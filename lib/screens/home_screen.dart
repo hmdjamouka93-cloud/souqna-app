@@ -44,6 +44,9 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 _buildSectionTitle('الخدمات'),
                 _buildServicesGrid(),
+                const SizedBox(height: 24),
+                _buildSectionTitle('الحيوانات'),
+                _buildPetsGrid(),
                 const SizedBox(height: 20),
               ],
                 ),
@@ -508,6 +511,75 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildPetsGrid() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: 'pets')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 50) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    height: cardWidth / 1.4,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget _vehicleCard(BuildContext context, String name, String image) {
     return GestureDetector(
       onTap: () => _navigateToCategory(context, name),
@@ -649,6 +721,13 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => StoresListScreen(categoryName: name),
         ),
       );
+    } else if (name == 'الحيوانات') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServicesSubscreen(categoryName: name),
+        ),
+      );
     } else if (name == 'ملابس اخرى') {
       Navigator.push(
         context,
@@ -663,7 +742,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => ServicesSubscreen(categoryName: name),
         ),
       );
-    } else if (name == 'خدمات الصيانة' || name == 'خدمات' || name == 'خدمات البناء' || name == 'الخدمات الرقمية' || name == 'النقل والتوصيل' || name == 'المناسبات والأعراس' || name == 'المأكولات والمشروبات' || name == 'التعليم والدروس الخصوصية' || name == 'الرياضة واللياقة البدنية' || name == 'الصحة والجمال' || name == 'السفر والسياحة' || name == 'خدمات السيارات' || name == 'النظافة ومكافحة الحشرات' || name == 'الخدمات القانونية والإدارية' || name == 'الفلاحة والثروة الحيوانية' || name == 'الدعاية والإعلان والطباعة' || name == 'الأمن والحراسة' || name == 'رعاية الأطفال والمسنين') {
+    } else if (name == 'خدمات الصيانة' || name == 'خدمات' || name == 'خدمات البناء' || name == 'الخدمات الرقمية' || name == 'النقل والتوصيل' || name == 'المناسبات والأعراس' || name == 'المأكولات والمشروبات' || name == 'التعليم والدروس الخصوصية' || name == 'الرياضة واللياقة البدنية' || name == 'الصحة والجمال' || name == 'السفر والسياحة' || name == 'خدمات السيارات' || name == 'النظافة ومكافحة الحشرات' || name == 'الخدمات القانونية والإدارية' || name == 'الفلاحة والثروة الحيوانية' || name == 'الدعاية والإعلان والطباعة' || name == 'الأمن والحراسة' || name == 'رعاية الأطفال والمسنين' || name == 'الطاقة الشمسية' || name == 'الطاقة الشمسية') {
       Navigator.push(
         context,
         MaterialPageRoute(
