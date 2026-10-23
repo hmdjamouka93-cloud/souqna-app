@@ -591,7 +591,6 @@ class HomeScreen extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('Categories')
-          .where('mainCategoryId', isEqualTo: 'الوظائف')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -660,7 +659,6 @@ class HomeScreen extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('Categories')
-          .where('mainCategoryId', isEqualTo: 'التبرعات والعمل الخيري')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
