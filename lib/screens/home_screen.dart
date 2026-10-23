@@ -6,6 +6,7 @@ import '../main.dart';
 import 'cars_screen.dart';
 import 'clothing_subscreen.dart';
 import 'services_subscreen.dart';
+import 'listings_screen.dart';
 import 'brand_chooser_screen.dart';
 import 'stores_list_screen.dart';
 import 'showrooms_list_screen.dart';
@@ -47,6 +48,12 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 _buildSectionTitle('الحيوانات'),
                 _buildPetsGrid(),
+                const SizedBox(height: 24),
+                _buildSectionTitle('الوظائف'),
+                _buildJobsGrid(),
+                const SizedBox(height: 24),
+                _buildSectionTitle('التبرعات والعمل الخيري'),
+                _buildCharityGrid(),
                 const SizedBox(height: 20),
               ],
                 ),
@@ -580,6 +587,144 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildJobsGrid() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: 'الوظائف')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 50) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    height: cardWidth / 1.4,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildCharityGrid() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('Categories')
+          .where('mainCategoryId', isEqualTo: 'التبرعات والعمل الخيري')
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.accent),
+            ),
+          );
+        }
+        if (snapshot.hasError) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'حدث خطأ أثناء تحميل الأقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+          ..sort((a, b) {
+            final ao = (a.data() as Map)['order'] ?? 0;
+            final bo = (b.data() as Map)['order'] ?? 0;
+            return (ao as int).compareTo(bo as int);
+          });
+        if (docs.isEmpty) {
+          return const Padding(
+            padding: EdgeInsets.all(32),
+            child: Center(
+              child: Text(
+                'لا توجد أقسام',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        }
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = (constraints.maxWidth - 50) / 2;
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: docs.map((d) {
+                  final data = d.data() as Map<String, dynamic>;
+                  final name = (data['name'] ?? '').toString();
+                  final image = (data['image'] ?? '').toString();
+                  return SizedBox(
+                    width: cardWidth,
+                    height: cardWidth / 1.4,
+                    child: _vehicleCard(context, name, image),
+                  );
+                }).toList(),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   Widget _vehicleCard(BuildContext context, String name, String image) {
     return GestureDetector(
       onTap: () => _navigateToCategory(context, name),
@@ -743,6 +888,30 @@ class HomeScreen extends StatelessWidget {
         ),
       );
     } else if (name == 'خدمات الصيانة' || name == 'خدمات' || name == 'خدمات البناء' || name == 'الخدمات الرقمية' || name == 'النقل والتوصيل' || name == 'المناسبات والأعراس' || name == 'المأكولات والمشروبات' || name == 'التعليم والدروس الخصوصية' || name == 'الرياضة واللياقة البدنية' || name == 'الصحة والجمال' || name == 'السفر والسياحة' || name == 'خدمات السيارات' || name == 'النظافة ومكافحة الحشرات' || name == 'الخدمات القانونية والإدارية' || name == 'الفلاحة والثروة الحيوانية' || name == 'الدعاية والإعلان والطباعة' || name == 'الأمن والحراسة' || name == 'رعاية الأطفال والمسنين' || name == 'الطاقة الشمسية' || name == 'الطاقة الشمسية' || name == 'كلاب وقطط' || name == 'طيور' || name == 'مواشي ودواب' || name == 'حيوانات أخرى') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServicesSubscreen(categoryName: name),
+        ),
+      );
+    } else if (name == 'وظائف متاحة' || name == 'الباحثين عن عمل' || name == 'المفقودات') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ListingsScreen(
+            subCategoryId: name,
+            brandName: '',
+            categoryName: name,
+          ),
+        ),
+      );
+    } else if (name == 'التبرع') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServicesSubscreen(categoryName: name),
+        ),
+      );
       Navigator.push(
         context,
         MaterialPageRoute(
