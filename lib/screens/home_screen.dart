@@ -918,6 +918,29 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => ServicesSubscreen(categoryName: name),
         ),
       );
+    } else if (name == 'دراجات هوائية وسكوتر' || name == 'بحري') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServicesSubscreen(categoryName: name),
+        ),
+      );
+    } else if (name == 'دراجات رباعية الدفع') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CarsScreen(
+            categoryName: 'دراجات رباعية الدفع',
+            screenTitle: 'دراجات رباعية الدفع',
+          ),
+        ),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServicesSubscreen(categoryName: name),
+        ),
+      );
       } else if (name == 'سكن للايجار' ||
         name == 'سكن للبيع' ||
         name == 'اثاث' ||
