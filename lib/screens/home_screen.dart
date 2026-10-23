@@ -612,7 +612,11 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+        final allDocs = snapshot.data?.docs ?? [];
+      final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
+        final m = (d.data() as Map)['mainCategoryId'] ?? '';
+        return m.toString().trim() == 'الوظائف';
+      }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
             final bo = (b.data() as Map)['order'] ?? 0;
@@ -680,7 +684,11 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        final docs = List<QueryDocumentSnapshot>.from(snapshot.data?.docs ?? [])
+        final allDocs = snapshot.data?.docs ?? [];
+      final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
+        final m = (d.data() as Map)['mainCategoryId'] ?? '';
+        return m.toString().trim() == 'التبرعات والعمل الخيري';
+      }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
             final bo = (b.data() as Map)['order'] ?? 0;
@@ -910,13 +918,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => ServicesSubscreen(categoryName: name),
         ),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ServicesSubscreen(categoryName: name == 'خدمات' ? 'خدمات الصيانة' : name),
-        ),
-      );
-    } else if (name == 'سكن للايجار' ||
+      } else if (name == 'سكن للايجار' ||
         name == 'سكن للبيع' ||
         name == 'اثاث' ||
         name == 'محلات للايجار' ||
