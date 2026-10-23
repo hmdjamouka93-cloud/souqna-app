@@ -901,13 +901,14 @@ class HomeScreen extends StatelessWidget {
         ),
       );
     } else if (name == 'وظائف متاحة' || name == 'الباحثين عن عمل' || name == 'المفقودات') {
+      String parentCategory = (name == 'المفقودات') ? 'التبرعات والعمل الخيري' : 'الوظائف';
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ListingsScreen(
             subCategoryId: name,
             brandName: '',
-            categoryName: name,
+            categoryName: parentCategory,
           ),
         ),
       );
