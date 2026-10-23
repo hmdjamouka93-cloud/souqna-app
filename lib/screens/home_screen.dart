@@ -883,7 +883,7 @@ class HomeScreen extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const ClothingSubscreen(),
+          builder: (context) => ClothingSubscreen(categoryName: name),
         ),
       );
     } else if (name == 'الخياطة والأزياء') {

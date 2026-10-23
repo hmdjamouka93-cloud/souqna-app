@@ -3,7 +3,8 @@ import '../main.dart';
 import 'listings_screen.dart';
 
 class ClothingSubscreen extends StatelessWidget {
-  const ClothingSubscreen({super.key});
+  final String categoryName;
+  const ClothingSubscreen({super.key, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {

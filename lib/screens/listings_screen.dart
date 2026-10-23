@@ -29,7 +29,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
 
   Future<void> _load() async {
     try {
-      final query = widget.categoryName != null && widget.categoryName!.isNotEmpty
+      final query = (widget.subCategoryId.isEmpty || widget.subCategoryId == 'جميع الإعلانات')
           ? FirebaseFirestore.instance
               .collection('listings')
               .where('categoryName', isEqualTo: widget.categoryName)
