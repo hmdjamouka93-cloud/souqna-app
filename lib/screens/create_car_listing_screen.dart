@@ -27,6 +27,10 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
 
   // المتغيرات (الخطوة 1)
   String? _selectedCategory; // الفئة
+  String? _selectedPayload; // الحمولة للشاحنات
+  String? _selectedSeats; // المقاعد للحافلات
+  String? _selectedEngineCC; // المحرك للدراجات
+
   String? _selectedGear;
   String? _selectedColor;
   String? _selectedFuel;
@@ -36,10 +40,22 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
   final _yearCtrl = TextEditingController();
   final _mileageCtrl = TextEditingController();
 
-  final List<String> _categories = ['سيدان', 'SUV', 'هاتشباك', 'بيك أب', 'كوبيه', 'أخرى'];
-  final List<String> _gears = ['عادي', 'أوتوماتيك', 'DCT', 'تبترونيك', 'CVT'];
+  List<String> get _categories {
+    if (widget.categoryName == 'شاحنات') return ['قلابة', 'صندوق', 'رافعة', 'مقطورة', 'شاحنة صغيرة', 'أخرى'];
+    if (widget.categoryName == 'حافلات') return ['حافلة صغيرة', 'حافلة كبيرة', 'حافلة مدرسية', 'حافلة نقل حضري', 'أخرى'];
+    if (widget.categoryName == 'دراجات') return ['رياضية', 'كلاسيكية', 'طرقية', 'سكوتر', 'ربع (Quad)', 'أخرى'];
+    return ['سيدان', 'SUV', 'هاتشباك', 'بيك أب', 'كوبيه', 'أخرى']; // للسيارات
+  }
+  List<String> get _gears {
+    if (widget.categoryName == 'دراجات') return ['عادي', 'أوتوماتيك'];
+    return ['عادي', 'أوتوماتيك', 'DCT', 'تبترونيك', 'CVT'];
+  }
   final List<String> _colors = ['أبيض', 'أسود', 'فضي', 'رمادي', 'كحلي', 'أزرق', 'أحمر', 'بني', 'بيج', 'ذهبي', 'أخضر', 'برتقالي', 'أصفر', 'بنفسجي', 'لون آخر'];
-  final List<String> _fuels = ['بنزين', 'مازوت', 'كهرباء', 'غاز'];
+  List<String> get _fuels {
+    if (widget.categoryName == 'شاحنات' || widget.categoryName == 'حافلات') return ['مازوت', 'بنزين', 'غاز'];
+    if (widget.categoryName == 'دراجات') return ['بنزين', 'كهرباء'];
+    return ['بنزين', 'مازوت', 'كهرباء', 'غاز'];
+  }
   final List<String> _conditions = ['جديد', 'مستعمل ممتاز', 'مستعمل جيد', 'لا يعمل'];
   final List<String> _warranties = ['نعم', 'لا'];
 
@@ -86,7 +102,10 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         _selectedCondition == null ||
         _selectedWarranty == null ||
         _yearCtrl.text.isEmpty ||
-        _mileageCtrl.text.isEmpty) {
+        _mileageCtrl.text.isEmpty ||
+        (widget.categoryName == 'شاحنات' && _selectedPayload == null) ||
+        (widget.categoryName == 'حافلات' && _selectedSeats == null) ||
+        (widget.categoryName == 'دراجات' && _selectedEngineCC == null)) {
       setState(() => _error = 'يرجى تعبئة جميع الخانات الإجبارية');
       return;
     }
@@ -131,6 +150,9 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         'warranty': _selectedWarranty,
         'year': _yearCtrl.text.trim(),
         'mileage': _mileageCtrl.text.trim(),
+        if (_selectedPayload != null) 'payload': _selectedPayload,
+        if (_selectedSeats != null) 'seats': _selectedSeats,
+        if (_selectedEngineCC != null) 'engineCC': _selectedEngineCC,
       };
 
       await FirebaseFirestore.instance.collection('listings').add({
@@ -229,6 +251,24 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         _label('اللون *'),
         _dropdown('اختر اللون', _colors, _selectedColor, (v) => setState(() => _selectedColor = v)),
         const SizedBox(height: 16),
+
+        if (widget.categoryName == 'شاحنات') ...[
+          _label('الحمولة'),
+          _dropdown('اختر الحمولة', ['1-5 طن', '5-20 طن', 'فوق 20 طن'], _selectedPayload, (v) => setState(() => _selectedPayload = v)),
+          const SizedBox(height: 16),
+        ],
+
+        if (widget.categoryName == 'حافلات') ...[
+          _label('عدد المقاعد'),
+          _dropdown('اختر عدد المقاعد', ['14', '18', '24', '30', '45', '50', 'فوق 50'], _selectedSeats, (v) => setState(() => _selectedSeats = v)),
+          const SizedBox(height: 16),
+        ],
+
+        if (widget.categoryName == 'دراجات') ...[
+          _label('سعة المحرك'),
+          _dropdown('اختر سعة المحرك', ['50cc', '100cc', '125cc', '150cc', '250cc', '400cc', '600cc', '1000cc وفوق'], _selectedEngineCC, (v) => setState(() => _selectedEngineCC = v)),
+          const SizedBox(height: 16),
+        ],
 
         _label('نوع الوقود *'),
         _dropdown('اختر نوع الوقود', _fuels, _selectedFuel, (v) => setState(() => _selectedFuel = v)),

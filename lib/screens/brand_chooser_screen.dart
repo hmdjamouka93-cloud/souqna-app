@@ -91,7 +91,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         );
         return;
       }
-      if (widget.categoryName == 'سيارات') {
+      if (['سيارات', 'شاحنات', 'حافلات', 'دراجات'].contains(widget.categoryName)) {
         Navigator.push(
           context,
           MaterialPageRoute(
