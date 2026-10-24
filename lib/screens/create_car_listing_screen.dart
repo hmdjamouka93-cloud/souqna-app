@@ -44,6 +44,9 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
     if (widget.categoryName == 'شاحنات') return ['قلابة', 'صندوق', 'رافعة', 'مقطورة', 'شاحنة صغيرة', 'أخرى'];
     if (widget.categoryName == 'حافلات') return ['حافلة صغيرة', 'حافلة كبيرة', 'حافلة مدرسية', 'حافلة نقل حضري', 'أخرى'];
     if (widget.categoryName == 'دراجات') return ['رياضية', 'كلاسيكية', 'طرقية', 'سكوتر', 'ربع (Quad)', 'أخرى'];
+    if (widget.categoryName == 'دراجات رباعية الدفع') return ['رباعية الدفع', 'صحراوية', 'أخرى'];
+    if (widget.categoryName == 'دراجات هوائية وسكوتر') return ['هوائية', 'كهربائية', 'سكوتر', 'أخرى'];
+    if (widget.categoryName == 'بحري') return ['طراد', 'يخت', 'جيت سكي', 'قارب صيد', 'أخرى'];
     return ['سيدان', 'SUV', 'هاتشباك', 'بيك أب', 'كوبيه', 'أخرى']; // للسيارات
   }
   List<String> get _gears {

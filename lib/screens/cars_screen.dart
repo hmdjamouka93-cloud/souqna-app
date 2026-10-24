@@ -87,6 +87,7 @@ class _CarsScreenState extends State<CarsScreen> {
         builder: (_) => ListingsScreen(
           subCategoryId: b['id'],
           brandName: b['name'],
+          categoryName: widget.categoryName,
         ),
       ),
     );

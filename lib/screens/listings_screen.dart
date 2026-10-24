@@ -29,7 +29,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
 
   Future<void> _load() async {
     try {
-      final query = (widget.subCategoryId.isEmpty || widget.subCategoryId == 'جميع الإعلانات')
+      final query = (widget.subCategoryId.isEmpty || widget.subCategoryId == 'جميع الإعلانات' || widget.subCategoryId == '__all__')
           ? FirebaseFirestore.instance
               .collection('listings')
               .where('categoryName', isEqualTo: widget.categoryName)
@@ -54,6 +54,15 @@ class _ListingsScreenState extends State<ListingsScreen> {
               'details': x['details'],
         };
       }).toList();
+      list.sort((a, b) {
+        final ta = a['createdAt'] as Timestamp?;
+        final tb = b['createdAt'] as Timestamp?;
+        if (ta == null && tb == null) return 0;
+        if (ta == null) return 1;
+        if (tb == null) return -1;
+        return tb.compareTo(ta);
+      });
+
       if (!mounted) return;
       setState(() {
         _items = list;

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'brand_chooser_screen.dart';
 import 'add_listing_screen.dart';
+import 'create_car_listing_screen.dart';
 import 'create_store_screen.dart';
 import 'create_product_screen.dart';
 import '../services/store_service.dart';
@@ -172,15 +173,29 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
         ),
       );
     } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => AddListingScreen(
-            categoryId: cat['id'],
-            categoryName: cat['name'],
+      final vehicleCats = ['سيارات', 'شاحنات', 'حافلات', 'دراجات', 'دراجات رباعية الدفع', 'دراجات هوائية وسكوتر', 'بحري'];
+      if (vehicleCats.contains(cat['name'].toString().trim())) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => CreateCarListingScreen(
+              categoryName: cat['name'].toString().trim(),
+              brandName: '',
+              subCategoryId: '',
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => AddListingScreen(
+              categoryId: cat['id'],
+              categoryName: cat['name'],
+            ),
+          ),
+        );
+      }
     }
   }
 
