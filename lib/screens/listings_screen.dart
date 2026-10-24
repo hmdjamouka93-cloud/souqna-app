@@ -51,6 +51,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
           'views': (x['views'] ?? 0) as int,
           'storeName': (x['storeName'] ?? '').toString(),
           'isPro': (x['isPro'] ?? false) as bool,
+              'details': x['details'],
         };
       }).toList();
       if (!mounted) return;
