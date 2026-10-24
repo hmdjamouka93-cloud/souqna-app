@@ -36,41 +36,47 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
   }
 
   Future<void> _load() async {
-    try {
-      final snap = await FirebaseFirestore.instance
-          .collection('Categories')
-          .where('mainCategoryId', isEqualTo: widget.mainCategoryId)
-          .get();
+      try {
+        final snap = await FirebaseFirestore.instance
+            .collection('Categories')
+            .get();
 
-      final list = snap.docs.map((d) {
-        final x = d.data();
-        return {
-          'id': d.id,
-          'name': (x['name'] ?? '').toString().trim(),
-          'image': (x['image'] ?? '').toString(),
-          'order': x['order'] ?? 0,
-        };
-      }).toList();
+        final targetId = widget.mainCategoryId.trim();
+        final targetName = widget.mainCategoryName.trim();
 
-      // نرتبو بأمان (order ممكن يكون String ولا num)
-      list.sort((a, b) {
-        final oa = a['order'];
-        final ob = b['order'];
-        final na = oa is num ? oa.toInt() : int.tryParse(oa.toString()) ?? 0;
-        final nb = ob is num ? ob.toInt() : int.tryParse(ob.toString()) ?? 0;
-        return na.compareTo(nb);
-      });
+        final list = snap.docs.where((d) {
+          final x = d.data();
+          final mId = (x['mainCategoryId'] ?? '').toString().trim();
+          return mId == targetId || mId == targetName;
+        }).map((d) {
+          final x = d.data();
+          return {
+            'id': d.id,
+            'name': (x['name'] ?? '').toString().trim(),
+            'image': (x['image'] ?? '').toString(),
+            'order': x['order'] ?? 0,
+          };
+        }).toList();
 
-      if (!mounted) return;
-      setState(() {
-        _items = list;
-        _loading = false;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => _loading = false);
+        // نرتبو بأمان (order ممكن يكون String ولا num)
+        list.sort((a, b) {
+          final oa = a['order'];
+          final ob = b['order'];
+          final na = oa is num ? oa.toInt() : int.tryParse(oa.toString()) ?? 0;
+          final nb = ob is num ? ob.toInt() : int.tryParse(ob.toString()) ?? 0;
+          return na.compareTo(nb);
+        });
+
+        if (!mounted) return;
+        setState(() {
+          _items = list;
+          _loading = false;
+        });
+      } catch (e) {
+        if (!mounted) return;
+        setState(() => _loading = false);
+      }
     }
-  }
   Future<void> _pickCategory(Map<String, dynamic> cat) async {
     // نجيبو كل الـ SubCategories ونفلترو client-side
     final subSnap = await FirebaseFirestore.instance

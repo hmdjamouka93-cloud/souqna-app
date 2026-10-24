@@ -138,88 +138,9 @@ class _AddListingScreenState extends State<AddListingScreen> {
       final storeName = (userData?['storeName'] ?? '').toString();
       final proTypes = (userData?['proTypes'] as List?)?.cast<String>() ?? [];
 
-      // 3. نحددو نوع المعرض حسب القسم
+      // 3. لا نطلب إنشاء معرض لإضافة إعلان عادي
       String showroomId = '';
       String finalStoreName = storeName;
-
-      String showroomType = '';
-      if (widget.categoryName == 'معارض السيارات') {
-        showroomType = 'showroom';
-      } else if (widget.categoryName == 'ايجار السيارات') {
-        showroomType = 'rental';
-      }
-
-      if (showroomType.isNotEmpty) {
-        final showroom = await ShowroomService.getMyShowroom(type: showroomType);
-        if (showroom == null) {
-          // ما عندوش معرض → نوقفو ونطلبو منو ينشئ واحد
-          if (!mounted) return;
-          setState(() => _loading = false);
-          final goCreate = await showDialog<bool>(
-            context: context,
-            builder: (ctx) => Directionality(
-              textDirection: TextDirection.rtl,
-              child: AlertDialog(
-                backgroundColor: AppColors.card,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                title: Text(
-                    showroomType == 'rental'
-                        ? 'خاصك تنشئ وكالة إيجار'
-                        : 'خاصك تنشئ معرض',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-                content: Text(
-                  showroomType == 'rental'
-                      ? 'باش تنشر سيارة في إيجار السيارات، خاصك تنشئ وكالة أولاً.\n\n'
-                          'الوكالة كتخلي اسمك وشعارك يبانو على كل سياراتك.'
-                      : 'باش تنشر سيارة في معارض السيارات، خاصك تنشئ معرض أولاً.\n\n'
-                          'المعرض كيخلي اسمك وشعارك يبانو على كل سياراتك.',
-                  style: TextStyle(
-                      color: AppColors.textSecondary,
-                      fontSize: 14,
-                      height: 1.6),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(ctx, false),
-                    child: const Text('إلغاء',
-                        style: TextStyle(color: AppColors.textSecondary)),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.accent),
-                    onPressed: () => Navigator.pop(ctx, true),
-                    child: Text(
-                        showroomType == 'rental' ? 'إنشاء وكالة' : 'إنشاء معرض',
-                        style: const TextStyle(color: Colors.white)),
-                  ),
-                ],
-              ),
-            ),
-          );
-          if (goCreate == true && mounted) {
-            final result = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => CreateShowroomScreen(type: showroomType),
-              ),
-            );
-            if (result != true) return;
-            final showroom2 = await ShowroomService.getMyShowroom(type: showroomType);
-            showroomId = (showroom2?['id'] ?? '').toString();
-            if (showroomId.isEmpty) return;
-          } else {
-            return;
-          }
-        } else {
-          showroomId = (showroom['id'] ?? '').toString();
-          // نستعملو اسم المعرض للـ storeName
-          final sName = (showroom['name'] ?? '').toString();
-          if (sName.isNotEmpty) finalStoreName = sName;
-        }
-      }
 
       if (_isEdit) {
         // ===== وضع التعديل =====
