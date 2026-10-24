@@ -167,6 +167,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
           builder: (_) => BrandChooserScreen(
             categoryId: cat['id'],
             categoryName: cat['name'],
+            isAddMode: true,
           ),
         ),
       );

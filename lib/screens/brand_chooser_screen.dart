@@ -9,10 +9,12 @@ import 'add_listing_screen.dart';
 class BrandChooserScreen extends StatefulWidget {
   final String categoryId;
   final String categoryName;
+  final bool isAddMode;
   const BrandChooserScreen({
     super.key,
     required this.categoryId,
     required this.categoryName,
+    this.isAddMode = false,
   });
 
   @override
@@ -81,32 +83,65 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
     final id = (brand['id'] ?? '').toString();
     final name = (brand['name'] ?? '').toString();
 
-    // "جميع الإعلانات" → ListingsScreen (كل إعلانات القسم)
-    if (id == '__all__') {
+    if (widget.isAddMode) {
+      // وضع الإضافة
+      if (id == '__all__') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('يجب اختيار الماركة للنشر')),
+        );
+        return;
+      }
+      if (widget.categoryName == 'سيارات') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => CreateCarListingScreen(
+              categoryName: widget.categoryName,
+              brandName: name,
+              subCategoryId: id,
+            ),
+          ),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => AddListingScreen(
+              categoryId: widget.categoryId,
+              categoryName: widget.categoryName,
+              subCategoryId: id,
+              subCategoryName: name,
+            ),
+          ),
+        );
+      }
+    } else {
+      // وضع العرض (كما كان)
+      if (id == '__all__') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ListingsScreen(
+              subCategoryId: '',
+              brandName: name,
+              categoryName: widget.categoryName,
+            ),
+          ),
+        );
+        return;
+      }
+
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (_) => ListingsScreen(
-            subCategoryId: '',
+            subCategoryId: id,
             brandName: name,
             categoryName: widget.categoryName,
           ),
         ),
       );
-      return;
     }
-
-    // باقي الأنواع → ListingsScreen (عرض الإعلانات)
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => ListingsScreen(
-          subCategoryId: id,
-          brandName: name,
-          categoryName: widget.categoryName,
-        ),
-      ),
-    );
   }
 
   @override
