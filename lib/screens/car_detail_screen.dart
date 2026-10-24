@@ -455,37 +455,33 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             const Text('تفاصيل السيارة',
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: items
-                  .map((e) => Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: AppColors.background,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text('${e.key}: ',
-                                style: const TextStyle(
-                                    color: AppColors.textSecondary,
-                                    fontSize: 12)),
-                            Text(e.value,
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ))
-                  .toList(),
-            ),
+            ...items.map((e) => Padding(
+                  padding: const EdgeInsets.only(bottom: 14),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.check_circle,
+                              color: AppColors.accent, size: 18),
+                          const SizedBox(width: 8),
+                          Text(e.key,
+                              style: const TextStyle(
+                                  color: AppColors.textSecondary,
+                                  fontSize: 14)),
+                        ],
+                      ),
+                      Text(e.value,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                )),
           ],
         ),
       ),
