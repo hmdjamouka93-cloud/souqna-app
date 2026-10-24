@@ -930,19 +930,14 @@ class HomeScreen extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CarsScreen(
+          builder: (context) => ListingsScreen(
+            subCategoryId: '',
+            brandName: 'جميع الإعلانات',
             categoryName: 'دراجات رباعية الدفع',
-            screenTitle: 'دراجات رباعية الدفع',
           ),
         ),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ServicesSubscreen(categoryName: name),
-        ),
-      );
-      } else if (name == 'سكن للايجار' ||
+    } else if (name == 'سكن للايجار' ||
         name == 'سكن للبيع' ||
         name == 'اثاث' ||
         name == 'محلات للايجار' ||
