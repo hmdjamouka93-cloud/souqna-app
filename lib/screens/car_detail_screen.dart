@@ -72,6 +72,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             const SizedBox(height: 16),
             _buildDescription(),
             const SizedBox(height: 16),
+            _buildCarDetails(),
+            const SizedBox(height: 16),
             _buildReactions(),
             const SizedBox(height: 16),
             _buildAdBanner(),
@@ -418,6 +420,74 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         child: Text(label,
             style: const TextStyle(color: AppColors.accent, fontSize: 12,
                 fontWeight: FontWeight.bold)),
+      ),
+    );
+  }
+
+  Widget _buildCarDetails() {
+    final details = widget.ad['details'] as Map<String, dynamic>?;
+    if (details == null) return const SizedBox.shrink();
+
+    final items = <MapEntry<String, String>>[];
+    if (details['brand'] != null) items.add(MapEntry('الماركة', details['brand'].toString()));
+    if (details['category'] != null) items.add(MapEntry('الفئة', details['category'].toString()));
+    if (details['gear'] != null) items.add(MapEntry('نوع القير', details['gear'].toString()));
+    if (details['color'] != null) items.add(MapEntry('اللون', details['color'].toString()));
+    if (details['fuel'] != null) items.add(MapEntry('الوقود', details['fuel'].toString()));
+    if (details['condition'] != null) items.add(MapEntry('الحالة', details['condition'].toString()));
+    if (details['warranty'] != null) items.add(MapEntry('تحت الضمان', details['warranty'].toString()));
+    if (details['year'] != null) items.add(MapEntry('سنة الصنع', details['year'].toString()));
+    if (details['mileage'] != null) items.add(MapEntry('العداد', '${details['mileage']} كم'));
+
+    if (items.isEmpty) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.card,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('تفاصيل السيارة',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: items
+                  .map((e) => Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: AppColors.background,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('${e.key}: ',
+                                style: const TextStyle(
+                                    color: AppColors.textSecondary,
+                                    fontSize: 12)),
+                            Text(e.value,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
