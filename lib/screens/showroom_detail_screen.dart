@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import '../services/showroom_service.dart';
+import '../services/auth_service.dart';
+import 'create_car_listing_screen.dart';
 import 'car_detail_screen.dart';
 
 class ShowroomDetailScreen extends StatefulWidget {
@@ -67,6 +69,27 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
+        floatingActionButton: (AuthService.currentUser?.uid == (widget.showroom['userId'] ?? '').toString())
+            ? FloatingActionButton.extended(
+                backgroundColor: AppColors.accent,
+                onPressed: () async {
+                  final r = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CreateCarListingScreen(
+                        categoryName: 'سيارات',
+                        brandName: 'معرض السيارات',
+                        subCategoryId: '', // ماكانش ماركة محددة
+                        showroomId: (widget.showroom['id'] ?? '').toString(),
+                      ),
+                    ),
+                  );
+                  if (r == true) _load();
+                },
+                icon: const Icon(Icons.add, color: Colors.white),
+                label: const Text('أضف سيارة', style: TextStyle(color: Colors.white)),
+              )
+            : null,
         appBar: AppBar(
           backgroundColor: AppColors.background,
           elevation: 0,

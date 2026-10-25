@@ -10,12 +10,14 @@ class CreateCarListingScreen extends StatefulWidget {
   final String categoryName; // 'سيارات'
   final String brandName; // 'تويوتا'
   final String subCategoryId; // ID تاع الماركة
+  final String? showroomId; // ID تاع المعرض (اختياري)
 
   const CreateCarListingScreen({
     super.key,
     required this.categoryName,
     required this.brandName,
     required this.subCategoryId,
+    this.showroomId,
   });
 
   @override
@@ -168,6 +170,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         'phone': phone,
         'subCategoryId': widget.subCategoryId, // رقم الماركة
         'categoryName': widget.categoryName, // 'سيارات'
+        if (widget.showroomId != null) 'showroomId': widget.showroomId,
         'brandName': widget.brandName, // 'تويوتا'
         'details': details, // نخزنو التفاصيل هنا
         'createdAt': FieldValue.serverTimestamp(),
