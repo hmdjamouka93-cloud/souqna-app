@@ -170,7 +170,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         'phone': phone,
         'subCategoryId': widget.subCategoryId, // رقم الماركة
         'categoryName': widget.categoryName, // 'سيارات'
-        if (widget.showroomId != null) 'showroomId': widget.showroomId,
+        if (widget.showroomId != null && widget.showroomId!.isNotEmpty) 'showroomId': widget.showroomId,
         'brandName': widget.brandName, // 'تويوتا'
         'details': details, // نخزنو التفاصيل هنا
         'createdAt': FieldValue.serverTimestamp(),
