@@ -88,9 +88,19 @@ class ShowroomService {
       final snap = await _db
           .collection('showrooms')
           .where('type', isEqualTo: type)
-          .orderBy('createdAt', descending: true)
           .get();
-      return snap.docs.map((d) {
+      
+      final docs = snap.docs.toList();
+      docs.sort((a, b) {
+        final ta = (a.data()['createdAt']) as Timestamp?;
+        final tb = (b.data()['createdAt']) as Timestamp?;
+        if (ta == null && tb == null) return 0;
+        if (ta == null) return 1;
+        if (tb == null) return -1;
+        return tb.compareTo(ta);
+      });
+
+      return docs.map((d) {
         final x = d.data();
         return {
           'id': d.id,
