@@ -52,6 +52,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
           'storeName': (x['storeName'] ?? '').toString(),
           'isPro': (x['isPro'] ?? false) as bool,
               'details': x['details'],
+              'createdAt': x['createdAt'],
         };
       }).toList();
       list.sort((a, b) {
