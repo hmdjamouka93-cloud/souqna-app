@@ -93,10 +93,16 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
       );
       return;
     }
-    final picked = await _picker.pickImage(
-        source: ImageSource.gallery, imageQuality: 70, maxWidth: 1280);
-    if (picked == null) return;
-    setState(() => _images.add(File(picked.path)));
+    final pickedList = await _picker.pickMultiImage(
+        imageQuality: 70, maxWidth: 1280);
+    if (pickedList.isEmpty) return;
+    setState(() {
+      for (var picked in pickedList) {
+        if (_images.length < 5) {
+          _images.add(File(picked.path));
+        }
+      }
+    });
   }
 
   void _nextStep() {

@@ -249,6 +249,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         ),
       );
     }
+
     return Stack(
       children: [
         SizedBox(
@@ -256,13 +257,16 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           child: PageView.builder(
             itemCount: _images.length,
             onPageChanged: (i) => setState(() => _currentPage = i),
-            itemBuilder: (context, i) => Image.network(
-              _images[i],
-              fit: BoxFit.cover,
-              errorBuilder: (_, _, _) => Container(
-                color: Colors.black26,
-                child: const Icon(Icons.directions_car,
-                    color: Colors.white24, size: 60),
+            itemBuilder: (context, i) => Container(
+              color: Colors.black,
+              child: Image.network(
+                _images[i],
+                fit: BoxFit.contain,
+                errorBuilder: (_, _, _) => Container(
+                  color: Colors.black26,
+                  child: const Icon(Icons.directions_car,
+                      color: Colors.white24, size: 60),
+                ),
               ),
             ),
           ),

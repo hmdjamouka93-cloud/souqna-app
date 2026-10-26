@@ -4,6 +4,8 @@ import '../main.dart';
 import 'brand_chooser_screen.dart';
 import 'add_listing_screen.dart';
 import 'create_car_listing_screen.dart';
+import 'showrooms_list_screen.dart';
+import 'rentals_list_screen.dart';
 import 'create_store_screen.dart';
 import 'create_product_screen.dart';
 import '../services/store_service.dart';
@@ -79,6 +81,21 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       }
     }
   Future<void> _pickCategory(Map<String, dynamic> cat) async {
+    if (cat['name'].toString().trim() == 'معارض السيارات') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const ShowroomsListScreen()),
+      );
+      return;
+    }
+    if (cat['name'].toString().trim() == 'ايجار السيارات') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const RentalsListScreen()),
+      );
+      return;
+    }
+
     // نجيبو كل الـ SubCategories ونفلترو client-side
     final subSnap = await FirebaseFirestore.instance
         .collection('SubCategories')
