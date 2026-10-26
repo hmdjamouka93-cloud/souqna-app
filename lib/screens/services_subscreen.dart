@@ -36,6 +36,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
       final list = snap.docs.map((d) {
         final x = d.data();
         return {
+          'id': d.id,
           'name': (x['name'] ?? '').toString().trim(),
           'image': (x['image'] ?? '').toString(),
           'order': x['order'] ?? 0,
@@ -97,6 +98,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                 ),
                 itemBuilder: (context, i) {
                   final name = _items[i]['name'] as String;
+                    final id = _items[i]['id'] as String;
                   return InkWell(
                     onTap: () {
                       if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية' || widget.categoryName == 'الرياضة واللياقة البدنية' || widget.categoryName == 'الصحة والجمال' || widget.categoryName == 'السفر والسياحة' || widget.categoryName == 'خدمات السيارات' || widget.categoryName == 'النظافة ومكافحة الحشرات' || widget.categoryName == 'الخدمات القانونية والإدارية' || widget.categoryName == 'الفلاحة والثروة الحيوانية' || widget.categoryName == 'الدعاية والإعلان والطباعة' || widget.categoryName == 'الأمن والحراسة' || widget.categoryName == 'رعاية الأطفال والمسنين' || widget.categoryName == 'الطاقة الشمسية' || widget.categoryName == 'كلاب وقطط' || widget.categoryName == 'طيور' || widget.categoryName == 'مواشي ودواب' || widget.categoryName == 'حيوانات أخرى' || widget.categoryName == 'التبرع' || widget.categoryName == 'دراجات هوائية وسكوتر' || widget.categoryName == 'بحري') {
@@ -104,9 +106,9 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                           context,
                           MaterialPageRoute(
                             builder: (_) => ListingsScreen(
-                              subCategoryId: name,
+                              subCategoryId: name == 'جميع الإعلانات' ? 'جميع الإعلانات' : id,
                               brandName: '',
-                              categoryName: name,
+                              categoryName: widget.categoryName,
                             ),
                           ),
                         );
