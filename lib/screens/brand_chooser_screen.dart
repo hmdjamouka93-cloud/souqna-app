@@ -61,12 +61,21 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       });
 
       // نزيدو "جميع الإعلانات" في الأول
-      list.insert(0, {
-        'id': '__all__',
-        'name': 'جميع الإعلانات',
-        'image': '',
-        'order': -1,
-      });
+      bool hasAll = list.any((e) => e['name'] == 'جميع الإعلانات');
+        if (!hasAll) {
+          list.insert(0, {
+            'id': '__all__',
+            'name': 'جميع الإعلانات',
+            'image': '',
+            'order': -1,
+          });
+        } else {
+          for (var item in list) {
+            if (item['name'] == 'جميع الإعلانات') {
+              item['id'] = '__all__';
+            }
+          }
+        }
 
       if (!mounted) return;
       setState(() {
