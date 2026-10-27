@@ -900,25 +900,14 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => ServicesSubscreen(categoryName: name),
         ),
       );
-    } else if (name == 'وظائف متاحة' || name == 'الباحثين عن عمل') {
+    } else if (name == 'وظائف متاحة' || name == 'الباحثين عن عمل' || name == 'المفقودات') {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ListingsScreen(
-            subCategoryId: name,
+            subCategoryId: '',
             brandName: '',
-            categoryName: 'الوظائف',
-          ),
-        ),
-      );
-    } else if (name == 'المفقودات') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ListingsScreen(
-            subCategoryId: name,
-            brandName: '',
-            categoryName: 'التبرعات والعمل الخيري',
+            categoryName: name,
           ),
         ),
       );
