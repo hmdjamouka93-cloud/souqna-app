@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import 'car_detail_screen.dart';
 
 class ListingsScreen extends StatefulWidget {
@@ -119,8 +120,13 @@ class _ListingsScreenState extends State<ListingsScreen> {
     }
     return ListView.builder(
       padding: const EdgeInsets.all(12),
-      itemCount: _items.length,
-      itemBuilder: (context, i) => _listingCard(_items[i]),
+      itemCount: _items.length + 1,
+      itemBuilder: (context, i) {
+          if (i == 0) {
+            return const AdBanner();
+          }
+          return _listingCard(_items[i - 1]);
+        },
     );
   }
 

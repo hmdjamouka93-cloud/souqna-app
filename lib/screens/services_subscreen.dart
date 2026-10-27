@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import 'listings_screen.dart';
 import 'providers_list_screen.dart';
-import 'create_provider_screen.dart';
 import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
 import '../services/service_provider_service.dart';
@@ -66,18 +66,17 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
-                appBar: AppBar(
+        appBar: AppBar(
           backgroundColor: AppColors.background,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.categoryName,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
@@ -86,106 +85,129 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
         body: _loading
             ? const Center(
                 child: CircularProgressIndicator(color: AppColors.accent))
-            : GridView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: _items.length,
-                gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 1.1,
-                ),
-                itemBuilder: (context, i) {
-                  final name = _items[i]['name'] as String;
-                    final id = _items[i]['id'] as String;
-                  return InkWell(
-                    onTap: () {
-                      if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية' || widget.categoryName == 'الرياضة واللياقة البدنية' || widget.categoryName == 'الصحة والجمال' || widget.categoryName == 'السفر والسياحة' || widget.categoryName == 'خدمات السيارات' || widget.categoryName == 'النظافة ومكافحة الحشرات' || widget.categoryName == 'الخدمات القانونية والإدارية' || widget.categoryName == 'الفلاحة والثروة الحيوانية' || widget.categoryName == 'الدعاية والإعلان والطباعة' || widget.categoryName == 'الأمن والحراسة' || widget.categoryName == 'رعاية الأطفال والمسنين' || widget.categoryName == 'الطاقة الشمسية' || widget.categoryName == 'كلاب وقطط' || widget.categoryName == 'طيور' || widget.categoryName == 'مواشي ودواب' || widget.categoryName == 'حيوانات أخرى' || widget.categoryName == 'التبرع' || widget.categoryName == 'دراجات هوائية وسكوتر' || widget.categoryName == 'بحري') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ListingsScreen(
-                              subCategoryId: name == 'جميع الإعلانات' ? 'جميع الإعلانات' : id,
-                              brandName: '',
-                              categoryName: widget.categoryName,
-                            ),
-                          ),
-                        );
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProvidersListScreen(
-                              tradeName: name,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.card,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color: AppColors.accent.withValues(alpha: 0.3)),
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          if (name == 'جميع الإعلانات')
-                            Container(
-                              color: AppColors.card,
-                              child: const Center(
-                                child: Icon(Icons.list_alt,
-                                    color: AppColors.accent, size: 50),
-                              ),
-                            )
-                          else
-                            Image.network(
-                              _items[i]['image'] as String,
-                              fit: BoxFit.cover,
-                              errorBuilder: (_, _, _) => Container(
-                                  color: AppColors.card,
-                                  child: const Icon(Icons.image_outlined,
-                                      color: AppColors.iconInactive, size: 40)),
-                            ),
-                          Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.black.withValues(alpha: 0.8),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            right: 8,
-                            left: 8,
-                            child: Text(
-                              name,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(
-                                        blurRadius: 6,
-                                        color: Colors.black87),
-                                  ]),
-                            ),
-                          ),
-                        ],
-                      ),
+            : Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const AdBanner(),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 16, right: 16, left: 16),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text('الأقسام الفرعية',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold)),
                     ),
-                  );
-                },
+                  ),
+                  Expanded(
+                    child: GridView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: _items.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 1.1,
+                      ),
+                      itemBuilder: (context, i) {
+                        final name = _items[i]['name'] as String;
+                        final id = _items[i]['id'] as String;
+
+                        return InkWell(
+                          onTap: () {
+                            if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية' || widget.categoryName == 'الرياضة واللياقة البدنية' || widget.categoryName == 'الصحة والجمال' || widget.categoryName == 'السفر والسياحة' || widget.categoryName == 'خدمات السيارات' || widget.categoryName == 'النظافة ومكافحة الحشرات' || widget.categoryName == 'الخدمات القانونية والإدارية' || widget.categoryName == 'الفلاحة والثروة الحيوانية' || widget.categoryName == 'الدعاية والإعلان والطباعة' || widget.categoryName == 'الأمن والحراسة' || widget.categoryName == 'رعاية الأطفال والمسنين' || widget.categoryName == 'الطاقة الشمسية' || widget.categoryName == 'كلاب وقطط' || widget.categoryName == 'طيور' || widget.categoryName == 'مواشي ودواب' || widget.categoryName == 'حيوانات أخرى' || widget.categoryName == 'التبرع' || widget.categoryName == 'دراجات هوائية وسكوتر' || widget.categoryName == 'بحري') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ListingsScreen(
+                                    subCategoryId: name == 'جميع الإعلانات' ? 'جميع الإعلانات' : id,
+                                    brandName: '',
+                                    categoryName: widget.categoryName,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ProvidersListScreen(
+                                    tradeName: name,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.card,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                  color: AppColors.accent.withValues(alpha: 0.3)),
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                if (name == 'جميع الإعلانات')
+                                  Container(
+                                    color: AppColors.card,
+                                    child: const Center(
+                                      child: Icon(Icons.list_alt,
+                                          color: AppColors.accent, size: 50),
+                                    ),
+                                  )
+                                else
+                                  Image.network(
+                                    _items[i]['image'] as String,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (_, _, _) => Container(
+                                      color: AppColors.card,
+                                      child: const Icon(Icons.image_outlined,
+                                          color: AppColors.iconInactive, size: 40),
+                                    ),
+                                  ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.transparent,
+                                        Colors.black.withValues(alpha: 0.8),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 10,
+                                  right: 8,
+                                  left: 8,
+                                  child: Text(
+                                    name,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 6,
+                                          color: Colors.black87,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
       ),
     );
