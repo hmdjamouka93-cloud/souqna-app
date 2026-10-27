@@ -522,7 +522,7 @@ class HomeScreen extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('Categories')
-          .where('mainCategoryId', isEqualTo: 'pets')
+          .where('mainCategoryId', isEqualTo: 'animals')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
