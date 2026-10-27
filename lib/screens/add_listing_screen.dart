@@ -234,7 +234,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
               const SizedBox(height: 18),
 
               _label('عنوان الإعلان'),
-              _textField(_titleCtrl, 'مثال: تويوتا كورولا 2018'),
+              _textField(_titleCtrl, 'عنوان واضح للإعلان...'),
               const SizedBox(height: 16),
 
               _label('الوصف'),
@@ -247,7 +247,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
               const SizedBox(height: 16),
 
               _label('الموقع'),
-              _textField(_locCtrl, 'مثال: الجزائر العاصمة'),
+              _textField(_locCtrl, 'المدينة أو الولاية...'),
               const SizedBox(height: 20),
 
               if (_error != null) ...[
