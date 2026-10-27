@@ -204,7 +204,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('تفاصيل السيارة',
+      title: const Text('تفاصيل الإعلان',
           style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
       actions: [
         StreamBuilder<bool>(
@@ -456,7 +456,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('تفاصيل السيارة',
+            const Text('تفاصيل الإعلان',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
