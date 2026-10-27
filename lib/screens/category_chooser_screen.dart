@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import 'brand_chooser_screen.dart';
 import 'add_listing_screen.dart';
 import 'create_car_listing_screen.dart';
@@ -251,6 +252,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
         child: CircularProgressIndicator(color: AppColors.accent),
       );
     }
+
     if (_items.isEmpty) {
       return const Center(
         child: Text(
@@ -260,16 +262,35 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       );
     }
 
-    return GridView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: _items.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 0.85,
-      ),
-      itemBuilder: (_, i) => _categoryCard(_items[i]),
+    return Column(
+      children: [
+        const SizedBox(height: 16),
+        const AdBanner(),
+        const Padding(
+          padding: EdgeInsets.only(top: 16, right: 16, left: 16),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Text('الأقسام الفرعية',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+          ),
+        ),
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: _items.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.85,
+            ),
+            itemBuilder: (_, i) => _categoryCard(_items[i]),
+          ),
+        ),
+      ],
     );
   }
 
