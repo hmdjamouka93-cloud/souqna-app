@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
 import '../services/store_service.dart';
@@ -600,6 +601,12 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                 ),
               )
             else
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: AdBanner(),
+                ),
+              ),
               SliverPadding(
                 padding: const EdgeInsets.all(16),
                 sliver: SliverGrid(

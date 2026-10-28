@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import '../services/showroom_service.dart';
 import '../services/auth_service.dart';
 import 'create_car_listing_screen.dart';
@@ -262,8 +263,11 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
       backgroundColor: AppColors.card,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        itemCount: _listings.length,
-        itemBuilder: (context, i) => _listingCard(_listings[i]),
+        itemCount: _listings.length + 1,
+        itemBuilder: (context, i) {
+          if (i == 0) return const Padding(padding: EdgeInsets.only(bottom: 12), child: AdBanner());
+          return _listingCard(_listings[i - 1]);
+        },
       ),
     );
   }

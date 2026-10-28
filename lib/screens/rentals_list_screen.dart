@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import '../services/showroom_service.dart';
 import '../services/auth_gate.dart';
 import 'showroom_detail_screen.dart';
@@ -102,6 +103,8 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
       child: ListView(
         padding: const EdgeInsets.all(12),
         children: [
+          const AdBanner(),
+          const SizedBox(height: 12),
           // بانر "أنت صاحب معرض؟"
           GestureDetector(
             onTap: _openCreateShowroom,
