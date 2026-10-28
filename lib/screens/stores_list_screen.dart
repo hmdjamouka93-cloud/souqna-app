@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import '../widgets/ad_banner.dart';
 import '../services/store_service.dart';
 import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
@@ -96,6 +97,8 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 child: ListView(
                   padding: const EdgeInsets.all(12),
                   children: [
+            const AdBanner(),
+            const SizedBox(height: 12),
                     _buildMyStoreBanner(),
                     const SizedBox(height: 12),
                     if (_stores.isEmpty)
