@@ -26,7 +26,6 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
     });
 
     try {
-      // نقلبو في كل المستخدمين ونفلترو في التطبيق (باش نتجنبو مشكل الكابيتال)
       final queryLower = query.toLowerCase();
       final allUsersSnap = await FirebaseFirestore.instance.collection('users').get();
       
@@ -50,43 +49,34 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
       }
 
       final doc = foundDoc;
-
-
       setState(() {
         _foundUser = {'id': doc.id, ...(doc.data() as Map<String, dynamic>)};
         _searching = false;
       });
     } catch (e) {
       setState(() {
-        _error = 'حدث خطأ أثناء البحث: $e';
+        _error = 'حدث خطأ أثناء البحث';
         _searching = false;
       });
     }
   }
 
-  Future<void> _toggleBlock() async {
-    if (_foundUser == null) return;
-    final id = _foundUser!['id'];
-    final isBlocked = _foundUser!['isBlocked'] == true;
-
-    setState(() => _searching = true);
-
+  Future<void> _toggleBlock(String userId, bool currentStatus) async {
     try {
-      await FirebaseFirestore.instance.collection('users').doc(id).update({
-        'isBlocked': !isBlocked,
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({
+        'isBlocked': !currentStatus,
       });
-
-      setState(() {
-        _foundUser!['isBlocked'] = !isBlocked;
-        _searching = false;
-      });
-
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(isBlocked ? 'تم إلغاء الحظر' : 'تم حظر المستخدم')),
+        SnackBar(content: Text(currentStatus ? 'تم إلغاء الحظر' : 'تم حظر المستخدم')),
       );
+      if (_foundUser != null && _foundUser!['id'] == userId) {
+        setState(() {
+          _foundUser!['isBlocked'] = !currentStatus;
+        });
+      }
     } catch (e) {
-      setState(() => _searching = false);
+      // Error handling
     }
   }
 
@@ -112,7 +102,9 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
         body: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // --- قسم البحث ---
               Row(
                 children: [
                   Expanded(
@@ -125,7 +117,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                         controller: _searchCtrl,
                         style: const TextStyle(color: Colors.white),
                         decoration: const InputDecoration(
-                          hintText: 'ابحث بالإيميل أو الهاتف...',
+                          hintText: 'ابحث بالإيميل أو الهاتف لحظر مستخدم...',
                           hintStyle: TextStyle(color: AppColors.textSecondary),
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
@@ -147,10 +139,14 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-              if (_error != null)
+              
+              if (_error != null) ...[
+                const SizedBox(height: 16),
                 Text(_error!, style: const TextStyle(color: Colors.redAccent)),
-              if (_foundUser != null)
+              ],
+
+              if (_foundUser != null) ...[
+                const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -189,7 +185,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                             backgroundColor: _foundUser!['isBlocked'] == true ? Colors.green : Colors.redAccent,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
-                          onPressed: _toggleBlock,
+                          onPressed: () => _toggleBlock(_foundUser!['id'], _foundUser!['isBlocked'] == true),
                           icon: Icon(_foundUser!['isBlocked'] == true ? Icons.lock_open : Icons.block, color: Colors.white),
                           label: Text(
                             _foundUser!['isBlocked'] == true ? 'إلغاء الحظر' : 'حظر المستخدم',
@@ -200,6 +196,66 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                     ],
                   ),
                 ),
+              ],
+
+              const SizedBox(height: 24),
+              const Divider(color: Colors.white12),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 12),
+                child: Text(
+                  'قائمة المحظورين (الذين تم حظرهم حالياً):',
+                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+
+              // --- لستة المحظورين ---
+              Expanded(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .where('isBlocked', isEqualTo: true)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator(color: AppColors.accent));
+                    }
+                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      return const Center(
+                        child: Text('لا يوجد مستخدمون محظورون حالياً.',
+                            style: TextStyle(color: Colors.white54, fontSize: 14)),
+                      );
+                    }
+
+                    final blockedUsers = snapshot.data!.docs;
+
+                    return ListView.builder(
+                      itemCount: blockedUsers.length,
+                      itemBuilder: (context, i) {
+                        final data = blockedUsers[i].data() as Map<String, dynamic>;
+                        final id = blockedUsers[i].id;
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 8),
+                          decoration: BoxDecoration(
+                            color: AppColors.card,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: ListTile(
+                            leading: const Icon(Icons.block, color: Colors.redAccent),
+                            title: Text((data['name'] ?? 'بدون اسم').toString(),
+                                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                            subtitle: Text((data['email'] ?? '').toString(),
+                                style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                            trailing: TextButton(
+                              onPressed: () => _toggleBlock(id, true),
+                              child: const Text('إلغاء الحظر', style: TextStyle(color: Colors.green)),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
