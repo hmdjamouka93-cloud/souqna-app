@@ -90,6 +90,17 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       );
       return;
     }
+    final realEstateCats = ['سكن للايجار', 'سكن للبيع', 'محلات للايجار', 'محلات للبيع', 'اراضي'];
+    if (realEstateCats.contains(cat['name'].toString().trim())) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => CreateRealEstateListingScreen(categoryName: cat['name'].toString().trim()),
+        ),
+      );
+      return;
+    }
+
     if (cat['name'].toString().trim() == 'ايجار السيارات') {
       Navigator.push(
         context,
@@ -195,16 +206,6 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       final catNameStr = cat['name'].toString().trim();
       
       // قسم العقارات
-      final realEstateCats = ['سكن للايجار', 'سكن للبيع', 'محلات للايجار', 'محلات للبيع', 'اراضي'];
-      if (realEstateCats.contains(catNameStr)) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => CreateRealEstateListingScreen(categoryName: catNameStr),
-          ),
-        );
-        return;
-      }
 
       final vehicleCats = ['سيارات', 'شاحنات', 'حافلات', 'دراجات', 'دراجات رباعية الدفع', 'دراجات هوائية وسكوتر', 'بحري'];
       if (vehicleCats.contains(catNameStr)) {

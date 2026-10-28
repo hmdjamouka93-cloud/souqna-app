@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
+import '../services/report_service.dart';
 import '../services/favorites_service.dart';
 import '../services/views_service.dart';
 import 'add_listing_screen.dart';
@@ -565,9 +566,51 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             Share.share('شوف هذه السيارة: $_title - $_price');
           })),
           const SizedBox(width: 8),
-          Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('تم إرسال التبليغ')));
+          Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () async {
+            if (AuthService.currentUser == null) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('يجب تسجيل الدخول للتبليغ')));
+              return;
+            }
+            final reasonCtrl = TextEditingController();
+            final ok = await showDialog<bool>(
+              context: context,
+              builder: (ctx) => Directionality(
+                textDirection: TextDirection.rtl,
+                child: AlertDialog(
+                  backgroundColor: AppColors.card,
+                  title: const Text('الإبلاغ عن الإعلان', style: TextStyle(color: Colors.white)),
+                  content: TextField(
+                    controller: reasonCtrl,
+                    maxLines: 3,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                      hintText: 'اكتب سبب الإبلاغ هنا...',
+                      hintStyle: TextStyle(color: AppColors.textSecondary),
+                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accent)),
+                    ),
+                  ),
+                  actions: [
+                    TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                      onPressed: () => Navigator.pop(ctx, true),
+                      child: const Text('إبلاغ', style: TextStyle(color: Colors.white)),
+                    ),
+                  ],
+                ),
+              ),
+            );
+            if (ok == true && reasonCtrl.text.trim().isNotEmpty) {
+              final done = await ReportService.submitReport(
+                productId: (widget.ad['id'] ?? '').toString(),
+                reason: reasonCtrl.text.trim(),
+              );
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(done ? 'تم إرسال الإبلاغ، شكراً لك' : 'حدث خطأ، حاول مرة أخرى'),
+              ));
+            }
           })),
         ],
       ),
