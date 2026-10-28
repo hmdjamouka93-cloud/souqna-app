@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'car_detail_screen.dart';
+import 'product_detail_screen.dart';
 
 class AdminReportsScreen extends StatefulWidget {
   const AdminReportsScreen({super.key});
@@ -59,17 +60,44 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
     if (itemId.isEmpty) return;
     setState(() => _loading = true);
     try {
-      final doc = await FirebaseFirestore.instance.collection('listings').doc(itemId).get();
-      if (!doc.exists) {
+      // 1. نقلبو في الإعلانات العادية (سيارات، عقارات...)
+      final docListing = await FirebaseFirestore.instance.collection('listings').doc(itemId).get();
+      if (docListing.exists) {
+        final adData = {'id': docListing.id, ...(docListing.data() as Map<String, dynamic>)};
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('هذا الإعلان محذوف مسبقاً')));
         setState(() => _loading = false);
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CarDetailScreen(ad: adData)));
         return;
       }
-      final adData = {'id': doc.id, ...(doc.data() as Map<String, dynamic>)};
+
+      // 2. إذا مالقيش، نقلبو في منتجات المتاجر
+      final docProduct = await FirebaseFirestore.instance.collection('store_products').doc(itemId).get();
+      if (docProduct.exists) {
+        final pData = docProduct.data() as Map<String, dynamic>;
+        // منتجات المتاجر كتحتاج Store كـ parameter
+        final storeId = (pData['storeId'] ?? '').toString();
+        final storeDoc = await FirebaseFirestore.instance.collection('stores').doc(storeId).get();
+        final storeData = storeDoc.exists ? {'id': storeDoc.id, ...(storeDoc.data() as Map<String, dynamic>)} : <String, dynamic>{};
+        
+        if (!mounted) return;
+        setState(() => _loading = false);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ProductDetailScreen(
+              product: {'id': docProduct.id, ...pData},
+              store: storeData,
+            ),
+          ),
+        );
+        return;
+      }
+
+      // إذا ما لقى حتى حاجة
       if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('هذا الإعلان محذوف مسبقاً')));
       setState(() => _loading = false);
-      Navigator.push(context, MaterialPageRoute(builder: (_) => CarDetailScreen(ad: adData)));
+
     } catch (e) {
       if (!mounted) return;
       setState(() => _loading = false);
