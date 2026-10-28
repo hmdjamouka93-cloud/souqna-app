@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
+import 'car_detail_screen.dart';
 
 class AdminReportsScreen extends StatefulWidget {
   const AdminReportsScreen({super.key});
@@ -54,6 +55,27 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
     }
   }
 
+  Future<void> _viewAd(String itemId) async {
+    if (itemId.isEmpty) return;
+    setState(() => _loading = true);
+    try {
+      final doc = await FirebaseFirestore.instance.collection('listings').doc(itemId).get();
+      if (!doc.exists) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('هذا الإعلان محذوف مسبقاً')));
+        setState(() => _loading = false);
+        return;
+      }
+      final adData = {'id': doc.id, ...(doc.data() as Map<String, dynamic>)};
+      if (!mounted) return;
+      setState(() => _loading = false);
+      Navigator.push(context, MaterialPageRoute(builder: (_) => CarDetailScreen(ad: adData)));
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _loading = false);
+    }
+  }
+
   Future<void> _deleteItemAndReport(String itemId, String reportId) async {
     final ok = await showDialog<bool>(
       context: context,
@@ -81,9 +103,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
     if (ok == true) {
       setState(() => _loading = true);
       try {
-        // نحيدو الإعلان
         await FirebaseFirestore.instance.collection('listings').doc(itemId).delete();
-        // نحيدو البلاغ
         await FirebaseFirestore.instance.collection('reports').doc(reportId).delete();
         _loadReports();
       } catch (e) {
@@ -161,19 +181,32 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                             Text('رقم الإعلان: ${r['productId']}',
                                 style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             const SizedBox(height: 12),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                            Wrap(
+                              alignment: WrapAlignment.end,
+                              spacing: 8,
+                              runSpacing: 8,
                               children: [
+                                OutlinedButton.icon(
+                                  style: OutlinedButton.styleFrom(
+                                    side: const BorderSide(color: AppColors.accent),
+                                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                                  ),
+                                  onPressed: () => _viewAd(r['productId']),
+                                  icon: const Icon(Icons.visibility, color: AppColors.accent, size: 18),
+                                  label: const Text('عرض الإعلان', style: TextStyle(color: AppColors.accent)),
+                                ),
                                 TextButton(
                                   onPressed: () => _dismissReport(r['id']),
-                                  child: const Text('تجاهل البلاغ', style: TextStyle(color: AppColors.textSecondary)),
+                                  child: const Text('تجاهل', style: TextStyle(color: AppColors.textSecondary)),
                                 ),
-                                const SizedBox(width: 8),
                                 ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                                  ),
                                   onPressed: () => _deleteItemAndReport(r['productId'], r['id']),
                                   icon: const Icon(Icons.delete, color: Colors.white, size: 18),
-                                  label: const Text('حذف الإعلان', style: TextStyle(color: Colors.white)),
+                                  label: const Text('حذف', style: TextStyle(color: Colors.white)),
                                 ),
                               ],
                             ),

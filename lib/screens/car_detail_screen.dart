@@ -431,18 +431,42 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
 
   Widget _buildCarDetails() {
     final details = widget.ad['details'] as Map<String, dynamic>?;
-    if (details == null) return const SizedBox.shrink();
+    if (details == null || details.isEmpty) return const SizedBox.shrink();
+
+    // قاموس الترجمة
+    final labels = {
+      'brand': 'الماركة',
+      'category': 'الفئة',
+      'gear': 'نوع القير',
+      'color': 'اللون',
+      'fuel': 'الوقود',
+      'condition': 'الحالة',
+      'warranty': 'تحت الضمان',
+      'year': 'سنة الصنع',
+      'mileage': 'العداد',
+      'operation': 'نوع العملية',
+      'propertyType': 'نوع العقار',
+      'area': 'المساحة',
+      'rooms': 'عدد الغرف',
+      'floor': 'الطابق',
+      'furnished': 'مفروش',
+      'wilaya': 'الولاية',
+      'daira': 'الدائرة',
+      'payload': 'الحمولة',
+      'seats': 'عدد المقاعد',
+      'engineCC': 'سعة المحرك',
+    };
 
     final items = <MapEntry<String, String>>[];
-    if (details['brand'] != null) items.add(MapEntry('الماركة', details['brand'].toString()));
-    if (details['category'] != null) items.add(MapEntry('الفئة', details['category'].toString()));
-    if (details['gear'] != null) items.add(MapEntry('نوع القير', details['gear'].toString()));
-    if (details['color'] != null) items.add(MapEntry('اللون', details['color'].toString()));
-    if (details['fuel'] != null) items.add(MapEntry('الوقود', details['fuel'].toString()));
-    if (details['condition'] != null) items.add(MapEntry('الحالة', details['condition'].toString()));
-    if (details['warranty'] != null) items.add(MapEntry('تحت الضمان', details['warranty'].toString()));
-    if (details['year'] != null) items.add(MapEntry('سنة الصنع', details['year'].toString()));
-    if (details['mileage'] != null) items.add(MapEntry('العداد', '${details['mileage']} كم'));
+    details.forEach((key, value) {
+      if (value != null && value.toString().isNotEmpty) {
+        final label = labels[key] ?? key;
+        String displayValue = value.toString();
+        if (key == 'mileage') displayValue += ' كم';
+        if (key == 'area') displayValue += ' م²';
+        items.add(MapEntry(label, displayValue));
+      }
+    });
 
     if (items.isEmpty) return const SizedBox.shrink();
 
