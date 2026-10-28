@@ -49,7 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
     } on Exception catch (e) {
       String msg = 'خطأ في تسجيل الدخول';
       final s = e.toString();
-      if (s.contains('user-not-found')) {
+      if (s.contains('تم حظر حسابك')) {
+          msg = 'تم حظر حسابك من قبل الإدارة. يرجى التواصل مع الدعم.';
+        } else if (s.contains('user-not-found')) {
         msg = 'ما كاينش حساب بهاد الإيميل';
       } else if (s.contains('wrong-password')) {
         msg = 'كلمة السر غالطة';

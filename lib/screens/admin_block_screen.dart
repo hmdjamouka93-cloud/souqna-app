@@ -26,22 +26,22 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
     });
 
     try {
-      // نقلبو بالإيميل ولا رقم الهاتف
-      var snap = await FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isEqualTo: query)
-          .limit(1)
-          .get();
-
-      if (snap.docs.isEmpty) {
-        snap = await FirebaseFirestore.instance
-            .collection('users')
-            .where('phone', isEqualTo: query)
-            .limit(1)
-            .get();
+      // نقلبو في كل المستخدمين ونفلترو في التطبيق (باش نتجنبو مشكل الكابيتال)
+      final queryLower = query.toLowerCase();
+      final allUsersSnap = await FirebaseFirestore.instance.collection('users').get();
+      
+      QueryDocumentSnapshot? foundDoc;
+      for (final doc in allUsersSnap.docs) {
+        final data = doc.data();
+        final email = (data['email'] ?? '').toString().toLowerCase();
+        final phone = (data['phone'] ?? '').toString();
+        if (email == queryLower || phone == query) {
+          foundDoc = doc;
+          break;
+        }
       }
 
-      if (snap.docs.isEmpty) {
+      if (foundDoc == null) {
         setState(() {
           _error = 'لم يتم العثور على مستخدم بهذا الإيميل أو الهاتف';
           _searching = false;
@@ -49,9 +49,11 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
         return;
       }
 
-      final doc = snap.docs.first;
+      final doc = foundDoc;
+
+
       setState(() {
-        _foundUser = {'id': doc.id, ...doc.data()};
+        _foundUser = {'id': doc.id, ...(doc.data() as Map<String, dynamic>)};
         _searching = false;
       });
     } catch (e) {
