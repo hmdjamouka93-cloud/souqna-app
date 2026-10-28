@@ -49,10 +49,19 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    return await _auth.signInWithEmailAndPassword(
+    final cred = await _auth.signInWithEmailAndPassword(
       email: email.trim(),
       password: password,
     );
+
+    // نتأكدو واش الحساب محظور
+    final doc = await _db.collection('users').doc(cred.user!.uid).get();
+    if (doc.exists && doc.data()?['isBlocked'] == true) {
+      await _auth.signOut();
+      throw Exception('تم حظر حسابك من قبل الإدارة. يرجى التواصل مع الدعم.');
+    }
+
+    return cred;
   }
 
   static Future<void> logout() async {
