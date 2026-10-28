@@ -3,6 +3,7 @@ import '../services/auth_service.dart';
 import '../services/showroom_service.dart';
 import 'create_showroom_screen.dart';
 import 'my_orders_screen.dart';
+import 'admin_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -348,6 +349,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               const SizedBox(height: 12),
+              if (AuthService.currentUser?.email == 'hmd.jamouka93@gmail.com') ...[
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 52,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueGrey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const AdminScreen(),
+                      ),
+                    ),
+                    icon: const Icon(Icons.admin_panel_settings, color: Colors.white),
+                    label: const Text('لوحة التحكم (Admin)',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ],
                         SizedBox(
                           height: 52,
                           child: OutlinedButton.icon(
