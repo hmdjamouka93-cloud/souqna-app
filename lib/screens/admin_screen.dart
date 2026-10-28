@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import 'admin_block_screen.dart';
 
 class AdminScreen extends StatelessWidget {
   const AdminScreen({super.key});
@@ -27,7 +28,9 @@ class AdminScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           children: [
             _menuCard(Icons.report, 'البلاغات', 'مراجعة إعلانات ومستخدمين', () {}),
-            _menuCard(Icons.block, 'الحظر', 'حظر مستخدمين أو متاجر', () {}),
+            _menuCard(Icons.block, 'الحظر', 'حظر مستخدمين أو متاجر', () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => const AdminBlockScreen()));
+            }),
             _menuCard(Icons.restore, 'استرجاع', 'استرجاع متجر أو بروفايل محذوف', () {}),
             _menuCard(Icons.star, 'إدارة VIP', 'ترقية إعلانات لمدة معينة', () {}),
           ],
