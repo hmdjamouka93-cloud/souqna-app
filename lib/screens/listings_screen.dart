@@ -110,23 +110,29 @@ class _ListingsScreenState extends State<ListingsScreen> {
 
   Widget _buildBody() {
     if (_loading) {
-      return const Center(child: CircularProgressIndicator(color: AppColors.accent));
-    }
-    if (_items.isEmpty) {
       return const Center(
-        child: Text('لا توجد إعلانات',
-            style: TextStyle(color: Colors.white, fontSize: 16)),
+        child: CircularProgressIndicator(color: AppColors.accent),
       );
     }
-    return ListView.builder(
-      padding: const EdgeInsets.all(12),
-      itemCount: _items.length + 1,
-      itemBuilder: (context, i) {
-          if (i == 0) {
-            return const AdBanner();
-          }
-          return _listingCard(_items[i - 1]);
-        },
+
+    return Column(
+      children: [
+        const SizedBox(height: 16),
+        const AdBanner(),
+        const SizedBox(height: 16),
+        Expanded(
+          child: _items.isEmpty
+              ? const Center(
+                  child: Text('لا توجد إعلانات',
+                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  itemCount: _items.length,
+                  itemBuilder: (context, i) => _listingCard(_items[i]),
+                ),
+        ),
+      ],
     );
   }
 
