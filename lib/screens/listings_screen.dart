@@ -126,9 +126,15 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   child: Text('لا توجد إعلانات',
                       style: TextStyle(color: Colors.white, fontSize: 16)),
                 )
-              : ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+              : GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   itemCount: _items.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.75,
+                  ),
                   itemBuilder: (context, i) => _listingCard(_items[i]),
                 ),
         ),
@@ -143,7 +149,6 @@ class _ListingsScreenState extends State<ListingsScreen> {
     return GestureDetector(
       onTap: () => _openDetail(item),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
           color: AppColors.card,
           borderRadius: BorderRadius.circular(12),
@@ -152,86 +157,86 @@ class _ListingsScreenState extends State<ListingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            AspectRatio(
-              aspectRatio: 16 / 10,
-              child: img.isEmpty
-                  ? Container(
-                      color: Colors.black26,
-                      child: const Icon(Icons.directions_car,
-                          color: Colors.white24, size: 60),
-                    )
-                  : Image.network(
-                      img,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Container(
-                        color: Colors.black26,
-                        child: const Icon(Icons.directions_car,
-                            color: Colors.white24, size: 60),
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  img.isEmpty
+                      ? Container(
+                          color: Colors.black26,
+                          child: const Icon(Icons.directions_car,
+                              color: Colors.white24, size: 40),
+                        )
+                      : Image.network(
+                          img,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) => Container(
+                            color: Colors.black26,
+                            child: const Icon(Icons.directions_car,
+                                color: Colors.white24, size: 40),
+                          ),
+                        ),
+                  if (item['isPro'] == true && (item['storeName'] ?? '').toString().isNotEmpty)
+                    Positioned(
+                      top: 6,
+                      right: 6,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.black87,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.verified, color: AppColors.accent, size: 12),
+                            SizedBox(width: 3),
+                            Text('Pro', style: TextStyle(color: AppColors.accent, fontSize: 9, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
                       ),
                     ),
+                ],
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (item['isPro'] == true && (item['storeName'] ?? '').toString().isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 4),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.verified,
-                              color: AppColors.accent, size: 14),
-                          const SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              item['storeName'].toString(),
-                              style: const TextStyle(
-                                  color: AppColors.accent,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  Text(item['title'],
-                      style: const TextStyle(color: Colors.white, fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis),
-                  const SizedBox(height: 6),
-                  Text('${item['price']} د.ج',
-                      style: const TextStyle(color: AppColors.accent,
-                          fontSize: 16, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 6),
+                  Text(
+                    item['title'],
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${item['price']} د.ج',
+                    style: const TextStyle(
+                        color: AppColors.accent,
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 4),
                   Row(
                     children: [
                       const Icon(Icons.location_on_outlined,
-                          color: AppColors.textSecondary, size: 14),
-                      const SizedBox(width: 4),
+                          color: AppColors.textSecondary, size: 12),
+                      const SizedBox(width: 2),
                       Expanded(
-                        child: Text(item['location'],
-                            style: const TextStyle(color: AppColors.textSecondary,
-                                fontSize: 12),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis),
+                        child: Text(
+                          item['location'],
+                          style: const TextStyle(
+                              color: AppColors.textSecondary, fontSize: 10),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                      const Icon(Icons.visibility_outlined,
-                          color: AppColors.textSecondary, size: 14),
-                      const SizedBox(width: 4),
-                      Text('${item['views'] ?? 0}',
-                          style: const TextStyle(
-                              color: AppColors.textSecondary, fontSize: 12)),
-                      const SizedBox(width: 10),
-                      const Icon(Icons.chat_bubble_outline,
-                          color: AppColors.textSecondary, size: 14),
-                      const SizedBox(width: 4),
-                      Text('${item['commentsCount'] ?? 0}',
-                          style: const TextStyle(
-                              color: AppColors.textSecondary, fontSize: 12)),
                     ],
                   ),
                 ],
