@@ -115,30 +115,68 @@ class _ListingsScreenState extends State<ListingsScreen> {
       );
     }
 
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        const AdBanner(),
-        const SizedBox(height: 16),
-        Expanded(
-          child: _items.isEmpty
-              ? const Center(
-                  child: Text('لا توجد إعلانات',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                )
-              : GridView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  itemCount: _items.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 0.75,
-                  ),
-                  itemBuilder: (context, i) => _listingCard(_items[i]),
-                ),
+    if (_items.isEmpty) {
+      return Column(
+        children: [
+          const SizedBox(height: 16),
+          const AdBanner(),
+          const SizedBox(height: 16),
+          const Expanded(
+            child: Center(
+              child: Text('لا توجد إعلانات',
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+            ),
+          ),
+        ],
+      );
+    }
+
+    final int chunkSize = 14;
+    final List<Widget> slivers = [
+      const SliverToBoxAdapter(
+        child: Padding(
+          padding: EdgeInsets.only(top: 16, bottom: 16),
+          child: AdBanner(),
         ),
-      ],
+      ),
+    ];
+
+    for (int i = 0; i < _items.length; i += chunkSize) {
+      final int end = (i + chunkSize < _items.length) ? i + chunkSize : _items.length;
+      final int count = end - i;
+
+      slivers.add(
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          sliver: SliverGrid(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.75,
+            ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => _listingCard(_items[i + index]),
+              childCount: count,
+            ),
+          ),
+        ),
+      );
+
+      if (end < _items.length) {
+        slivers.add(
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: AdBanner(),
+            ),
+          ),
+        );
+      }
+    }
+
+    return CustomScrollView(
+      slivers: slivers,
     );
   }
 
