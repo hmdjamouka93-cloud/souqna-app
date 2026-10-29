@@ -5,6 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
+import '../services/chat_service.dart';
+import 'chat_room_screen.dart';
 import '../services/report_service.dart';
 import '../services/favorites_service.dart';
 import '../services/views_service.dart';
@@ -403,13 +405,57 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
               ],
             ),
           ),
-          _smallBtn('تابع', () {}),
-          const SizedBox(width: 6),
-          _smallBtn('اتصال', () async {
-            final uri = Uri.parse('tel:+213000000000');
-            if (await canLaunchUrl(uri)) await launchUrl(uri);
-          }),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            alignment: WrapAlignment.end,
+            children: [
+              _smallBtn('دردشة', _openChat),
+              _smallBtn('اتصال', () async {
+                final phone = (widget.ad['phone'] ?? '').toString();
+                if (phone.isEmpty) return;
+                final uri = Uri.parse('tel:$phone');
+                if (await canLaunchUrl(uri)) await launchUrl(uri);
+              }),
+            ],
+          ),
         ],
+      ),
+    );
+  }
+
+  Future<void> _openChat() async {
+    if (AuthService.currentUser == null) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('يجب تسجيل الدخول للدردشة')));
+      return;
+    }
+    final otherUserId = (widget.ad['userId'] ?? '').toString();
+    if (otherUserId.isEmpty) return;
+    final otherName = ((widget.ad['storeName'] ?? '').toString().isNotEmpty) 
+        ? widget.ad['storeName'].toString() 
+        : 'مستخدم سوقنا';
+    final otherAvatar = '';
+
+    final chatId = await ChatService.getOrCreateChat(
+      otherUserId: otherUserId,
+      otherUserName: otherName,
+      otherUserAvatar: otherAvatar,
+    );
+
+    if (chatId == null) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('لا يمكنك بدء محادثة مع نفسك')));
+      return;
+    }
+    if (!mounted) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ChatRoomScreen(
+          chatId: chatId,
+          otherUserName: otherName,
+          otherUserAvatar: otherAvatar,
+        ),
       ),
     );
   }
