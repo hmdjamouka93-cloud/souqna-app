@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'rental_car_detail_screen.dart';
@@ -181,8 +182,8 @@ class CarRentalScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.network(c.image, height: 160, fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+            CachedNetworkImage(imageUrl: c.image, height: 160, fit: BoxFit.cover,
+              errorWidget: (_, __, ___) => Container(
                 height: 160, color: Colors.black26,
                 child: const Icon(Icons.directions_car,
                   color: Colors.white24, size: 50),

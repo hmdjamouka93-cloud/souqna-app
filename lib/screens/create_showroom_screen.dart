@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -178,7 +179,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
                     child: _newLogo != null
                         ? Image.file(_newLogo!, fit: BoxFit.cover)
                         : (_existingLogoUrl.isNotEmpty
-                            ? Image.network(_existingLogoUrl,
+                            ? CachedNetworkImage(imageUrl: _existingLogoUrl,
                                 fit: BoxFit.cover)
                             : const Icon(Icons.add_a_photo_outlined,
                                 color: AppColors.accent, size: 40)),

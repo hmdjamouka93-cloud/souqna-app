@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -303,7 +304,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
         child: _newCover != null
             ? Image.file(_newCover!, fit: BoxFit.cover)
             : (_existingCover.isNotEmpty
-                ? Image.network(_existingCover, fit: BoxFit.cover)
+                ? CachedNetworkImage(imageUrl: _existingCover, fit: BoxFit.cover)
                 : const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -338,7 +339,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           child: _newLogo != null
               ? Image.file(_newLogo!, fit: BoxFit.cover)
               : (_existingLogo.isNotEmpty
-                  ? Image.network(_existingLogo, fit: BoxFit.cover)
+                  ? CachedNetworkImage(imageUrl: _existingLogo, fit: BoxFit.cover)
                   : const Icon(Icons.storefront,
                       color: AppColors.accent, size: 40)),
         ),

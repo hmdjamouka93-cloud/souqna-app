@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
@@ -416,11 +417,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           PageView.builder(
             itemCount: _images.length,
             onPageChanged: (i) => setState(() => _currentImage = i),
-            itemBuilder: (_, i) => Image.network(
+            itemBuilder: (_, i) => CachedNetworkImage(imageUrl: 
               _images[i],
               fit: BoxFit.cover,
               width: double.infinity,
-              errorBuilder: (_, _, _) => Container(
+              errorWidget: (_, _, _) => Container(
                   color: Colors.black26,
                   child: const Icon(Icons.broken_image,
                       color: Colors.white24, size: 60)),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -217,9 +218,9 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 fit: StackFit.expand,
                 children: [
                   if (cover.isNotEmpty)
-                    Image.network(cover,
+                    CachedNetworkImage(imageUrl: cover,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) =>
+                        errorWidget: (_, _, _) =>
                             Container(color: Colors.black26))
                   else
                     Container(color: Colors.black26),
@@ -256,9 +257,9 @@ class _StoresListScreenState extends State<StoresListScreen> {
                       ),
                       clipBehavior: Clip.antiAlias,
                       child: logo.isNotEmpty
-                          ? Image.network(logo,
+                          ? CachedNetworkImage(imageUrl: logo,
                               fit: BoxFit.cover,
-                              errorBuilder: (_, _, _) => const Icon(
+                              errorWidget: (_, _, _) => const Icon(
                                   Icons.storefront,
                                   color: AppColors.accent))
                           : const Icon(Icons.storefront,

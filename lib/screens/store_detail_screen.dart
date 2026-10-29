@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -424,9 +425,9 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
               ],
               flexibleSpace: FlexibleSpaceBar(
                 background: cover.isNotEmpty
-                    ? Image.network(cover,
+                    ? CachedNetworkImage(imageUrl: cover,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) =>
+                        errorWidget: (_, _, _) =>
                             Container(color: AppColors.card))
                     : Container(color: AppColors.card),
               ),
@@ -452,9 +453,9 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: logo.isNotEmpty
-                              ? Image.network(logo,
+                              ? CachedNetworkImage(imageUrl: logo,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (_, _, _) => const Icon(
+                                  errorWidget: (_, _, _) => const Icon(
                                       Icons.storefront,
                                       color: AppColors.accent,
                                       size: 36))
@@ -690,9 +691,9 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               Expanded(
                                 child: img.isEmpty
                                     ? Container(color: AppColors.card)
-                                    : Image.network(img,
+                                    : CachedNetworkImage(imageUrl: img,
                                         fit: BoxFit.cover,
-                                        errorBuilder: (_, _, _) =>
+                                        errorWidget: (_, _, _) =>
                                             Container(color: AppColors.card)),
                               ),
                               Padding(

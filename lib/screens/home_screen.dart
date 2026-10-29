@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'my_orders_screen.dart';
 import 'chats_list_screen.dart';
@@ -743,14 +744,11 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.network(
+            CachedNetworkImage(imageUrl: 
               image,
               fit: BoxFit.cover,
-              loadingBuilder: (context, child, progress) {
-                if (progress == null) return child;
-                return Container(color: AppColors.card);
-              },
-              errorBuilder: (context, error, stack) => Container(
+              
+              errorWidget: (context, error, stack) => Container(
                 color: AppColors.card,
                 child: const Icon(
                   Icons.image_outlined,

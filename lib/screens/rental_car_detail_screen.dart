@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
@@ -139,9 +140,9 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           child: PageView.builder(
             itemCount: _gallery.length,
             onPageChanged: (i) => setState(() => _currentPage = i),
-            itemBuilder: (context, i) => Image.network(_gallery[i],
+            itemBuilder: (context, i) => CachedNetworkImage(imageUrl: _gallery[i],
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              errorWidget: (_, __, ___) => Container(
                 color: Colors.black26,
                 child: const Icon(Icons.directions_car,
                   color: Colors.white24, size: 60),

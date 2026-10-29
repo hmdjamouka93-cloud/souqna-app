@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -160,10 +161,10 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                                     ),
                                   )
                                 else
-                                  Image.network(
+                                  CachedNetworkImage(imageUrl: 
                                     _items[i]['image'] as String,
                                     fit: BoxFit.cover,
-                                    errorBuilder: (_, _, _) => Container(
+                                    errorWidget: (_, _, _) => Container(
                                       color: AppColors.card,
                                       child: const Icon(Icons.image_outlined,
                                           color: AppColors.iconInactive, size: 40),

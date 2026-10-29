@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -238,10 +239,10 @@ class _CarsScreenState extends State<CarsScreen> {
             fit: StackFit.expand,
             children: [
               if (image.isNotEmpty)
-                Image.network(
+                CachedNetworkImage(imageUrl: 
                   image,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) => Container(
+                  errorWidget: (_, _, _) => Container(
                     color: Colors.black26,
                     child: const Icon(Icons.image_outlined,
                         color: Colors.white24, size: 40),
@@ -354,10 +355,10 @@ class _CarsScreenState extends State<CarsScreen> {
                 child: image.isEmpty
                     ? const Icon(Icons.directions_car,
                         color: Colors.white24, size: 32)
-                    : Image.network(
+                    : CachedNetworkImage(imageUrl: 
                         image,
                         fit: BoxFit.contain,
-                        errorBuilder: (_, _, _) => const Icon(
+                        errorWidget: (_, _, _) => const Icon(
                             Icons.directions_car,
                             color: Colors.white24,
                             size: 32),

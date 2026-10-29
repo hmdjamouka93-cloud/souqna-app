@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -326,12 +327,12 @@ class _AddListingScreenState extends State<AddListingScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   clipBehavior: Clip.antiAlias,
-                  child: Image.network(
+                  child: CachedNetworkImage(imageUrl: 
                     _existingImageUrls[i],
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, _, _) => Container(
+                    errorWidget: (_, _, _) => Container(
                       color: Colors.black26,
                       child: const Icon(Icons.broken_image,
                           color: Colors.white24, size: 30),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -158,10 +159,10 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
               : Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(
+                    CachedNetworkImage(imageUrl: 
                       imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Center(
+                      errorWidget: (_, _, _) => Center(
                         child: Padding(
                           padding: const EdgeInsets.all(8),
                           child: Text(

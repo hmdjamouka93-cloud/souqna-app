@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -208,9 +209,9 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
               ),
               clipBehavior: Clip.antiAlias,
               child: logo.isNotEmpty
-                  ? Image.network(logo,
+                  ? CachedNetworkImage(imageUrl: logo,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => const Icon(
+                      errorWidget: (_, _, _) => const Icon(
                           Icons.storefront,
                           color: AppColors.accent,
                           size: 30))

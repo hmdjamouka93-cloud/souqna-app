@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -387,8 +388,8 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               ],
               flexibleSpace: FlexibleSpaceBar(
                 background: cover.isNotEmpty
-                    ? Image.network(cover, fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => Container(color: AppColors.card))
+                    ? CachedNetworkImage(imageUrl: cover, fit: BoxFit.cover,
+                        errorWidget: (_, _, _) => Container(color: AppColors.card))
                     : Container(color: AppColors.card),
               ),
             ),
@@ -410,7 +411,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                           ),
                           clipBehavior: Clip.antiAlias,
                           child: avatar.isNotEmpty
-                              ? Image.network(avatar, fit: BoxFit.cover)
+                              ? CachedNetworkImage(imageUrl: avatar, fit: BoxFit.cover)
                               : const Icon(Icons.person, color: AppColors.accent, size: 40),
                         ),
                         const SizedBox(width: 14),
@@ -542,10 +543,10 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Expanded(
-                              child: Image.network(
+                              child: CachedNetworkImage(imageUrl: 
                                 (s['image'] ?? '').toString(),
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, _, _) =>
+                                errorWidget: (_, _, _) =>
                                     Container(color: AppColors.card),
                               ),
                             ),

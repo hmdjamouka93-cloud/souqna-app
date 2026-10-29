@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -260,10 +261,10 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             onPageChanged: (i) => setState(() => _currentPage = i),
             itemBuilder: (context, i) => Container(
               color: Colors.black,
-              child: Image.network(
+              child: CachedNetworkImage(imageUrl: 
                 _images[i],
                 fit: BoxFit.contain,
-                errorBuilder: (_, _, _) => Container(
+                errorWidget: (_, _, _) => Container(
                   color: Colors.black26,
                   child: const Icon(Icons.directions_car,
                       color: Colors.white24, size: 60),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -252,10 +253,10 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.network(
+                CachedNetworkImage(imageUrl: 
                   imageUrl,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) => Container(
+                  errorWidget: (_, _, _) => Container(
                     color: AppColors.card,
                     child: Center(
                       child: Padding(

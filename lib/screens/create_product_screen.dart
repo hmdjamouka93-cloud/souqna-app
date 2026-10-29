@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -295,11 +296,11 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   clipBehavior: Clip.antiAlias,
-                  child: Image.network(_existingImages[i],
+                  child: CachedNetworkImage(imageUrl: _existingImages[i],
                       width: 100,
                       height: 100,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Container(
+                      errorWidget: (_, _, _) => Container(
                           color: Colors.black26,
                           child: const Icon(Icons.broken_image,
                               color: Colors.white24))),

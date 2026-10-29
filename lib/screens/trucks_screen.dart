@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
@@ -186,20 +187,11 @@ class TrucksScreen extends StatelessWidget {
     if (brand.asset.isNotEmpty) {
       return Image.asset(brand.asset, fit: BoxFit.contain);
     }
-    return Image.network(
+    return CachedNetworkImage(imageUrl: 
       'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
       fit: BoxFit.contain,
-      loadingBuilder: (context, child, progress) {
-        if (progress == null) return child;
-        return const SizedBox(
-          width: 28, height: 28,
-          child: Center(
-            child: CircularProgressIndicator(
-              color: AppColors.accent, strokeWidth: 2),
-          ),
-        );
-      },
-      errorBuilder: (_, __, ___) => const Icon(
+      
+      errorWidget: (_, __, ___) => const Icon(
         Icons.local_shipping, color: Colors.white24, size: 32),
     );
   }

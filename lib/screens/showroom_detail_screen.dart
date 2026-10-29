@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
@@ -139,9 +140,9 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                         ),
                         clipBehavior: Clip.antiAlias,
                         child: logo.isNotEmpty
-                            ? Image.network(logo,
+                            ? CachedNetworkImage(imageUrl: logo,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, _, _) => const Icon(
+                                errorWidget: (_, _, _) => const Icon(
                                     Icons.storefront,
                                     color: AppColors.accent,
                                     size: 36))
@@ -297,9 +298,9 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                     )
                   : Container(
                       color: Colors.black26,
-                      child: Image.network(img,
+                      child: CachedNetworkImage(imageUrl: img,
                           fit: BoxFit.contain,
-                          errorBuilder: (_, _, _) => const Center(
+                          errorWidget: (_, _, _) => const Center(
                                 child: Icon(Icons.directions_car,
                                     color: Colors.white24, size: 60),
                               )),

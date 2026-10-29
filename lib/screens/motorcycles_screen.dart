@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
@@ -227,10 +228,10 @@ class MotorcyclesScreen extends StatelessWidget {
                 child: Center(
                   child: brand.asset.isNotEmpty
                       ? Image.asset(brand.asset, fit: BoxFit.contain)
-                      : Image.network(
+                      : CachedNetworkImage(imageUrl: 
                           'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
                           fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => const Icon(
+                          errorWidget: (_, __, ___) => const Icon(
                             Icons.two_wheeler, color: Colors.white24, size: 32),
                         ),
                 ),

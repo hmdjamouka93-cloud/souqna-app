@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'request_service_screen.dart';
@@ -42,11 +43,11 @@ class ServiceDetailScreen extends StatelessWidget {
             children: [
               // الصورة
               if (image.isNotEmpty)
-                Image.network(
+                CachedNetworkImage(imageUrl: 
                   image,
                   height: 300,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) => Container(
+                  errorWidget: (_, _, _) => Container(
                     height: 300,
                     color: AppColors.card,
                     child: const Icon(Icons.broken_image, color: Colors.white54, size: 60),

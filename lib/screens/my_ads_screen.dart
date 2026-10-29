@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -169,10 +170,10 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                       child: const Icon(Icons.directions_car,
                           color: Colors.white24, size: 60),
                     )
-                  : Image.network(
+                  : CachedNetworkImage(imageUrl: 
                       img,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Container(
+                      errorWidget: (_, _, _) => Container(
                         color: Colors.black26,
                         child: const Icon(Icons.directions_car,
                             color: Colors.white24, size: 60),

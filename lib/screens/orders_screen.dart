@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../services/order_service.dart';
@@ -118,11 +119,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         color: AppColors.background,
                         child: const Icon(Icons.image_not_supported,
                             color: AppColors.iconInactive))
-                    : Image.network(img,
+                    : CachedNetworkImage(imageUrl: img,
                         width: 60,
                         height: 60,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => Container(
+                        errorWidget: (_, _, _) => Container(
                             width: 60,
                             height: 60,
                             color: AppColors.background)),
