@@ -5,7 +5,8 @@ import 'provider_detail_screen.dart';
 
 class ProvidersListScreen extends StatefulWidget {
   final String tradeName;
-  const ProvidersListScreen({super.key, required this.tradeName});
+  final String parentCategory;
+  const ProvidersListScreen({super.key, required this.tradeName, this.parentCategory = ''});
 
   @override
   State<ProvidersListScreen> createState() => _ProvidersListScreenState();
@@ -23,26 +24,77 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
 
   Future<void> _load() async {
     try {
-      Query<Map<String, dynamic>> query = FirebaseFirestore.instance.collection('service_providers');
-      if (widget.tradeName != 'جميع الإعلانات') {
-        query = query.where('trade', isEqualTo: widget.tradeName);
-      }
-      final snap = await query.get();
+      List<Map<String, dynamic>> list = [];
 
-      final list = snap.docs.map((d) {
-        final x = d.data();
-        return {
-          'id': d.id,
-          'userId': (x['userId'] ?? '').toString(),
-          'name': (x['name'] ?? '').toString(),
-          'trade': (x['trade'] ?? '').toString(),
-          'wilaya': (x['wilaya'] ?? '').toString(),
-          'daira': (x['daira'] ?? '').toString(),
-          'avatar': (x['avatar'] ?? '').toString(),
-          'cover': (x['cover'] ?? '').toString(),
-          'rating': x['rating'] ?? 0.0,
-        };
-      }).toList();
+      if (widget.tradeName == 'جميع الإعلانات') {
+        if (widget.parentCategory.isNotEmpty) {
+          // نجيبو الأقسام الفرعية متع القسم الأب
+          final subSnap = await FirebaseFirestore.instance
+              .collection('SubCategories')
+              .where('categoryId', isEqualTo: widget.parentCategory)
+              .get();
+          
+          final validTrades = subSnap.docs.map((e) => (e.data()['name'] ?? '').toString().trim()).toList();
+
+          // نجيبو كل مقدمي الخدمات ونفلتروهم
+          final snap = await FirebaseFirestore.instance.collection('service_providers').get();
+          list = snap.docs.where((d) {
+            final trade = (d.data()['trade'] ?? '').toString().trim();
+            return validTrades.contains(trade);
+          }).map((d) {
+            final x = d.data();
+            return {
+              'id': d.id,
+              'userId': (x['userId'] ?? '').toString(),
+              'name': (x['name'] ?? '').toString(),
+              'trade': (x['trade'] ?? '').toString(),
+              'wilaya': (x['wilaya'] ?? '').toString(),
+              'daira': (x['daira'] ?? '').toString(),
+              'avatar': (x['avatar'] ?? '').toString(),
+              'cover': (x['cover'] ?? '').toString(),
+              'rating': x['rating'] ?? 0.0,
+            };
+          }).toList();
+        } else {
+          // إذا ماكانش parentCategory، نجيبو الكل (حالة احتياطية)
+          final snap = await FirebaseFirestore.instance.collection('service_providers').get();
+          list = snap.docs.map((d) {
+            final x = d.data();
+            return {
+              'id': d.id,
+              'userId': (x['userId'] ?? '').toString(),
+              'name': (x['name'] ?? '').toString(),
+              'trade': (x['trade'] ?? '').toString(),
+              'wilaya': (x['wilaya'] ?? '').toString(),
+              'daira': (x['daira'] ?? '').toString(),
+              'avatar': (x['avatar'] ?? '').toString(),
+              'cover': (x['cover'] ?? '').toString(),
+              'rating': x['rating'] ?? 0.0,
+            };
+          }).toList();
+        }
+      } else {
+        // قسم فرعي محدد (كيما سباكة)
+        final snap = await FirebaseFirestore.instance
+            .collection('service_providers')
+            .where('trade', isEqualTo: widget.tradeName)
+            .get();
+        
+        list = snap.docs.map((d) {
+          final x = d.data();
+          return {
+            'id': d.id,
+            'userId': (x['userId'] ?? '').toString(),
+            'name': (x['name'] ?? '').toString(),
+            'trade': (x['trade'] ?? '').toString(),
+            'wilaya': (x['wilaya'] ?? '').toString(),
+            'daira': (x['daira'] ?? '').toString(),
+            'avatar': (x['avatar'] ?? '').toString(),
+            'cover': (x['cover'] ?? '').toString(),
+            'rating': x['rating'] ?? 0.0,
+          };
+        }).toList();
+      }
 
       if (!mounted) return;
       setState(() {

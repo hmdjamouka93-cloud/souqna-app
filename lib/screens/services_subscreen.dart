@@ -134,6 +134,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                                 MaterialPageRoute(
                                   builder: (_) => ProvidersListScreen(
                                     tradeName: name,
+                                    parentCategory: widget.categoryName,
                                   ),
                                 ),
                               );
