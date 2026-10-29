@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'car_detail_screen.dart';
+import 'store_detail_screen.dart';
 import 'product_detail_screen.dart';
 
 class AdminReportsScreen extends StatefulWidget {
@@ -70,7 +71,17 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
         return;
       }
 
-      // 2. إذا مالقيش، نقلبو في منتجات المتاجر
+      // 2. نقلبو في المتاجر (إذا كان التبليغ على متجر)
+      final docStore = await FirebaseFirestore.instance.collection('stores').doc(itemId).get();
+      if (docStore.exists) {
+        final storeData = {'id': docStore.id, ...(docStore.data() as Map<String, dynamic>)};
+        if (!mounted) return;
+        setState(() => _loading = false);
+        Navigator.push(context, MaterialPageRoute(builder: (_) => StoreDetailScreen(store: storeData)));
+        return;
+      }
+
+      // 3. إذا مالقيش، نقلبو في منتجات المتاجر
       final docProduct = await FirebaseFirestore.instance.collection('store_products').doc(itemId).get();
       if (docProduct.exists) {
         final pData = docProduct.data() as Map<String, dynamic>;

@@ -6,6 +6,8 @@ import '../widgets/ad_banner.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
 import '../services/store_service.dart';
+import '../services/report_service.dart';
+import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
 import '../services/rating_service.dart';
 import '../services/order_service.dart';
@@ -315,12 +317,52 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                   PopupMenuButton<String>(
                     icon: const Icon(Icons.more_vert, color: Colors.white),
                     color: AppColors.card,
-                    onSelected: (v) {
+                    onSelected: (v) async {
                       if (v == 'report') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('تم إرسال الإبلاغ، شكراً لك')),
+                        if (AuthService.currentUser == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('يجب تسجيل الدخول للتبليغ')));
+                          return;
+                        }
+                        final reasonCtrl = TextEditingController();
+                        final ok = await showDialog<bool>(
+                          context: context,
+                          builder: (ctx) => Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: AlertDialog(
+                              backgroundColor: AppColors.card,
+                              title: const Text('الإبلاغ عن المتجر', style: TextStyle(color: Colors.white)),
+                              content: TextField(
+                                controller: reasonCtrl,
+                                maxLines: 3,
+                                style: const TextStyle(color: Colors.white),
+                                decoration: const InputDecoration(
+                                  hintText: 'اكتب سبب الإبلاغ هنا...',
+                                  hintStyle: TextStyle(color: AppColors.textSecondary),
+                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
+                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accent)),
+                                ),
+                              ),
+                              actions: [
+                                TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                                  onPressed: () => Navigator.pop(ctx, true),
+                                  child: const Text('إبلاغ', style: TextStyle(color: Colors.white)),
+                                ),
+                              ],
+                            ),
+                          ),
                         );
+                        if (ok == true && reasonCtrl.text.trim().isNotEmpty) {
+                          final done = await ReportService.submitReport(
+                            productId: (widget.store['id'] ?? '').toString(),
+                            reason: reasonCtrl.text.trim(),
+                          );
+                          if (!mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(done ? 'تم إرسال الإبلاغ، شكراً لك' : 'حدث خطأ، حاول مرة أخرى'),
+                          ));
+                        }
                       } else if (v == 'block') {
                         showDialog(
                           context: context,
