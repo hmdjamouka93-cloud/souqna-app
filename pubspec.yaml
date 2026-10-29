@@ -27,6 +27,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^6.0.0
 
 flutter:
@@ -133,3 +134,9 @@ flutter:
     - images/logos/maxus.png
     - images/logos/jac.png
     - images/logos/jetour.png
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 21
