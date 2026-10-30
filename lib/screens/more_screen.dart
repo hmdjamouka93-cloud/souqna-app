@@ -9,6 +9,7 @@ import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'about_screen.dart';
 import 'my_ads_screen.dart';
+import 'my_blocked_users_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -183,19 +184,54 @@ class MoreScreen extends StatelessWidget {
         );
       }),
       _GridItem('المحظورين', Icons.block, const Color(0xFFC62828), () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('المحظورين - قريباً')),
+        if (!logged) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginScreen()),
+          );
+          return;
+        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const MyBlockedUsersScreen()),
         );
       }),
       _GridItem('اللغة', Icons.language, const Color(0xFF7B1FA2), () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('اللغة - قريباً')),
+        showDialog(
+          context: context,
+          builder: (ctx) => Directionality(
+            textDirection: TextDirection.rtl,
+            child: AlertDialog(
+              backgroundColor: AppColors.card,
+              title: const Text('اللغة', style: TextStyle(color: Colors.white)),
+              content: const Text('اللغة العربية هي اللغة الافتراضية حالياً.\nسيتم إضافة لغات أخرى قريباً.', style: TextStyle(color: AppColors.textSecondary)),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('حسناً', style: TextStyle(color: AppColors.accent)),
+                ),
+              ],
+            ),
+          ),
         );
       }),
-      _GridItem('الوضع', Icons.brightness_6_outlined, const Color(0xFF1976D2),
-          () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تغيير الوضع - قريباً')),
+      _GridItem('الوضع', Icons.brightness_6_outlined, const Color(0xFF1976D2), () {
+        showDialog(
+          context: context,
+          builder: (ctx) => Directionality(
+            textDirection: TextDirection.rtl,
+            child: AlertDialog(
+              backgroundColor: AppColors.card,
+              title: const Text('الوضع', style: TextStyle(color: Colors.white)),
+              content: const Text('التطبيق يعمل حالياً بالوضع الداكن (Dark Mode).\nسيتم إضافة الوضع الفاتح قريباً.', style: TextStyle(color: AppColors.textSecondary)),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('حسناً', style: TextStyle(color: AppColors.accent)),
+                ),
+              ],
+            ),
+          ),
         );
       }),
     ];
