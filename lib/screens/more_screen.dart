@@ -25,18 +25,18 @@ class MoreScreen extends StatelessWidget {
           backgroundColor: AppColors.background,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'المزيد',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
-          actions: const [
+          actions:  [
             Padding(
               padding: EdgeInsets.only(left: 8),
-              child: Icon(Icons.notifications_none, color: Colors.white, size: 24),
+              child: Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 24),
             ),
           ],
         ),
@@ -106,10 +106,10 @@ class MoreScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundColor: Colors.white.withValues(alpha: 0.18),
+                backgroundColor: AppColors.textPrimary.withValues(alpha: 0.18),
                 child: Icon(
                   logged ? Icons.person : Icons.login,
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   size: 30,
                 ),
               ),
@@ -120,8 +120,8 @@ class MoreScreen extends StatelessWidget {
                   children: [
                     Text(
                       logged ? 'حسابي' : 'تسجيل الدخول',
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style:  TextStyle(
+                        color: AppColors.textPrimary,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -132,7 +132,7 @@ class MoreScreen extends StatelessWidget {
                           ? (user?.email ?? '')
                           : 'سجل للاستفادة من كل الميزات',
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.85),
+                        color: AppColors.textPrimary.withValues(alpha: 0.85),
                         fontSize: 13,
                       ),
                       maxLines: 1,
@@ -141,8 +141,8 @@ class MoreScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.arrow_back_ios_new,
-                  color: Colors.white, size: 16),
+               Icon(Icons.arrow_back_ios_new,
+                  color: AppColors.textPrimary, size: 16),
             ],
           ),
         ),
@@ -204,7 +204,7 @@ class MoreScreen extends StatelessWidget {
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               backgroundColor: AppColors.card,
-              title: const Text('اللغة', style: TextStyle(color: Colors.white)),
+              title: Text('اللغة', style: TextStyle(color: AppColors.textPrimary)),
               content:  Text('اللغة العربية هي اللغة الافتراضية حالياً.\nسيتم إضافة لغات أخرى قريباً.', style: TextStyle(color: AppColors.textSecondary)),
               actions: [
                 TextButton(
@@ -296,8 +296,8 @@ class MoreScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     item.label,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style:  TextStyle(
+                      color: AppColors.textPrimary,
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                     ),
@@ -348,7 +348,7 @@ class MoreScreen extends StatelessWidget {
                 leading: Icon(item.icon, color: AppColors.accent, size: 22),
                 title: Text(
                   item.label,
-                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                  style: TextStyle(color: AppColors.textPrimary, fontSize: 14),
                 ),
                 trailing:  Icon(Icons.arrow_back_ios_new,
                     color: AppColors.iconInactive, size: 14),
@@ -473,10 +473,10 @@ class MoreScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                title: const Text(
+                title:  Text(
                   'تسجيل الخروج',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -497,9 +497,9 @@ class MoreScreen extends StatelessWidget {
                       backgroundColor: Colors.redAccent,
                     ),
                     onPressed: () => Navigator.pop(ctx, true),
-                    child: const Text(
+                    child:  Text(
                       'خروج',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: AppColors.textPrimary),
                     ),
                   ),
                 ],
