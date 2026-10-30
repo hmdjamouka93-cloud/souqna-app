@@ -6,7 +6,6 @@ import '../widgets/ad_banner.dart';
 import 'add_listing_screen.dart';
 import 'listings_screen.dart';
 import 'create_car_listing_screen.dart';
-import 'add_listing_screen.dart';
 
 class BrandChooserScreen extends StatefulWidget {
   final String categoryId;

@@ -205,7 +205,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
+          hintStyle:  TextStyle(color: AppColors.textSecondary),
           border: InputBorder.none,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -484,13 +484,13 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(Icons.location_on_outlined,
+                       Icon(Icons.location_on_outlined,
                           color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 2),
                       Expanded(
                         child: Text(
                           item['location'],
-                          style: const TextStyle(
+                          style:  TextStyle(
                               color: AppColors.textSecondary, fontSize: 10),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

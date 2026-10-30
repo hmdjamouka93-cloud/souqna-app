@@ -91,7 +91,7 @@ class HeavyEquipmentScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -189,7 +189,7 @@ class HeavyEquipmentScreen extends StatelessWidget {
             Image.asset(
               item.image,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 color: AppColors.card,
                 child: const Icon(Icons.construction,
                   color: Colors.white24, size: 40),

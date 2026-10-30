@@ -11,11 +11,6 @@ import 'rentals_list_screen.dart';
 import 'create_store_screen.dart';
 import 'create_product_screen.dart';
 import '../services/store_service.dart';
-import '../services/service_provider_service.dart';
-import '../services/auth_service.dart';
-import '../services/auth_gate.dart';
-import 'create_provider_screen.dart';
-import 'create_service_screen.dart';
 
 class CategoryChooserScreen extends StatefulWidget {
   final String mainCategoryId;
@@ -152,7 +147,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(ctx),
-                  child: const Text('إلغاء',
+                  child:  Text('إلغاء',
                       style: TextStyle(color: AppColors.textSecondary)),
                 ),
                 ElevatedButton(

@@ -92,7 +92,7 @@ class _AppDrawerState extends State<AppDrawer> {
           controller: _searchCtrl,
           onChanged: (v) => setState(() => _searchQuery = v),
           style: const TextStyle(color: Colors.white),
-          decoration: InputDecoration(hintText: 'بحث في الأقسام', hintStyle: const TextStyle(color: AppColors.textSecondary), prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary), filled: true, fillColor: AppColors.card, border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none), contentPadding: const EdgeInsets.symmetric(vertical: 12)),
+          decoration: InputDecoration(hintText: 'بحث في الأقسام', hintStyle:  TextStyle(color: AppColors.textSecondary), prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary), filled: true, fillColor: AppColors.card, border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none), contentPadding: const EdgeInsets.symmetric(vertical: 12)),
         )),
         StreamBuilder<User?>(
           stream: AuthService.authStateChanges,
@@ -102,7 +102,7 @@ class _AppDrawerState extends State<AppDrawer> {
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               leading: Icon(logged ? Icons.person_outline : Icons.login_outlined, color: AppColors.accent, size: 22),
               title: Text(logged ? 'حسابي' : 'تسجيل الدخول', style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.right),
-              trailing: const Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
+              trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
               onTap: () {
                 Navigator.pop(context);
                 if (logged) { Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen())); }
@@ -123,14 +123,14 @@ class _AppDrawerState extends State<AppDrawer> {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       itemCount: filteredItems.length,
-      separatorBuilder: (_, __) => const Divider(color: Colors.white12, height: 1, indent: 16, endIndent: 16),
+      separatorBuilder: (_, _) => const Divider(color: Colors.white12, height: 1, indent: 16, endIndent: 16),
       itemBuilder: (context, i) {
         final item = filteredItems[i];
         return ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           leading: Icon(item.icon, color: AppColors.accent, size: 22),
           title: Text(item.name, style: const TextStyle(color: Colors.white, fontSize: 15), textAlign: TextAlign.right),
-          trailing: const Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
+          trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
           onTap: () { Navigator.pop(context); widget.onCategoryTap(item.name); },
         );
       },

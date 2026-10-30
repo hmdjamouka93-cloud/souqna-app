@@ -150,12 +150,12 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           title: const Text('حذف الإعلان',
               style: TextStyle(
                   color: Colors.white, fontWeight: FontWeight.bold)),
-          content: const Text('هل أنت متأكد من حذف هذا الإعلان نهائياً؟',
+          content:  Text('هل أنت متأكد من حذف هذا الإعلان نهائياً؟',
               style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء',
+              child:  Text('إلغاء',
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
@@ -310,11 +310,11 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           if (_location.isNotEmpty)
             Row(
               children: [
-                const Icon(Icons.location_on_outlined,
+                 Icon(Icons.location_on_outlined,
                     color: AppColors.textSecondary, size: 14),
                 const SizedBox(width: 4),
                 Text(_location,
-                    style: const TextStyle(color: AppColors.textSecondary,
+                    style:  TextStyle(color: AppColors.textSecondary,
                         fontSize: 12)),
               ],
             ),
@@ -334,18 +334,18 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
               final comments = (data?['commentsCount'] ?? 0) as int;
               return Row(
                 children: [
-                  const Icon(Icons.visibility_outlined,
+                   Icon(Icons.visibility_outlined,
                       color: AppColors.textSecondary, size: 14),
                   const SizedBox(width: 4),
                   Text('$views مشاهدة',
-                      style: const TextStyle(
+                      style:  TextStyle(
                           color: AppColors.textSecondary, fontSize: 12)),
                   const SizedBox(width: 14),
-                  const Icon(Icons.chat_bubble_outline,
+                   Icon(Icons.chat_bubble_outline,
                       color: AppColors.textSecondary, size: 14),
                   const SizedBox(width: 4),
                   Text('$comments تعليق',
-                      style: const TextStyle(
+                      style:  TextStyle(
                           color: AppColors.textSecondary, fontSize: 12)),
                 ],
               );
@@ -394,7 +394,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                                 (widget.ad['storeName'] ?? '').toString().isNotEmpty)
                             ? widget.ad['storeName'].toString()
                             : 'مستخدم سوقنا',
-                        style: const TextStyle(
+                        style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 11),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -545,7 +545,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                               color: AppColors.accent, size: 18),
                           const SizedBox(width: 8),
                           Text(e.key,
-                              style: const TextStyle(
+                              style:  TextStyle(
                                   color: AppColors.textSecondary,
                                   fontSize: 14)),
                         ],
@@ -654,7 +654,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                     controller: reasonCtrl,
                     maxLines: 3,
                     style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       hintText: 'اكتب سبب الإبلاغ هنا...',
                       hintStyle: TextStyle(color: AppColors.textSecondary),
                       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
@@ -662,7 +662,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                     ),
                   ),
                   actions: [
-                    TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                    TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                       onPressed: () => Navigator.pop(ctx, true),
@@ -725,7 +725,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

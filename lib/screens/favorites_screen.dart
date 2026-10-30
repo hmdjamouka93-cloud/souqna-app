@@ -73,7 +73,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       );
     }
     if (_items.isEmpty) {
-      return const Center(
+      return  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -161,25 +161,25 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.location_on_outlined,
+                       Icon(Icons.location_on_outlined,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
                           item['location'],
-                          style: const TextStyle(
+                          style:  TextStyle(
                               color: AppColors.textSecondary,
                               fontSize: 12),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const Icon(Icons.chat_bubble_outline,
+                       Icon(Icons.chat_bubble_outline,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Text(
                         '${item['commentsCount'] ?? 0}',
-                        style: const TextStyle(
+                        style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 12),
                       ),
                     ],

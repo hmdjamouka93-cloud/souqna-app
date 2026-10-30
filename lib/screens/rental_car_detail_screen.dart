@@ -142,7 +142,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
             onPageChanged: (i) => setState(() => _currentPage = i),
             itemBuilder: (context, i) => CachedNetworkImage(imageUrl: _gallery[i],
               fit: BoxFit.cover,
-              errorWidget: (_, __, ___) => Container(
+              errorWidget: (_, _, _) => Container(
                 color: Colors.black26,
                 child: const Icon(Icons.directions_car,
                   color: Colors.white24, size: 60),
@@ -181,11 +181,11 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           const SizedBox(height: 6),
           Row(
             children: [
-              const Icon(Icons.location_on_outlined,
+               Icon(Icons.location_on_outlined,
                 color: AppColors.textSecondary, size: 14),
               const SizedBox(width: 4),
               Text(_data['city'],
-                style: const TextStyle(color: AppColors.textSecondary,
+                style:  TextStyle(color: AppColors.textSecondary,
                   fontSize: 12)),
             ],
           ),
@@ -234,7 +234,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
         child: Column(
           children: [
             Text(label,
-              style: const TextStyle(color: AppColors.textSecondary,
+              style:  TextStyle(color: AppColors.textSecondary,
                 fontSize: 11)),
             const SizedBox(height: 4),
             Text(price,
@@ -378,7 +378,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

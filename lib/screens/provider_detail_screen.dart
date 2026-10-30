@@ -105,7 +105,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               }),
             ),
             actions: [
-              TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+              TextButton(onPressed: () => Navigator.pop(ctx), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
                 onPressed: () => Navigator.pop(ctx, temp),
@@ -197,7 +197,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                 const SizedBox(width: 4),
                 Text(_avgRating.toStringAsFixed(1), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
                 if (_ratingCount > 0)
-                  Text(' ($_ratingCount)', style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                  Text(' ($_ratingCount)', style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
               ],
             ),
           ),
@@ -270,7 +270,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary)),
+              child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
@@ -427,9 +427,9 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                   padding: const EdgeInsets.only(top: 4),
                                   child: Row(
                                     children: [
-                                      const Icon(Icons.location_on, color: AppColors.textSecondary, size: 14),
+                                       Icon(Icons.location_on, color: AppColors.textSecondary, size: 14),
                                       const SizedBox(width: 4),
-                                      Text('$wilaya - $daira', style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                                      Text('$wilaya - $daira', style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                                     ],
                                   ),
                                 ),

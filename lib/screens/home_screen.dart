@@ -126,7 +126,7 @@ class HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -156,7 +156,7 @@ class HomeScreenState extends State<HomeScreen> {
             color: AppColors.card,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Row(
+          child:  Row(
             children: [
               SizedBox(width: 14),
               Icon(Icons.search, color: AppColors.textSecondary),

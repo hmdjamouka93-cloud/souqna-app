@@ -8,7 +8,6 @@ import '../services/auth_service.dart';
 import 'create_store_screen.dart';
 import '../services/store_service.dart';
 import '../services/report_service.dart';
-import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
 import '../services/rating_service.dart';
 import '../services/order_service.dart';
@@ -100,7 +99,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx),
-                child: const Text('إلغاء',
+                child:  Text('إلغاء',
                     style: TextStyle(color: AppColors.textSecondary)),
               ),
               ElevatedButton(
@@ -180,7 +179,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء',
+              child:  Text('إلغاء',
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
@@ -336,7 +335,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 controller: reasonCtrl,
                                 maxLines: 3,
                                 style: const TextStyle(color: Colors.white),
-                                decoration: const InputDecoration(
+                                decoration:  InputDecoration(
                                   hintText: 'اكتب سبب الإبلاغ هنا...',
                                   hintStyle: TextStyle(color: AppColors.textSecondary),
                                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
@@ -344,7 +343,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 ),
                               ),
                               actions: [
-                                TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                                TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                                   onPressed: () => Navigator.pop(ctx, true),
@@ -379,7 +378,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(ctx),
-                                  child: const Text('إلغاء',
+                                  child:  Text('إلغاء',
                                       style: TextStyle(
                                           color: AppColors.textSecondary)),
                                 ),
@@ -483,7 +482,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               if (bio.isNotEmpty) ...[
                                 const SizedBox(height: 6),
                                 Text(bio,
-                                    style: const TextStyle(
+                                    style:  TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 13)),
                               ],
@@ -491,7 +490,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               if (wilaya.isNotEmpty)
                                 Row(
                                   children: [
-                                    const Icon(Icons.location_on_outlined,
+                                     Icon(Icons.location_on_outlined,
                                         color: AppColors.textSecondary,
                                         size: 14),
                                     const SizedBox(width: 4),
@@ -500,7 +499,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                         daira.isEmpty
                                             ? wilaya
                                             : '$wilaya - $daira',
-                                        style: const TextStyle(
+                                        style:  TextStyle(
                                             color: AppColors.textSecondary,
                                             fontSize: 12),
                                         maxLines: 1,
@@ -533,7 +532,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 2),
-                                const Text('منتج',
+                                 Text('منتج',
                                     style: TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 11)),
@@ -562,7 +561,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                               fontWeight: FontWeight.bold)),
                                       if (_ratingCount > 0)
                                         Text(' ($_ratingCount)',
-                                            style: const TextStyle(
+                                            style:  TextStyle(
                                                 color: AppColors.textSecondary,
                                                 fontSize: 11)),
                                     ],
@@ -570,7 +569,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                   const SizedBox(height: 2),
                                   Text(
                                       _myRating > 0 ? 'تقييمك: $_myRating' : 'التقييم',
-                                      style: const TextStyle(
+                                      style:  TextStyle(
                                           color: AppColors.textSecondary,
                                           fontSize: 11)),
                                 ],
@@ -626,7 +625,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                 ),
               )
             else if (_products.isEmpty)
-              const SliverToBoxAdapter(
+               SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.all(40),
                   child: Center(
@@ -737,7 +736,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                   title: const Text('حذف المنتج', style: TextStyle(color: Colors.white)),
                                   content: const Text('هل أنت متأكد من حذف هذا المنتج؟', style: TextStyle(color: Colors.white70)),
                                   actions: [
-                                    TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                                    TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
                                     ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.red), onPressed: () => Navigator.pop(ctx, true), child: const Text('حذف', style: TextStyle(color: Colors.white))),
                                   ],
                                 ),

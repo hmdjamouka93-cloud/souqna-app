@@ -70,12 +70,12 @@ class _CommentsSectionState extends State<CommentsSection> {
           backgroundColor: AppColors.card,
           title: const Text('حذف التعليق',
               style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          content: const Text('هل أنت متأكد؟',
+          content:  Text('هل أنت متأكد؟',
               style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء',
+              child:  Text('إلغاء',
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
@@ -117,7 +117,7 @@ class _CommentsSectionState extends State<CommentsSection> {
             controller: ctrl,
             maxLines: 3,
             style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               hintText: 'اكتب التعديل...',
               hintStyle: TextStyle(color: AppColors.textSecondary),
             ),
@@ -125,7 +125,7 @@ class _CommentsSectionState extends State<CommentsSection> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('إلغاء',
+              child:  Text('إلغاء',
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
@@ -185,7 +185,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                   controller: _controller,
                   style: const TextStyle(color: Colors.white),
                   maxLines: 3,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     hintText: 'اكتب تعليقك',
                     hintStyle: TextStyle(color: AppColors.textSecondary),
                     border: InputBorder.none,
@@ -234,7 +234,7 @@ class _CommentsSectionState extends State<CommentsSection> {
               }
               final docs = snapshot.data?.docs ?? [];
               if (docs.isEmpty) {
-                return const Padding(
+                return  Padding(
                   padding: EdgeInsets.all(16),
                   child: Center(
                     child: Text('لا توجد تعليقات',
@@ -300,13 +300,13 @@ class _CommentsSectionState extends State<CommentsSection> {
                       fontWeight: FontWeight.bold)),
               const Spacer(),
               Text(time,
-                  style: const TextStyle(
+                  style:  TextStyle(
                       color: AppColors.textSecondary, fontSize: 11)),
               if (isOwner) ...[
                 const SizedBox(width: 4),
                 GestureDetector(
                   onTap: () => _editComment(commentId, text),
-                  child: const Icon(Icons.edit_outlined,
+                  child:  Icon(Icons.edit_outlined,
                       color: AppColors.textSecondary, size: 16),
                 ),
                 const SizedBox(width: 6),

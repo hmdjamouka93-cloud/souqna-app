@@ -126,7 +126,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             const SizedBox(height: 8),
-            const Text(
+             Text(
               'أضف إعلانك الأول الآن',
               style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
             ),
@@ -207,13 +207,13 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.location_on_outlined,
+                       Icon(Icons.location_on_outlined,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
                           item['location'],
-                          style: const TextStyle(
+                          style:  TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 12,
                           ),
@@ -221,23 +221,23 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const Icon(Icons.visibility_outlined,
+                       Icon(Icons.visibility_outlined,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Text(
                         '${item['views'] ?? 0}',
-                        style: const TextStyle(
+                        style:  TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 12,
                         ),
                       ),
                       const SizedBox(width: 10),
-                      const Icon(Icons.chat_bubble_outline,
+                       Icon(Icons.chat_bubble_outline,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Text(
                         '${item['commentsCount'] ?? 0}',
-                        style: const TextStyle(
+                        style:  TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 12,
                         ),

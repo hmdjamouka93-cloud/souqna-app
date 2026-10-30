@@ -74,7 +74,7 @@ class BusesScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -183,7 +183,7 @@ class BusesScreen extends StatelessWidget {
                           'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
                           fit: BoxFit.contain,
                           
-                          errorWidget: (_, __, ___) => const Icon(
+                          errorWidget: (_, _, _) => const Icon(
                             Icons.directions_bus, color: Colors.white24, size: 32),
                         ),
                 ),

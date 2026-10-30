@@ -233,7 +233,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 _currentStep == 0 ? 'الخطوة 1: تفاصيل السيارة' : 'الخطوة 2: الصور والنشر',
-                style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                style:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
             ),
             Expanded(
@@ -447,10 +447,10 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         child: DropdownButton<String>(
           isExpanded: true,
           value: val,
-          hint: Text(hint, style: const TextStyle(color: AppColors.textSecondary)),
+          hint: Text(hint, style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style: const TextStyle(color: Colors.white),
-          icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+          icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
           items: items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
           onChanged: onChanged,
         ),
@@ -469,7 +469,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+          hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
         ),

@@ -82,7 +82,7 @@ class ServiceDetailScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       desc.isNotEmpty ? desc : 'لا يوجد وصف لهذه الخدمة.',
-                      style: const TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.6),
+                      style:  TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.6),
                     ),
                     const SizedBox(height: 24),
                     const Divider(color: Colors.white12),
@@ -116,7 +116,7 @@ class ServiceDetailScreen extends StatelessWidget {
                             ),
                             Text(
                               (provider['trade'] ?? '').toString(),
-                              style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                              style:  TextStyle(color: AppColors.textSecondary, fontSize: 12),
                             ),
                           ],
                         ),

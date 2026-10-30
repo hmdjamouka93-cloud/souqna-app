@@ -93,7 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
               autofocus: true,
               onChanged: _applySearch,
               style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
                 hintText: 'ابحث بالاسم، الوصف، أو الولاية...',
                 hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 14),
                 prefixIcon: Icon(Icons.search, color: AppColors.textSecondary),
@@ -144,7 +144,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   const SizedBox(height: 4),
                   Text('${item['price']} د.ج', style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
-                  Text(item['location'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
+                  Text(item['location'], style:  TextStyle(color: AppColors.textSecondary, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
                 ],
               ),
             ),

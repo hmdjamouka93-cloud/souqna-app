@@ -168,7 +168,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
                           title: Text(p['name'],
                               style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                           subtitle: Text('${p['wilaya']} - ${p['daira']}',
-                              style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                              style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                           trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white54, size: 16),
                         ),
                       );

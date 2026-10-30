@@ -77,7 +77,7 @@ class MotorcyclesScreen extends StatelessWidget {
             const SizedBox(height: 8),
             _buildAdBanner(),
             const SizedBox(height: 8),
-            ..._groups.map((g) => _buildGroup(g)).toList(),
+            ..._groups.map((g) => _buildGroup(g)),
             const SizedBox(height: 20),
           ],
         ),
@@ -114,7 +114,7 @@ class MotorcyclesScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -231,7 +231,7 @@ class MotorcyclesScreen extends StatelessWidget {
                       : CachedNetworkImage(imageUrl: 
                           'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
                           fit: BoxFit.contain,
-                          errorWidget: (_, __, ___) => const Icon(
+                          errorWidget: (_, _, _) => const Icon(
                             Icons.two_wheeler, color: Colors.white24, size: 32),
                         ),
                 ),

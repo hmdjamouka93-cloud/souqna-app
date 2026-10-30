@@ -60,7 +60,7 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
-              const Center(
+               Center(
                 child: Text(
                   'الإصدار 1.0.0',
                   style: TextStyle(
@@ -88,7 +88,7 @@ class AboutScreen extends StatelessWidget {
                 'انضم إلينا اليوم واكتشف تجربة تسوق مختلفة!',
               ),
               const SizedBox(height: 34),
-              const Center(
+               Center(
                 child: Text(
                   'منتج من',
                   style: TextStyle(
@@ -119,7 +119,7 @@ class AboutScreen extends StatelessWidget {
                       const SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children:  [
                           Text(
                             'Jamouka',
                             style: TextStyle(

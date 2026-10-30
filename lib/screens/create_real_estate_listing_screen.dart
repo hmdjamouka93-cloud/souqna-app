@@ -178,7 +178,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 _currentStep == 0 ? 'الخطوة 1: تفاصيل العقار' : 'الخطوة 2: الصور والنشر',
-                style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                style:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
             ),
             Expanded(
@@ -237,10 +237,10 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: _wilayaCode,
-                  hint: const Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
+                  hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
                   dropdownColor: AppColors.card,
                   style: const TextStyle(color: Colors.white),
-                  icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+                  icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                   items: wilayas.map((w) => DropdownMenuItem<String>(
                     value: w['code'].toString(),
                     child: Text('${w['name']} - ${w['code']}'),
@@ -273,10 +273,10 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: _dairaName,
-                  hint: const Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
+                  hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
                   dropdownColor: AppColors.card,
                   style: const TextStyle(color: Colors.white),
-                  icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+                  icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                   items: dairas.map((d) => DropdownMenuItem<String>(value: d, child: Text(d))).toList(),
                   onChanged: _wilayaCode == null ? null : (v) => setState(() => _dairaName = v),
                 ),
@@ -427,10 +427,10 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         child: DropdownButton<String>(
           isExpanded: true,
           value: val,
-          hint: Text(hint, style: const TextStyle(color: AppColors.textSecondary)),
+          hint: Text(hint, style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style: const TextStyle(color: Colors.white),
-          icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+          icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
           items: items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
           onChanged: onChanged,
         ),
@@ -449,7 +449,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+          hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
         ),

@@ -93,8 +93,8 @@ class SparePartsScreen extends StatelessWidget {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: 'بحث',
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
-          prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
+          hintStyle:  TextStyle(color: AppColors.textSecondary),
+          prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary),
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
@@ -116,7 +116,7 @@ class SparePartsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
       ),
-      child: const Center(
+      child:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -212,7 +212,7 @@ class SparePartsScreen extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.asset(item.image, fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => Container(
+              errorBuilder: (_, _, _) => Container(
                 color: AppColors.card,
                 child: const Icon(Icons.settings,
                   color: Colors.white24, size: 40),

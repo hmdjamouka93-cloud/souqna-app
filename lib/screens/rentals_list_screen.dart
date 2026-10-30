@@ -156,7 +156,7 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
           ),
 
           if (_items.isEmpty)
-            const Padding(
+             Padding(
               padding: EdgeInsets.all(40),
               child: Center(
                 child: Column(
@@ -244,13 +244,13 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(Icons.location_on_outlined,
+                       Icon(Icons.location_on_outlined,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
                           (showroom['location'] ?? '').toString(),
-                          style: const TextStyle(
+                          style:  TextStyle(
                               color: AppColors.textSecondary,
                               fontSize: 12),
                           maxLines: 1,
@@ -262,7 +262,7 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_back_ios_new,
+             Icon(Icons.arrow_back_ios_new,
                 color: AppColors.textSecondary, size: 14),
           ],
         ),

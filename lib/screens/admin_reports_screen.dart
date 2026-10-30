@@ -127,7 +127,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء', style: TextStyle(color: AppColors.textSecondary)),
+              child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
@@ -215,10 +215,10 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                             ),
                             const SizedBox(height: 8),
                             Text('السبب: ${r['reason']}',
-                                style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+                                style:  TextStyle(color: AppColors.textSecondary, fontSize: 14)),
                             const SizedBox(height: 4),
                             Text('رقم الإعلان: ${r['productId']}',
-                                style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                                style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             const SizedBox(height: 12),
                             Wrap(
                               alignment: WrapAlignment.end,
@@ -236,7 +236,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                                 ),
                                 TextButton(
                                   onPressed: () => _dismissReport(r['id']),
-                                  child: const Text('تجاهل', style: TextStyle(color: AppColors.textSecondary)),
+                                  child:  Text('تجاهل', style: TextStyle(color: AppColors.textSecondary)),
                                 ),
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(

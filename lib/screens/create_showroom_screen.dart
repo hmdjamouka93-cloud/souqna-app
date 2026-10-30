@@ -190,7 +190,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
               Center(
                 child: Text(
                   widget.type == 'rental' ? 'شعار الوكالة' : 'شعار المعرض',
-                  style: const TextStyle(
+                  style:  TextStyle(
                       color: AppColors.textSecondary, fontSize: 12),
                 ),
               ),
@@ -289,7 +289,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(
+          hintStyle:  TextStyle(
               color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding:

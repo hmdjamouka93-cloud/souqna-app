@@ -5,9 +5,6 @@ import '../main.dart';
 import '../widgets/ad_banner.dart';
 import 'listings_screen.dart';
 import 'providers_list_screen.dart';
-import '../services/auth_service.dart';
-import '../services/auth_gate.dart';
-import '../services/service_provider_service.dart';
 
 class ServicesSubscreen extends StatefulWidget {
   final String categoryName;
@@ -166,7 +163,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                                     fit: BoxFit.cover,
                                     errorWidget: (_, _, _) => Container(
                                       color: AppColors.card,
-                                      child: const Icon(Icons.image_outlined,
+                                      child:  Icon(Icons.image_outlined,
                                           color: AppColors.iconInactive, size: 40),
                                     ),
                                   ),

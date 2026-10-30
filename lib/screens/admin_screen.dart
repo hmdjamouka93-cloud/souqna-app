@@ -49,7 +49,7 @@ class AdminScreen extends StatelessWidget {
       child: ListTile(
         leading: Icon(icon, color: AppColors.accent, size: 30),
         title: Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        subtitle: Text(subtitle, style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+        subtitle: Text(subtitle, style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
         trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white54, size: 14),
         onTap: onTap,
       ),

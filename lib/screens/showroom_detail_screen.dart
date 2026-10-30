@@ -175,14 +175,14 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                             const SizedBox(height: 6),
                             Row(
                               children: [
-                                const Icon(Icons.location_on_outlined,
+                                 Icon(Icons.location_on_outlined,
                                     color: AppColors.textSecondary,
                                     size: 14),
                                 const SizedBox(width: 4),
                                 Expanded(
                                   child: Text(
                                     location,
-                                    style: const TextStyle(
+                                    style:  TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 13),
                                     maxLines: 1,
@@ -245,7 +245,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
       );
     }
     if (_listings.isEmpty) {
-      return const Center(
+      return  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -327,12 +327,12 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.location_on_outlined,
+                       Icon(Icons.location_on_outlined,
                           color: AppColors.textSecondary, size: 14),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(item['location'],
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 color: AppColors.textSecondary,
                                 fontSize: 12),
                             maxLines: 1,

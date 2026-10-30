@@ -5,6 +5,7 @@ import 'screens/splash_screen.dart';
 import 'widgets/app_drawer.dart';
 import 'services/auth_gate.dart';
 import 'services/notification_service.dart';
+import 'services/theme_service.dart';
 import 'screens/more_screen.dart';
 import 'screens/my_ads_screen.dart';
 import 'screens/favorites_screen.dart';
@@ -13,16 +14,23 @@ import 'screens/post_ad_chooser_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await ThemeService.init();
   runApp(const SouqnaApp());
 }
 
 class AppColors {
-  static const Color background = Color(0xFF1E2128);
-  static const Color card = Color(0xFF2A2E36);
   static const Color accent = Color(0xFFA0285A);
-  static const Color textPrimary = Colors.white;
-  static const Color textSecondary = Color(0xFFB0B0B8);
-  static const Color iconInactive = Color(0xFF7A7A85);
+
+  static Color get background =>
+      ThemeService.isDarkMode.value ? const Color(0xFF1E2128) : const Color(0xFFF5F5F0);
+  static Color get card =>
+      ThemeService.isDarkMode.value ? const Color(0xFF2A2E36) : Colors.white;
+  static Color get textPrimary =>
+      ThemeService.isDarkMode.value ? Colors.white : const Color(0xFF1E2128);
+  static Color get textSecondary =>
+      ThemeService.isDarkMode.value ? const Color(0xFFB0B0B8) : const Color(0xFF6E6E73);
+  static Color get iconInactive =>
+      ThemeService.isDarkMode.value ? const Color(0xFF7A7A85) : const Color(0xFFA0A0A5);
 }
 
 class SouqnaApp extends StatelessWidget {
@@ -30,20 +38,25 @@ class SouqnaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Souqna',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: AppColors.background,
-        primaryColor: AppColors.accent,
-        colorScheme: const ColorScheme.dark(
-          primary: AppColors.accent,
-          secondary: AppColors.accent,
-          surface: AppColors.card,
-        ),
-      ),
-      home: const SplashScreen(),
+    return ValueListenableBuilder<bool>(
+      valueListenable: ThemeService.isDarkMode,
+      builder: (context, isDark, _) {
+        return MaterialApp(
+          title: 'Souqna',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            brightness: isDark ? Brightness.dark : Brightness.light,
+            scaffoldBackgroundColor: AppColors.background,
+            primaryColor: AppColors.accent,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.accent,
+              brightness: isDark ? Brightness.dark : Brightness.light,
+              surface: AppColors.card,
+            ),
+          ),
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }

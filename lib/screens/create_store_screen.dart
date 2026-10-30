@@ -358,11 +358,11 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
         child: DropdownButton<String>(
           isExpanded: true,
           value: _wilayaCode,
-          hint: const Text('اختر الولاية',
+          hint:  Text('اختر الولاية',
               style: TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style: const TextStyle(color: Colors.white, fontSize: 14),
-          icon: const Icon(Icons.keyboard_arrow_down,
+          icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _wilayas
               .map((w) => DropdownMenuItem<String>(
@@ -390,10 +390,10 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           value: _dairaName,
           hint: Text(
               _wilayaCode == null ? 'اختر الولاية أولاً' : 'اختر الدائرة',
-              style: const TextStyle(color: AppColors.textSecondary)),
+              style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style: const TextStyle(color: Colors.white, fontSize: 14),
-          icon: const Icon(Icons.keyboard_arrow_down,
+          icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _dairas
               .map((d) => DropdownMenuItem<String>(
@@ -438,7 +438,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(
+          hintStyle:  TextStyle(
               color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding:

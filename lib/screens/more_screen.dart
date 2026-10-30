@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
+import '../services/theme_service.dart';
 import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'about_screen.dart';
@@ -204,7 +205,7 @@ class MoreScreen extends StatelessWidget {
             child: AlertDialog(
               backgroundColor: AppColors.card,
               title: const Text('اللغة', style: TextStyle(color: Colors.white)),
-              content: const Text('اللغة العربية هي اللغة الافتراضية حالياً.\nسيتم إضافة لغات أخرى قريباً.', style: TextStyle(color: AppColors.textSecondary)),
+              content:  Text('اللغة العربية هي اللغة الافتراضية حالياً.\nسيتم إضافة لغات أخرى قريباً.', style: TextStyle(color: AppColors.textSecondary)),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(ctx),
@@ -216,20 +217,39 @@ class MoreScreen extends StatelessWidget {
         );
       }),
       _GridItem('الوضع', Icons.brightness_6_outlined, const Color(0xFF1976D2), () {
+        final isDark = ThemeService.isDarkMode.value;
         showDialog(
           context: context,
           builder: (ctx) => Directionality(
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               backgroundColor: AppColors.card,
-              title: const Text('الوضع', style: TextStyle(color: Colors.white)),
-              content: const Text('التطبيق يعمل حالياً بالوضع الداكن (Dark Mode).\nسيتم إضافة الوضع الفاتح قريباً.', style: TextStyle(color: AppColors.textSecondary)),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(ctx),
-                  child: const Text('حسناً', style: TextStyle(color: AppColors.accent)),
-                ),
-              ],
+              title: Text('اختر الوضع', style: TextStyle(color: AppColors.textPrimary)),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RadioListTile<bool>(
+                    title: Text('الوضع الداكن', style: TextStyle(color: AppColors.textPrimary)),
+                    value: true,
+                    groupValue: isDark,
+                    activeColor: AppColors.accent,
+                    onChanged: (v) {
+                      ThemeService.toggleTheme(true);
+                      Navigator.pop(ctx);
+                    },
+                  ),
+                  RadioListTile<bool>(
+                    title: Text('الوضع الفاتح (بيج)', style: TextStyle(color: AppColors.textPrimary)),
+                    value: false,
+                    groupValue: isDark,
+                    activeColor: AppColors.accent,
+                    onChanged: (v) {
+                      ThemeService.toggleTheme(false);
+                      Navigator.pop(ctx);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -330,7 +350,7 @@ class MoreScreen extends StatelessWidget {
                   item.label,
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                 ),
-                trailing: const Icon(Icons.arrow_back_ios_new,
+                trailing:  Icon(Icons.arrow_back_ios_new,
                     color: AppColors.iconInactive, size: 14),
                 onTap: item.onTap,
               ),
@@ -460,14 +480,14 @@ class MoreScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                content: const Text(
+                content:  Text(
                   'هل أنت متأكد من تسجيل الخروج؟',
                   style: TextStyle(color: AppColors.textSecondary),
                 ),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(ctx, false),
-                    child: const Text(
+                    child:  Text(
                       'إلغاء',
                       style: TextStyle(color: AppColors.textSecondary),
                     ),
@@ -513,7 +533,7 @@ class MoreScreen extends StatelessWidget {
       padding: const EdgeInsets.only(right: 6),
       child: Text(
         t,
-        style: const TextStyle(
+        style:  TextStyle(
           color: AppColors.textSecondary,
           fontSize: 13,
           fontWeight: FontWeight.w600,

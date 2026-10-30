@@ -118,7 +118,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         width: 60,
                         height: 60,
                         color: AppColors.background,
-                        child: const Icon(Icons.image_not_supported,
+                        child:  Icon(Icons.image_not_supported,
                             color: AppColors.iconInactive))
                     : CachedNetworkImage(imageUrl: img,
                         width: 60,
@@ -182,7 +182,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text('اللون: ${o['color']}',
-                        style: const TextStyle(
+                        style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 11)),
                   ),
                 if ((o['size'] ?? '').toString().isNotEmpty)
@@ -194,7 +194,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text('المقاس: ${o['size']}',
-                        style: const TextStyle(
+                        style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 11)),
                   ),
               ],

@@ -117,7 +117,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         width: 60,
                         height: 60,
                         color: AppColors.background,
-                        child: const Icon(Icons.image_not_supported,
+                        child:  Icon(Icons.image_not_supported,
                             color: AppColors.iconInactive))
                     : CachedNetworkImage(imageUrl: img,
                         width: 60,
@@ -231,7 +231,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(ctx, false),
-                            child: const Text('إلغاء',
+                            child:  Text('إلغاء',
                                 style: TextStyle(
                                     color: AppColors.textSecondary)),
                           ),
@@ -272,7 +272,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       child: Row(
         children: [
           Text('$label: ',
-              style: const TextStyle(
+              style:  TextStyle(
                   color: AppColors.textSecondary, fontSize: 12)),
           Expanded(
             child: Text(value,

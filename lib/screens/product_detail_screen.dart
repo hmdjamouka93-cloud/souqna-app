@@ -173,7 +173,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         fontWeight: FontWeight.bold)),
               ],
             ),
-            content: const Text(
+            content:  Text(
               'سيتواصل معك صاحب المتجر قريباً لتأكيد الطلب.',
               style: TextStyle(
                   color: AppColors.textSecondary, fontSize: 14, height: 1.6),
@@ -292,7 +292,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             controller: reasonCtrl,
             maxLines: 3,
             style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               hintText: 'اكتب سبب الإبلاغ هنا...',
               hintStyle: TextStyle(color: AppColors.textSecondary),
               enabledBorder: OutlineInputBorder(
@@ -304,7 +304,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء',
+              child:  Text('إلغاء',
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
@@ -475,7 +475,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           const SizedBox(height: 12),
           if ((widget.product['description'] ?? '').toString().isNotEmpty)
             Text((widget.product['description'] ?? '').toString(),
-                style: const TextStyle(
+                style:  TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 14,
                     height: 1.7)),
@@ -693,11 +693,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: DropdownButton<String>(
           isExpanded: true,
           value: _wilayaCode,
-          hint: const Text('اختر الولاية',
+          hint:  Text('اختر الولاية',
               style: TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style: const TextStyle(color: Colors.white, fontSize: 14),
-          icon: const Icon(Icons.keyboard_arrow_down,
+          icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _wilayas
               .map((w) => DropdownMenuItem<String>(
@@ -725,10 +725,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           value: _dairaName,
           hint: Text(
               _wilayaCode == null ? 'اختر الولاية أولاً' : 'اختر الدائرة',
-              style: const TextStyle(color: AppColors.textSecondary)),
+              style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style: const TextStyle(color: Colors.white, fontSize: 14),
-          icon: const Icon(Icons.keyboard_arrow_down,
+          icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _dairas
               .map((d) => DropdownMenuItem<String>(
@@ -764,7 +764,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:
-              const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+               TextStyle(color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding:
               const EdgeInsets.symmetric(vertical: 16, horizontal: 14),

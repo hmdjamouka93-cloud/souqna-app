@@ -428,7 +428,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                 child: TextField(
                   controller: ctrl,
                   style: const TextStyle(color: Colors.white, fontSize: 13),
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     hintText: 'أضف نوع آخر...',
                     hintStyle: TextStyle(
                         color: AppColors.textSecondary, fontSize: 13),
@@ -467,7 +467,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                             color: AppColors.accent.withValues(alpha: 0.4)),
                       ),
                       child: Text(s,
-                          style: const TextStyle(
+                          style:  TextStyle(
                               color: AppColors.textSecondary,
                               fontSize: 12)),
                     ),
@@ -507,7 +507,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(
+          hintStyle:  TextStyle(
               color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding:

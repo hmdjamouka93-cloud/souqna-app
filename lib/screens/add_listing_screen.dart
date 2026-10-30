@@ -6,8 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/cloudinary_service.dart';
-import '../services/showroom_service.dart';
-import 'create_showroom_screen.dart';
 
 class AddListingScreen extends StatefulWidget {
   final String categoryId;
@@ -459,7 +457,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(
+          hintStyle:  TextStyle(
               color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(

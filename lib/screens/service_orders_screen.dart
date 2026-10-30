@@ -168,7 +168,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(
         children: [
-          Text('$label: ', style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+          Text('$label: ', style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           Expanded(
             child: Text(value, style: const TextStyle(color: Colors.white, fontSize: 13)),
           ),

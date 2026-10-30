@@ -116,7 +116,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                       child: TextField(
                         controller: _searchCtrl,
                         style: const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           hintText: 'ابحث بالإيميل أو الهاتف لحظر مستخدم...',
                           hintStyle: TextStyle(color: AppColors.textSecondary),
                           border: InputBorder.none,
@@ -168,9 +168,9 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                                 Text((_foundUser!['name'] ?? 'بدون اسم').toString(),
                                     style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text((_foundUser!['email'] ?? '').toString(),
-                                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                                    style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
                                 Text((_foundUser!['phone'] ?? '').toString(),
-                                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                                    style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
                               ],
                             ),
                           ),
@@ -244,7 +244,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                             title: Text((data['name'] ?? 'بدون اسم').toString(),
                                 style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                             subtitle: Text((data['email'] ?? '').toString(),
-                                style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                                style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             trailing: TextButton(
                               onPressed: () => _toggleBlock(id, true),
                               child: const Text('إلغاء الحظر', style: TextStyle(color: Colors.green)),

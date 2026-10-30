@@ -74,7 +74,7 @@ class CarRentalScreen extends StatelessWidget {
             const SizedBox(height: 12),
             _buildBanner(),
             const SizedBox(height: 12),
-            ..._cars.map((c) => _buildCarCard(context, c)).toList(),
+            ..._cars.map((c) => _buildCarCard(context, c)),
             const SizedBox(height: 20),
           ],
         ),
@@ -109,8 +109,8 @@ class CarRentalScreen extends StatelessWidget {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: 'بحث',
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
-          prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
+          hintStyle:  TextStyle(color: AppColors.textSecondary),
+          prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary),
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(
@@ -183,7 +183,7 @@ class CarRentalScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CachedNetworkImage(imageUrl: c.image, height: 160, fit: BoxFit.cover,
-              errorWidget: (_, __, ___) => Container(
+              errorWidget: (_, _, _) => Container(
                 height: 160, color: Colors.black26,
                 child: const Icon(Icons.directions_car,
                   color: Colors.white24, size: 50),
@@ -199,18 +199,18 @@ class CarRentalScreen extends StatelessWidget {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(Icons.person_outline,
+                       Icon(Icons.person_outline,
                         color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 4),
                       Text(c.owner,
-                        style: const TextStyle(color: AppColors.textSecondary,
+                        style:  TextStyle(color: AppColors.textSecondary,
                           fontSize: 11)),
                       const Spacer(),
-                      const Icon(Icons.location_on_outlined,
+                       Icon(Icons.location_on_outlined,
                         color: AppColors.textSecondary, size: 12),
                       const SizedBox(width: 4),
                       Text(c.city,
-                        style: const TextStyle(color: AppColors.textSecondary,
+                        style:  TextStyle(color: AppColors.textSecondary,
                           fontSize: 11)),
                     ],
                   ),
@@ -244,7 +244,7 @@ class CarRentalScreen extends StatelessWidget {
         child: Column(
           children: [
             Text(label,
-              style: const TextStyle(color: AppColors.textSecondary,
+              style:  TextStyle(color: AppColors.textSecondary,
                 fontSize: 10)),
             const SizedBox(height: 2),
             Text(price,

@@ -103,7 +103,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                     _buildMyStoreBanner(),
                     const SizedBox(height: 12),
                     if (_stores.isEmpty)
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.all(40),
                         child: Center(
                           child: Column(
@@ -282,7 +282,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                               overflow: TextOverflow.ellipsis),
                           if (bio.isNotEmpty)
                             Text(bio,
-                                style: const TextStyle(
+                                style:  TextStyle(
                                     color: AppColors.textSecondary,
                                     fontSize: 12),
                                 maxLines: 1,
@@ -290,12 +290,12 @@ class _StoresListScreenState extends State<StoresListScreen> {
                           if (wilaya.isNotEmpty)
                             Row(
                               children: [
-                                const Icon(Icons.location_on_outlined,
+                                 Icon(Icons.location_on_outlined,
                                     color: AppColors.textSecondary,
                                     size: 12),
                                 const SizedBox(width: 2),
                                 Text(wilaya,
-                                    style: const TextStyle(
+                                    style:  TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 11)),
                               ],

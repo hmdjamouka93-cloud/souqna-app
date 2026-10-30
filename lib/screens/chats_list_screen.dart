@@ -109,7 +109,7 @@ class ChatsListScreen extends StatelessWidget {
                       lastMessage,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                      style:  TextStyle(color: AppColors.textSecondary, fontSize: 13),
                     ),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white24, size: 14),

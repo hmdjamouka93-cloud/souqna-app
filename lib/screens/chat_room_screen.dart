@@ -152,7 +152,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                           maxLines: null,
                           textInputAction: TextInputAction.send,
                           onSubmitted: (_) => _send(),
-                          decoration: const InputDecoration(
+                          decoration:  InputDecoration(
                             hintText: 'اكتب رسالة...',
                             hintStyle: TextStyle(color: AppColors.textSecondary),
                             border: InputBorder.none,

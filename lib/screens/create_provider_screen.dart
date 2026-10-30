@@ -244,10 +244,10 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           value: _selectedTrade,
-                          hint: const Text('اختر مهنتك', style: TextStyle(color: AppColors.textSecondary)),
+                          hint:  Text('اختر مهنتك', style: TextStyle(color: AppColors.textSecondary)),
                           dropdownColor: AppColors.card,
                           style: const TextStyle(color: Colors.white),
-                          icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+                          icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                           items: _tradesList.map((t) {
                             return DropdownMenuItem<String>(value: t, child: Text(t));
                           }).toList(),
@@ -278,10 +278,10 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: _wilayaCode,
-                        hint: const Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
+                        hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
                         style: const TextStyle(color: Colors.white),
-                        icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+                        icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: wilayas.map((w) {
                           return DropdownMenuItem<String>(
                             value: w['code'].toString(),
@@ -316,10 +316,10 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: _dairaName,
-                        hint: const Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
+                        hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
                         style: const TextStyle(color: Colors.white),
-                        icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
+                        icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: dairas.map((d) {
                           return DropdownMenuItem<String>(value: d, child: Text(d));
                         }).toList(),
@@ -384,7 +384,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+          hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 14),
         ),
