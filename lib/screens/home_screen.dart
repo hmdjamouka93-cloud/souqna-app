@@ -5,6 +5,7 @@ import 'chats_list_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'cars_screen.dart';
+import 'search_screen.dart';
 import 'clothing_subscreen.dart';
 import 'services_subscreen.dart';
 import 'listings_screen.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                 _buildBanner(),
-                _buildSearchBar(),
+                _buildSearchBar(context),
                 const SizedBox(height: 16),
                 _buildSectionTitle('المركبات'),
                 _buildVehiclesGrid(),
@@ -135,22 +136,28 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSearchBar() {
+  Widget _buildSearchBar(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-      child: TextField(
-        style: const TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          hintText: 'ابحث في السوق...',
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
-          prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
-          filled: true,
-          fillColor: AppColors.card,
-          border: OutlineInputBorder(
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const SearchScreen()),
+        ),
+        child: Container(
+          height: 50,
+          decoration: BoxDecoration(
+            color: AppColors.card,
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none,
           ),
-          contentPadding: const EdgeInsets.symmetric(vertical: 14),
+          child: const Row(
+            children: [
+              SizedBox(width: 14),
+              Icon(Icons.search, color: AppColors.textSecondary),
+              SizedBox(width: 10),
+              Text('ابحث في السوق...', style: TextStyle(color: AppColors.textSecondary)),
+            ],
+          ),
         ),
       ),
     );
