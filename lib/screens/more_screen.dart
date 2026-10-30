@@ -12,9 +12,29 @@ import 'about_screen.dart';
 import 'my_ads_screen.dart';
 import 'my_blocked_users_screen.dart';
 
-class MoreScreen extends StatelessWidget {
+class MoreScreen extends StatefulWidget {
   const MoreScreen({super.key});
 
+  @override
+  State<MoreScreen> createState() => _MoreScreenState();
+}
+
+class _MoreScreenState extends State<MoreScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ThemeService.isDarkMode.addListener(_onThemeChanged);
+  }
+
+  void _onThemeChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    ThemeService.isDarkMode.removeListener(_onThemeChanged);
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -106,10 +126,10 @@ class MoreScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundColor: AppColors.textPrimary.withValues(alpha: 0.18),
+                backgroundColor: Colors.white.withValues(alpha: 0.18),
                 child: Icon(
                   logged ? Icons.person : Icons.login,
-                  color: AppColors.textPrimary,
+                  color: Colors.white,
                   size: 30,
                 ),
               ),
@@ -121,7 +141,7 @@ class MoreScreen extends StatelessWidget {
                     Text(
                       logged ? 'حسابي' : 'تسجيل الدخول',
                       style:  TextStyle(
-                        color: AppColors.textPrimary,
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -132,7 +152,7 @@ class MoreScreen extends StatelessWidget {
                           ? (user?.email ?? '')
                           : 'سجل للاستفادة من كل الميزات',
                       style: TextStyle(
-                        color: AppColors.textPrimary.withValues(alpha: 0.85),
+                        color: Colors.white.withValues(alpha: 0.85),
                         fontSize: 13,
                       ),
                       maxLines: 1,
@@ -142,7 +162,7 @@ class MoreScreen extends StatelessWidget {
                 ),
               ),
                Icon(Icons.arrow_back_ios_new,
-                  color: AppColors.textPrimary, size: 16),
+                  color: Colors.white, size: 16),
             ],
           ),
         ),
@@ -355,8 +375,8 @@ class MoreScreen extends StatelessWidget {
                 onTap: item.onTap,
               ),
               if (i != items.length - 1)
-                const Divider(
-                  color: Colors.white12,
+                Divider(
+                  color: AppColors.textSecondary.withValues(alpha: 0.2),
                   height: 1,
                   indent: 16,
                   endIndent: 16,
