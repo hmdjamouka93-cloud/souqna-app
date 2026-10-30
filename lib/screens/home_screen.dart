@@ -15,8 +15,14 @@ import 'showrooms_list_screen.dart';
 import 'rentals_list_screen.dart';
 
 /// الشاشة الرئيسية
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => HomeScreenState();
+}
+
+class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -741,7 +747,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _vehicleCard(BuildContext context, String name, String image) {
     return GestureDetector(
-      onTap: () => _navigateToCategory(context, name),
+      onTap: () => navigateToCategory(context, name),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.card,
@@ -803,7 +809,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _navigateToCategory(BuildContext context, String name) {
+  void navigateToCategory(BuildContext context, String name) {
     if (name == 'سيارات') {
       Navigator.push(context, MaterialPageRoute(builder: (context) => const CarsScreen()));
     } else if (name == 'حافلات') {

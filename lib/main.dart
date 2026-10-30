@@ -56,6 +56,8 @@ class MainShell extends StatefulWidget {
 
 class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
   int _currentIndex = 0;
+  final _homeKey = GlobalKey<HomeScreenState>();
+
 
   @override
   void initState() {
@@ -83,8 +85,8 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: AppColors.background,
-        drawer: const AppDrawer(),
-        body: const HomeScreen(),
+        drawer: AppDrawer(onCategoryTap: (name) => _homeKey.currentState?.navigateToCategory(context, name)),
+        body: HomeScreen(key: _homeKey),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: _buildFab(),
         bottomNavigationBar: _buildBottomNav(),
