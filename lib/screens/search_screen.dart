@@ -6,7 +6,6 @@ import 'car_detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
-
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
@@ -59,7 +58,6 @@ class _SearchScreenState extends State<SearchScreen> {
       setState(() => _filteredItems = _allItems);
       return;
     }
-
     final q = query.toLowerCase();
     final results = _allItems.where((item) {
       final title = (item['title'] ?? '').toString().toLowerCase();
@@ -67,15 +65,11 @@ class _SearchScreenState extends State<SearchScreen> {
       final loc = (item['location'] ?? '').toString().toLowerCase();
       return title.contains(q) || desc.contains(q) || loc.contains(q);
     }).toList();
-
     setState(() => _filteredItems = results);
   }
 
   void _openDetail(Map<String, dynamic> item) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => CarDetailScreen(ad: item)),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (_) => CarDetailScreen(ad: item)));
   }
 
   @override
@@ -93,10 +87,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           title: Container(
             height: 45,
-            decoration: BoxDecoration(
-              color: AppColors.card,
-              borderRadius: BorderRadius.circular(12),
-            ),
+            decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
             child: TextField(
               controller: _searchCtrl,
               autofocus: true,
@@ -115,17 +106,12 @@ class _SearchScreenState extends State<SearchScreen> {
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _filteredItems.isEmpty
-                ? const Center(
-                    child: Text('لا توجد نتائج مطابقة', style: TextStyle(color: Colors.white70)),
-                  )
+                ? const Center(child: Text('لا توجد نتائج مطابقة', style: TextStyle(color: Colors.white70)))
                 : GridView.builder(
                     padding: const EdgeInsets.all(12),
                     itemCount: _filteredItems.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 0.75,
+                      crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.75,
                     ),
                     itemBuilder: (context, i) => _itemCard(_filteredItems[i]),
                   ),
@@ -136,57 +122,29 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget _itemCard(Map<String, dynamic> item) {
     final images = item['images'] as List<String>;
     final img = images.isNotEmpty ? images.first : '';
-
     return GestureDetector(
       onTap: () => _openDetail(item),
       child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.card,
-          borderRadius: BorderRadius.circular(12),
-        ),
+        decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: img.isEmpty
-                  ? Container(
-                      color: Colors.black26,
-                      child: const Icon(Icons.directions_car, color: Colors.white24, size: 40),
-                    )
-                  : CachedNetworkImage(
-                      imageUrl: img,
-                      fit: BoxFit.cover,
-                      errorWidget: (_, _, _) => Container(
-                        color: Colors.black26,
-                        child: const Icon(Icons.directions_car, color: Colors.white24, size: 40),
-                      ),
-                    ),
+                  ? Container(color: Colors.black26, child: const Icon(Icons.directions_car, color: Colors.white24, size: 40))
+                  : CachedNetworkImage(imageUrl: img, fit: BoxFit.cover, errorWidget: (_, _, _) => Container(color: Colors.black26, child: const Icon(Icons.directions_car, color: Colors.white24, size: 40))),
             ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    item['title'],
-                    style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  Text(item['title'], style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis),
                   const SizedBox(height: 4),
-                  Text(
-                    '${item['price']} د.ج',
-                    style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold),
-                  ),
+                  Text('${item['price']} د.ج', style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
-                  Text(
-                    item['location'],
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 10),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  Text(item['location'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
                 ],
               ),
             ),
