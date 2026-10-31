@@ -103,11 +103,11 @@ class _CarsScreenState extends State<CarsScreen> {
                     elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(widget.screenTitle,
-              style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+              style:  TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         body: ListView(
           padding: EdgeInsets.zero,
@@ -151,7 +151,7 @@ class _CarsScreenState extends State<CarsScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: Text(title,
-          style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+          style:  TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -167,7 +167,7 @@ class _CarsScreenState extends State<CarsScreen> {
         padding: EdgeInsets.all(32),
         child: Center(
           child: Text('لا توجد ماركات',
-              style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
+              style: TextStyle(color: Colors.white, fontSize: 16)),
         ),
       );
     }
@@ -197,8 +197,9 @@ class _CarsScreenState extends State<CarsScreen> {
         onTap: () => _openBrand(b),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.card,
+            color: const Color(0xFF2A2E36),
             borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
           ),
           child: const Center(
             child: Padding(
@@ -229,8 +230,9 @@ class _CarsScreenState extends State<CarsScreen> {
         onTap: () => _openBrand(b),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.card,
+            color: const Color(0xFF2A2E36),
             borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
           ),
           clipBehavior: Clip.antiAlias,
           child: Stack(
@@ -295,8 +297,9 @@ class _CarsScreenState extends State<CarsScreen> {
         onTap: () => _openBrand(b),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.card,
+            color: const Color(0xFF2A2E36),
             borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
           ),
           child: Center(
             child: Column(

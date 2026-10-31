@@ -164,13 +164,13 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.arrow_back_ios_new,
-                color: AppColors.textPrimary, size: 20),
+                color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             'اختر النوع - ${widget.categoryName}',
             style:  TextStyle(
-              color: AppColors.textPrimary,
+              color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -192,7 +192,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       return  Center(
         child: Text(
           'لا توجد أنواع',
-          style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       );
     }
@@ -207,7 +207,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             alignment: Alignment.centerRight,
             child: Text('الأقسام الفرعية',
                 style: TextStyle(
-                    color: AppColors.textPrimary,
+                    color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
