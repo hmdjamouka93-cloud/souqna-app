@@ -158,7 +158,7 @@ class _CarsScreenState extends State<CarsScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: Text(title,
-          style:  TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+          style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
     );
   }
 
