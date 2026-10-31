@@ -791,7 +791,7 @@ class HomeScreenState extends State<HomeScreen> {
                 name,
                 textAlign: TextAlign.center,
                 style:  TextStyle(
-                  color: AppColors.textPrimary,
+                  color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   shadows: [

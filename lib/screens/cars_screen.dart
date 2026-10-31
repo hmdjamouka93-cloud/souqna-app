@@ -274,7 +274,7 @@ class _CarsScreenState extends State<CarsScreen> {
                   name,
                   textAlign: TextAlign.center,
                   style:  TextStyle(
-                    color: AppColors.textPrimary,
+                    color: Colors.white,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                     shadows: [Shadow(blurRadius: 4, color: Colors.black87)],
@@ -338,7 +338,7 @@ class _CarsScreenState extends State<CarsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(name,
                   style:  TextStyle(
-                      color: AppColors.textPrimary,
+                      color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,

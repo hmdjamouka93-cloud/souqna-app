@@ -262,7 +262,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                           brandName,
                           textAlign: TextAlign.center,
                           style:  TextStyle(
-                            color: AppColors.textPrimary,
+                            color: Colors.white,
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
@@ -292,7 +292,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                     brandName,
                     textAlign: TextAlign.center,
                     style:  TextStyle(
-                      color: AppColors.textPrimary,
+                      color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       shadows: [
@@ -331,7 +331,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                 brandName,
                 textAlign: TextAlign.center,
                 style:  TextStyle(
-                  color: AppColors.textPrimary,
+                  color: Colors.white,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
