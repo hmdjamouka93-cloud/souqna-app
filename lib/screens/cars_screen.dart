@@ -329,7 +329,7 @@ class _CarsScreenState extends State<CarsScreen> {
       onTap: () => _openBrand(b),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.card,
+          color: const Color(0xFF2A2E36),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
         ),
