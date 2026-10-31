@@ -42,6 +42,7 @@ class SouqnaApp extends StatelessWidget {
       valueListenable: ThemeService.isDarkMode,
       builder: (context, isDark, _) {
         return MaterialApp(
+          key: ValueKey(isDark),
           title: 'Souqna',
           debugShowCheckedModeBanner: false,
           themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
