@@ -7,6 +7,7 @@ import '../widgets/ad_banner.dart';
 import '../services/auth_service.dart';
 import 'create_store_screen.dart';
 import '../services/store_service.dart';
+import '../services/block_service.dart';
 import '../services/report_service.dart';
 import '../services/auth_gate.dart';
 import '../services/rating_service.dart';
@@ -385,10 +386,19 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.red),
-                                  onPressed: () {
-                                    Navigator.pop(ctx);
-                                    Navigator.pop(context);
-                                  },
+                                  onPressed: () async {
+                                  Navigator.pop(ctx);
+                                  final ok = await BlockService.blockUser(
+                                    blockedId: (widget.store['userId'] ?? '').toString(),
+                                    blockedName: (widget.store['name'] ?? '').toString(),
+                                  );
+                                  if (ok) {
+                                    if (mounted) {
+                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم حظر المتجر')));
+                                      Navigator.pop(context);
+                                    }
+                                  }
+                                },
                                   child: const Text('حظر',
                                       style: TextStyle(color: Colors.white)),
                                 ),

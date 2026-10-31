@@ -10,6 +10,8 @@ import 'login_screen.dart';
 import 'profile_screen.dart';
 import 'about_screen.dart';
 import 'my_ads_screen.dart';
+import 'favorites_screen.dart';
+import 'post_ad_chooser_screen.dart';
 import 'my_blocked_users_screen.dart';
 
 class MoreScreen extends StatefulWidget {
@@ -182,8 +184,9 @@ class _MoreScreenState extends State<MoreScreen> {
           );
           return;
         }
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('إضافة إعلان جديد - قريباً')),
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const PostAdChooserScreen()),
         );
       }),
       _GridItem('إعلاناتي', Icons.list_alt, const Color(0xFF2E7D32), () {
@@ -200,8 +203,16 @@ class _MoreScreenState extends State<MoreScreen> {
         );
       }),
       _GridItem('المفضلة', Icons.star_border, const Color(0xFFF9A825), () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('المفضلة - قريباً')),
+        if (!logged) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginScreen()),
+          );
+          return;
+        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const FavoritesScreen()),
         );
       }),
       _GridItem('المحظورين', Icons.block, const Color(0xFFC62828), () {

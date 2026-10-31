@@ -14,6 +14,7 @@ import 'chat_room_screen.dart';
 import '../services/chat_service.dart';
 import '../services/provider_like_service.dart';
 import '../services/provider_rating_service.dart';
+import '../services/block_service.dart';
 import '../widgets/comments_section.dart';
 import '../services/auth_gate.dart';
 
