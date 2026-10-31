@@ -155,6 +155,7 @@ class HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
             color: AppColors.card,
             borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
           ),
           child:  Row(
             children: [
