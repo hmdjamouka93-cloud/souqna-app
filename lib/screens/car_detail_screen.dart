@@ -147,9 +147,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           backgroundColor: AppColors.card,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)),
-          title: const Text('حذف الإعلان',
+          title:  Text('حذف الإعلان',
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold)),
+                  color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content:  Text('هل أنت متأكد من حذف هذا الإعلان نهائياً؟',
               style: TextStyle(color: AppColors.textSecondary)),
           actions: [
@@ -162,8 +162,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent),
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('حذف',
-                  style: TextStyle(color: Colors.white)),
+              child:  Text('حذف',
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -205,11 +205,11 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+        icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('تفاصيل الإعلان',
-          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+      title:  Text('تفاصيل الإعلان',
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
       actions: [
         StreamBuilder<bool>(
           stream: FavoritesService.favoriteStream(
@@ -219,7 +219,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             return IconButton(
               icon: Icon(
                 isFav ? Icons.star : Icons.star_border,
-                color: isFav ? AppColors.accent : Colors.white,
+                color: isFav ? AppColors.accent : AppColors.textPrimary,
                 size: 22,
               ),
               onPressed: () => _toggleFavorite(isFav),
@@ -229,8 +229,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         if (AuthService.currentUser?.uid ==
             (widget.ad['userId'] ?? '').toString()) ...[
           IconButton(
-            icon: const Icon(Icons.edit_outlined,
-                color: Colors.white, size: 22),
+            icon:  Icon(Icons.edit_outlined,
+                color: AppColors.textPrimary, size: 22),
             onPressed: _editListing,
           ),
           IconButton(
@@ -247,9 +247,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     if (_images.isEmpty) {
       return Container(
         height: 240,
-        color: Colors.black26,
-        child: const Center(
-          child: Icon(Icons.directions_car, color: Colors.white24, size: 80),
+        color: AppColors.card,
+        child:  Center(
+          child: Icon(Icons.directions_car, color: AppColors.textSecondary.withValues(alpha: 0.24), size: 80),
         ),
       );
     }
@@ -267,9 +267,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 _images[i],
                 fit: BoxFit.contain,
                 errorWidget: (_, _, _) => Container(
-                  color: Colors.black26,
-                  child: const Icon(Icons.directions_car,
-                      color: Colors.white24, size: 60),
+                  color: AppColors.card,
+                  child:  Icon(Icons.directions_car,
+                      color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                 ),
               ),
             ),
@@ -288,7 +288,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: _currentPage == i ? Colors.white : Colors.white38,
+                  color: _currentPage == i ? AppColors.textPrimary : AppColors.textSecondary.withValues(alpha: 0.38),
                 ),
               )),
             ),
@@ -304,7 +304,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(_title,
-              style: const TextStyle(color: Colors.white, fontSize: 18,
+              style:  TextStyle(color: AppColors.textPrimary, fontSize: 18,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 6),
           if (_location.isNotEmpty)
@@ -366,10 +366,10 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
+           CircleAvatar(
             radius: 24,
-            backgroundColor: Colors.black26,
-            child: Icon(Icons.storefront, color: Colors.white54, size: 24),
+            backgroundColor: AppColors.card,
+            child: Icon(Icons.storefront, color: AppColors.textSecondary, size: 24),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -377,7 +377,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('البائع',
-                    style: TextStyle(color: Colors.white, fontSize: 14,
+                    style: TextStyle(color: AppColors.textPrimary, fontSize: 14,
                         fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
                 Row(
@@ -528,9 +528,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('تفاصيل الإعلان',
+             Text('تفاصيل الإعلان',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
@@ -551,8 +551,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                         ],
                       ),
                       Text(e.value,
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style:  TextStyle(
+                              color: AppColors.textPrimary,
                               fontSize: 14,
                               fontWeight: FontWeight.bold)),
                     ],
@@ -571,12 +571,12 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('الوصف',
-              style: TextStyle(color: Colors.white, fontSize: 15,
+           Text('الوصف',
+              style: TextStyle(color: AppColors.textPrimary, fontSize: 15,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(_description,
-              style: const TextStyle(color: Colors.white, fontSize: 13,
+              style:  TextStyle(color: AppColors.textPrimary, fontSize: 13,
                   height: 1.7)),
         ],
       ),
@@ -649,15 +649,15 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 textDirection: TextDirection.rtl,
                 child: AlertDialog(
                   backgroundColor: AppColors.card,
-                  title: const Text('الإبلاغ عن الإعلان', style: TextStyle(color: Colors.white)),
+                  title:  Text('الإبلاغ عن الإعلان', style: TextStyle(color: AppColors.textPrimary)),
                   content: TextField(
                     controller: reasonCtrl,
                     maxLines: 3,
-                    style: const TextStyle(color: Colors.white),
+                    style:  TextStyle(color: AppColors.textPrimary),
                     decoration:  InputDecoration(
                       hintText: 'اكتب سبب الإبلاغ هنا...',
                       hintStyle: TextStyle(color: AppColors.textSecondary),
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white24)),
+                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.24))),
                       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accent)),
                     ),
                   ),
@@ -666,7 +666,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                       onPressed: () => Navigator.pop(ctx, true),
-                      child: const Text('إبلاغ', style: TextStyle(color: Colors.white)),
+                      child:  Text('إبلاغ', style: TextStyle(color: AppColors.textPrimary)),
                     ),
                   ],
                 ),
@@ -697,18 +697,18 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         decoration: BoxDecoration(
           color: AppColors.card,
           border: Border.all(
-              color: active ? AppColors.accent : Colors.white24, width: 1),
+              color: active ? AppColors.accent : AppColors.textSecondary.withValues(alpha: 0.24), width: 1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon,
-                color: active ? AppColors.accent : Colors.white, size: 16),
+                color: active ? AppColors.accent : AppColors.textPrimary, size: 16),
             const SizedBox(width: 6),
             Text(label,
                 style: TextStyle(
-                    color: active ? AppColors.accent : Colors.white,
+                    color: active ? AppColors.accent : AppColors.textPrimary,
                     fontSize: 12)),
           ],
         ),

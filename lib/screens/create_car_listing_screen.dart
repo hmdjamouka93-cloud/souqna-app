@@ -212,12 +212,12 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 26),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 26),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.brandName,
-            style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: Column(
@@ -312,7 +312,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
             onPressed: _nextStep,
-            child: const Text('التالي', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+            child:  Text('التالي', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
           ),
         ),
       ],
@@ -369,7 +369,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
                         child: Container(
                           padding: const EdgeInsets.all(4),
                           decoration: const BoxDecoration(color: Colors.redAccent, shape: BoxShape.circle),
-                          child: const Icon(Icons.close, color: Colors.white, size: 14),
+                          child:  Icon(Icons.close, color: AppColors.textPrimary, size: 14),
                         ),
                       ),
                     ),
@@ -424,8 +424,8 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
                 ),
                 onPressed: _loading ? null : _submit,
                 child: _loading
-                    ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
-                    : const Text('نشر الإعلان', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                    ?  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
+                    :  Text('نشر الإعلان', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
               ),
             ),
           ],
@@ -436,7 +436,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
 
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
-        child: Text(t, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+        child: Text(t, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
       );
 
   Widget _dropdown(String hint, List<String> items, String? val, Function(String?) onChanged) {
@@ -449,7 +449,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
           value: val,
           hint: Text(hint, style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
-          style: const TextStyle(color: Colors.white),
+          style:  TextStyle(color: AppColors.textPrimary),
           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
           items: items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
           onChanged: onChanged,
@@ -466,7 +466,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         maxLines: maxLines,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),

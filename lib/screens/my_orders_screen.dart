@@ -57,14 +57,14 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'طلباتي',
             style: TextStyle(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -73,10 +73,10 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
             ? const Center(
                 child: CircularProgressIndicator(color: AppColors.accent))
             : _orders.isEmpty
-                ? const Center(
+                ?  Center(
                     child: Text('لا توجد طلبات',
                         style:
-                            TextStyle(color: Colors.white70, fontSize: 15)),
+                            TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
                 : RefreshIndicator(
                     onRefresh: _load,
@@ -135,8 +135,8 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text((o['productName'] ?? '').toString(),
-                        style: const TextStyle(
-                            color: Colors.white,
+                        style:  TextStyle(
+                            color: AppColors.textPrimary,
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
                         maxLines: 2,
@@ -168,7 +168,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           if ((o['color'] ?? '').toString().isNotEmpty ||
               (o['size'] ?? '').toString().isNotEmpty) ...[
             const SizedBox(height: 10),
-            const Divider(color: Colors.white12, height: 1),
+             Divider(color: AppColors.textSecondary.withValues(alpha: 0.12), height: 1),
             const SizedBox(height: 10),
             Row(
               children: [

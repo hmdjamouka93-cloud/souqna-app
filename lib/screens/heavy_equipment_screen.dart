@@ -67,15 +67,15 @@ class HeavyEquipmentScreen extends StatelessWidget {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+        icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('معدات ثقيلة',
-        style: TextStyle(color: Colors.white, fontSize: 18,
+      title:  Text('معدات ثقيلة',
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 18,
           fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications_none, color: Colors.white, size: 24),
+          icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 24),
           onPressed: () {},
         ),
       ],
@@ -109,7 +109,7 @@ class HeavyEquipmentScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: Text(title,
-        style: const TextStyle(color: Colors.white, fontSize: 16,
+        style:  TextStyle(color: AppColors.textPrimary, fontSize: 16,
           fontWeight: FontWeight.bold)),
     );
   }
@@ -191,8 +191,8 @@ class HeavyEquipmentScreen extends StatelessWidget {
               fit: BoxFit.cover,
               errorBuilder: (_, _, _) => Container(
                 color: AppColors.card,
-                child: const Icon(Icons.construction,
-                  color: Colors.white24, size: 40),
+                child:  Icon(Icons.construction,
+                  color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40),
               ),
             ),
             Container(
@@ -214,8 +214,8 @@ class HeavyEquipmentScreen extends StatelessWidget {
               child: Text(
                 item.name,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style:  TextStyle(
+                  color: AppColors.textPrimary,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   shadows: [

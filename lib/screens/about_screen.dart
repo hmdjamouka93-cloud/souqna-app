@@ -16,10 +16,10 @@ class AboutScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: AppColors.background,
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: const Text(
+          iconTheme:  IconThemeData(color: AppColors.textPrimary),
+          title:  Text(
             'حول',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
         ),
@@ -49,11 +49,11 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const Center(
+               Center(
                 child: Text(
                   'سوقنا',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                   ),
@@ -123,7 +123,7 @@ class AboutScreen extends StatelessWidget {
                           Text(
                             'Jamouka',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
@@ -181,11 +181,11 @@ class AboutScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  icon: const Icon(Icons.email_outlined, color: Colors.white),
-                  label: const Text(
+                  icon:  Icon(Icons.email_outlined, color: AppColors.textPrimary),
+                  label:  Text(
                     'تواصل معنا',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -204,8 +204,8 @@ class AboutScreen extends StatelessWidget {
     return Text(
       text,
       textAlign: TextAlign.justify,
-      style: const TextStyle(
-        color: Colors.white,
+      style:  TextStyle(
+        color: AppColors.textPrimary,
         fontSize: 14,
         height: 1.7,
       ),

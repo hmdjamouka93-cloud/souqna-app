@@ -163,13 +163,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             backgroundColor: AppColors.card,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16)),
-            title: const Row(
+            title:  Row(
               children: [
                 Icon(Icons.check_circle, color: Colors.green, size: 28),
                 SizedBox(width: 8),
                 Text('تم إرسال الطلب',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold)),
               ],
             ),
@@ -186,8 +186,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Navigator.pop(ctx);
                   Navigator.pop(context);
                 },
-                child: const Text('حسناً',
-                    style: TextStyle(color: Colors.white)),
+                child:  Text('حسناً',
+                    style: TextStyle(color: AppColors.textPrimary)),
               ),
             ],
           ),
@@ -236,15 +236,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               onPressed: () => _toggleReaction(true),
               icon: Icon(
                 _myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined,
-                color: _myReaction == 'like' ? AppColors.accent : Colors.white,
+                color: _myReaction == 'like' ? AppColors.accent : AppColors.textPrimary,
                 size: 20,
               ),
               label: Text('$_likes',
                   style: TextStyle(
-                      color: _myReaction == 'like' ? AppColors.accent : Colors.white)),
+                      color: _myReaction == 'like' ? AppColors.accent : AppColors.textPrimary)),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(
-                    color: _myReaction == 'like' ? AppColors.accent : Colors.white24),
+                    color: _myReaction == 'like' ? AppColors.accent : AppColors.textSecondary.withValues(alpha: 0.24)),
                 padding: const EdgeInsets.symmetric(vertical: 10),
               ),
             ),
@@ -255,15 +255,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               onPressed: () => _toggleReaction(false),
               icon: Icon(
                 _myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined,
-                color: _myReaction == 'dislike' ? Colors.red : Colors.white,
+                color: _myReaction == 'dislike' ? Colors.red : AppColors.textPrimary,
                 size: 20,
               ),
               label: Text('$_dislikes',
                   style: TextStyle(
-                      color: _myReaction == 'dislike' ? Colors.red : Colors.white)),
+                      color: _myReaction == 'dislike' ? Colors.red : AppColors.textPrimary)),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(
-                    color: _myReaction == 'dislike' ? Colors.red : Colors.white24),
+                    color: _myReaction == 'dislike' ? Colors.red : AppColors.textSecondary.withValues(alpha: 0.24)),
                 padding: const EdgeInsets.symmetric(vertical: 10),
               ),
             ),
@@ -286,17 +286,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title: const Text('الإبلاغ عن المنتج',
-              style: TextStyle(color: Colors.white)),
+          title:  Text('الإبلاغ عن المنتج',
+              style: TextStyle(color: AppColors.textPrimary)),
           content: TextField(
             controller: reasonCtrl,
             maxLines: 3,
-            style: const TextStyle(color: Colors.white),
+            style:  TextStyle(color: AppColors.textPrimary),
             decoration:  InputDecoration(
               hintText: 'اكتب سبب الإبلاغ هنا...',
               hintStyle: TextStyle(color: AppColors.textSecondary),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white24)),
+                  borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.24))),
               focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.accent)),
             ),
@@ -310,8 +310,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('إبلاغ',
-                  style: TextStyle(color: Colors.white)),
+              child:  Text('إبلاغ',
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -344,13 +344,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text('تفاصيل المنتج',
+          title:  Text('تفاصيل المنتج',
               style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold)),
         ),
@@ -369,25 +369,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       const SizedBox(height: 8),
                       _quantitySection(),
                       const SizedBox(height: 20),
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Divider(color: Colors.white12),
+                        child: Divider(color: AppColors.textSecondary.withValues(alpha: 0.12)),
                       ),
                       const SizedBox(height: 12),
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Text('معلومات الطلب',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: AppColors.textPrimary,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold)),
                       ),
                       const SizedBox(height: 12),
                       _orderForm(),
                       const SizedBox(height: 24),
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Divider(color: Colors.white12),
+                        child: Divider(color: AppColors.textSecondary.withValues(alpha: 0.12)),
                       ),
                       const SizedBox(height: 8),
                       CommentsSection(
@@ -405,9 +405,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     if (_images.isEmpty) {
       return Container(
         height: 300,
-        color: Colors.black26,
-        child: const Icon(Icons.image_outlined,
-            color: Colors.white24, size: 80),
+        color: AppColors.card,
+        child:  Icon(Icons.image_outlined,
+            color: AppColors.textSecondary.withValues(alpha: 0.24), size: 80),
       );
     }
     return SizedBox(
@@ -422,9 +422,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               fit: BoxFit.cover,
               width: double.infinity,
               errorWidget: (_, _, _) => Container(
-                  color: Colors.black26,
-                  child: const Icon(Icons.broken_image,
-                      color: Colors.white24, size: 60)),
+                  color: AppColors.card,
+                  child:  Icon(Icons.broken_image,
+                      color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60)),
             ),
           ),
           if (_images.length > 1)
@@ -443,7 +443,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     decoration: BoxDecoration(
                       color: _currentImage == i
                           ? AppColors.accent
-                          : Colors.white54,
+                          : AppColors.textSecondary,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -462,8 +462,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text((widget.product['name'] ?? '').toString(),
-              style: const TextStyle(
-                  color: Colors.white,
+              style:  TextStyle(
+                  color: AppColors.textPrimary,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
@@ -490,9 +490,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('اللون',
+           Text('اللون',
               style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   fontSize: 15,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
@@ -513,13 +513,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           border: Border.all(
                               color: _selectedColor == c
                                   ? AppColors.accent
-                                  : Colors.white24),
+                                  : AppColors.textSecondary.withValues(alpha: 0.24)),
                         ),
                         child: Text(c,
                             style: TextStyle(
                                 color: _selectedColor == c
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? AppColors.textPrimary
+                                    : AppColors.textSecondary,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600)),
                       ),
@@ -537,9 +537,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('المقاس',
+           Text('المقاس',
               style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   fontSize: 15,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
@@ -561,13 +561,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           border: Border.all(
                               color: _selectedSize == s
                                   ? AppColors.accent
-                                  : Colors.white24),
+                                  : AppColors.textSecondary.withValues(alpha: 0.24)),
                         ),
                         child: Text(s,
                             style: TextStyle(
                                 color: _selectedSize == s
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? AppColors.textPrimary
+                                    : AppColors.textSecondary,
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold)),
                       ),
@@ -584,9 +584,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Row(
         children: [
-          const Text('الكمية:',
+           Text('الكمية:',
               style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   fontSize: 15,
                   fontWeight: FontWeight.bold)),
           const SizedBox(width: 12),
@@ -601,18 +601,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   onPressed: _quantity > 1
                       ? () => setState(() => _quantity--)
                       : null,
-                  icon: const Icon(Icons.remove, color: Colors.white),
+                  icon:  Icon(Icons.remove, color: AppColors.textPrimary),
                 ),
                 Text('$_quantity',
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style:  TextStyle(
+                        color: AppColors.textPrimary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold)),
                 IconButton(
                   onPressed: _quantity < _availableQty
                       ? () => setState(() => _quantity++)
                       : null,
-                  icon: const Icon(Icons.add, color: Colors.white),
+                  icon:  Icon(Icons.add, color: AppColors.textPrimary),
                 ),
               ],
             ),
@@ -662,16 +662,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     borderRadius: BorderRadius.circular(12)),
               ),
               icon: _sending
-                  ? const SizedBox(
+                  ?  SizedBox(
                       width: 20,
                       height: 20,
                       child: CircularProgressIndicator(
-                          color: Colors.white, strokeWidth: 2.5))
-                  : const Icon(Icons.send, color: Colors.white),
+                          color: AppColors.textPrimary, strokeWidth: 2.5))
+                  :  Icon(Icons.send, color: AppColors.textPrimary),
               label: Text(
                 _sending ? 'جاري الإرسال...' : 'إرسال الطلب',
-                style: const TextStyle(
-                    color: Colors.white,
+                style:  TextStyle(
+                    color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
@@ -696,14 +696,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           hint:  Text('اختر الولاية',
               style: TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
+          style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),
           icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _wilayas
               .map((w) => DropdownMenuItem<String>(
                     value: w['code'],
                     child: Text('${w['code']} - ${w['name']}',
-                        style: const TextStyle(color: Colors.white)),
+                        style:  TextStyle(color: AppColors.textPrimary)),
                   ))
               .toList(),
           onChanged: _onWilayaChange,
@@ -727,14 +727,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               _wilayaCode == null ? 'اختر الولاية أولاً' : 'اختر الدائرة',
               style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
+          style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),
           icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _dairas
               .map((d) => DropdownMenuItem<String>(
                     value: d,
                     child: Text(d,
-                        style: const TextStyle(color: Colors.white)),
+                        style:  TextStyle(color: AppColors.textPrimary)),
                   ))
               .toList(),
           onChanged: _wilayaCode == null
@@ -760,7 +760,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         controller: c,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:

@@ -122,8 +122,8 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title: const Text('حذف الإعلان', style: TextStyle(color: Colors.white)),
-          content: const Text('هل أنت متأكد من حذف الإعلان المبلغ عنه نهائياً؟', style: TextStyle(color: Colors.white70)),
+          title:  Text('حذف الإعلان', style: TextStyle(color: AppColors.textPrimary)),
+          content:  Text('هل أنت متأكد من حذف الإعلان المبلغ عنه نهائياً؟', style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
@@ -132,7 +132,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('حذف', style: TextStyle(color: Colors.white)),
+              child:  Text('حذف', style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -175,19 +175,19 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'البلاغات',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _reports.isEmpty
-                ? const Center(
-                    child: Text('لا توجد بلاغات حالياً.', style: TextStyle(color: Colors.white70)),
+                ?  Center(
+                    child: Text('لا توجد بلاغات حالياً.', style: TextStyle(color: AppColors.textSecondary)),
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.all(16),
@@ -209,8 +209,8 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                               children: [
                                 const Icon(Icons.report_problem, color: Colors.redAccent),
                                 const SizedBox(width: 8),
-                                const Text('بلاغ جديد',
-                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                 Text('بلاغ جديد',
+                                    style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
                               ],
                             ),
                             const SizedBox(height: 8),
@@ -244,8 +244,8 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                                     padding: const EdgeInsets.symmetric(horizontal: 12),
                                   ),
                                   onPressed: () => _deleteItemAndReport(r['productId'], r['id']),
-                                  icon: const Icon(Icons.delete, color: Colors.white, size: 18),
-                                  label: const Text('حذف', style: TextStyle(color: Colors.white)),
+                                  icon:  Icon(Icons.delete, color: AppColors.textPrimary, size: 18),
+                                  label:  Text('حذف', style: TextStyle(color: AppColors.textPrimary)),
                                 ),
                               ],
                             ),

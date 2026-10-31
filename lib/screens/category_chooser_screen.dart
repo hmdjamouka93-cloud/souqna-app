@@ -136,13 +136,13 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               backgroundColor: AppColors.card,
-              title: const Text('لا يمكنك الإعلان هنا',
-                  style: TextStyle(color: Colors.white)),
-              content: const Text(
+              title:  Text('لا يمكنك الإعلان هنا',
+                  style: TextStyle(color: AppColors.textPrimary)),
+              content:  Text(
                 'لا يمكنك إضافة إعلان في هذا القسم إلا إذا كنت تملك متجراً.\n\n'
                 'قم بإنشاء متجرك أولاً لعرض منتجاتك هنا.\n\n'
                 'إذا لم ترغب في إنشاء متجر، يمكنك إضافة منتجاتك في قسم "ملابس أخرى".',
-                style: TextStyle(color: Colors.white70, height: 1.6),
+                style: TextStyle(color: AppColors.textSecondary, height: 1.6),
               ),
               actions: [
                 TextButton(
@@ -164,8 +164,8 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
                       ),
                     );
                   },
-                  child: const Text('إنشاء متجر',
-                      style: TextStyle(color: Colors.white)),
+                  child:  Text('إنشاء متجر',
+                      style: TextStyle(color: AppColors.textPrimary)),
                 ),
               ],
             ),
@@ -239,14 +239,14 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.mainCategoryName,
-            style: const TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -265,10 +265,10 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
     }
 
     if (_items.isEmpty) {
-      return const Center(
+      return  Center(
         child: Text(
           'لا توجد أقسام',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
         ),
       );
     }
@@ -277,13 +277,13 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       children: [
         const SizedBox(height: 16),
         const AdBanner(),
-        const Padding(
+         Padding(
           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
           child: Align(
             alignment: Alignment.centerRight,
             child: Text('الأقسام الفرعية',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
@@ -325,8 +325,8 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
               child: Text(
                 cat['name'],
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style:  TextStyle(
+                  color: AppColors.textPrimary,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),

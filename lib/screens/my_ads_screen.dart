@@ -86,14 +86,14 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'إعلاناتي',
             style: TextStyle(
-              color: Colors.white,
+              color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -121,9 +121,9 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
               color: AppColors.iconInactive.withValues(alpha: 0.5),
             ),
             const SizedBox(height: 16),
-            const Text(
+             Text(
               'لا توجد إعلانات بعد',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
             ),
             const SizedBox(height: 8),
              Text(
@@ -166,17 +166,17 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
               aspectRatio: 16 / 10,
               child: img.isEmpty
                   ? Container(
-                      color: Colors.black26,
-                      child: const Icon(Icons.directions_car,
-                          color: Colors.white24, size: 60),
+                      color: AppColors.card,
+                      child:  Icon(Icons.directions_car,
+                          color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                     )
                   : CachedNetworkImage(imageUrl: 
                       img,
                       fit: BoxFit.cover,
                       errorWidget: (_, _, _) => Container(
-                        color: Colors.black26,
-                        child: const Icon(Icons.directions_car,
-                            color: Colors.white24, size: 60),
+                        color: AppColors.card,
+                        child:  Icon(Icons.directions_car,
+                            color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                       ),
                     ),
             ),
@@ -187,8 +187,8 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                 children: [
                   Text(
                     item['title'],
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style:  TextStyle(
+                      color: AppColors.textPrimary,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),

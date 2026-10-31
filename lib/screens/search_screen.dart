@@ -82,7 +82,7 @@ class _SearchScreenState extends State<SearchScreen> {
           backgroundColor: AppColors.background,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Container(
@@ -92,7 +92,7 @@ class _SearchScreenState extends State<SearchScreen> {
               controller: _searchCtrl,
               autofocus: true,
               onChanged: _applySearch,
-              style: const TextStyle(color: Colors.white),
+              style:  TextStyle(color: AppColors.textPrimary),
               decoration:  InputDecoration(
                 hintText: 'ابحث بالاسم، الوصف، أو الولاية...',
                 hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 14),
@@ -106,7 +106,7 @@ class _SearchScreenState extends State<SearchScreen> {
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _filteredItems.isEmpty
-                ? const Center(child: Text('لا توجد نتائج مطابقة', style: TextStyle(color: Colors.white70)))
+                ?  Center(child: Text('لا توجد نتائج مطابقة', style: TextStyle(color: AppColors.textSecondary)))
                 : GridView.builder(
                     padding: const EdgeInsets.all(12),
                     itemCount: _filteredItems.length,
@@ -132,15 +132,15 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             Expanded(
               child: img.isEmpty
-                  ? Container(color: Colors.black26, child: const Icon(Icons.directions_car, color: Colors.white24, size: 40))
-                  : CachedNetworkImage(imageUrl: img, fit: BoxFit.cover, errorWidget: (_, _, _) => Container(color: Colors.black26, child: const Icon(Icons.directions_car, color: Colors.white24, size: 40))),
+                  ? Container(color: AppColors.card, child:  Icon(Icons.directions_car, color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40))
+                  : CachedNetworkImage(imageUrl: img, fit: BoxFit.cover, errorWidget: (_, _, _) => Container(color: AppColors.card, child:  Icon(Icons.directions_car, color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40))),
             ),
             Padding(
               padding: const EdgeInsets.all(8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(item['title'], style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis),
+                  Text(item['title'], style:  TextStyle(color: AppColors.textPrimary, fontSize: 13, fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis),
                   const SizedBox(height: 4),
                   Text('${item['price']} د.ج', style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),

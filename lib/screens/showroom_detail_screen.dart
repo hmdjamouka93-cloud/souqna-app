@@ -88,8 +88,8 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                   );
                   if (r == true) _load();
                 },
-                icon: const Icon(Icons.add, color: Colors.white),
-                label: const Text('أضف سيارة', style: TextStyle(color: Colors.white)),
+                icon:  Icon(Icons.add, color: AppColors.textPrimary),
+                label:  Text('أضف سيارة', style: TextStyle(color: AppColors.textPrimary)),
               )
             : null,
         appBar: AppBar(
@@ -97,14 +97,14 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             name,
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
             maxLines: 1,
@@ -131,7 +131,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                         width: 70,
                         height: 70,
                         decoration: BoxDecoration(
-                          color: Colors.black26,
+                          color: AppColors.card,
                           borderRadius: BorderRadius.circular(35),
                           border: Border.all(
                               color:
@@ -162,8 +162,8 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                                 Flexible(
                                   child: Text(
                                     name,
-                                    style: const TextStyle(
-                                        color: Colors.white,
+                                    style:  TextStyle(
+                                        color: AppColors.textPrimary,
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold),
                                     maxLines: 1,
@@ -253,7 +253,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                 size: 80, color: AppColors.iconInactive),
             SizedBox(height: 16),
             Text('لا توجد سيارات بعد',
-                style: TextStyle(color: Colors.white, fontSize: 16)),
+                style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
           ],
         ),
       );
@@ -292,17 +292,17 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
               aspectRatio: 16 / 10,
               child: img.isEmpty
                   ? Container(
-                      color: Colors.black26,
-                      child: const Icon(Icons.directions_car,
-                          color: Colors.white24, size: 60),
+                      color: AppColors.card,
+                      child:  Icon(Icons.directions_car,
+                          color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                     )
                   : Container(
-                      color: Colors.black26,
+                      color: AppColors.card,
                       child: CachedNetworkImage(imageUrl: img,
                           fit: BoxFit.contain,
-                          errorWidget: (_, _, _) => const Center(
+                          errorWidget: (_, _, _) =>  Center(
                                 child: Icon(Icons.directions_car,
-                                    color: Colors.white24, size: 60),
+                                    color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                               )),
                     ),
             ),
@@ -312,8 +312,8 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(item['title'],
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style:  TextStyle(
+                          color: AppColors.textPrimary,
                           fontSize: 15,
                           fontWeight: FontWeight.bold),
                       maxLines: 2,
@@ -366,11 +366,11 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
         ),
       ),
       icon: Icon(icon,
-          color: isPrimary ? Colors.white : AppColors.accent, size: 18),
+          color: isPrimary ? AppColors.textPrimary : AppColors.accent, size: 18),
       label: Text(
         label,
         style: TextStyle(
-            color: isPrimary ? Colors.white : AppColors.accent,
+            color: isPrimary ? AppColors.textPrimary : AppColors.accent,
             fontSize: 13,
             fontWeight: FontWeight.bold),
       ),

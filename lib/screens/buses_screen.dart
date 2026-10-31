@@ -51,14 +51,14 @@ class BusesScreen extends StatelessWidget {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+        icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('حافلات',
-        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+      title:  Text('حافلات',
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications_none, color: Colors.white, size: 24),
+          icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 24),
           onPressed: () {},
         ),
       ],
@@ -92,7 +92,7 @@ class BusesScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: Text(title,
-        style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+        style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -167,7 +167,7 @@ class BusesScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 6),
             Text(brand.name,
-              style: const TextStyle(color: Colors.white, fontSize: 12,
+              style:  TextStyle(color: AppColors.textPrimary, fontSize: 12,
                 fontWeight: FontWeight.bold),
               textAlign: TextAlign.center),
             const Spacer(),
@@ -183,8 +183,8 @@ class BusesScreen extends StatelessWidget {
                           'https://images.weserv.nl/?url=cdn.simpleicons.org/${brand.slug}/white&output=png&w=120&h=120',
                           fit: BoxFit.contain,
                           
-                          errorWidget: (_, _, _) => const Icon(
-                            Icons.directions_bus, color: Colors.white24, size: 32),
+                          errorWidget: (_, _, _) =>  Icon(
+                            Icons.directions_bus, color: AppColors.textSecondary.withValues(alpha: 0.24), size: 32),
                         ),
                 ),
               ),

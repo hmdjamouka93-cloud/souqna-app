@@ -200,13 +200,13 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 22),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 22),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             _isEdit ? 'تعديل المتجر' : 'إنشاء متجر',
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -267,15 +267,15 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
                         ),
                         onPressed: _loading ? null : _submit,
                         child: _loading
-                            ? const SizedBox(
+                            ?  SizedBox(
                                 width: 22,
                                 height: 22,
                                 child: CircularProgressIndicator(
-                                    color: Colors.white, strokeWidth: 2.5))
+                                    color: AppColors.textPrimary, strokeWidth: 2.5))
                             : Text(
                                 _isEdit ? 'حفظ التعديل' : 'إنشاء المتجر',
-                                style: const TextStyle(
-                                    color: Colors.white,
+                                style:  TextStyle(
+                                    color: AppColors.textPrimary,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -361,14 +361,14 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           hint:  Text('اختر الولاية',
               style: TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
+          style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),
           icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _wilayas
               .map((w) => DropdownMenuItem<String>(
                     value: w['code'],
                     child: Text('${w['code']} - ${w['name']}',
-                        style: const TextStyle(color: Colors.white)),
+                        style:  TextStyle(color: AppColors.textPrimary)),
                   ))
               .toList(),
           onChanged: _onWilayaChange,
@@ -392,13 +392,13 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
               _wilayaCode == null ? 'اختر الولاية أولاً' : 'اختر الدائرة',
               style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
+          style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),
           icon:  Icon(Icons.keyboard_arrow_down,
               color: AppColors.textSecondary),
           items: _dairas
               .map((d) => DropdownMenuItem<String>(
                     value: d,
-                    child: Text(d, style: const TextStyle(color: Colors.white)),
+                    child: Text(d, style:  TextStyle(color: AppColors.textPrimary)),
                   ))
               .toList(),
           onChanged: _wilayaCode == null
@@ -412,8 +412,8 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
         child: Text(t,
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 14,
                 fontWeight: FontWeight.w600)),
       );
@@ -435,7 +435,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
         maxLines: maxLines,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(

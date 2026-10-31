@@ -91,12 +91,12 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'إدارة الحظر',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: Padding(
@@ -115,7 +115,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                       ),
                       child: TextField(
                         controller: _searchCtrl,
-                        style: const TextStyle(color: Colors.white),
+                        style:  TextStyle(color: AppColors.textPrimary),
                         decoration:  InputDecoration(
                           hintText: 'ابحث بالإيميل أو الهاتف لحظر مستخدم...',
                           hintStyle: TextStyle(color: AppColors.textSecondary),
@@ -134,8 +134,8 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                     ),
                     onPressed: _searching ? null : _search,
                     child: _searching
-                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                        : const Icon(Icons.search, color: Colors.white),
+                        ?  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2))
+                        :  Icon(Icons.search, color: AppColors.textPrimary),
                   ),
                 ],
               ),
@@ -166,7 +166,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text((_foundUser!['name'] ?? 'بدون اسم').toString(),
-                                    style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                    style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text((_foundUser!['email'] ?? '').toString(),
                                     style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
                                 Text((_foundUser!['phone'] ?? '').toString(),
@@ -186,10 +186,10 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                           onPressed: () => _toggleBlock(_foundUser!['id'], _foundUser!['isBlocked'] == true),
-                          icon: Icon(_foundUser!['isBlocked'] == true ? Icons.lock_open : Icons.block, color: Colors.white),
+                          icon: Icon(_foundUser!['isBlocked'] == true ? Icons.lock_open : Icons.block, color: AppColors.textPrimary),
                           label: Text(
                             _foundUser!['isBlocked'] == true ? 'إلغاء الحظر' : 'حظر المستخدم',
-                            style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                            style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -199,12 +199,12 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
               ],
 
               const SizedBox(height: 24),
-              const Divider(color: Colors.white12),
-              const Padding(
+               Divider(color: AppColors.textSecondary.withValues(alpha: 0.12)),
+               Padding(
                 padding: EdgeInsets.symmetric(vertical: 12),
                 child: Text(
                   'قائمة المحظورين (الذين تم حظرهم حالياً):',
-                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
 
@@ -220,9 +220,9 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                       return const Center(child: CircularProgressIndicator(color: AppColors.accent));
                     }
                     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                      return const Center(
+                      return  Center(
                         child: Text('لا يوجد مستخدمون محظورون حالياً.',
-                            style: TextStyle(color: Colors.white54, fontSize: 14)),
+                            style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
                       );
                     }
 
@@ -242,7 +242,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                           child: ListTile(
                             leading: const Icon(Icons.block, color: Colors.redAccent),
                             title: Text((data['name'] ?? 'بدون اسم').toString(),
-                                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
                             subtitle: Text((data['email'] ?? '').toString(),
                                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             trailing: TextButton(

@@ -66,14 +66,14 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'معارض السيارات',
             style: TextStyle(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -125,31 +125,31 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.2),
+                      color: AppColors.textPrimary.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.storefront,
-                        color: Colors.white, size: 24),
+                    child:  Icon(Icons.storefront,
+                        color: AppColors.textPrimary, size: 24),
                   ),
                   const SizedBox(width: 12),
-                  const Expanded(
+                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('أنت صاحب معرض؟',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: AppColors.textPrimary,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(height: 3),
                         Text('أنشئ معرضك واعرض سياراتك',
                             style: TextStyle(
-                                color: Colors.white, fontSize: 12)),
+                                color: AppColors.textPrimary, fontSize: 12)),
                       ],
                     ),
                   ),
-                  const Icon(Icons.arrow_back_ios_new,
-                      color: Colors.white, size: 16),
+                   Icon(Icons.arrow_back_ios_new,
+                      color: AppColors.textPrimary, size: 16),
                 ],
               ),
             ),
@@ -166,7 +166,7 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
                     SizedBox(height: 16),
                     Text('لا توجد معارض بعد',
                         style:
-                            TextStyle(color: Colors.white, fontSize: 16)),
+                            TextStyle(color: AppColors.textPrimary, fontSize: 16)),
                     SizedBox(height: 8),
                     Text('كن أول صاحب معرض!',
                         style: TextStyle(
@@ -201,7 +201,7 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                color: Colors.black26,
+                color: AppColors.card,
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(
                     color: AppColors.accent.withValues(alpha: 0.4),
@@ -231,8 +231,8 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
                       Flexible(
                         child: Text(
                           (showroom['name'] ?? '').toString(),
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style:  TextStyle(
+                              color: AppColors.textPrimary,
                               fontSize: 15,
                               fontWeight: FontWeight.bold),
                           maxLines: 1,

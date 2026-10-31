@@ -55,7 +55,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
           elevation: 0,
           centerTitle: false,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Row(
@@ -73,7 +73,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
               const SizedBox(width: 10),
               Text(
                 widget.otherUserName,
-                style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -89,9 +89,9 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                   }
 
                   if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                    return const Center(
+                    return  Center(
                       child: Text('لا توجد رسائل بعد، ابدأ المحادثة',
-                          style: TextStyle(color: Colors.white54)),
+                          style: TextStyle(color: AppColors.textSecondary)),
                     );
                   }
 
@@ -124,7 +124,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                           ),
                           child: Text(
                             text,
-                            style: const TextStyle(color: Colors.white, fontSize: 15),
+                            style:  TextStyle(color: AppColors.textPrimary, fontSize: 15),
                           ),
                         ),
                       );
@@ -148,7 +148,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                         ),
                         child: TextField(
                           controller: _msgCtrl,
-                          style: const TextStyle(color: Colors.white),
+                          style:  TextStyle(color: AppColors.textPrimary),
                           maxLines: null,
                           textInputAction: TextInputAction.send,
                           onSubmitted: (_) => _send(),
@@ -171,12 +171,12 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                           shape: BoxShape.circle,
                         ),
                         child: _sending
-                            ? const SizedBox(
+                            ?  SizedBox(
                                 width: 20,
                                 height: 20,
-                                child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                                child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2),
                               )
-                            : const Icon(Icons.send, color: Colors.white, size: 20),
+                            :  Icon(Icons.send, color: AppColors.textPrimary, size: 20),
                       ),
                     ),
                   ],

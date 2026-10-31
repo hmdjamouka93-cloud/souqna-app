@@ -87,11 +87,11 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
           child: AlertDialog(
             backgroundColor: AppColors.card,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            title: const Row(
+            title:  Row(
               children: [
                 Icon(Icons.check_circle, color: Colors.green, size: 28),
                 SizedBox(width: 8),
-                Text('تم إرسال الطلب', style: TextStyle(color: Colors.white)),
+                Text('تم إرسال الطلب', style: TextStyle(color: AppColors.textPrimary)),
               ],
             ),
             content:  Text(
@@ -130,12 +130,12 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'طلب الخدمة',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -161,7 +161,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                         children: [
                           Text(
                             (widget.service['title'] ?? '').toString(),
-                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 4),
                           Text(
@@ -176,9 +176,9 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               ),
               const SizedBox(height: 24),
               
-              const Text(
+               Text(
                 'معلومات الطلب',
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
 
@@ -205,7 +205,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                         value: _wilayaCode,
                         hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
-                        style: const TextStyle(color: Colors.white),
+                        style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: wilayas.map((w) {
                           return DropdownMenuItem<String>(
@@ -243,7 +243,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                         value: _dairaName,
                         hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
-                        style: const TextStyle(color: Colors.white),
+                        style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: dairas.map((d) {
                           return DropdownMenuItem<String>(value: d, child: Text(d));
@@ -279,11 +279,11 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
                   icon: _loading
-                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
-                      : const Icon(Icons.send, color: Colors.white),
+                      ?  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
+                      :  Icon(Icons.send, color: AppColors.textPrimary),
                   label: Text(
                     _loading ? 'جاري الإرسال...' : 'إرسال الطلب',
-                    style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                    style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -297,7 +297,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, right: 4),
-      child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(text, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
     );
   }
 
@@ -308,7 +308,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
         controller: c,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),

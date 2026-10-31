@@ -117,15 +117,15 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+        icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('تفاصيل التأجير',
-        style: TextStyle(color: Colors.white, fontSize: 16,
+      title:  Text('تفاصيل التأجير',
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 16,
           fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
-          icon: const Icon(Icons.star_border, color: Colors.white, size: 22),
+          icon:  Icon(Icons.star_border, color: AppColors.textPrimary, size: 22),
           onPressed: () {},
         ),
       ],
@@ -143,9 +143,9 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
             itemBuilder: (context, i) => CachedNetworkImage(imageUrl: _gallery[i],
               fit: BoxFit.cover,
               errorWidget: (_, _, _) => Container(
-                color: Colors.black26,
-                child: const Icon(Icons.directions_car,
-                  color: Colors.white24, size: 60),
+                color: AppColors.card,
+                child:  Icon(Icons.directions_car,
+                  color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
               )),
           ),
         ),
@@ -160,7 +160,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 3),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: _currentPage == i ? Colors.white : Colors.white38,
+                color: _currentPage == i ? AppColors.textPrimary : AppColors.textSecondary.withValues(alpha: 0.38),
               ),
             )),
           ),
@@ -176,7 +176,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(_data['name'],
-            style: const TextStyle(color: Colors.white, fontSize: 18,
+            style:  TextStyle(color: AppColors.textPrimary, fontSize: 18,
               fontWeight: FontWeight.bold)),
           const SizedBox(height: 6),
           Row(
@@ -205,8 +205,8 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('أسعار التأجير',
-            style: TextStyle(color: Colors.white, fontSize: 14,
+           Text('أسعار التأجير',
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 14,
               fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
           Row(
@@ -228,7 +228,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.black26,
+          color: AppColors.card,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -257,15 +257,15 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
+           CircleAvatar(
             radius: 22,
-            backgroundColor: Colors.black26,
-            child: Icon(Icons.storefront, color: Colors.white54, size: 22),
+            backgroundColor: AppColors.card,
+            child: Icon(Icons.storefront, color: AppColors.textSecondary, size: 22),
           ),
           const SizedBox(width: 10),
           Expanded(
             child: Text(_data['owner'],
-              style: const TextStyle(color: Colors.white, fontSize: 14,
+              style:  TextStyle(color: AppColors.textPrimary, fontSize: 14,
                 fontWeight: FontWeight.bold)),
           ),
           _smallBtn('تابع', () {}),
@@ -301,12 +301,12 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('الوصف',
-            style: TextStyle(color: Colors.white, fontSize: 15,
+           Text('الوصف',
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 15,
               fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(_data['description'],
-            style: const TextStyle(color: Colors.white, fontSize: 13,
+            style:  TextStyle(color: AppColors.textPrimary, fontSize: 13,
               height: 1.7)),
         ],
       ),
@@ -350,18 +350,18 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
         decoration: BoxDecoration(
           color: AppColors.card,
           border: Border.all(
-            color: active ? AppColors.accent : Colors.white24, width: 1),
+            color: active ? AppColors.accent : AppColors.textSecondary.withValues(alpha: 0.24), width: 1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon,
-              color: active ? AppColors.accent : Colors.white, size: 16),
+              color: active ? AppColors.accent : AppColors.textPrimary, size: 16),
             const SizedBox(width: 6),
             Text(label,
               style: TextStyle(
-                color: active ? AppColors.accent : Colors.white,
+                color: active ? AppColors.accent : AppColors.textPrimary,
                 fontSize: 12)),
           ],
         ),

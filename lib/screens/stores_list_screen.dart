@@ -76,14 +76,14 @@ class _StoresListScreenState extends State<StoresListScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.categoryName,
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -113,7 +113,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                               SizedBox(height: 16),
                               Text('لا توجد متاجر بعد',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 16)),
+                                      color: AppColors.textPrimary, fontSize: 16)),
                               SizedBox(height: 8),
                               Text('كن أول من يفتح متجر!',
                                   style: TextStyle(
@@ -154,11 +154,11 @@ class _StoresListScreenState extends State<StoresListScreen> {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: AppColors.textPrimary.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
               child: Icon(hasStore ? Icons.storefront : Icons.add_business,
-                  color: Colors.white, size: 24),
+                  color: AppColors.textPrimary, size: 24),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -167,8 +167,8 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(hasStore ? 'متجري' : 'أنشئ متجرك',
-                      style: const TextStyle(
-                          color: Colors.white,
+                      style:  TextStyle(
+                          color: AppColors.textPrimary,
                           fontSize: 15,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 3),
@@ -176,16 +176,16 @@ class _StoresListScreenState extends State<StoresListScreen> {
                     hasStore
                         ? (_myStore!['name'] ?? '').toString()
                         : 'اعرض منتجاتك في سوقنا',
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 12),
+                    style:  TextStyle(
+                        color: AppColors.textPrimary, fontSize: 12),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 16),
+             Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 16),
           ],
         ),
       ),
@@ -221,9 +221,9 @@ class _StoresListScreenState extends State<StoresListScreen> {
                     CachedNetworkImage(imageUrl: cover,
                         fit: BoxFit.cover,
                         errorWidget: (_, _, _) =>
-                            Container(color: Colors.black26))
+                            Container(color: AppColors.card))
                   else
-                    Container(color: Colors.black26),
+                    Container(color: AppColors.card),
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -274,8 +274,8 @@ class _StoresListScreenState extends State<StoresListScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(name,
-                              style: const TextStyle(
-                                  color: Colors.white,
+                              style:  TextStyle(
+                                  color: AppColors.textPrimary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
                               maxLines: 1,

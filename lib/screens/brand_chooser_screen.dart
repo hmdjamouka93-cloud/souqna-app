@@ -165,14 +165,14 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             'اختر النوع - ${widget.categoryName}',
-            style: const TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: AppColors.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -191,10 +191,10 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
     }
 
     if (_items.isEmpty) {
-      return const Center(
+      return  Center(
         child: Text(
           'لا توجد أنواع',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
         ),
       );
     }
@@ -203,13 +203,13 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       children: [
         const SizedBox(height: 16),
         const AdBanner(),
-        const Padding(
+         Padding(
           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
           child: Align(
             alignment: Alignment.centerRight,
             child: Text('الأقسام الفرعية',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
@@ -263,8 +263,8 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                         child: Text(
                           brandName,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style:  TextStyle(
+                            color: AppColors.textPrimary,
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
@@ -293,8 +293,8 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   child: Text(
                     brandName,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style:  TextStyle(
+                      color: AppColors.textPrimary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       shadows: [
@@ -332,8 +332,8 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
               child: Text(
                 brandName,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style:  TextStyle(
+                  color: AppColors.textPrimary,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),

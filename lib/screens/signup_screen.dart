@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../services/auth_service.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -98,10 +99,10 @@ class _SignupScreenState extends State<SignupScreen> {
         appBar: AppBar(
           backgroundColor: _bg,
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: const Text(
+          iconTheme:  IconThemeData(color: AppColors.textPrimary),
+          title:  Text(
             'إنشاء حساب',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
         ),
         body: SafeArea(
@@ -182,18 +183,18 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     onPressed: _loading ? null : _signup,
                     child: _loading
-                        ? const SizedBox(
+                        ?  SizedBox(
                             width: 22,
                             height: 22,
                             child: CircularProgressIndicator(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               strokeWidth: 2.5,
                             ),
                           )
-                        : const Text(
+                        :  Text(
                             'تسجيل',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -221,8 +222,8 @@ class _SignupScreenState extends State<SignupScreen> {
         padding: const EdgeInsets.only(bottom: 8, right: 4),
         child: Text(
           t,
-          style: const TextStyle(
-            color: Colors.white,
+          style:  TextStyle(
+            color: AppColors.textPrimary,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -246,7 +247,7 @@ class _SignupScreenState extends State<SignupScreen> {
         controller: controller,
         keyboardType: keyboard,
         obscureText: obscure,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         textDirection: TextDirection.ltr,
         decoration: InputDecoration(
           hintText: hint,

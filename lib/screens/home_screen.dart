@@ -78,7 +78,7 @@ class HomeScreenState extends State<HomeScreen> {
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white, size: 26),
+            icon:  Icon(Icons.menu, color: AppColors.textPrimary, size: 26),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
           const Expanded(
@@ -95,21 +95,21 @@ class HomeScreenState extends State<HomeScreen> {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.chat_bubble_outline, color: Colors.white, size: 26),
+            icon:  Icon(Icons.chat_bubble_outline, color: AppColors.textPrimary, size: 26),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ChatsListScreen()),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white, size: 26),
+            icon:  Icon(Icons.shopping_cart_outlined, color: AppColors.textPrimary, size: 26),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.white, size: 26),
+            icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 26),
             onPressed: () {},
           ),
         ],
@@ -175,8 +175,8 @@ class HomeScreenState extends State<HomeScreen> {
       child: Text(
         title,
         textAlign: TextAlign.right,
-        style: const TextStyle(
-          color: Colors.white,
+        style:  TextStyle(
+          color: AppColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
@@ -200,12 +200,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -217,12 +217,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -270,12 +270,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -287,12 +287,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -340,12 +340,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -357,12 +357,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -410,12 +410,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -427,12 +427,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -479,12 +479,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -496,12 +496,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -548,12 +548,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -565,12 +565,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -616,12 +616,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -637,12 +637,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -688,12 +688,12 @@ class HomeScreenState extends State<HomeScreen> {
           );
         }
         if (snapshot.hasError) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'حدث خطأ أثناء تحميل الأقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -709,12 +709,12 @@ class HomeScreenState extends State<HomeScreen> {
             return (ao as int).compareTo(bo as int);
           });
         if (docs.isEmpty) {
-          return const Padding(
+          return  Padding(
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
                 'لا توجد أقسام',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
           );
@@ -763,9 +763,9 @@ class HomeScreenState extends State<HomeScreen> {
               
               errorWidget: (context, error, stack) => Container(
                 color: AppColors.card,
-                child: const Icon(
+                child:  Icon(
                   Icons.image_outlined,
-                  color: Colors.white24,
+                  color: AppColors.textSecondary.withValues(alpha: 0.24),
                   size: 40,
                 ),
               ),
@@ -789,8 +789,8 @@ class HomeScreenState extends State<HomeScreen> {
               child: Text(
                 name,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style:  TextStyle(
+                  color: AppColors.textPrimary,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   shadows: [

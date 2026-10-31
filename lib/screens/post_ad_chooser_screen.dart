@@ -79,14 +79,14 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'اختر القسم',
             style: TextStyle(
-              color: Colors.white,
+              color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -104,10 +104,10 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
       );
     }
     if (_items.isEmpty) {
-      return const Center(
+      return  Center(
         child: Text(
           'لا توجد أقسام',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
         ),
       );
     }
@@ -148,8 +148,8 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                     child: Text(
                       mc['name'],
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style:  TextStyle(
+                        color: AppColors.textPrimary,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -168,8 +168,8 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                           child: Text(
                             mc['name'],
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style:  TextStyle(
+                              color: AppColors.textPrimary,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
@@ -196,8 +196,8 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                       child: Text(
                         mc['name'],
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style:  TextStyle(
+                          color: AppColors.textPrimary,
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
                           shadows: [

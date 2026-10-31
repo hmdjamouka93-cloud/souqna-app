@@ -69,13 +69,13 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.categoryName,
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -87,13 +87,13 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                 children: [
                   const SizedBox(height: 16),
                   const AdBanner(),
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.only(top: 16, right: 16, left: 16),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text('الأقسام الفرعية',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               fontSize: 16,
                               fontWeight: FontWeight.bold)),
                     ),
@@ -186,8 +186,8 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                                   child: Text(
                                     name,
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.white,
+                                    style:  TextStyle(
+                                      color: AppColors.textPrimary,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       shadows: [

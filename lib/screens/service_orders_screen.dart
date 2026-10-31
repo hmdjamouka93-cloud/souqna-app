@@ -59,20 +59,20 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'طلبات الخدمة',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _orders.isEmpty
-                ? const Center(
+                ?  Center(
                     child: Text('لا توجد طلبات بعد',
-                        style: TextStyle(color: Colors.white70, fontSize: 15)),
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
                 : RefreshIndicator(
                     onRefresh: _load,
@@ -105,7 +105,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
               Expanded(
                 child: Text(
                   (o['serviceTitle'] ?? '').toString(),
-                  style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                  style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
@@ -122,7 +122,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
             ],
           ),
           const SizedBox(height: 12),
-          const Divider(color: Colors.white12, height: 1),
+           Divider(color: AppColors.textSecondary.withValues(alpha: 0.12), height: 1),
           const SizedBox(height: 12),
           _infoRow('الاسم', (o['clientName'] ?? '').toString()),
           _infoRow('الهاتف', (o['clientPhone'] ?? '').toString()),
@@ -136,7 +136,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     onPressed: () => _setStatus(o['id'], 'accepted'),
-                    child: const Text('قبول', style: TextStyle(color: Colors.white)),
+                    child:  Text('قبول', style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -144,7 +144,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     onPressed: () => _setStatus(o['id'], 'rejected'),
-                    child: const Text('رفض', style: TextStyle(color: Colors.white)),
+                    child:  Text('رفض', style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
               ],
@@ -155,7 +155,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () => _setStatus(o['id'], 'completed'),
-                child: const Text('تم الإنجاز', style: TextStyle(color: Colors.white)),
+                child:  Text('تم الإنجاز', style: TextStyle(color: AppColors.textPrimary)),
               ),
             ),
         ],
@@ -170,7 +170,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
         children: [
           Text('$label: ', style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           Expanded(
-            child: Text(value, style: const TextStyle(color: Colors.white, fontSize: 13)),
+            child: Text(value, style:  TextStyle(color: AppColors.textPrimary, fontSize: 13)),
           ),
         ],
       ),

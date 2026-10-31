@@ -118,20 +118,20 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.tradeName,
-            style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _providers.isEmpty
-                ? const Center(
+                ?  Center(
                     child: Text('لا يوجد صانعو خدمات في هذا القسم بعد',
-                        style: TextStyle(color: Colors.white70, fontSize: 15)),
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.all(16),
@@ -166,10 +166,10 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
                                 : null,
                           ),
                           title: Text(p['name'],
-                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                              style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
                           subtitle: Text('${p['wilaya']} - ${p['daira']}',
                               style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
-                          trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white54, size: 16),
+                          trailing:  Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 16),
                         ),
                       );
                     },

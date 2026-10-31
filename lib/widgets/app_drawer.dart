@@ -84,14 +84,14 @@ class _AppDrawerState extends State<AppDrawer> {
       width: MediaQuery.of(context).size.width * 0.82,
       child: SafeArea(child: Column(children: [
         Padding(padding: const EdgeInsets.fromLTRB(8, 8, 16, 8), child: Row(children: [
-          IconButton(icon: const Icon(Icons.close, color: Colors.white, size: 24), onPressed: () => Navigator.pop(context)),
+          IconButton(icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 24), onPressed: () => Navigator.pop(context)),
           const Spacer(),
-          const Text('الأقسام', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+           Text('الأقسام', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
         ])),
         Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: TextField(
           controller: _searchCtrl,
           onChanged: (v) => setState(() => _searchQuery = v),
-          style: const TextStyle(color: Colors.white),
+          style:  TextStyle(color: AppColors.textPrimary),
           decoration: InputDecoration(hintText: 'بحث في الأقسام', hintStyle:  TextStyle(color: AppColors.textSecondary), prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary), filled: true, fillColor: AppColors.card, border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none), contentPadding: const EdgeInsets.symmetric(vertical: 12)),
         )),
         StreamBuilder<User?>(
@@ -101,7 +101,7 @@ class _AppDrawerState extends State<AppDrawer> {
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               leading: Icon(logged ? Icons.person_outline : Icons.login_outlined, color: AppColors.accent, size: 22),
-              title: Text(logged ? 'حسابي' : 'تسجيل الدخول', style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.right),
+              title: Text(logged ? 'حسابي' : 'تسجيل الدخول', style:  TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.right),
               trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
               onTap: () {
                 Navigator.pop(context);
@@ -119,17 +119,17 @@ class _AppDrawerState extends State<AppDrawer> {
 
   Widget _buildList(BuildContext context) {
     final filteredItems = _items.where((item) => item.name.contains(_searchQuery) || item.name.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
-    if (filteredItems.isEmpty) { return const Center(child: Text('لا توجد أقسام مطابقة', style: TextStyle(color: Colors.white70))); }
+    if (filteredItems.isEmpty) { return  Center(child: Text('لا توجد أقسام مطابقة', style: TextStyle(color: AppColors.textSecondary))); }
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       itemCount: filteredItems.length,
-      separatorBuilder: (_, _) => const Divider(color: Colors.white12, height: 1, indent: 16, endIndent: 16),
+      separatorBuilder: (_, _) =>  Divider(color: AppColors.textSecondary.withValues(alpha: 0.12), height: 1, indent: 16, endIndent: 16),
       itemBuilder: (context, i) {
         final item = filteredItems[i];
         return ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           leading: Icon(item.icon, color: AppColors.accent, size: 22),
-          title: Text(item.name, style: const TextStyle(color: Colors.white, fontSize: 15), textAlign: TextAlign.right),
+          title: Text(item.name, style:  TextStyle(color: AppColors.textPrimary, fontSize: 15), textAlign: TextAlign.right),
           trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
           onTap: () { Navigator.pop(context); widget.onCategoryTap(item.name); },
         );

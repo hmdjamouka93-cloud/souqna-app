@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/showroom_service.dart';
 import 'create_showroom_screen.dart';
@@ -89,13 +90,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: _card,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)),
-          title: const Text('اسم المعرض / المحل',
+          title:  Text('اسم المعرض / المحل',
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold)),
+                  color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: TextField(
             controller: ctrl,
             maxLength: 40,
-            style: const TextStyle(color: Colors.white),
+            style:  TextStyle(color: AppColors.textPrimary),
             decoration: const InputDecoration(
               hintText: 'مثال: معرض النخبة للسيارات',
               hintStyle: TextStyle(color: _textSec),
@@ -117,8 +118,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: _accent),
               onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-              child: const Text('حفظ',
-                  style: TextStyle(color: Colors.white)),
+              child:  Text('حفظ',
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -143,12 +144,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('تعديل رقم الهاتف',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          title:  Text('تعديل رقم الهاتف',
+              style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: TextField(
             controller: ctrl,
             keyboardType: TextInputType.phone,
-            style: const TextStyle(color: Colors.white),
+            style:  TextStyle(color: AppColors.textPrimary),
             textDirection: TextDirection.ltr,
             decoration: const InputDecoration(
               hintText: '0555 12 34 56',
@@ -169,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: _accent),
               onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-              child: const Text('حفظ', style: TextStyle(color: Colors.white)),
+              child:  Text('حفظ', style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -200,8 +201,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('تسجيل الخروج',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          title:  Text('تسجيل الخروج',
+              style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: const Text('هل أنت متأكد من تسجيل الخروج؟',
               style: TextStyle(color: _textSec)),
           actions: [
@@ -212,7 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('خروج', style: TextStyle(color: Colors.white)),
+              child:  Text('خروج', style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -233,9 +234,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           backgroundColor: _bg,
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: const Text('حسابي',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          iconTheme:  IconThemeData(color: AppColors.textPrimary),
+          title:  Text('حسابي',
+              style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
         ),
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: _accent))
@@ -260,8 +261,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Center(
                           child: Text(
                             (_name == null || _name!.isEmpty) ? 'مستخدم' : _name!,
-                            style: const TextStyle(
-                                color: Colors.white,
+                            style:  TextStyle(
+                                color: AppColors.textPrimary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -340,10 +341,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       builder: (_) => const MyOrdersScreen(),
                     ),
                   ),
-                  icon: const Icon(Icons.receipt_long, color: Colors.white),
-                  label: const Text('طلباتي',
+                  icon:  Icon(Icons.receipt_long, color: AppColors.textPrimary),
+                  label:  Text('طلباتي',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.textPrimary,
                           fontSize: 15,
                           fontWeight: FontWeight.bold)),
                 ),
@@ -366,10 +367,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         builder: (_) => const AdminScreen(),
                       ),
                     ),
-                    icon: const Icon(Icons.admin_panel_settings, color: Colors.white),
-                    label: const Text('لوحة التحكم (Admin)',
+                    icon:  Icon(Icons.admin_panel_settings, color: AppColors.textPrimary),
+                    label:  Text('لوحة التحكم (Admin)',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: AppColors.textPrimary,
                             fontSize: 15,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -425,8 +426,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const SizedBox(height: 4),
                 Text(
                   value,
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style:  TextStyle(
+                      color: AppColors.textPrimary,
                       fontSize: 15,
                       fontWeight: FontWeight.w600),
                 ),

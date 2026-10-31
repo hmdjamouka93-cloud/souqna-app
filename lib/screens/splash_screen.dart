@@ -52,10 +52,10 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             const Icon(Icons.storefront, size: 100, color: AppColors.accent),
             const SizedBox(height: 16),
-            const Text(
+             Text(
               'Souqna',
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 2,

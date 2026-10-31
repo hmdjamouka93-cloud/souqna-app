@@ -151,9 +151,9 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text('الفلترة بالسعر',
+                   Text('الفلترة بالسعر',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.textPrimary,
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 16),
@@ -178,9 +178,9 @@ class _ListingsScreenState extends State<ListingsScreen> {
                       Navigator.pop(ctx);
                       _applyFilters();
                     },
-                    child: const Text('تطبيق الفلترة',
+                    child:  Text('تطبيق الفلترة',
                         style: TextStyle(
-                            color: Colors.white,
+                            color: AppColors.textPrimary,
                             fontSize: 16,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -202,7 +202,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
       child: TextField(
         onChanged: onChanged,
         keyboardType: TextInputType.number,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(color: AppColors.textSecondary),
@@ -232,13 +232,13 @@ class _ListingsScreenState extends State<ListingsScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(widget.brandName,
-              style: const TextStyle(
-                  color: Colors.white,
+              style:  TextStyle(
+                  color: AppColors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.bold)),
         ),
@@ -259,10 +259,10 @@ class _ListingsScreenState extends State<ListingsScreen> {
           const SizedBox(height: 16),
           const AdBanner(),
           const SizedBox(height: 16),
-          const Expanded(
+           Expanded(
             child: Center(
               child: Text('لا توجد إعلانات',
-                  style: TextStyle(color: Colors.white, fontSize: 16)),
+                  style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
             ),
           ),
         ],
@@ -294,8 +294,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                         selectedColor: AppColors.accent,
                         labelStyle: TextStyle(
                             color: _sortBy == 'newest'
-                                ? Colors.white
-                                : Colors.white70),
+                                ? AppColors.textPrimary
+                                : AppColors.textSecondary),
                         onSelected: (v) {
                           setState(() => _sortBy = 'newest');
                           _applyFilters();
@@ -309,8 +309,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                         selectedColor: AppColors.accent,
                         labelStyle: TextStyle(
                             color: _sortBy == 'price_asc'
-                                ? Colors.white
-                                : Colors.white70),
+                                ? AppColors.textPrimary
+                                : AppColors.textSecondary),
                         onSelected: (v) {
                           setState(() => _sortBy = 'price_asc');
                           _applyFilters();
@@ -324,8 +324,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                         selectedColor: AppColors.accent,
                         labelStyle: TextStyle(
                             color: _sortBy == 'price_desc'
-                                ? Colors.white
-                                : Colors.white70),
+                                ? AppColors.textPrimary
+                                : AppColors.textSecondary),
                         onSelected: (v) {
                           setState(() => _sortBy = 'price_desc');
                           _applyFilters();
@@ -415,17 +415,17 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 children: [
                   img.isEmpty
                       ? Container(
-                          color: Colors.black26,
-                          child: const Icon(Icons.directions_car,
-                              color: Colors.white24, size: 40),
+                          color: AppColors.card,
+                          child:  Icon(Icons.directions_car,
+                              color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40),
                         )
                       : CachedNetworkImage(
                           imageUrl: img,
                           fit: BoxFit.cover,
                           errorWidget: (_, _, _) => Container(
-                            color: Colors.black26,
-                            child: const Icon(Icons.directions_car,
-                                color: Colors.white24, size: 40),
+                            color: AppColors.card,
+                            child:  Icon(Icons.directions_car,
+                                color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40),
                           ),
                         ),
                   if (item['isPro'] == true &&
@@ -466,8 +466,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 children: [
                   Text(
                     item['title'],
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style:  TextStyle(
+                        color: AppColors.textPrimary,
                         fontSize: 13,
                         fontWeight: FontWeight.bold),
                     maxLines: 1,

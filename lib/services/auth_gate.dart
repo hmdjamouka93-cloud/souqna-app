@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import 'auth_service.dart';
 import '../screens/login_screen.dart';
 
@@ -24,9 +25,9 @@ Future<void> requireAuth(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        title: const Text(
+        title:  Text(
           'تسجيل الدخول',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
         ),
         content: Text(
           message,
@@ -45,9 +46,9 @@ Future<void> requireAuth(
               backgroundColor: const Color(0xFFA0285A),
             ),
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text(
+            child:  Text(
               'تسجيل الدخول',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: AppColors.textPrimary),
             ),
           ),
         ],

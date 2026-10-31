@@ -68,8 +68,8 @@ class _CommentsSectionState extends State<CommentsSection> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title: const Text('حذف التعليق',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          title:  Text('حذف التعليق',
+              style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content:  Text('هل أنت متأكد؟',
               style: TextStyle(color: AppColors.textSecondary)),
           actions: [
@@ -81,8 +81,8 @@ class _CommentsSectionState extends State<CommentsSection> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('حذف',
-                  style: TextStyle(color: Colors.white)),
+              child:  Text('حذف',
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -111,12 +111,12 @@ class _CommentsSectionState extends State<CommentsSection> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title: const Text('تعديل التعليق',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          title:  Text('تعديل التعليق',
+              style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: TextField(
             controller: ctrl,
             maxLines: 3,
-            style: const TextStyle(color: Colors.white),
+            style:  TextStyle(color: AppColors.textPrimary),
             decoration:  InputDecoration(
               hintText: 'اكتب التعديل...',
               hintStyle: TextStyle(color: AppColors.textSecondary),
@@ -131,8 +131,8 @@ class _CommentsSectionState extends State<CommentsSection> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
               onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-              child: const Text('حفظ',
-                  style: TextStyle(color: Colors.white)),
+              child:  Text('حفظ',
+                  style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -164,11 +164,11 @@ class _CommentsSectionState extends State<CommentsSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+           Padding(
             padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
             child: Text('التعليقات',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 15,
                     fontWeight: FontWeight.bold)),
           ),
@@ -183,7 +183,7 @@ class _CommentsSectionState extends State<CommentsSection> {
               children: [
                 TextField(
                   controller: _controller,
-                  style: const TextStyle(color: Colors.white),
+                  style:  TextStyle(color: AppColors.textPrimary),
                   maxLines: 3,
                   decoration:  InputDecoration(
                     hintText: 'اكتب تعليقك',
@@ -203,14 +203,14 @@ class _CommentsSectionState extends State<CommentsSection> {
                           borderRadius: BorderRadius.circular(8)),
                     ),
                     child: _sending
-                        ? const SizedBox(
+                        ?  SizedBox(
                             width: 16,
                             height: 16,
                             child: CircularProgressIndicator(
-                                color: Colors.white, strokeWidth: 2))
-                        : const Text('إرسال',
+                                color: AppColors.textPrimary, strokeWidth: 2))
+                        :  Text('إرسال',
                             style: TextStyle(
-                                color: Colors.white, fontSize: 13)),
+                                color: AppColors.textPrimary, fontSize: 13)),
                   ),
                 ),
               ],
@@ -287,15 +287,15 @@ class _CommentsSectionState extends State<CommentsSection> {
         children: [
           Row(
             children: [
-              const CircleAvatar(
+               CircleAvatar(
                 radius: 14,
                 backgroundColor: AppColors.accent,
-                child: Icon(Icons.person, color: Colors.white, size: 14),
+                child: Icon(Icons.person, color: AppColors.textPrimary, size: 14),
               ),
               const SizedBox(width: 8),
               Text(name,
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style:  TextStyle(
+                      color: AppColors.textPrimary,
                       fontSize: 13,
                       fontWeight: FontWeight.bold)),
               const Spacer(),
@@ -320,7 +320,7 @@ class _CommentsSectionState extends State<CommentsSection> {
           ),
           const SizedBox(height: 6),
           Text(text,
-              style: const TextStyle(color: Colors.white, fontSize: 13)),
+              style:  TextStyle(color: AppColors.textPrimary, fontSize: 13)),
         ],
       ),
     );

@@ -191,13 +191,13 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 22),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 22),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             _isEdit ? 'تعديل المنتج' : 'إضافة منتج',
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -257,15 +257,15 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                   ),
                   onPressed: _loading ? null : _submit,
                   child: _loading
-                      ? const SizedBox(
+                      ?  SizedBox(
                           width: 22,
                           height: 22,
                           child: CircularProgressIndicator(
-                              color: Colors.white, strokeWidth: 2.5))
+                              color: AppColors.textPrimary, strokeWidth: 2.5))
                       : Text(
                           _isEdit ? 'حفظ التعديل' : 'إضافة المنتج',
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style:  TextStyle(
+                              color: AppColors.textPrimary,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
@@ -301,9 +301,9 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                       height: 100,
                       fit: BoxFit.cover,
                       errorWidget: (_, _, _) => Container(
-                          color: Colors.black26,
-                          child: const Icon(Icons.broken_image,
-                              color: Colors.white24))),
+                          color: AppColors.card,
+                          child:  Icon(Icons.broken_image,
+                              color: AppColors.textSecondary.withValues(alpha: 0.24)))),
                 ),
                 Positioned(
                   top: 4,
@@ -317,8 +317,8 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                         color: Colors.redAccent,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.close,
-                          color: Colors.white, size: 14),
+                      child:  Icon(Icons.close,
+                          color: AppColors.textPrimary, size: 14),
                     ),
                   ),
                 ),
@@ -350,8 +350,8 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                         color: Colors.redAccent,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.close,
-                          color: Colors.white, size: 14),
+                      child:  Icon(Icons.close,
+                          color: AppColors.textPrimary, size: 14),
                     ),
                   ),
                 ),
@@ -407,10 +407,10 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
             children: selected
                 .map((c) => Chip(
                       label: Text(c,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12)),
+                          style:  TextStyle(
+                              color: AppColors.textPrimary, fontSize: 12)),
                       backgroundColor: AppColors.accent,
-                      deleteIconColor: Colors.white,
+                      deleteIconColor: AppColors.textPrimary,
                       onDeleted: () => onRemove(c),
                     ))
                 .toList(),
@@ -427,7 +427,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                 ),
                 child: TextField(
                   controller: ctrl,
-                  style: const TextStyle(color: Colors.white, fontSize: 13),
+                  style:  TextStyle(color: AppColors.textPrimary, fontSize: 13),
                   decoration:  InputDecoration(
                     hintText: 'أضف نوع آخر...',
                     hintStyle: TextStyle(
@@ -481,8 +481,8 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
         child: Text(t,
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 14,
                 fontWeight: FontWeight.w600)),
       );
@@ -504,7 +504,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
         maxLines: maxLines,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(

@@ -82,12 +82,12 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 26),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 26),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'إضافة خدمة',
-            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -108,13 +108,13 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                         : null,
                   ),
                   child: _image == null
-                      ? const Center(
+                      ?  Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.add_photo_alternate, color: Colors.white54, size: 40),
+                              Icon(Icons.add_photo_alternate, color: AppColors.textSecondary, size: 40),
                               SizedBox(height: 8),
-                              Text('أضف صورة الخدمة', style: TextStyle(color: Colors.white54)),
+                              Text('أضف صورة الخدمة', style: TextStyle(color: AppColors.textSecondary)),
                             ],
                           ),
                         )
@@ -158,8 +158,8 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
                   child: _loading
-                      ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
-                      : const Text('إضافة الخدمة', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                      ?  SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
+                      :  Text('إضافة الخدمة', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -172,7 +172,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, right: 4),
-      child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(text, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
     );
   }
 
@@ -183,7 +183,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
         controller: c,
         maxLines: maxLines,
         keyboardType: keyboard,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),

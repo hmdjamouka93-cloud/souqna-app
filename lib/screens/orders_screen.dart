@@ -60,14 +60,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'الطلبات',
             style: TextStyle(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -76,10 +76,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ? const Center(
                 child: CircularProgressIndicator(color: AppColors.accent))
             : _orders.isEmpty
-                ? const Center(
+                ?  Center(
                     child: Text('لا توجد طلبات بعد',
                         style:
-                            TextStyle(color: Colors.white70, fontSize: 15)),
+                            TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.all(16),
@@ -134,8 +134,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text((o['productName'] ?? '').toString(),
-                        style: const TextStyle(
-                            color: Colors.white,
+                        style:  TextStyle(
+                            color: AppColors.textPrimary,
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
                         maxLines: 2,
@@ -165,7 +165,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ],
           ),
           const SizedBox(height: 10),
-          const Divider(color: Colors.white12, height: 1),
+           Divider(color: AppColors.textSecondary.withValues(alpha: 0.12), height: 1),
           const SizedBox(height: 10),
           _infoRow('الاسم', '${o['firstName']} ${o['lastName']}'),
           _infoRow('الهاتف', (o['phone'] ?? '').toString()),
@@ -185,8 +185,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green),
                     onPressed: () => _setStatus(o['id'], 'confirmed'),
-                    child: const Text('تأكيد',
-                        style: TextStyle(color: Colors.white)),
+                    child:  Text('تأكيد',
+                        style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -195,8 +195,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red),
                     onPressed: () => _setStatus(o['id'], 'rejected'),
-                    child: const Text('رفض',
-                        style: TextStyle(color: Colors.white)),
+                    child:  Text('رفض',
+                        style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
               ],
@@ -208,8 +208,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 style:
                     ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () => _setStatus(o['id'], 'delivered'),
-                child: const Text('تم التسليم',
-                    style: TextStyle(color: Colors.white)),
+                child:  Text('تم التسليم',
+                    style: TextStyle(color: AppColors.textPrimary)),
               ),
             ),
             const SizedBox(height: 8),
@@ -223,11 +223,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       textDirection: TextDirection.rtl,
                       child: AlertDialog(
                         backgroundColor: AppColors.card,
-                        title: const Text('حذف الطلب',
-                            style: TextStyle(color: Colors.white)),
-                        content: const Text(
+                        title:  Text('حذف الطلب',
+                            style: TextStyle(color: AppColors.textPrimary)),
+                        content:  Text(
                             'هل أنت متأكد من حذف هذا الطلب نهائياً؟',
-                            style: TextStyle(color: Colors.white70)),
+                            style: TextStyle(color: AppColors.textSecondary)),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(ctx, false),
@@ -239,8 +239,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red),
                             onPressed: () => Navigator.pop(ctx, true),
-                            child: const Text('حذف',
-                                style: TextStyle(color: Colors.white)),
+                            child:  Text('حذف',
+                                style: TextStyle(color: AppColors.textPrimary)),
                           ),
                         ],
                       ),
@@ -276,7 +276,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   color: AppColors.textSecondary, fontSize: 12)),
           Expanded(
             child: Text(value,
-                style: const TextStyle(color: Colors.white, fontSize: 12)),
+                style:  TextStyle(color: AppColors.textPrimary, fontSize: 12)),
           ),
         ],
       ),

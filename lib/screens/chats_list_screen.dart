@@ -21,12 +21,12 @@ class ChatsListScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'الرسائل',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: StreamBuilder<QuerySnapshot>(
@@ -37,21 +37,21 @@ class ChatsListScreen extends StatelessWidget {
             }
 
             if (snapshot.hasError) {
-              return const Center(
+              return  Center(
                 child: Text('حدث خطأ أثناء تحميل الرسائل',
-                    style: TextStyle(color: Colors.white70)),
+                    style: TextStyle(color: AppColors.textSecondary)),
               );
             }
 
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              return const Center(
+              return  Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.chat_bubble_outline, size: 60, color: Colors.white54),
+                    Icon(Icons.chat_bubble_outline, size: 60, color: AppColors.textSecondary),
                     SizedBox(height: 16),
                     Text('لا توجد رسائل بعد',
-                        style: TextStyle(color: Colors.white70, fontSize: 16)),
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 16)),
                   ],
                 ),
               );
@@ -101,7 +101,7 @@ class ChatsListScreen extends StatelessWidget {
                   ),
                   title: Text(
                     otherName,
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+                    style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -112,7 +112,7 @@ class ChatsListScreen extends StatelessWidget {
                       style:  TextStyle(color: AppColors.textSecondary, fontSize: 13),
                     ),
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white24, size: 14),
+                  trailing:  Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary.withValues(alpha: 0.24), size: 14),
                   onTap: () {
                     Navigator.push(
                       context,

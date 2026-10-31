@@ -88,14 +88,14 @@ class CarRentalScreen extends StatelessWidget {
       elevation: 0,
       centerTitle: true,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+        icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title: const Text('تأجير السيارات',
-        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+      title:  Text('تأجير السيارات',
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications_none, color: Colors.white, size: 24),
+          icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 24),
           onPressed: () {},
         ),
       ],
@@ -106,13 +106,13 @@ class CarRentalScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12),
       child: TextField(
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: 'بحث',
           hintStyle:  TextStyle(color: AppColors.textSecondary),
           prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: AppColors.textPrimary,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
@@ -146,7 +146,7 @@ class CarRentalScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Row(
@@ -184,9 +184,9 @@ class CarRentalScreen extends StatelessWidget {
           children: [
             CachedNetworkImage(imageUrl: c.image, height: 160, fit: BoxFit.cover,
               errorWidget: (_, _, _) => Container(
-                height: 160, color: Colors.black26,
-                child: const Icon(Icons.directions_car,
-                  color: Colors.white24, size: 50),
+                height: 160, color: AppColors.card,
+                child:  Icon(Icons.directions_car,
+                  color: AppColors.textSecondary.withValues(alpha: 0.24), size: 50),
               )),
             Padding(
               padding: const EdgeInsets.all(12),
@@ -194,7 +194,7 @@ class CarRentalScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(c.name,
-                    style: const TextStyle(color: Colors.white, fontSize: 15,
+                    style:  TextStyle(color: AppColors.textPrimary, fontSize: 15,
                       fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
                   Row(
@@ -238,7 +238,7 @@ class CarRentalScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
-          color: Colors.black26,
+          color: AppColors.card,
           borderRadius: BorderRadius.circular(6),
         ),
         child: Column(

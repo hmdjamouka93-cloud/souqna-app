@@ -142,15 +142,15 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 22),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 22),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             _isEdit
                 ? (widget.type == 'rental' ? 'تعديل وكالة الإيجار' : 'تعديل المعرض')
                 : (widget.type == 'rental' ? 'إنشاء وكالة إيجار' : 'إنشاء معرض'),
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -237,19 +237,19 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
                   ),
                   onPressed: _loading ? null : _submit,
                   child: _loading
-                      ? const SizedBox(
+                      ?  SizedBox(
                           width: 22,
                           height: 22,
                           child: CircularProgressIndicator(
-                              color: Colors.white, strokeWidth: 2.5))
+                              color: AppColors.textPrimary, strokeWidth: 2.5))
                       : Text(
                           _isEdit
                               ? 'حفظ التعديل'
                               : (widget.type == 'rental'
                                   ? 'إنشاء الوكالة'
                                   : 'إنشاء المعرض'),
-                          style: const TextStyle(
-                              color: Colors.white,
+                          style:  TextStyle(
+                              color: AppColors.textPrimary,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
@@ -265,8 +265,8 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
         child: Text(t,
-            style: const TextStyle(
-                color: Colors.white,
+            style:  TextStyle(
+                color: AppColors.textPrimary,
                 fontSize: 14,
                 fontWeight: FontWeight.w600)),
       );
@@ -286,7 +286,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
         controller: c,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(

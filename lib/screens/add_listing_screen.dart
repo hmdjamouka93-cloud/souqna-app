@@ -210,13 +210,13 @@ class _AddListingScreenState extends State<AddListingScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 22),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 22),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             _isEdit ? 'تعديل الإعلان' : widget.categoryName,
-            style: const TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: AppColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -281,18 +281,18 @@ class _AddListingScreenState extends State<AddListingScreen> {
                   ),
                   onPressed: _loading ? null : _submit,
                   child: _loading
-                      ? const SizedBox(
+                      ?  SizedBox(
                           width: 22,
                           height: 22,
                           child: CircularProgressIndicator(
-                            color: Colors.white,
+                            color: AppColors.textPrimary,
                             strokeWidth: 2.5,
                           ),
                         )
                       : Text(
                           _isEdit ? 'حفظ التعديل' : 'نشر الإعلان',
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style:  TextStyle(
+                            color: AppColors.textPrimary,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -331,9 +331,9 @@ class _AddListingScreenState extends State<AddListingScreen> {
                     height: 100,
                     fit: BoxFit.cover,
                     errorWidget: (_, _, _) => Container(
-                      color: Colors.black26,
-                      child: const Icon(Icons.broken_image,
-                          color: Colors.white24, size: 30),
+                      color: AppColors.card,
+                      child:  Icon(Icons.broken_image,
+                          color: AppColors.textSecondary.withValues(alpha: 0.24), size: 30),
                     ),
                   ),
                 ),
@@ -349,8 +349,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
                         color: Colors.redAccent,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.close,
-                          color: Colors.white, size: 14),
+                      child:  Icon(Icons.close,
+                          color: AppColors.textPrimary, size: 14),
                     ),
                   ),
                 ),
@@ -412,8 +412,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
                         color: Colors.redAccent,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.close,
-                          color: Colors.white, size: 14),
+                      child:  Icon(Icons.close,
+                          color: AppColors.textPrimary, size: 14),
                     ),
                   ),
                 ),
@@ -429,8 +429,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
         padding: const EdgeInsets.only(bottom: 8, right: 4),
         child: Text(
           t,
-          style: const TextStyle(
-            color: Colors.white,
+          style:  TextStyle(
+            color: AppColors.textPrimary,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -454,7 +454,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
         maxLines: maxLines,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(

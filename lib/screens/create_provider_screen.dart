@@ -161,12 +161,12 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.close, color: Colors.white, size: 26),
+            icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 26),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             _isEdit ? 'تعديل البروفايل' : 'إنشاء بروفايل خدمة',
-            style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -190,13 +190,13 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                             : null,
                   ),
                   child: _newCover == null && (!_isEdit || (widget.existing!['cover'] ?? '').toString().isEmpty)
-                      ? const Center(
+                      ?  Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.add_photo_alternate, color: Colors.white54, size: 32),
+                              Icon(Icons.add_photo_alternate, color: AppColors.textSecondary, size: 32),
                               SizedBox(height: 8),
-                              Text('أضف صورة غلاف', style: TextStyle(color: Colors.white54, fontSize: 12)),
+                              Text('أضف صورة غلاف', style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             ],
                           ),
                         )
@@ -246,7 +246,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                           value: _selectedTrade,
                           hint:  Text('اختر مهنتك', style: TextStyle(color: AppColors.textSecondary)),
                           dropdownColor: AppColors.card,
-                          style: const TextStyle(color: Colors.white),
+                          style:  TextStyle(color: AppColors.textPrimary),
                           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                           items: _tradesList.map((t) {
                             return DropdownMenuItem<String>(value: t, child: Text(t));
@@ -280,7 +280,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                         value: _wilayaCode,
                         hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
-                        style: const TextStyle(color: Colors.white),
+                        style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: wilayas.map((w) {
                           return DropdownMenuItem<String>(
@@ -318,7 +318,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                         value: _dairaName,
                         hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
-                        style: const TextStyle(color: Colors.white),
+                        style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: dairas.map((d) {
                           return DropdownMenuItem<String>(value: d, child: Text(d));
@@ -354,8 +354,8 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
                   child: _loading
-                      ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
-                      : Text(_isEdit ? 'حفظ التعديلات' : 'إنشاء البروفايل', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                      ?  SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
+                      : Text(_isEdit ? 'حفظ التعديلات' : 'إنشاء البروفايل', style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 32),
@@ -369,7 +369,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, right: 4),
-      child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(text, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
     );
   }
 
@@ -381,7 +381,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
         maxLines: maxLines,
         keyboardType: keyboard,
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
           hintStyle:  TextStyle(color: AppColors.textSecondary, fontSize: 14),

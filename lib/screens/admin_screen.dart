@@ -17,12 +17,12 @@ class AdminScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'لوحة التحكم (Admin)',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(
@@ -48,9 +48,9 @@ class AdminScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         leading: Icon(icon, color: AppColors.accent, size: 30),
-        title: Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Text(title, style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle, style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
-        trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white54, size: 14),
+        trailing:  Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 14),
         onTap: onTap,
       ),
     );

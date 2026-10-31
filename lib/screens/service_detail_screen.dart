@@ -29,12 +29,12 @@ class ServiceDetailScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'تفاصيل الخدمة',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -50,7 +50,7 @@ class ServiceDetailScreen extends StatelessWidget {
                   errorWidget: (_, _, _) => Container(
                     height: 300,
                     color: AppColors.card,
-                    child: const Icon(Icons.broken_image, color: Colors.white54, size: 60),
+                    child:  Icon(Icons.broken_image, color: AppColors.textSecondary, size: 60),
                   ),
                 ),
               
@@ -62,7 +62,7 @@ class ServiceDetailScreen extends StatelessWidget {
                     // العنوان
                     Text(
                       title,
-                      style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                      style:  TextStyle(color: AppColors.textPrimary, fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     // السعر
@@ -71,13 +71,13 @@ class ServiceDetailScreen extends StatelessWidget {
                       style: const TextStyle(color: AppColors.accent, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 16),
-                    const Divider(color: Colors.white12),
+                     Divider(color: AppColors.textSecondary.withValues(alpha: 0.12)),
                     const SizedBox(height: 16),
                     
                     // الوصف
-                    const Text(
+                     Text(
                       'وصف الخدمة',
-                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -85,13 +85,13 @@ class ServiceDetailScreen extends StatelessWidget {
                       style:  TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.6),
                     ),
                     const SizedBox(height: 24),
-                    const Divider(color: Colors.white12),
+                     Divider(color: AppColors.textSecondary.withValues(alpha: 0.12)),
                     const SizedBox(height: 16),
 
                     // معلومات صاحب الخدمة
-                    const Text(
+                     Text(
                       'مقدم الخدمة',
-                      style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12),
                     Row(
@@ -112,7 +112,7 @@ class ServiceDetailScreen extends StatelessWidget {
                           children: [
                             Text(
                               (provider['name'] ?? '').toString(),
-                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
                             ),
                             Text(
                               (provider['trade'] ?? '').toString(),
@@ -143,9 +143,9 @@ class ServiceDetailScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        child: const Text(
+                        child:  Text(
                           'طلب الخدمة',
-                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

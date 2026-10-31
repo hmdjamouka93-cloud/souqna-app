@@ -94,7 +94,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
         child: StatefulBuilder(
           builder: (ctx, setD) => AlertDialog(
             backgroundColor: AppColors.card,
-            title: const Text('قيّم مقدم الخدمة', style: TextStyle(color: Colors.white)),
+            title:  Text('قيّم مقدم الخدمة', style: TextStyle(color: AppColors.textPrimary)),
             content: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(5, (i) {
@@ -110,7 +110,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
                 onPressed: () => Navigator.pop(ctx, temp),
-                child: const Text('إرسال', style: TextStyle(color: Colors.white)),
+                child:  Text('إرسال', style: TextStyle(color: AppColors.textPrimary)),
               ),
             ],
           ),
@@ -166,9 +166,9 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                 onTap: () => _toggleReaction(true),
                 child: Row(
                   children: [
-                    Icon(_myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined, color: _myReaction == 'like' ? AppColors.accent : Colors.white, size: 18),
+                    Icon(_myReaction == 'like' ? Icons.thumb_up : Icons.thumb_up_outlined, color: _myReaction == 'like' ? AppColors.accent : AppColors.textPrimary, size: 18),
                     const SizedBox(width: 4),
-                    Text('$_likes', style: TextStyle(color: _myReaction == 'like' ? AppColors.accent : Colors.white, fontWeight: FontWeight.bold)),
+                    Text('$_likes', style: TextStyle(color: _myReaction == 'like' ? AppColors.accent : AppColors.textPrimary, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -177,16 +177,16 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                 onTap: () => _toggleReaction(false),
                 child: Row(
                   children: [
-                    Icon(_myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined, color: _myReaction == 'dislike' ? Colors.red : Colors.white, size: 18),
+                    Icon(_myReaction == 'dislike' ? Icons.thumb_down : Icons.thumb_down_outlined, color: _myReaction == 'dislike' ? Colors.red : AppColors.textPrimary, size: 18),
                     const SizedBox(width: 4),
-                    Text('$_dislikes', style: TextStyle(color: _myReaction == 'dislike' ? Colors.red : Colors.white, fontWeight: FontWeight.bold)),
+                    Text('$_dislikes', style: TextStyle(color: _myReaction == 'dislike' ? Colors.red : AppColors.textPrimary, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
             ],
           ),
           
-          Container(width: 1, height: 30, color: Colors.white12),
+          Container(width: 1, height: 30, color: AppColors.textSecondary.withValues(alpha: 0.12)),
           
           // Rating
           GestureDetector(
@@ -196,7 +196,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               children: [
                 const Icon(Icons.star, color: Colors.amber, size: 20),
                 const SizedBox(width: 4),
-                Text(_avgRating.toStringAsFixed(1), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                Text(_avgRating.toStringAsFixed(1), style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 16)),
                 if (_ratingCount > 0)
                   Text(' ($_ratingCount)', style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
               ],
@@ -266,8 +266,8 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title: const Text('حذف البروفايل', style: TextStyle(color: Colors.white)),
-          content: const Text('هل أنت متأكد من حذف بروفايل الخدمات نهائياً؟', style: TextStyle(color: Colors.white70)),
+          title:  Text('حذف البروفايل', style: TextStyle(color: AppColors.textPrimary)),
+          content:  Text('هل أنت متأكد من حذف بروفايل الخدمات نهائياً؟', style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
@@ -276,7 +276,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child: const Text('حذف', style: TextStyle(color: Colors.white)),
+              child:  Text('حذف', style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -318,8 +318,8 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                   );
                   if (r == true) _loadServices();
                 },
-                icon: const Icon(Icons.add, color: Colors.white),
-                label: const Text('أضف خدمة', style: TextStyle(color: Colors.white)),
+                icon:  Icon(Icons.add, color: AppColors.textPrimary),
+                label:  Text('أضف خدمة', style: TextStyle(color: AppColors.textPrimary)),
               )
             : null,
         body: CustomScrollView(
@@ -329,7 +329,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               pinned: true,
               backgroundColor: AppColors.background,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+                icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
                 onPressed: () => Navigator.pop(context),
               ),
               actions: [
@@ -345,7 +345,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                       return Stack(
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.receipt_long_outlined, color: Colors.white),
+                            icon:  Icon(Icons.receipt_long_outlined, color: AppColors.textPrimary),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -369,7 +369,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                 ),
                                 child: Text(
                                   '$count',
-                                  style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                                  style:  TextStyle(color: AppColors.textPrimary, fontSize: 10, fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
@@ -378,11 +378,11 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                     },
                   ),
                   IconButton(
-                    icon: const Icon(Icons.edit_outlined, color: Colors.white),
+                    icon:  Icon(Icons.edit_outlined, color: AppColors.textPrimary),
                     onPressed: _openEdit,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.delete_outline, color: Colors.white),
+                    icon:  Icon(Icons.delete_outline, color: AppColors.textPrimary),
                     onPressed: _confirmDelete,
                   ),
                 ]
@@ -420,7 +420,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(name, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                              Text(name, style:  TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
                               const SizedBox(height: 4),
                               Text(trade, style: const TextStyle(color: AppColors.accent, fontSize: 14, fontWeight: FontWeight.bold)),
                               if (wilaya.isNotEmpty)
@@ -445,7 +445,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
-                        child: Text(bio, style: const TextStyle(color: Colors.white70, fontSize: 14, height: 1.5)),
+                        child: Text(bio, style:  TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.5)),
                       ),
                     ],
                     const SizedBox(height: 16),
@@ -462,8 +462,8 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               ),
                               onPressed: _call,
-                              icon: const Icon(Icons.phone, color: Colors.white),
-                              label: const Text('اتصال', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                              icon:  Icon(Icons.phone, color: AppColors.textPrimary),
+                              label:  Text('اتصال', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                             ),
                           ),
                         ),
@@ -493,9 +493,9 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child: const Text('الخدمات المقدمة',
+                child:  Text('الخدمات المقدمة',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold)),
               ),
@@ -506,10 +506,10 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                       child:
                           CircularProgressIndicator(color: AppColors.accent)))
             else if (_services.isEmpty)
-              const SliverToBoxAdapter(
+               SliverToBoxAdapter(
                   child: Center(
                       child: Text('لا توجد خدمات مضافة',
-                          style: TextStyle(color: Colors.white54))))
+                          style: TextStyle(color: AppColors.textSecondary))))
             else
               SliverPadding(
                 padding: const EdgeInsets.all(16),
@@ -559,8 +559,8 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                   Text((s['title'] ?? '').toString(),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                          color: Colors.white,
+                                      style:  TextStyle(
+                                          color: AppColors.textPrimary,
                                           fontWeight: FontWeight.bold)),
                                   const SizedBox(height: 4),
                                   Text('${s['price']} د.ج',
@@ -583,12 +583,12 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     child: Text(
                       'التعليقات',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.textPrimary,
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),

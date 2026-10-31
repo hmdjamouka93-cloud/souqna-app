@@ -105,11 +105,11 @@ class _CarsScreenState extends State<CarsScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(widget.screenTitle,
-              style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+              style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         body: ListView(
           padding: EdgeInsets.zero,
@@ -153,7 +153,7 @@ class _CarsScreenState extends State<CarsScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: Text(title,
-          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+          style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -165,11 +165,11 @@ class _CarsScreenState extends State<CarsScreen> {
       );
     }
     if (_brands.isEmpty) {
-      return const Padding(
+      return  Padding(
         padding: EdgeInsets.all(32),
         child: Center(
           child: Text('لا توجد ماركات',
-              style: TextStyle(color: Colors.white, fontSize: 16)),
+              style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
         ),
       );
     }
@@ -243,16 +243,16 @@ class _CarsScreenState extends State<CarsScreen> {
                   image,
                   fit: BoxFit.cover,
                   errorWidget: (_, _, _) => Container(
-                    color: Colors.black26,
-                    child: const Icon(Icons.image_outlined,
-                        color: Colors.white24, size: 40),
+                    color: AppColors.card,
+                    child:  Icon(Icons.image_outlined,
+                        color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40),
                   ),
                 )
               else
                 Container(
-                  color: Colors.black26,
-                  child: const Icon(Icons.image_outlined,
-                      color: Colors.white24, size: 40),
+                  color: AppColors.card,
+                  child:  Icon(Icons.image_outlined,
+                      color: AppColors.textSecondary.withValues(alpha: 0.24), size: 40),
                 ),
               // تدرج أسود في الأسفل
               Container(
@@ -275,8 +275,8 @@ class _CarsScreenState extends State<CarsScreen> {
                 child: Text(
                   name,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style:  TextStyle(
+                    color: AppColors.textPrimary,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                     shadows: [Shadow(blurRadius: 4, color: Colors.black87)],
@@ -338,8 +338,8 @@ class _CarsScreenState extends State<CarsScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(name,
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style:  TextStyle(
+                      color: AppColors.textPrimary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
@@ -353,14 +353,14 @@ class _CarsScreenState extends State<CarsScreen> {
                 width: _logoSize(name),
                 height: _logoSize(name),
                 child: image.isEmpty
-                    ? const Icon(Icons.directions_car,
-                        color: Colors.white24, size: 32)
+                    ?  Icon(Icons.directions_car,
+                        color: AppColors.textSecondary.withValues(alpha: 0.24), size: 32)
                     : CachedNetworkImage(imageUrl: 
                         image,
                         fit: BoxFit.contain,
-                        errorWidget: (_, _, _) => const Icon(
+                        errorWidget: (_, _, _) =>  Icon(
                             Icons.directions_car,
-                            color: Colors.white24,
+                            color: AppColors.textSecondary.withValues(alpha: 0.24),
                             size: 32),
                       ),
               ),

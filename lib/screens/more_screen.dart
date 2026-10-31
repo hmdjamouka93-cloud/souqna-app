@@ -128,10 +128,10 @@ class _MoreScreenState extends State<MoreScreen> {
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundColor: Colors.white.withValues(alpha: 0.18),
+                backgroundColor: AppColors.textPrimary.withValues(alpha: 0.18),
                 child: Icon(
                   logged ? Icons.person : Icons.login,
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                   size: 30,
                 ),
               ),
@@ -143,7 +143,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     Text(
                       logged ? 'حسابي' : 'تسجيل الدخول',
                       style:  TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -154,7 +154,7 @@ class _MoreScreenState extends State<MoreScreen> {
                           ? (user?.email ?? '')
                           : 'سجل للاستفادة من كل الميزات',
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.85),
+                        color: AppColors.textPrimary.withValues(alpha: 0.85),
                         fontSize: 13,
                       ),
                       maxLines: 1,
@@ -164,7 +164,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
                Icon(Icons.arrow_back_ios_new,
-                  color: Colors.white, size: 16),
+                  color: AppColors.textPrimary, size: 16),
             ],
           ),
         ),
@@ -428,20 +428,20 @@ class _MoreScreenState extends State<MoreScreen> {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
+                  color: AppColors.textPrimary.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.star, color: Colors.white, size: 26),
+                child:  Icon(Icons.star, color: AppColors.textPrimary, size: 26),
               ),
               const SizedBox(width: 14),
-              const Expanded(
+               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'قيّم سوقنا',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -449,13 +449,13 @@ class _MoreScreenState extends State<MoreScreen> {
                     SizedBox(height: 3),
                     Text(
                       'رأيك يهمنا لتطوير التطبيق',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: TextStyle(color: AppColors.textPrimary, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              const Icon(Icons.arrow_back_ios_new,
-                  color: Colors.white, size: 16),
+               Icon(Icons.arrow_back_ios_new,
+                  color: AppColors.textPrimary, size: 16),
             ],
           ),
         ),

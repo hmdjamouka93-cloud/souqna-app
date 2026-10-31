@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../services/auth_service.dart';
 import 'signup_screen.dart';
 
@@ -77,10 +78,10 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: AppBar(
           backgroundColor: _bg,
           elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: const Text(
+          iconTheme:  IconThemeData(color: AppColors.textPrimary),
+          title:  Text(
             'تسجيل الدخول',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
         ),
         body: SafeArea(
@@ -92,11 +93,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 const Icon(Icons.storefront, size: 70, color: _accent),
                 const SizedBox(height: 10),
-                const Center(
+                 Center(
                   child: Text(
                     'سوقنا',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
@@ -157,18 +158,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onPressed: _loading ? null : _login,
                     child: _loading
-                        ? const SizedBox(
+                        ?  SizedBox(
                             width: 22,
                             height: 22,
                             child: CircularProgressIndicator(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               strokeWidth: 2.5,
                             ),
                           )
-                        : const Text(
+                        :  Text(
                             'دخول',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: AppColors.textPrimary,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -219,8 +220,8 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.only(bottom: 8, right: 4),
         child: Text(
           t,
-          style: const TextStyle(
-            color: Colors.white,
+          style:  TextStyle(
+            color: AppColors.textPrimary,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -244,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
         controller: controller,
         keyboardType: keyboard,
         obscureText: obscure,
-        style: const TextStyle(color: Colors.white),
+        style:  TextStyle(color: AppColors.textPrimary),
         textDirection: TextDirection.ltr,
         decoration: InputDecoration(
           hintText: hint,

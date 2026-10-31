@@ -49,14 +49,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new,
-                color: Colors.white, size: 20),
+            icon:  Icon(Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
+          title:  Text(
             'المفضلة',
             style: TextStyle(
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -81,7 +81,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 size: 80, color: AppColors.iconInactive),
             SizedBox(height: 16),
             Text('لا توجد إعلانات محفوظة',
-                style: TextStyle(color: Colors.white, fontSize: 16)),
+                style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
             SizedBox(height: 8),
             Text('أضف إعلانات إلى المفضلة لتجدها هنا',
                 style: TextStyle(
@@ -122,17 +122,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               aspectRatio: 16 / 10,
               child: img.isEmpty
                   ? Container(
-                      color: Colors.black26,
-                      child: const Icon(Icons.directions_car,
-                          color: Colors.white24, size: 60),
+                      color: AppColors.card,
+                      child:  Icon(Icons.directions_car,
+                          color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                     )
                   : CachedNetworkImage(imageUrl: 
                       img,
                       fit: BoxFit.cover,
                       errorWidget: (_, _, _) => Container(
-                        color: Colors.black26,
-                        child: const Icon(Icons.directions_car,
-                            color: Colors.white24, size: 60),
+                        color: AppColors.card,
+                        child:  Icon(Icons.directions_car,
+                            color: AppColors.textSecondary.withValues(alpha: 0.24), size: 60),
                       ),
                     ),
             ),
@@ -143,8 +143,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 children: [
                   Text(
                     item['title'],
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style:  TextStyle(
+                        color: AppColors.textPrimary,
                         fontSize: 15,
                         fontWeight: FontWeight.bold),
                     maxLines: 2,
