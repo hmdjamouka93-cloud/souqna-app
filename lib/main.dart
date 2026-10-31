@@ -105,15 +105,20 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return ValueListenableBuilder<bool>(
+      valueListenable: ThemeService.isDarkMode,
+      builder: (context, isDark, _) {
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
                 drawer: AppDrawer(onCategoryTap: (name) => _homeKey.currentState?.navigateToCategory(context, name)),
         body: HomeScreen(key: _homeKey),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: _buildFab(),
-        bottomNavigationBar: _buildBottomNav(),
-      ),
+          bottomNavigationBar: _buildBottomNav(),
+          ),
+        );
+      },
     );
   }
 
