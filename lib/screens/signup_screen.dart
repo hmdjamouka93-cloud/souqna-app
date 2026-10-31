@@ -95,9 +95,9 @@ class _SignupScreenState extends State<SignupScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: _bg,
+        backgroundColor: AppColors.background,
         appBar: AppBar(
-          backgroundColor: _bg,
+          backgroundColor: AppColors.background,
           elevation: 0,
           iconTheme:  IconThemeData(color: AppColors.textPrimary),
           title:  Text(
