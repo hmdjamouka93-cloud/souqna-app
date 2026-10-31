@@ -279,9 +279,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
           child: Align(
             alignment: Alignment.centerRight,
-            child: Text('الأقسام الفرعية',
-                style: TextStyle(
-                    color: AppColors.textPrimary,
+            child: Text('الأقسام الفرعية', style: TextStyle(color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
