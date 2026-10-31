@@ -69,8 +69,7 @@ class MotorcyclesScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: _buildAppBar(context),
+                appBar: _buildAppBar(context),
         body: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -87,8 +86,7 @@ class MotorcyclesScreen extends StatelessWidget {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.background,
-      elevation: 0,
+            elevation: 0,
       centerTitle: true,
       leading: IconButton(
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),

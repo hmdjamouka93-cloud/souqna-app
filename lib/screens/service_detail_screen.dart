@@ -23,10 +23,8 @@ class ServiceDetailScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+                appBar: AppBar(
+                    elevation: 0,
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
@@ -98,8 +96,7 @@ class ServiceDetailScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 20,
-                          backgroundColor: AppColors.background,
-                          backgroundImage: (provider['avatar'] ?? '').toString().isNotEmpty
+                                                    backgroundImage: (provider['avatar'] ?? '').toString().isNotEmpty
                               ? NetworkImage(provider['avatar'])
                               : null,
                           child: (provider['avatar'] ?? '').toString().isEmpty

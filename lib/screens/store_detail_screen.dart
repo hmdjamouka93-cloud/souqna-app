@@ -227,8 +227,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        floatingActionButton: _isOwner
+                floatingActionButton: _isOwner
             ? FloatingActionButton.extended(
                 backgroundColor: AppColors.accent,
                 onPressed: () async {
@@ -253,8 +252,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
             SliverAppBar(
               expandedHeight: 200,
               pinned: true,
-              backgroundColor: AppColors.background,
-              leading: IconButton(
+                            leading: IconButton(
                 icon:  Icon(Icons.arrow_back_ios_new,
                     color: AppColors.textPrimary, size: 20),
                 onPressed: () => Navigator.pop(context),

@@ -42,10 +42,8 @@ class _MoreScreenState extends State<MoreScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+                appBar: AppBar(
+                    elevation: 0,
           leading: IconButton(
             icon:  Icon(Icons.close, color: AppColors.textPrimary),
             onPressed: () => Navigator.pop(context),

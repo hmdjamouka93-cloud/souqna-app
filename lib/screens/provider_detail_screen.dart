@@ -303,8 +303,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        floatingActionButton: _isOwner
+                floatingActionButton: _isOwner
             ? FloatingActionButton.extended(
                 backgroundColor: AppColors.accent,
                 onPressed: () async {
@@ -327,8 +326,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
             SliverAppBar(
               expandedHeight: 200,
               pinned: true,
-              backgroundColor: AppColors.background,
-              leading: IconButton(
+                            leading: IconButton(
                 icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
                 onPressed: () => Navigator.pop(context),
               ),

@@ -44,14 +44,25 @@ class SouqnaApp extends StatelessWidget {
         return MaterialApp(
           title: 'Souqna',
           debugShowCheckedModeBanner: false,
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
           theme: ThemeData(
-            brightness: isDark ? Brightness.dark : Brightness.light,
-            scaffoldBackgroundColor: AppColors.background,
+            brightness: Brightness.light,
+            scaffoldBackgroundColor: const Color(0xFFF5F5F0),
             primaryColor: AppColors.accent,
             colorScheme: ColorScheme.fromSeed(
               seedColor: AppColors.accent,
-              brightness: isDark ? Brightness.dark : Brightness.light,
-              surface: AppColors.card,
+              brightness: Brightness.light,
+              surface: Colors.white,
+            ),
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: const Color(0xFF1E2128),
+            primaryColor: AppColors.accent,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.accent,
+              brightness: Brightness.dark,
+              surface: const Color(0xFF2A2E36),
             ),
           ),
           home: const SplashScreen(),
@@ -97,8 +108,7 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        drawer: AppDrawer(onCategoryTap: (name) => _homeKey.currentState?.navigateToCategory(context, name)),
+                drawer: AppDrawer(onCategoryTap: (name) => _homeKey.currentState?.navigateToCategory(context, name)),
         body: HomeScreen(key: _homeKey),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: _buildFab(),

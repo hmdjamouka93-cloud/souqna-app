@@ -112,10 +112,8 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+                appBar: AppBar(
+                    elevation: 0,
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
@@ -157,8 +155,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
                           contentPadding: const EdgeInsets.all(12),
                           leading: CircleAvatar(
                             radius: 25,
-                            backgroundColor: AppColors.background,
-                            backgroundImage: (p['avatar'] as String).isNotEmpty
+                                                        backgroundImage: (p['avatar'] as String).isNotEmpty
                                 ? NetworkImage(p['avatar'])
                                 : null,
                             child: (p['avatar'] as String).isEmpty

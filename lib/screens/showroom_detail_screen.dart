@@ -70,8 +70,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        floatingActionButton: (AuthService.currentUser?.uid == (widget.showroom['userId'] ?? '').toString())
+                floatingActionButton: (AuthService.currentUser?.uid == (widget.showroom['userId'] ?? '').toString())
             ? FloatingActionButton.extended(
                 backgroundColor: AppColors.accent,
                 onPressed: () async {
@@ -93,8 +92,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
               )
             : null,
         appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+                    elevation: 0,
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.arrow_back_ios_new,

@@ -49,8 +49,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
+                appBar: AppBar(
           backgroundColor: AppColors.card,
           elevation: 0,
           centerTitle: false,
@@ -62,8 +61,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
             children: [
               CircleAvatar(
                 radius: 18,
-                backgroundColor: AppColors.background,
-                backgroundImage: widget.otherUserAvatar.isNotEmpty
+                                backgroundImage: widget.otherUserAvatar.isNotEmpty
                     ? NetworkImage(widget.otherUserAvatar)
                     : null,
                 child: widget.otherUserAvatar.isEmpty

@@ -124,10 +124,8 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+                appBar: AppBar(
+                    elevation: 0,
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),

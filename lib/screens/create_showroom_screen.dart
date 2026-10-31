@@ -136,10 +136,8 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          backgroundColor: AppColors.background,
-          elevation: 0,
+                appBar: AppBar(
+                    elevation: 0,
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 22),

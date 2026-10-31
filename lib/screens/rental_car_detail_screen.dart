@@ -84,8 +84,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: _buildAppBar(),
+                appBar: _buildAppBar(),
         body: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -113,8 +112,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColors.background,
-      elevation: 0,
+            elevation: 0,
       centerTitle: true,
       leading: IconButton(
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),

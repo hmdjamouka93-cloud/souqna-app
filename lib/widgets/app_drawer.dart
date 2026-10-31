@@ -80,8 +80,7 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: AppColors.background,
-      width: MediaQuery.of(context).size.width * 0.82,
+            width: MediaQuery.of(context).size.width * 0.82,
       child: SafeArea(child: Column(children: [
         Padding(padding: const EdgeInsets.fromLTRB(8, 8, 16, 8), child: Row(children: [
           IconButton(icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 24), onPressed: () => Navigator.pop(context)),
