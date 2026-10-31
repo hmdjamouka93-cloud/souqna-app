@@ -341,39 +341,35 @@ class _CarsScreenState extends State<CarsScreen> {
           border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 12, bottom: 8),
-              child: SizedBox(
-                width: _logoSize(name),
-                height: _logoSize(name),
-                child: image.isEmpty
-                    ?  Icon(Icons.directions_car,
-                        color: AppColors.textSecondary.withValues(alpha: 0.24), size: 32)
-                    : CachedNetworkImage(imageUrl: image,
-                        fit: BoxFit.contain,
-                        errorWidget: (_, _, _) =>  Icon(
-                            Icons.directions_car,
-                            color: AppColors.textSecondary.withValues(alpha: 0.24),
-                            size: 32),
-                      ),
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: image.isEmpty
+                      ?  Icon(Icons.directions_car,
+                          color: AppColors.textSecondary.withValues(alpha: 0.24), size: 32)
+                      : CachedNetworkImage(imageUrl: image,
+                          fit: BoxFit.contain,
+                          errorWidget: (_, _, _) =>  Icon(
+                              Icons.directions_car,
+                              color: AppColors.textSecondary.withValues(alpha: 0.24),
+                              size: 32),
+                        ),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Text(name,
-                  style:  TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis),
-            ),
-            const SizedBox(height: 8),
-          ],
-        ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8, left: 4, right: 4),
+                child: Text(name,
+                    style:  TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis),
+              ),
+            ],
+          ),
       ),
     );
   }

@@ -281,7 +281,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
             alignment: Alignment.centerRight,
             child: Text('الأقسام الفرعية',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
