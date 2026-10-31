@@ -243,7 +243,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           onTap: () => _pickBrand(brand),
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.card,
+              color: const Color(0xFF2A2E36),
               borderRadius: BorderRadius.circular(14),
             ),
             clipBehavior: Clip.antiAlias,
@@ -254,7 +254,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   imageUrl,
                   fit: BoxFit.cover,
                   errorWidget: (_, _, _) => Container(
-                    color: AppColors.card,
+                    color: const Color(0xFF2A2E36),
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(6),
@@ -318,7 +318,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
         onTap: () => _pickBrand(brand),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.card,
+            color: const Color(0xFF2A2E36),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
               color: AppColors.accent.withValues(alpha: 0.2),

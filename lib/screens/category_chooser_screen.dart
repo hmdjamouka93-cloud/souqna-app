@@ -238,13 +238,13 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
           centerTitle: true,
           leading: IconButton(
             icon:  Icon(Icons.arrow_back_ios_new,
-                color: AppColors.textPrimary, size: 20),
+                color: Colors.white, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             widget.mainCategoryName,
             style:  TextStyle(
-              color: AppColors.textPrimary,
+              color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -266,7 +266,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
       return  Center(
         child: Text(
           'لا توجد أقسام',
-          style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       );
     }
@@ -281,7 +281,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
             alignment: Alignment.centerRight,
             child: Text('الأقسام الفرعية',
                 style: TextStyle(
-                    color: AppColors.textPrimary,
+                    color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
@@ -311,7 +311,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
         onTap: () => _pickCategory(cat),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.card,
+            color: const Color(0xFF2A2E36),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: AppColors.accent.withValues(alpha: 0.25),
@@ -324,7 +324,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
                 cat['name'],
                 textAlign: TextAlign.center,
                 style:  TextStyle(
-                  color: AppColors.textPrimary,
+                  color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
