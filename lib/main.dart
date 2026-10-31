@@ -145,7 +145,7 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
 
   Widget _buildBottomNav() {
     return BottomAppBar(
-      color: AppColors.background,
+      color: AppColors.card,
       shape: const CircularNotchedRectangle(),
       notchMargin: 10,
       height: 65,
