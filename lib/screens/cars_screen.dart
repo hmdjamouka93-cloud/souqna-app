@@ -100,14 +100,21 @@ class _CarsScreenState extends State<CarsScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
                 appBar: AppBar(
-                    elevation: 0,
+          backgroundColor: AppColors.card,
+          elevation: 0,
           centerTitle: true,
+          shape: Border(
+            bottom: BorderSide(
+              color: AppColors.accent.withValues(alpha: 0.2),
+              width: 1,
+            ),
+          ),
           leading: IconButton(
-            icon:  Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+            icon: Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(widget.screenTitle,
-              style:  TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+              style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         body: ListView(
           padding: EdgeInsets.zero,
