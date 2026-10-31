@@ -336,7 +336,23 @@ class _CarsScreenState extends State<CarsScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 6),
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 8),
+              child: SizedBox(
+                width: _logoSize(name),
+                height: _logoSize(name),
+                child: image.isEmpty
+                    ?  Icon(Icons.directions_car,
+                        color: AppColors.textSecondary.withValues(alpha: 0.24), size: 32)
+                    : CachedNetworkImage(imageUrl: image,
+                        fit: BoxFit.contain,
+                        errorWidget: (_, _, _) =>  Icon(
+                            Icons.directions_car,
+                            color: AppColors.textSecondary.withValues(alpha: 0.24),
+                            size: 32),
+                      ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(name,
@@ -348,25 +364,7 @@ class _CarsScreenState extends State<CarsScreen> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(4),
-              child: SizedBox(
-                width: _logoSize(name),
-                height: _logoSize(name),
-                child: image.isEmpty
-                    ?  Icon(Icons.directions_car,
-                        color: AppColors.textSecondary.withValues(alpha: 0.24), size: 32)
-                    : CachedNetworkImage(imageUrl: 
-                        image,
-                        fit: BoxFit.contain,
-                        errorWidget: (_, _, _) =>  Icon(
-                            Icons.directions_car,
-                            color: AppColors.textSecondary.withValues(alpha: 0.24),
-                            size: 32),
-                      ),
-              ),
-            ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
