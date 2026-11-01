@@ -75,42 +75,49 @@ class HomeScreenState extends State<HomeScreen> {
   Widget _buildHeader(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Row(
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          IconButton(
-            icon:  Icon(Icons.menu, color: AppColors.textPrimary, size: 26),
-            onPressed: () => Scaffold.of(context).openDrawer(),
+          const Text(
+            'Souqna',
+            style: TextStyle(
+              color: AppColors.accent,
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.5,
+            ),
           ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Souqna',
-                style: TextStyle(
-                  color: AppColors.accent,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon:  Icon(Icons.menu, color: AppColors.textPrimary, size: 26),
+                onPressed: () => Scaffold.of(context).openDrawer(),
               ),
-            ),
-          ),
-          IconButton(
-            icon:  Icon(Icons.chat_bubble_outline, color: AppColors.textPrimary, size: 26),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ChatsListScreen()),
-            ),
-          ),
-          IconButton(
-            icon:  Icon(Icons.shopping_cart_outlined, color: AppColors.textPrimary, size: 26),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
-            ),
-          ),
-          IconButton(
-            icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 26),
-            onPressed: () {},
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon:  Icon(Icons.chat_bubble_outline, color: AppColors.textPrimary, size: 26),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ChatsListScreen()),
+                    ),
+                  ),
+                  IconButton(
+                    icon:  Icon(Icons.shopping_cart_outlined, color: AppColors.textPrimary, size: 26),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
+                    ),
+                  ),
+                  IconButton(
+                    icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 26),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
