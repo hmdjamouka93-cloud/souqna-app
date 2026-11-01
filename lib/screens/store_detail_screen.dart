@@ -252,6 +252,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
             SliverAppBar(
               expandedHeight: 200,
               pinned: true,
+              backgroundColor: AppColors.background,
+              surfaceTintColor: Colors.transparent,
                             leading: IconButton(
                 icon:  Icon(Icons.arrow_back_ios_new,
                     color: AppColors.textPrimary, size: 20),

@@ -166,7 +166,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 children: [
                   Text(hasStore ? 'متجري' : 'أنشئ متجرك',
                       style:  TextStyle(
-                          color: AppColors.textPrimary,
+                          color: Colors.white,
                           fontSize: 15,
                           fontWeight: FontWeight.bold)),
                   const SizedBox(height: 3),
