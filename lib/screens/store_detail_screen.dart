@@ -445,7 +445,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
             // معلومات المتجر
             SliverToBoxAdapter(
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
                 color: AppColors.background,
                 child: Column(
                   children: [
