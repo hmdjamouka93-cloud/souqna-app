@@ -27,7 +27,7 @@ Future<void> requireAuth(
         ),
         title:  Text(
           'تسجيل الدخول',
-          style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         content: Text(
           message,
@@ -48,7 +48,7 @@ Future<void> requireAuth(
             onPressed: () => Navigator.pop(ctx, true),
             child:  Text(
               'تسجيل الدخول',
-              style: TextStyle(color: AppColors.textPrimary),
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ],
