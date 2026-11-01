@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'notifications_screen.dart';
+import '../services/firestore_notification_service.dart';
 import 'my_orders_screen.dart';
 import 'chats_list_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -111,9 +113,45 @@ class HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
                     ),
                   ),
-                  IconButton(
-                    icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 26),
-                    onPressed: () {},
+                  StreamBuilder<int>(
+                    stream: FirestoreNotificationService.unreadCountStream(),
+                    builder: (context, snapshot) {
+                      final count = snapshot.data ?? 0;
+                      return Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          IconButton(
+                            icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 26),
+                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationsScreen())),
+                          ),
+                          if (count > 0)
+                            Positioned(
+                              right: 6,
+                              top: 6,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: AppColors.accent,
+                                  shape: BoxShape.circle,
+                                ),
+                                constraints: const BoxConstraints(
+                                  minWidth: 16,
+                                  minHeight: 16,
+                                ),
+                                child: Text(
+                                  count > 9 ? '9+' : '$count',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 9,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),
