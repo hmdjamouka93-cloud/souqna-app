@@ -267,7 +267,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Transform.translate(
-                      offset: const Offset(0, -10),
+                      offset: const Offset(0, 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
