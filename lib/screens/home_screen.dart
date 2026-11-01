@@ -77,83 +77,95 @@ class HomeScreenState extends State<HomeScreen> {
   Widget _buildHeader(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Stack(
-        alignment: Alignment.center,
+      child: Row(
         children: [
-          const Text(
-            'Souqna',
-            style: TextStyle(
-              color: AppColors.accent,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0.5,
-            ),
-          ),
+          // اليمين: القائمة والرسائل
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
-                icon:  Icon(Icons.menu, color: AppColors.textPrimary, size: 26),
+                icon:  Icon(Icons.menu, color: AppColors.textPrimary, size: 22),
                 onPressed: () => Scaffold.of(context).openDrawer(),
+                visualDensity: VisualDensity.compact,
               ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon:  Icon(Icons.chat_bubble_outline, color: AppColors.textPrimary, size: 26),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const ChatsListScreen()),
-                    ),
-                  ),
-                  IconButton(
-                    icon:  Icon(Icons.shopping_cart_outlined, color: AppColors.textPrimary, size: 26),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
-                    ),
-                  ),
-                  StreamBuilder<int>(
-                    stream: FirestoreNotificationService.unreadCountStream(),
-                    builder: (context, snapshot) {
-                      final count = snapshot.data ?? 0;
-                      return Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          IconButton(
-                            icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 26),
-                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationsScreen())),
-                          ),
-                          if (count > 0)
-                            Positioned(
-                              right: 6,
-                              top: 6,
-                              child: Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  color: AppColors.accent,
-                                  shape: BoxShape.circle,
-                                ),
-                                constraints: const BoxConstraints(
-                                  minWidth: 16,
-                                  minHeight: 16,
-                                ),
-                                child: Text(
-                                  count > 9 ? '9+' : '$count',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
+              IconButton(
+                icon:  Icon(Icons.chat_bubble_outline, color: AppColors.textPrimary, size: 22),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ChatsListScreen()),
+                ),
+                visualDensity: VisualDensity.compact,
+              ),
+            ],
+          ),
+          
+          // الوسط: Souqna
+          const Expanded(
+            child: Center(
+              child: Text(
+                'Souqna',
+                style: TextStyle(
+                  color: AppColors.accent,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+          ),
+          
+          // اليسار: السلة والإشعارات
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon:  Icon(Icons.shopping_cart_outlined, color: AppColors.textPrimary, size: 22),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MyOrdersScreen()),
+                ),
+                visualDensity: VisualDensity.compact,
+              ),
+              StreamBuilder<int>(
+                stream: FirestoreNotificationService.unreadCountStream(),
+                builder: (context, snapshot) {
+                  final count = snapshot.data ?? 0;
+                  return Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      IconButton(
+                        icon:  Icon(Icons.notifications_none, color: AppColors.textPrimary, size: 22),
+                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationsScreen())),
+                        visualDensity: VisualDensity.compact,
+                      ),
+                      if (count > 0)
+                        Positioned(
+                          right: 4,
+                          top: 4,
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: AppColors.accent,
+                              shape: BoxShape.circle,
                             ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                            constraints: const BoxConstraints(
+                              minWidth: 16,
+                              minHeight: 16,
+                            ),
+                            child: Text(
+                              count > 9 ? '9+' : '$count',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 9,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
               ),
             ],
           ),
