@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/showroom_service.dart';
@@ -64,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ في تحميل البيانات';
+        _error = LanguageService.tr('err_loading_data');
         _loading = false;
       });
     }
@@ -111,14 +112,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('إلغاء',
+              child: Text(LanguageService.tr('cancel'),
                   style: TextStyle(color: _textSec)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: _accent),
               onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-              child:  Text('حفظ',
+              child:  Text(LanguageService.tr('save'),
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
@@ -144,7 +145,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title:  Text('تعديل رقم الهاتف',
+          title:  Text(LanguageService.tr('edit_phone'),
               style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: TextField(
             controller: ctrl,
@@ -165,12 +166,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('إلغاء', style: TextStyle(color: _textSec)),
+              child: Text(LanguageService.tr('cancel'), style: TextStyle(color: _textSec)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: _accent),
               onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-              child:  Text('حفظ', style: TextStyle(color: AppColors.textPrimary)),
+              child:  Text(LanguageService.tr('save'), style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -181,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (newPhone.length < 9) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('رقم الهاتف قصير')),
+        SnackBar(content: Text(LanguageService.tr('phone_short'))),
       );
       return;
     }
@@ -189,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (!mounted) return;
     setState(() => _phone = newPhone);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('تم تحديث الرقم')),
+      SnackBar(content: Text(LanguageService.tr('phone_updated'))),
     );
   }
 
@@ -201,14 +202,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title:  Text('تسجيل الخروج',
+          title:  Text(LanguageService.tr('logout'),
               style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
-          content: const Text('هل أنت متأكد من تسجيل الخروج؟',
+          content: Text(LanguageService.tr('logout_confirm'),
               style: TextStyle(color: _textSec)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('إلغاء', style: TextStyle(color: _textSec)),
+              child: Text(LanguageService.tr('cancel'), style: TextStyle(color: _textSec)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
@@ -235,7 +236,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: _bg,
           elevation: 0,
           iconTheme:  IconThemeData(color: AppColors.textPrimary),
-          title:  Text('حسابي',
+          title:  Text(LanguageService.tr('my_account'),
               style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
         ),
         body: _loading
@@ -260,7 +261,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(height: 12),
                         Center(
                           child: Text(
-                            (_name == null || _name!.isEmpty) ? 'مستخدم' : _name!,
+                            (_name == null || _name!.isEmpty) ? LanguageService.tr('user_default') : _name!,
                             style:  TextStyle(
                                 color: AppColors.textPrimary,
                                 fontSize: 20,
@@ -277,7 +278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(height: 12),
                         _infoTile(
                           icon: Icons.phone_outlined,
-                          label: 'رقم الهاتف',
+                          label: LanguageService.tr('phone_number'),
                           value: _phone ?? '—',
                           onEdit: _editPhone,
                         ),
@@ -342,7 +343,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   icon:  Icon(Icons.receipt_long, color: AppColors.textPrimary),
-                  label:  Text('طلباتي',
+                  label:  Text(LanguageService.tr('my_orders'),
                       style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 15,
@@ -368,7 +369,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     icon:  Icon(Icons.admin_panel_settings, color: AppColors.textPrimary),
-                    label:  Text('لوحة التحكم (Admin)',
+                    label:  Text(LanguageService.tr('admin_panel'),
                         style: TextStyle(
                             color: AppColors.textPrimary,
                             fontSize: 15,
@@ -387,7 +388,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             icon: const Icon(Icons.logout, color: Colors.redAccent),
-                            label: const Text('تسجيل الخروج',
+                            label: Text(LanguageService.tr('logout'),
                                 style: TextStyle(
                                     color: Colors.redAccent,
                                     fontSize: 15,
