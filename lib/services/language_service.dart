@@ -44,4 +44,21 @@ class LanguageService {
     final lang = currentLocale.value.languageCode;
     return _translations[key]?[lang] ?? key;
   }
+
+  static final Map<String, Map<String, String>> _categoryTranslations = {
+    'سيارات': {'ar': 'سيارات', 'en': 'Cars', 'fr': 'Voitures'},
+    'شاحنات': {'ar': 'شاحنات', 'en': 'Trucks', 'fr': 'Camions'},
+    'حافلات': {'ar': 'حافلات', 'en': 'Buses', 'fr': 'Bus'},
+    'دراجات': {'ar': 'دراجات', 'en': 'Motorcycles', 'fr': 'Motos'},
+    'معارض السيارات': {'ar': 'معارض السيارات', 'en': 'Car Showrooms', 'fr': 'Showrooms'},
+    'دراجات هوائية وسكوتر': {'ar': 'دراجات هوائية وسكوتر', 'en': 'Bicycles & Scooters', 'fr': 'Vélos et Trottinettes'},
+    'إيجار سيارات': {'ar': 'إيجار سيارات', 'en': 'Car Rental', 'fr': 'Location de voitures'},
+    'شاحنات ومعدات ثقيلة': {'ar': 'شاحنات ومعدات ثقيلة', 'en': 'Trucks & Heavy Eq.', 'fr': 'Camions et Engins'},
+  };
+
+  static String trCategory(String name) {
+    final lang = currentLocale.value.languageCode;
+    if (lang == 'ar') return name;
+    return _categoryTranslations[name]?[lang] ?? name;
+  }
 }

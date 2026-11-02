@@ -296,7 +296,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -366,7 +366,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -436,7 +436,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -506,7 +506,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -575,7 +575,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -644,7 +644,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -716,7 +716,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
@@ -788,7 +788,7 @@ class HomeScreenState extends State<HomeScreen> {
                 runSpacing: 10,
                 children: docs.map((d) {
                   final data = d.data() as Map<String, dynamic>;
-                  final name = (data['name'] ?? '').toString();
+                  final name = LanguageService.trCategory((data['name'] ?? '').toString());
                   final image = (data['image'] ?? '').toString();
                   return SizedBox(
                     width: cardWidth,
