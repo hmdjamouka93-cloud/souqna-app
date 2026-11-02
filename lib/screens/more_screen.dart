@@ -174,7 +174,7 @@ class _MoreScreenState extends State<MoreScreen> {
   // ============ Grid 2x3 ============
   Widget _buildGrid(BuildContext context, bool logged) {
     final items = [
-      _GridItem('إضافة إعلان', Icons.add_circle_outline, const Color(0xFFA0285A),
+      _GridItem(LanguageService.tr('add_ad'), Icons.add_circle_outline, const Color(0xFFA0285A),
           () {
         if (!logged) {
           Navigator.push(
@@ -188,7 +188,7 @@ class _MoreScreenState extends State<MoreScreen> {
           MaterialPageRoute(builder: (_) => const PostAdChooserScreen()),
         );
       }),
-      _GridItem('إعلاناتي', Icons.list_alt, const Color(0xFF2E7D32), () {
+      _GridItem(LanguageService.tr('my_ads'), Icons.list_alt, const Color(0xFF2E7D32), () {
         if (!logged) {
           Navigator.push(
             context,
@@ -201,7 +201,7 @@ class _MoreScreenState extends State<MoreScreen> {
           MaterialPageRoute(builder: (_) => const MyAdsScreen()),
         );
       }),
-      _GridItem('المفضلة', Icons.star_border, const Color(0xFFF9A825), () {
+      _GridItem(LanguageService.tr('favorites'), Icons.star_border, const Color(0xFFF9A825), () {
         if (!logged) {
           Navigator.push(
             context,
@@ -214,7 +214,7 @@ class _MoreScreenState extends State<MoreScreen> {
           MaterialPageRoute(builder: (_) => const FavoritesScreen()),
         );
       }),
-      _GridItem('المحظورين', Icons.block, const Color(0xFFC62828), () {
+      _GridItem(LanguageService.tr('blocked_users'), Icons.block, const Color(0xFFC62828), () {
         if (!logged) {
           Navigator.push(
             context,
@@ -227,14 +227,14 @@ class _MoreScreenState extends State<MoreScreen> {
           MaterialPageRoute(builder: (_) => const MyBlockedUsersScreen()),
         );
       }),
-  _GridItem('اللغة', Icons.language, const Color(0xFF7B1FA2), () {
+  _GridItem(LanguageService.tr('language'), Icons.language, const Color(0xFF7B1FA2), () {
         showDialog(
           context: context,
           builder: (ctx) => Directionality(
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               backgroundColor: AppColors.card,
-              title: Text('اللغة', style: TextStyle(color: AppColors.textPrimary)),
+              title: Text(LanguageService.tr('language'), style: TextStyle(color: AppColors.textPrimary)),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -269,7 +269,7 @@ class _MoreScreenState extends State<MoreScreen> {
         );
       }),
 
-_GridItem('الوضع', Icons.brightness_6_outlined, const Color(0xFF1976D2), () {
+_GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const Color(0xFF1976D2), () {
         final isDark = ThemeService.isDarkMode.value;
         showDialog(
           context: context,
