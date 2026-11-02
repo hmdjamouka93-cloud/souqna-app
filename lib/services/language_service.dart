@@ -23,6 +23,10 @@ class LanguageService {
     'more': {'ar': 'المزيد', 'en': 'More', 'fr': 'Plus'},
     'my_ads': {'ar': 'إعلاناتي', 'en': 'My Ads', 'fr': 'Mes annonces'},
     'favorites': {'ar': 'المفضلة', 'en': 'Favorites', 'fr': 'Favoris'},
+    'vehicles': {'ar': 'المركبات', 'en': 'Vehicles', 'fr': 'Véhicules'},
+    'search_hint': {'ar': 'ابحث في السوق...', 'en': 'Search in the market...', 'fr': 'Chercher dans le marché...'},
+    'error_loading_categories': {'ar': 'حدث خطأ أثناء تحميل الأقسام', 'en': 'Error loading categories', 'fr': 'Erreur lors du chargement'},
+    'no_categories': {'ar': 'لا توجد أقسام', 'en': 'No categories', 'fr': 'Aucune catégorie'},
   };
 
   static String tr(String key) {

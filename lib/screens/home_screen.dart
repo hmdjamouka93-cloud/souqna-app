@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import 'notifications_screen.dart';
 import '../services/firestore_notification_service.dart';
 import 'my_orders_screen.dart';
@@ -41,7 +42,7 @@ class HomeScreenState extends State<HomeScreen> {
                 _buildBanner(),
                 _buildSearchBar(context),
                 const SizedBox(height: 16),
-                _buildSectionTitle('المركبات'),
+                _buildSectionTitle(LanguageService.tr('vehicles')),
                 _buildVehiclesGrid(),
                 const SizedBox(height: 24),
                 _buildSectionTitle('العقارات'),
@@ -219,7 +220,7 @@ class HomeScreenState extends State<HomeScreen> {
               SizedBox(width: 14),
               Icon(Icons.search, color: AppColors.textSecondary),
               SizedBox(width: 10),
-              Text('ابحث في السوق...', style: TextStyle(color: AppColors.textSecondary)),
+              Text(LanguageService.tr('search_hint'), style: TextStyle(color: AppColors.textSecondary)),
             ],
           ),
         ),
@@ -262,7 +263,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -279,7 +280,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -332,7 +333,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -349,7 +350,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -402,7 +403,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -419,7 +420,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -472,7 +473,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -489,7 +490,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -541,7 +542,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -558,7 +559,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -610,7 +611,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -627,7 +628,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -678,7 +679,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -699,7 +700,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -750,7 +751,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'حدث خطأ أثناء تحميل الأقسام',
+                LanguageService.tr('error_loading_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
@@ -771,7 +772,7 @@ class HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.all(32),
             child: Center(
               child: Text(
-                'لا توجد أقسام',
+                LanguageService.tr('no_categories'),
                 style: TextStyle(color: AppColors.textPrimary),
               ),
             ),
