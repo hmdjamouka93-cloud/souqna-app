@@ -77,7 +77,7 @@ class LanguageService {
     return _translations[key]?[lang] ?? key;
   }
 
-    static final Map<String, Map<String, String>> _categoryTranslations = {
+      static final Map<String, Map<String, String>> _categoryTranslations = {
     'سيارات': {'ar': 'سيارات', 'en': 'Cars', 'fr': 'Voitures'},
     'شاحنات': {'ar': 'شاحنات', 'en': 'Trucks', 'fr': 'Camions'},
     'حافلات': {'ar': 'حافلات', 'en': 'Buses', 'fr': 'Bus'},
@@ -106,11 +106,13 @@ class LanguageService {
     'ملابس اطفال': {'ar': 'ملابس اطفال', 'en': 'Kids\' Clothing', 'fr': 'Vêtements Enfant'},
     'اكسسوارات': {'ar': 'اكسسوارات', 'en': 'Accessories', 'fr': 'Accessoires'},
     'ملابس اخرى': {'ar': 'ملابس اخرى', 'en': 'Other Clothing', 'fr': 'Autres vêtements'},
+    'الخياطة والأزياء': {'ar': 'الخياطة والأزياء', 'en': 'Tailoring & Fashion', 'fr': 'Couture & Mode'},
     'الخياطة والازياء': {'ar': 'الخياطة والازياء', 'en': 'Tailoring & Fashion', 'fr': 'Couture & Mode'},
     'خدمات الصيانة': {'ar': 'خدمات الصيانة', 'en': 'Maintenance Services', 'fr': 'Services de maintenance'},
     'خدمات البناء': {'ar': 'خدمات البناء', 'en': 'Construction Services', 'fr': 'Services de construction'},
     'الخدمات الرقمية': {'ar': 'الخدمات الرقمية', 'en': 'Digital Services', 'fr': 'Services numériques'},
     'النقل والتوصيل': {'ar': 'النقل والتوصيل', 'en': 'Transport & Delivery', 'fr': 'Transport & Livraison'},
+    'المناسبات والأعراس': {'ar': 'المناسبات والأعراس', 'en': 'Events & Weddings', 'fr': 'Événements & Mariages'},
     'المناسبات والاعراس': {'ar': 'المناسبات والاعراس', 'en': 'Events & Weddings', 'fr': 'Événements & Mariages'},
     'المأكولات والمشروبات': {'ar': 'المأكولات والمشروبات', 'en': 'Food & Beverages', 'fr': 'Nourriture & Boissons'},
     'التعليم والدروس الخصوصية': {'ar': 'التعليم والدروس الخصوصية', 'en': 'Education & Tutoring', 'fr': 'Éducation & Soutien'},
@@ -119,21 +121,26 @@ class LanguageService {
     'السفر والسياحة': {'ar': 'السفر والسياحة', 'en': 'Travel & Tourism', 'fr': 'Voyage & Tourisme'},
     'خدمات السيارات': {'ar': 'خدمات السيارات', 'en': 'Car Services', 'fr': 'Services automobiles'},
     'النظافة ومكافحة الحشرات': {'ar': 'النظافة ومكافحة الحشرات', 'en': 'Cleaning & Pest Control', 'fr': 'Nettoyage & Dératisation'},
+    'الخدمات القانونية والإدارية': {'ar': 'الخدمات القانونية والإدارية', 'en': 'Legal & Admin Services', 'fr': 'Services Juridiques & Admin'},
     'الخدمات القانونية والايدارية': {'ar': 'الخدمات القانونية والايدارية', 'en': 'Legal & Admin Services', 'fr': 'Services Juridiques & Admin'},
     'الفلاحة والثروة الحيوانية': {'ar': 'الفلاحة والثروة الحيوانية', 'en': 'Agriculture & Livestock', 'fr': 'Agriculture & Élevage'},
+    'الدعاية والإعلان والطباعة': {'ar': 'الدعاية والإعلان والطباعة', 'en': 'Marketing & Printing', 'fr': 'Marketing & Impression'},
     'الدعاية والاعلان والطباعة': {'ar': 'الدعاية والاعلان والطباعة', 'en': 'Marketing & Printing', 'fr': 'Marketing & Impression'},
+    'الأمن والحراسة': {'ar': 'الأمن والحراسة', 'en': 'Security', 'fr': 'Sécurité'},
     'الامن والحراسة': {'ar': 'الامن والحراسة', 'en': 'Security', 'fr': 'Sécurité'},
+    'رعاية الأطفال والمسنين': {'ar': 'رعاية الأطفال والمسنين', 'en': 'Child & Elderly Care', 'fr': 'Soins aux enfants & personnes âgées'},
     'رعاية الاطفال والمسنين': {'ar': 'رعاية الاطفال والمسنين', 'en': 'Child & Elderly Care', 'fr': 'Soins aux enfants & personnes âgées'},
     'الطاقة الشمسية': {'ar': 'الطاقة الشمسية', 'en': 'Solar Energy', 'fr': 'Énergie solaire'},
     'حيوانات اليفة': {'ar': 'حيوانات اليفة', 'en': 'Pets', 'fr': 'Animaux de compagnie'},
     'كلاب وقطط': {'ar': 'كلاب وقطط', 'en': 'Dogs & Cats', 'fr': 'Chiens & Chats'},
     'طيور': {'ar': 'طيور', 'en': 'Birds', 'fr': 'Oiseaux'},
     'مواشي ودواب': {'ar': 'مواشي ودواب', 'en': 'Livestock', 'fr': 'Bétail'},
+    'حيوانات أخرى': {'ar': 'حيوانات أخرى', 'en': 'Other Animals', 'fr': 'Autres animaux'},
     'حيوانات اخرى': {'ar': 'حيوانات اخرى', 'en': 'Other Animals', 'fr': 'Autres animaux'},
     'وظائف متاحة': {'ar': 'وظائف متاحة', 'en': 'Available Jobs', 'fr': 'Emplois disponibles'},
     'الباحثين عن عمل': {'ar': 'الباحثين عن عمل', 'en': 'Job Seekers', 'fr': 'Demandeurs d\'emploi'},
-    'تبرعات': {'ar': 'تبرعات', 'en': 'Donations', 'fr': 'Dons'},
-    'عمل خيري': {'ar': 'عمل خيري', 'en': 'Charity', 'fr': 'Charité'},
+    'التبرع': {'ar': 'التبرع', 'en': 'Donation', 'fr': 'Don'},
+    'التبرعات والعمل الخيري': {'ar': 'التبرعات والعمل الخيري', 'en': 'Charity', 'fr': 'Charité'},
     'المفقودات': {'ar': 'المفقودات', 'en': 'Lost & Found', 'fr': 'Objets perdus'},
   };
 
