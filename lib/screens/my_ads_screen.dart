@@ -5,6 +5,7 @@ import '../main.dart';
 import '../services/auth_service.dart';
 import 'car_detail_screen.dart';
 import 'login_screen.dart';
+import '../services/language_service.dart';
 
 class MyAdsScreen extends StatefulWidget {
   const MyAdsScreen({super.key});
@@ -120,7 +121,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
             ),
             const SizedBox(height: 16),
              Text(
-              'لا توجد إعلانات بعد',
+              LanguageService.tr('no_ads_yet'),
               style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
             ),
             const SizedBox(height: 8),

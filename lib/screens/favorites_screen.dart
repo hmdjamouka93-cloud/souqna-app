@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../services/favorites_service.dart';
 import 'car_detail_screen.dart';
+import '../services/language_service.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -78,7 +79,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             Icon(Icons.star_border,
                 size: 80, color: AppColors.iconInactive),
             SizedBox(height: 16),
-            Text('لا توجد إعلانات محفوظة',
+            Text(LanguageService.tr('no_saved_ads'),
                 style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
             SizedBox(height: 8),
             Text('أضف إعلانات إلى المفضلة لتجدها هنا',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../services/firestore_notification_service.dart';
+import '../services/language_service.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -83,7 +84,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       Icon(Icons.notifications_off_outlined,
                           size: 80, color: AppColors.iconInactive),
                       const SizedBox(height: 16),
-                      Text('لا توجد إشعارات',
+                      Text(LanguageService.tr('no_notifications'),
                           style: TextStyle(
                               color: AppColors.textPrimary, fontSize: 16)),
                     ],
