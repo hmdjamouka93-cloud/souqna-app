@@ -157,7 +157,7 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
                 ),
               );
             },
-            message: 'يجب تسجيل الدخول لإضافة إعلان',
+            message: LanguageService.tr('login_to_add_ad'),
           );
         },
         backgroundColor: AppColors.accent,
@@ -190,7 +190,7 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
                       builder: (_) => const MyAdsScreen()),
                 );
               },
-              message: 'يجب تسجيل الدخول لعرض إعلاناتك',
+              message: LanguageService.tr('login_to_view_ads'),
             );
           }),
           const SizedBox(width: 55),
@@ -214,7 +214,7 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
                 MaterialPageRoute(builder: (_) => const FavoritesScreen()),
               );
             },
-            message: 'يجب تسجيل الدخول لعرض المفضلة',
+            message: LanguageService.tr('login_to_view_fav'),
           );
         } else if (index == 3) {
           Navigator.push(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'language_service.dart';
 import '../main.dart';
 import 'auth_service.dart';
 import '../screens/login_screen.dart';
@@ -9,8 +10,9 @@ import '../screens/login_screen.dart';
 Future<void> requireAuth(
   BuildContext context,
   VoidCallback onAuthed, {
-  String message = 'يجب تسجيل الدخول للمتابعة',
+  String? message,
 }) async {
+  final msg = message ?? LanguageService.tr('login_to_continue');
   if (AuthService.isLoggedIn) {
     onAuthed();
     return;
@@ -30,7 +32,7 @@ Future<void> requireAuth(
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         content: Text(
-          message,
+          msg,
           style: const TextStyle(color: Color(0xFFB0B0B8), fontSize: 14),
         ),
         actions: [

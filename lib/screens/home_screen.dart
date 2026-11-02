@@ -688,7 +688,7 @@ class HomeScreenState extends State<HomeScreen> {
         final allDocs = snapshot.data?.docs ?? [];
       final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
         final m = (d.data() as Map)['mainCategoryId'] ?? '';
-        return m.toString().trim() == LanguageService.tr('jobs');
+        return m.toString().trim() == 'jobs';
       }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
@@ -760,7 +760,7 @@ class HomeScreenState extends State<HomeScreen> {
         final allDocs = snapshot.data?.docs ?? [];
       final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
         final m = (d.data() as Map)['mainCategoryId'] ?? '';
-        return m.toString().trim() == LanguageService.tr('charity');
+        return m.toString().trim() == 'charity';
       }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
@@ -942,7 +942,7 @@ class HomeScreenState extends State<HomeScreen> {
           builder: (context) => StoresListScreen(categoryName: name),
         ),
       );
-    } else if (name == LanguageService.tr('animals')) {
+    } else if (name == 'animals') {
       Navigator.push(
         context,
         MaterialPageRoute(
