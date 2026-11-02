@@ -178,8 +178,8 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navItemIcon(Icons.home_outlined, 'الرئيسية', 0),
-          _navItemImage('images/icon_myads.png', 'اعلاناتي', 1,
+          _navItemIcon(Icons.home_outlined, LanguageService.tr('home'), 0),
+          _navItemImage('images/icon_myads.png', LanguageService.tr('my_ads'), 1,
               onTapCustom: () {
             requireAuth(
               context,
@@ -194,8 +194,8 @@ class _MainShellState extends State<MainShell> with WidgetsBindingObserver {
             );
           }),
           const SizedBox(width: 55),
-          _navItemIcon(Icons.favorite_border, 'المفضلة', 2),
-          _navItemIcon(Icons.more_horiz, 'المزيد', 3),
+          _navItemIcon(Icons.favorite_border, LanguageService.tr('favorites'), 2),
+          _navItemIcon(Icons.more_horiz, LanguageService.tr('more'), 3),
         ],
       ),
     );
