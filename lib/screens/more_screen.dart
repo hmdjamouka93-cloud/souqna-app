@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -226,7 +227,7 @@ class _MoreScreenState extends State<MoreScreen> {
           MaterialPageRoute(builder: (_) => const MyBlockedUsersScreen()),
         );
       }),
-      _GridItem('اللغة', Icons.language, const Color(0xFF7B1FA2), () {
+  _GridItem('اللغة', Icons.language, const Color(0xFF7B1FA2), () {
         showDialog(
           context: context,
           builder: (ctx) => Directionality(
@@ -234,18 +235,41 @@ class _MoreScreenState extends State<MoreScreen> {
             child: AlertDialog(
               backgroundColor: AppColors.card,
               title: Text('اللغة', style: TextStyle(color: AppColors.textPrimary)),
-              content:  Text('اللغة العربية هي اللغة الافتراضية حالياً.\nسيتم إضافة لغات أخرى قريباً.', style: TextStyle(color: AppColors.textSecondary)),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(ctx),
-                  child: const Text('حسناً', style: TextStyle(color: AppColors.accent)),
-                ),
-              ],
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    title: Text('العربية', style: TextStyle(color: AppColors.textPrimary)),
+                    trailing: LanguageService.currentLocale.value.languageCode == 'ar' ? Icon(Icons.check, color: AppColors.accent) : null,
+                    onTap: () {
+                      LanguageService.changeLanguage('ar');
+                      Navigator.pop(ctx);
+                    },
+                  ),
+                  ListTile(
+                    title: Text('English', style: TextStyle(color: AppColors.textPrimary)),
+                    trailing: LanguageService.currentLocale.value.languageCode == 'en' ? Icon(Icons.check, color: AppColors.accent) : null,
+                    onTap: () {
+                      LanguageService.changeLanguage('en');
+                      Navigator.pop(ctx);
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Français', style: TextStyle(color: AppColors.textPrimary)),
+                    trailing: LanguageService.currentLocale.value.languageCode == 'fr' ? Icon(Icons.check, color: AppColors.accent) : null,
+                    onTap: () {
+                      LanguageService.changeLanguage('fr');
+                      Navigator.pop(ctx);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );
       }),
-      _GridItem('الوضع', Icons.brightness_6_outlined, const Color(0xFF1976D2), () {
+
+_GridItem('الوضع', Icons.brightness_6_outlined, const Color(0xFF1976D2), () {
         final isDark = ThemeService.isDarkMode.value;
         showDialog(
           context: context,
