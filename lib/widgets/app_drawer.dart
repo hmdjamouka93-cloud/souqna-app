@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
@@ -85,13 +86,13 @@ class _AppDrawerState extends State<AppDrawer> {
         Padding(padding: const EdgeInsets.fromLTRB(8, 8, 16, 8), child: Row(children: [
           IconButton(icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 24), onPressed: () => Navigator.pop(context)),
           const Spacer(),
-           Text('الأقسام', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+           Text(LanguageService.tr('sections'), style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
         ])),
         Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: TextField(
           controller: _searchCtrl,
           onChanged: (v) => setState(() => _searchQuery = v),
           style:  TextStyle(color: AppColors.textPrimary),
-          decoration: InputDecoration(hintText: 'بحث في الأقسام', hintStyle:  TextStyle(color: AppColors.textSecondary), prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary), filled: true, fillColor: AppColors.card, border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none), contentPadding: const EdgeInsets.symmetric(vertical: 12)),
+          decoration: InputDecoration(hintText: LanguageService.tr('search_in_sections'), hintStyle:  TextStyle(color: AppColors.textSecondary), prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary), filled: true, fillColor: AppColors.card, border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none), contentPadding: const EdgeInsets.symmetric(vertical: 12)),
         )),
         StreamBuilder<User?>(
           stream: AuthService.authStateChanges,
@@ -100,7 +101,7 @@ class _AppDrawerState extends State<AppDrawer> {
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               leading: Icon(logged ? Icons.person_outline : Icons.login_outlined, color: AppColors.accent, size: 22),
-              title: Text(logged ? 'حسابي' : 'تسجيل الدخول', style:  TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.right),
+              title: Text(logged ? LanguageService.tr('my_account') : LanguageService.tr('login'), style:  TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.right),
               trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
               onTap: () {
                 Navigator.pop(context);
@@ -117,8 +118,12 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   Widget _buildList(BuildContext context) {
-    final filteredItems = _items.where((item) => item.name.contains(_searchQuery) || item.name.toLowerCase().contains(_searchQuery.toLowerCase())).toList();
-    if (filteredItems.isEmpty) { return  Center(child: Text('لا توجد أقسام مطابقة', style: TextStyle(color: AppColors.textSecondary))); }
+    final filteredItems = _items.where((item) {
+      final translated = LanguageService.trCategory(item.name);
+      final query = _searchQuery.toLowerCase();
+      return item.name.contains(_searchQuery) || translated.toLowerCase().contains(query);
+    }).toList();
+    if (filteredItems.isEmpty) { return  Center(child: Text(LanguageService.tr('no_matching_sections'), style: TextStyle(color: AppColors.textSecondary))); }
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       itemCount: filteredItems.length,
@@ -128,7 +133,7 @@ class _AppDrawerState extends State<AppDrawer> {
         return ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           leading: Icon(item.icon, color: AppColors.accent, size: 22),
-          title: Text(item.name, style:  TextStyle(color: AppColors.textPrimary, fontSize: 15), textAlign: TextAlign.right),
+          title: Text(LanguageService.trCategory(item.name), style:  TextStyle(color: AppColors.textPrimary, fontSize: 15), textAlign: TextAlign.right),
           trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
           onTap: () { Navigator.pop(context); widget.onCategoryTap(item.name); },
         );
