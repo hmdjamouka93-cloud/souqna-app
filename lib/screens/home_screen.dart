@@ -45,25 +45,25 @@ class HomeScreenState extends State<HomeScreen> {
                 _buildSectionTitle(LanguageService.tr('vehicles')),
                 _buildVehiclesGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('العقارات'),
+                _buildSectionTitle(LanguageService.tr('real_estate')),
                 _buildRealEstateGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('الإلكترونيات'),
+                _buildSectionTitle(LanguageService.tr('electronics')),
                 _buildElectronicsGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('الملابس'),
+                _buildSectionTitle(LanguageService.tr('clothing')),
                 _buildClothingGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('الخدمات'),
+                _buildSectionTitle(LanguageService.tr('services')),
                 _buildServicesGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('الحيوانات'),
+                _buildSectionTitle(LanguageService.tr('animals')),
                 _buildPetsGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('الوظائف'),
+                _buildSectionTitle(LanguageService.tr('jobs')),
                 _buildJobsGrid(),
                 const SizedBox(height: 24),
-                _buildSectionTitle('التبرعات والعمل الخيري'),
+                _buildSectionTitle(LanguageService.tr('charity')),
                 _buildCharityGrid(),
                 const SizedBox(height: 20),
               ],
@@ -688,7 +688,7 @@ class HomeScreenState extends State<HomeScreen> {
         final allDocs = snapshot.data?.docs ?? [];
       final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
         final m = (d.data() as Map)['mainCategoryId'] ?? '';
-        return m.toString().trim() == 'الوظائف';
+        return m.toString().trim() == LanguageService.tr('jobs');
       }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
@@ -760,7 +760,7 @@ class HomeScreenState extends State<HomeScreen> {
         final allDocs = snapshot.data?.docs ?? [];
       final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
         final m = (d.data() as Map)['mainCategoryId'] ?? '';
-        return m.toString().trim() == 'التبرعات والعمل الخيري';
+        return m.toString().trim() == LanguageService.tr('charity');
       }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
@@ -942,7 +942,7 @@ class HomeScreenState extends State<HomeScreen> {
           builder: (context) => StoresListScreen(categoryName: name),
         ),
       );
-    } else if (name == 'الحيوانات') {
+    } else if (name == LanguageService.tr('animals')) {
       Navigator.push(
         context,
         MaterialPageRoute(
