@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'services/language_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'screens/splash_screen.dart';
@@ -15,6 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await ThemeService.init();
+  await LanguageService.init();
   runApp(const SouqnaApp());
 }
 
@@ -41,32 +44,48 @@ class SouqnaApp extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: ThemeService.isDarkMode,
       builder: (context, isDark, _) {
-        return MaterialApp(
-          key: ValueKey(isDark),
-          title: 'Souqna',
-          debugShowCheckedModeBanner: false,
-          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-          theme: ThemeData(
-            brightness: Brightness.light,
-            scaffoldBackgroundColor: const Color(0xFFF5F5F0),
-            primaryColor: AppColors.accent,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: AppColors.accent,
-              brightness: Brightness.light,
-              surface: Colors.white,
-            ),
-          ),
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            scaffoldBackgroundColor: const Color(0xFF1E2128),
-            primaryColor: AppColors.accent,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: AppColors.accent,
-              brightness: Brightness.dark,
-              surface: const Color(0xFF2A2E36),
-            ),
-          ),
-          home: const SplashScreen(),
+        return ValueListenableBuilder<Locale>(
+          valueListenable: LanguageService.currentLocale,
+          builder: (context, currentLocale, _) {
+            return MaterialApp(
+              key: ValueKey('${isDark}_${currentLocale.languageCode}'),
+              title: 'Souqna',
+              debugShowCheckedModeBanner: false,
+              locale: currentLocale,
+              supportedLocales: const [
+                Locale('ar'),
+                Locale('en'),
+                Locale('fr'),
+              ],
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+              theme: ThemeData(
+                brightness: Brightness.light,
+                scaffoldBackgroundColor: const Color(0xFFF5F5F0),
+                primaryColor: AppColors.accent,
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: AppColors.accent,
+                  brightness: Brightness.light,
+                  surface: Colors.white,
+                ),
+              ),
+              darkTheme: ThemeData(
+                brightness: Brightness.dark,
+                scaffoldBackgroundColor: const Color(0xFF1E2128),
+                primaryColor: AppColors.accent,
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: AppColors.accent,
+                  brightness: Brightness.dark,
+                  surface: const Color(0xFF2A2E36),
+                ),
+              ),
+              home: const SplashScreen(),
+            );
+          },
         );
       },
     );
