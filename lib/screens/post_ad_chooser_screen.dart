@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import '../services/language_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -82,7 +83,7 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'اختر القسم',
+            LanguageService.tr('choose_category'),
             style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,
@@ -104,7 +105,7 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
     if (_items.isEmpty) {
       return  Center(
         child: Text(
-          'لا توجد أقسام',
+          LanguageService.tr('no_categories'),
           style: TextStyle(color: AppColors.textPrimary, fontSize: 16),
         ),
       );

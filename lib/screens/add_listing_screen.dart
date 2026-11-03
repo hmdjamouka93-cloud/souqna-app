@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import '../services/language_service.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -66,7 +67,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
   Future<void> _pickImage() async {
     if (_images.length >= 5) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('الحد الأقصى 5 صور')),
+        SnackBar(content: Text(LanguageService.tr('max_5_images'))),
       );
       return;
     }
@@ -157,7 +158,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
 
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تم تحديث الإعلان بنجاح')),
+          SnackBar(content: Text(LanguageService.tr('ad_updated_success'))),
         );
       } else {
         // ===== وضع الإضافة =====
@@ -183,7 +184,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
 
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تم نشر الإعلان بنجاح')),
+          SnackBar(content: Text(LanguageService.tr('ad_published_success'))),
         );
       }
 
@@ -212,7 +213,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            _isEdit ? 'تعديل الإعلان' : widget.categoryName,
+            _isEdit ? LanguageService.tr('edit_ad') : widget.categoryName,
             style:  TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,
@@ -225,25 +226,25 @@ class _AddListingScreenState extends State<AddListingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _label('الصور (${_images.length}/5)'),
+              _label('${LanguageService.tr('images')} (${_images.length}/5)'),
               const SizedBox(height: 8),
               _imagesGrid(),
               const SizedBox(height: 18),
 
-              _label('عنوان الإعلان'),
-              _textField(_titleCtrl, 'عنوان واضح للإعلان...'),
+              _label(LanguageService.tr('ad_title')),
+              _textField(_titleCtrl, LanguageService.tr('ad_title_hint')),
               const SizedBox(height: 16),
 
-              _label('الوصف'),
-              _textField(_descCtrl, 'وصف تفصيلي...', maxLines: 4),
+              _label(LanguageService.tr('description')),
+              _textField(_descCtrl, LanguageService.tr('description_hint'), maxLines: 4),
               const SizedBox(height: 16),
 
-              _label('السعر (د.ج)'),
+              _label(LanguageService.tr('price_dzd')),
               _textField(_priceCtrl, '0',
                   keyboard: TextInputType.number, ltr: true),
               const SizedBox(height: 16),
 
-              _label('الموقع'),
+              _label(LanguageService.tr('location')),
               _textField(_locCtrl, 'المدينة أو الولاية...'),
               const SizedBox(height: 20),
 
@@ -288,7 +289,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
                           ),
                         )
                       : Text(
-                          _isEdit ? 'حفظ التعديل' : 'نشر الإعلان',
+                          _isEdit ? LanguageService.tr('save_edits') : LanguageService.tr('publish_ad'),
                           style:  TextStyle(
                             color: AppColors.textPrimary,
                             fontSize: 16,
