@@ -93,7 +93,7 @@ class MotorcyclesScreen extends StatelessWidget {
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title:  Text('دراجات',
+      title:  Text(LanguageService.trCategory('دراجات'),
         style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(

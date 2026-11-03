@@ -52,7 +52,7 @@ class HeavyEquipmentScreen extends StatelessWidget {
             const SizedBox(height: 8),
             _buildAdBanner(),
             const SizedBox(height: 16),
-            _buildSectionTitle('الأقسام الفرعية'),
+            _buildSectionTitle(LanguageService.tr('subcategories')),
             _buildGrid(),
             const SizedBox(height: 20),
           ],
@@ -69,7 +69,7 @@ class HeavyEquipmentScreen extends StatelessWidget {
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title:  Text('معدات ثقيلة',
+      title:  Text(LanguageService.trCategory('معدات ثقيلة'),
         style: TextStyle(color: AppColors.textPrimary, fontSize: 18,
           fontWeight: FontWeight.bold)),
       actions: [

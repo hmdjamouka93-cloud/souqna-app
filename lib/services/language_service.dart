@@ -150,6 +150,10 @@ class LanguageService {
     'register_btn': {'ar': 'تسجيل', 'en': 'Register', 'fr': 'S\'inscrire'},
     'phone_visible_note': {'ar': 'سيظهر رقم هاتفك للآخرين في إعلاناتك وتعليقاتك', 'en': 'Your phone number will be visible in your ads and comments', 'fr': 'Votre numéro sera visible dans vos annonces et commentaires'},
 
+    
+    'subcategories': {'ar': 'الأقسام الفرعية', 'en': 'Subcategories', 'fr': 'Sous-catégories'},
+    'choose_category': {'ar': 'اختر القسم', 'en': 'Choose category', 'fr': 'Choisir une catégorie'},
+
     'add_ad': {'ar': 'إضافة إعلان', 'en': 'Add Ad', 'fr': 'Ajouter une annonce'},
     'blocked_users': {'ar': 'المحظورين', 'en': 'Blocked Users', 'fr': 'Utilisateurs bloqués'},
     'language': {'ar': 'اللغة', 'en': 'Language', 'fr': 'Langue'},

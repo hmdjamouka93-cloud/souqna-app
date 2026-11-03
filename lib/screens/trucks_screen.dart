@@ -37,7 +37,7 @@ class TrucksScreen extends StatelessWidget {
             const SizedBox(height: 8),
             _buildAdBanner(),
             const SizedBox(height: 16),
-            _buildSectionTitle('الأقسام الفرعية'),
+            _buildSectionTitle(LanguageService.tr('subcategories')),
             _buildBrandsGrid(),
             const SizedBox(height: 20),
           ],
@@ -54,7 +54,7 @@ class TrucksScreen extends StatelessWidget {
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title:  Text('شاحنات',
+      title:  Text(LanguageService.trCategory('شاحنات'),
         style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(

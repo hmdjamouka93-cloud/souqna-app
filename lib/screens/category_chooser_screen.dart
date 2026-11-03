@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -265,7 +266,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
     if (_items.isEmpty) {
       return  Center(
         child: Text(
-          'لا توجد أقسام',
+          LanguageService.tr('no_categories'),
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       );
@@ -279,7 +280,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
           child: Align(
             alignment: Alignment.centerRight,
-            child: Text('الأقسام الفرعية', style: TextStyle(color: AppColors.textPrimary,
+            child: Text(LanguageService.tr('subcategories'), style: TextStyle(color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),
@@ -318,8 +319,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(
-                cat['name'],
+              child: Text(LanguageService.trCategory(cat['name']),
                 textAlign: TextAlign.center,
                 style:  TextStyle(
                   color: Colors.white,

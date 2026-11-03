@@ -114,7 +114,7 @@ class _CarsScreenState extends State<CarsScreen> {
             icon: Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text(widget.screenTitle,
+          title: Text(LanguageService.trCategory(widget.screenTitle),
               style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         body: ListView(
@@ -123,7 +123,7 @@ class _CarsScreenState extends State<CarsScreen> {
             const SizedBox(height: 8),
             _buildAdBanner(),
             const SizedBox(height: 16),
-            _buildSectionTitle('الأقسام الفرعية'),
+            _buildSectionTitle(LanguageService.tr('subcategories')),
             _buildContent(),
             const SizedBox(height: 20),
           ],
