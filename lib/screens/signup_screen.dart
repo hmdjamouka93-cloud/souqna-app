@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 
@@ -39,19 +40,19 @@ class _SignupScreenState extends State<SignupScreen> {
     final pass = _passCtrl.text;
 
     if (name.isEmpty) {
-      setState(() => _error = 'اكتب اسمك');
+      setState(() => _error = LanguageService.tr('err_enter_name'));
       return;
     }
     if (email.isEmpty || !email.contains('@')) {
-      setState(() => _error = 'البريد الإلكتروني غير صحيح');
+      setState(() => _error = LanguageService.tr('err_invalid_email'));
       return;
     }
     if (phone.length < 9) {
-      setState(() => _error = 'رقم الهاتف قصير');
+      setState(() => _error = LanguageService.tr('err_short_phone'));
       return;
     }
     if (pass.length < 6) {
-      setState(() => _error = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+      setState(() => _error = LanguageService.tr('err_short_pass'));
       return;
     }
 
@@ -70,19 +71,19 @@ class _SignupScreenState extends State<SignupScreen> {
       if (!mounted) return;
       Navigator.pop(context, true);
     } on Exception catch (e) {
-      String msg = 'حدث خطأ في التسجيل، حاول مرة أخرى';
+      String msg = LanguageService.tr('err_signup_generic');
       final s = e.toString();
       
       if (s.contains('رقم الهاتف هذا مستعمل')) {
-        msg = 'رقم الهاتف هذا مستعمل من قبل، يرجى استخدام رقم آخر.';
+        msg = LanguageService.tr('err_phone_used');
       } else if (s.contains('email-already-in-use')) {
-        msg = 'البريد الإلكتروني مستعمل من قبل.';
+        msg = LanguageService.tr('err_email_used');
       } else if (s.contains('invalid-email')) {
-        msg = 'البريد الإلكتروني غير صحيح.';
+        msg = LanguageService.tr('err_invalid_email');
       } else if (s.contains('weak-password')) {
-        msg = 'كلمة المرور ضعيفة (6 حروف على الأقل).';
+        msg = LanguageService.tr('err_weak_pass');
       } else if (s.contains('network')) {
-        msg = 'تأكد من الاتصال بالإنترنت.';
+        msg = LanguageService.tr('err_check_net');
       }
       setState(() => _error = msg);
     } finally {
@@ -101,7 +102,7 @@ class _SignupScreenState extends State<SignupScreen> {
           elevation: 0,
           iconTheme:  IconThemeData(color: AppColors.textPrimary),
           title:  Text(
-            'إنشاء حساب',
+            LanguageService.tr('signup'),
             style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
         ),
@@ -113,15 +114,15 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 const SizedBox(height: 10),
 
-                _label('الاسم'),
+                _label(LanguageService.tr('full_name')),
                 _field(
                   controller: _nameCtrl,
-                  hint: 'اسمك الكامل',
+                  hint: LanguageService.tr('full_name_hint'),
                   icon: Icons.person_outline,
                 ),
                 const SizedBox(height: 16),
 
-                _label('الإيميل'),
+                _label(LanguageService.tr('email')),
                 _field(
                   controller: _emailCtrl,
                   hint: 'example@mail.com',
@@ -130,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                _label('رقم الهاتف'),
+                _label(LanguageService.tr('phone_number')),
                 _field(
                   controller: _phoneCtrl,
                   hint: '0555 12 34 56',
@@ -139,7 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
 
                 const SizedBox(height: 16),
-                _label('كلمة السر'),
+                _label(LanguageService.tr('password')),
                 _field(
                   controller: _passCtrl,
                   hint: '••••••••',
@@ -192,7 +193,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           )
                         :  Text(
-                            'تسجيل',
+                            LanguageService.tr('register_btn'),
                             style: TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: 16,
@@ -203,9 +204,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
 
                 const SizedBox(height: 12),
-                const Center(
+                Center(
                   child: Text(
-                    'سيظهر رقم هاتفك للآخرين في إعلاناتك وتعليقاتك',
+                    LanguageService.tr('phone_visible_note'),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: _textSec, fontSize: 12),
                   ),

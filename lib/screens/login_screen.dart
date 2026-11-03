@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final pass = _passCtrl.text;
 
     if (email.isEmpty || pass.isEmpty) {
-      setState(() => _error = 'الرجاء إدخال البريد الإلكتروني وكلمة المرور');
+      setState(() => _error = LanguageService.tr('err_enter_email_pass'));
       return;
     }
 
@@ -49,20 +49,20 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       Navigator.pop(context, true);
     } on Exception catch (e) {
-      String msg = 'خطأ في تسجيل الدخول';
+      String msg = LanguageService.tr('err_login_generic');
       final s = e.toString();
       if (s.contains('تم حظر حسابك')) {
-          msg = 'تم حظر حسابك من قبل الإدارة. يرجى التواصل مع الدعم.';
+          msg = LanguageService.tr('err_blocked');
         } else if (s.contains('user-not-found')) {
-        msg = 'ما كاينش حساب بهاد الإيميل';
+        msg = LanguageService.tr('err_no_account');
       } else if (s.contains('wrong-password')) {
-        msg = 'كلمة السر غالطة';
+        msg = LanguageService.tr('err_wrong_pass');
       } else if (s.contains('invalid-email')) {
-        msg = 'البريد الإلكتروني غير صحيح';
+        msg = LanguageService.tr('err_invalid_email');
       } else if (s.contains('invalid-credential')) {
-        msg = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+        msg = LanguageService.tr('err_wrong_email_pass');
       } else if (s.contains('network')) {
-        msg = 'تأكد من الاتصال بالإنترنت';
+        msg = LanguageService.tr('err_check_net');
       }
       setState(() => _error = msg);
     } finally {
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                  Center(
                   child: Text(
-                    'سوقنا',
+                    LanguageService.tr('app_name'),
                     style: TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: 26,
