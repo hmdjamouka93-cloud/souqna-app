@@ -252,15 +252,15 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _label(LanguageService.tr('category_star')),
-        _dropdown('اختر الفئة', _categories, _selectedCategory, (v) => setState(() => _selectedCategory = v)),
+        _dropdown(LanguageService.trCategory('اختر الفئة'), _categories, _selectedCategory, (v) => setState(() => _selectedCategory = v)),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('gear_star')),
-        _dropdown('اختر نوع القير', _gears, _selectedGear, (v) => setState(() => _selectedGear = v)),
+        _dropdown(LanguageService.trCategory('اختر نوع القير'), _gears, _selectedGear, (v) => setState(() => _selectedGear = v)),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('color_star')),
-        _dropdown('اختر اللون', _colors, _selectedColor, (v) => setState(() => _selectedColor = v)),
+        _dropdown(LanguageService.trCategory('اختر اللون'), _colors, _selectedColor, (v) => setState(() => _selectedColor = v)),
         const SizedBox(height: 16),
 
         if (widget.categoryName == 'شاحنات') ...[
@@ -282,15 +282,15 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         ],
 
         _label(LanguageService.tr('fuel_star')),
-        _dropdown('اختر نوع الوقود', _fuels, _selectedFuel, (v) => setState(() => _selectedFuel = v)),
+        _dropdown(LanguageService.trCategory('اختر نوع الوقود'), _fuels, _selectedFuel, (v) => setState(() => _selectedFuel = v)),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('condition_star')),
-        _dropdown('اختر الحالة', _conditions, _selectedCondition, (v) => setState(() => _selectedCondition = v)),
+        _dropdown(LanguageService.trCategory('اختر الحالة'), _conditions, _selectedCondition, (v) => setState(() => _selectedCondition = v)),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('warranty_star')),
-        _dropdown('نعم / لا', _warranties, _selectedWarranty, (v) => setState(() => _selectedWarranty = v)),
+        _dropdown(LanguageService.trCategory('نعم / لا'), _warranties, _selectedWarranty, (v) => setState(() => _selectedWarranty = v)),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('year_star')),
