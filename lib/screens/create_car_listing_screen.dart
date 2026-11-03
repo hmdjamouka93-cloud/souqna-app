@@ -294,11 +294,11 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('year_star')),
-        _textField(_yearCtrl, 'مثال: 2018', keyboard: TextInputType.number),
+        _textField(_yearCtrl, LanguageService.tr('ex_2018'), keyboard: TextInputType.number),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('mileage_star')),
-        _textField(_mileageCtrl, 'مثال: 50000', keyboard: TextInputType.number),
+        _textField(_mileageCtrl, LanguageService.tr('ex_50000'), keyboard: TextInputType.number),
         const SizedBox(height: 24),
 
         if (_error != null) ...[
@@ -340,12 +340,12 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: AppColors.accent.withValues(alpha: 0.5)),
                     ),
-                    child: const Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.add_a_photo_outlined, color: AppColors.accent, size: 28),
                         SizedBox(height: 6),
-                        Text('إضافة صورة', style: TextStyle(color: AppColors.accent, fontSize: 11)),
+                        Text(LanguageService.tr('add_image'), style: TextStyle(color: AppColors.accent, fontSize: 11)),
                       ],
                     ),
                   ),
@@ -381,7 +381,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         const SizedBox(height: 18),
 
         _label(LanguageService.tr('ad_title_star')),
-        _textField(_titleCtrl, 'مثال: تويوتا كورولا 2018'),
+        _textField(_titleCtrl, LanguageService.tr('ex_toyota')),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('price_star')),
@@ -389,11 +389,11 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('location_star')),
-        _textField(_locCtrl, 'مثال: الجزائر العاصمة'),
+        _textField(_locCtrl, LanguageService.tr('ex_alger')),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('description')),
-        _textField(_descCtrl, 'وصف تفصيلي...', maxLines: 4),
+        _textField(_descCtrl, LanguageService.tr('description_hint'), maxLines: 4),
         const SizedBox(height: 24),
 
         if (_error != null) ...[
@@ -451,7 +451,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary),
           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
-          items: items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+          items: items.map((e) => DropdownMenuItem(value: e, child: Text(LanguageService.trCategory(e)))).toList(),
           onChanged: onChanged,
         ),
       ),
