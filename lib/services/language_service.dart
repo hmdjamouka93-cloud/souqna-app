@@ -392,7 +392,8 @@ class LanguageService {
 
   static String trCategory(String name) {
     final lang = currentLocale.value.languageCode;
-    if (lang == 'ar') return name;
-    return _categoryTranslations[name]?[lang] ?? name;
+    final trimmedName = name.trim();
+    if (lang == 'ar') return trimmedName;
+    return _categoryTranslations[trimmedName]?[lang] ?? trimmedName;
   }
 }
