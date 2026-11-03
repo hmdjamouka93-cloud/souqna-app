@@ -28,7 +28,7 @@ Future<void> requireAuth(
           borderRadius: BorderRadius.circular(16),
         ),
         title:  Text(
-          'تسجيل الدخول',
+          LanguageService.tr('login'),
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         content: Text(
@@ -38,8 +38,8 @@ Future<void> requireAuth(
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text(
-              'إلغاء',
+            child: Text(
+                LanguageService.tr('cancel'),
               style: TextStyle(color: Color(0xFFB0B0B8)),
             ),
           ),
@@ -49,7 +49,7 @@ Future<void> requireAuth(
             ),
             onPressed: () => Navigator.pop(ctx, true),
             child:  Text(
-              'تسجيل الدخول',
+              LanguageService.tr('login'),
               style: TextStyle(color: Colors.white),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
 import 'signup_screen.dart';
@@ -80,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
           elevation: 0,
           iconTheme:  IconThemeData(color: AppColors.textPrimary),
           title:  Text(
-            'تسجيل الدخول',
+            LanguageService.tr('login'),
             style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
         ),
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
 
-                _label('الإيميل'),
+                _label(LanguageService.tr('email')),
                 _field(
                   controller: _emailCtrl,
                   hint: 'example@mail.com',
@@ -114,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                _label('كلمة السر'),
+                _label(LanguageService.tr('password')),
                 _field(
                   controller: _passCtrl,
                   hint: '••••••••',
@@ -167,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           )
                         :  Text(
-                            'دخول',
+                            LanguageService.tr('login_btn'),
                             style: TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: 16,
@@ -181,8 +182,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'ليس لديك حساب؟',
+                    Text(
+                LanguageService.tr('no_account'),
                       style: TextStyle(color: _textSec, fontSize: 14),
                     ),
                     TextButton(
@@ -197,8 +198,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           nav.pop(true);
                         }
                       },
-                      child: const Text(
-                        'سجل الآن',
+                      child: Text(
+                LanguageService.tr('register_now'),
                         style: TextStyle(
                           color: _accent,
                           fontSize: 14,

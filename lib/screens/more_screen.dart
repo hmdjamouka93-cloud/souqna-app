@@ -50,7 +50,7 @@ class _MoreScreenState extends State<MoreScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'المزيد',
+            LanguageService.tr('more'),
             style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -75,7 +75,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   const SizedBox(height: 20),
                   _buildGrid(context, logged),
                   const SizedBox(height: 24),
-                  _sectionTitle('الإعدادات'),
+                  _sectionTitle(LanguageService.tr('settings')),
                   const SizedBox(height: 10),
                   _buildSettingsList(context),
                   const SizedBox(height: 24),
@@ -140,7 +140,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      logged ? 'حسابي' : 'تسجيل الدخول',
+                      logged ? 'حسابي' : LanguageService.tr('login'),
                       style:  TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -151,7 +151,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     Text(
                       logged
                           ? (user?.email ?? '')
-                          : 'سجل للاستفادة من كل الميزات',
+                          : LanguageService.tr('login_banner_desc'),
                       style: TextStyle(
                         color: Colors.white.withValues(alpha: 0.85),
                         fontSize: 13,
@@ -367,19 +367,19 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
   // ============ قائمة الإعدادات ============
   Widget _buildSettingsList(BuildContext context) {
     final items = [
-      _ListItem('عن سوقنا', Icons.info_outline, () {
+      _ListItem(LanguageService.tr('about_us'), Icons.info_outline, () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const AboutScreen()),
         );
       }),
-      _ListItem('شارك سوقنا', Icons.share_outlined, () {
+      _ListItem(LanguageService.tr('share_app'), Icons.share_outlined, () {
         Share.share(
           'حمل تطبيق سوقنا - السوق الجزائري بين يديك!\n'
           'https://play.google.com/store/apps/details?id=com.souqna.app',
         );
       }),
-      _ListItem('سياسة الخصوصية', Icons.description_outlined, () {
+      _ListItem(LanguageService.tr('privacy_policy'), Icons.description_outlined, () {
         launchUrl(
           Uri.parse('https://souqna.app/privacy'),
           mode: LaunchMode.externalApplication,
@@ -470,7 +470,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
                     ),
                     SizedBox(height: 3),
                     Text(
-                      'رأيك يهمنا لتطوير التطبيق',
+                      LanguageService.tr('feedback_desc'),
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ],
