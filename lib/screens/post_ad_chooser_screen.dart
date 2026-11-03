@@ -144,8 +144,7 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
               ? Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text(
-                      mc['name'],
+                    child: Text(LanguageService.trCategory(mc['name'].toString()),
                       textAlign: TextAlign.center,
                       style:  TextStyle(
                         color: AppColors.textPrimary,
@@ -164,8 +163,7 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                       errorWidget: (_, _, _) => Center(
                         child: Padding(
                           padding: const EdgeInsets.all(8),
-                          child: Text(
-                            mc['name'],
+                          child: Text(LanguageService.trCategory(mc['name'].toString()),
                             textAlign: TextAlign.center,
                             style:  TextStyle(
                               color: AppColors.textPrimary,
@@ -192,8 +190,7 @@ class _PostAdChooserScreenState extends State<PostAdChooserScreen> {
                       bottom: 10,
                       right: 8,
                       left: 8,
-                      child: Text(
-                        mc['name'],
+                      child: Text(LanguageService.trCategory(mc['name'].toString()),
                         textAlign: TextAlign.center,
                         style:  TextStyle(
                           color: AppColors.textPrimary,
