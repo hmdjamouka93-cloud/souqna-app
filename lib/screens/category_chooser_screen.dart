@@ -243,7 +243,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            widget.mainCategoryName,
+            LanguageService.trCategory(widget.mainCategoryName),
             style:  TextStyle(
               color: Colors.white,
               fontSize: 18,

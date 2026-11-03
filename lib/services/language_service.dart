@@ -415,24 +415,28 @@ class LanguageService {
 
   static String trCategory(String name) {
     final lang = currentLocale.value.languageCode;
-    
-    // نحيّدو المسافات والرموز المخفية (RTL/LTR)
-    final cleanName = name.replaceAll(RegExp(r'[\s\u200E\u200F\u202A-\u202E]'), '');
     if (lang == 'ar') return name;
 
-    // نقلبو بالكلمة الأصلية
-    if (_categoryTranslations[name]?[lang] != null) {
-      return _categoryTranslations[name]![lang]!;
+    String sanitize(String input) {
+      return input
+          .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
+          .replaceAll('\u00A0', ' ')
+          .trim();
     }
 
-    // إذا ما لقيناش، نقلبو على الكلمات النظيفة
+    final cleanName = sanitize(name);
+
+    // Check exact match first
+    if (_categoryTranslations[name]?[lang] != null) {
+        return _categoryTranslations[name]![lang]!;
+    }
+
+    // Check sanitized match
     for (final key in _categoryTranslations.keys) {
-      final cleanKey = key.replaceAll(RegExp(r'[\s\u200E\u200F\u202A-\u202E]'), '');
-      if (cleanKey == cleanName) {
-        return _categoryTranslations[key]![lang]!;
+      if (sanitize(key) == cleanName) {
+        return _categoryTranslations[key]![lang] ?? name;
       }
     }
-
     return name;
   }
 }
