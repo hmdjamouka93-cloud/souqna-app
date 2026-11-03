@@ -375,8 +375,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
       }),
       _ListItem(LanguageService.tr('share_app'), Icons.share_outlined, () {
         Share.share(
-          'حمل تطبيق سوقنا - السوق الجزائري بين يديك!\n'
-          'https://play.google.com/store/apps/details?id=com.souqna.app',
+          '${LanguageService.tr('share_app_text')}https://play.google.com/store/apps/details?id=com.souqna.app',
         );
       }),
       _ListItem(LanguageService.tr('privacy_policy'), Icons.description_outlined, () {
@@ -461,7 +460,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'قيّم سوقنا',
+                      LanguageService.tr('rate_us'),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,

@@ -73,6 +73,7 @@ class LanguageService {
     'no_account': {'ar': 'ليس لديك حساب؟', 'en': 'Don\'t have an account?', 'fr': 'Pas de compte ?'},
     'register_now': {'ar': 'سجل الآن', 'en': 'Register now', 'fr': 'Inscrivez-vous'},
     'cancel': {'ar': 'إلغاء', 'en': 'Cancel', 'fr': 'Annuler'},
+        'share_app_text': {'ar': 'حمل تطبيق سوقنا - السوق الجزائري بين يديك!\n', 'en': 'Download Souqna App - The Algerian Market in your hands!\n', 'fr': 'Téléchargez Souqna - Le marché algérien entre vos mains!\n'},
     'add_ad': {'ar': 'إضافة إعلان', 'en': 'Add Ad', 'fr': 'Ajouter une annonce'},
     'blocked_users': {'ar': 'المحظورين', 'en': 'Blocked Users', 'fr': 'Utilisateurs bloqués'},
     'language': {'ar': 'اللغة', 'en': 'Language', 'fr': 'Langue'},
