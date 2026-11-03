@@ -93,7 +93,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   Future<void> _toggleFavorite(bool isFav) async {
     if (AuthService.currentUser == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('يجب تسجيل الدخول للحفظ في المفضلة')),
+        SnackBar(content: Text(LanguageService.tr('login_to_fav'))),
       );
       return;
     }
@@ -105,19 +105,19 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         await FavoritesService.removeFavorite(id);
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تم الحذف من المفضلة')),
+          SnackBar(content: Text(LanguageService.tr('removed_from_fav'))),
         );
       } else {
         await FavoritesService.addFavorite(id);
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تم الإضافة للمفضلة')),
+          SnackBar(content: Text(LanguageService.tr('added_to_fav'))),
         );
       }
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('فشل، حاول مرة أخرى')),
+        SnackBar(content: Text(LanguageService.tr('failed_try_again'))),
       );
     }
   }
@@ -147,22 +147,22 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           backgroundColor: AppColors.card,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)),
-          title:  Text('حذف الإعلان',
+          title:  Text(LanguageService.tr('delete_ad'),
               style: TextStyle(
                   color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
-          content:  Text('هل أنت متأكد من حذف هذا الإعلان نهائياً؟',
+          content:  Text(LanguageService.tr('confirm_delete_ad'),
               style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child:  Text('إلغاء',
+              child:  Text(LanguageService.tr('cancel'),
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('حذف',
+              child:  Text(LanguageService.tr('delete'),
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
@@ -188,13 +188,13 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           .delete();
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم حذف الإعلان')),
+        SnackBar(content: Text(LanguageService.tr('ad_deleted'))),
       );
       Navigator.pop(context);
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('فشل حذف الإعلان')),
+        SnackBar(content: Text(LanguageService.tr('ad_delete_failed'))),
       );
     }
   }
@@ -207,7 +207,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title:  Text('تفاصيل الإعلان',
+      title:  Text(LanguageService.tr('ad_details'),
           style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
       actions: [
         StreamBuilder<bool>(
@@ -336,14 +336,14 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                    Icon(Icons.visibility_outlined,
                       color: AppColors.textSecondary, size: 14),
                   const SizedBox(width: 4),
-                  Text('$views مشاهدة',
+                  Text('$views ${LanguageService.tr('views')}',
                       style:  TextStyle(
                           color: AppColors.textSecondary, fontSize: 12)),
                   const SizedBox(width: 14),
                    Icon(Icons.chat_bubble_outline,
                       color: AppColors.textSecondary, size: 14),
                   const SizedBox(width: 4),
-                  Text('$comments تعليق',
+                  Text('$comments ${LanguageService.tr('comments')}',
                       style:  TextStyle(
                           color: AppColors.textSecondary, fontSize: 12)),
                 ],
@@ -375,7 +375,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('البائع',
+                Text(LanguageService.tr('seller'),
                     style: TextStyle(color: AppColors.textPrimary, fontSize: 14,
                         fontWeight: FontWeight.bold)),
                 SizedBox(height: 2),
@@ -425,7 +425,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
 
   Future<void> _openChat() async {
     if (AuthService.currentUser == null) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('يجب تسجيل الدخول للدردشة')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.tr('login_to_chat'))));
       return;
     }
     final otherUserId = (widget.ad['userId'] ?? '').toString();
@@ -443,7 +443,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
 
     if (chatId == null) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('لا يمكنك بدء محادثة مع نفسك')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.tr('cannot_chat_self'))));
       return;
     }
     if (!mounted) return;
@@ -527,7 +527,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text('تفاصيل الإعلان',
+             Text(LanguageService.tr('ad_details'),
                 style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 16,
@@ -570,7 +570,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text('الوصف',
+           Text(LanguageService.tr('description'),
               style: TextStyle(color: AppColors.textPrimary, fontSize: 15,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
@@ -599,7 +599,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     final user = AuthService.currentUser;
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('يجب تسجيل الدخول للإعجاب')),
+        SnackBar(content: Text(LanguageService.tr('login_to_like'))),
       );
       return;
     }
@@ -638,7 +638,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () async {
             if (AuthService.currentUser == null) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('يجب تسجيل الدخول للتبليغ')));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.tr('login_to_report'))));
               return;
             }
             final reasonCtrl = TextEditingController();
@@ -648,24 +648,24 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 textDirection: TextDirection.rtl,
                 child: AlertDialog(
                   backgroundColor: AppColors.card,
-                  title:  Text('الإبلاغ عن الإعلان', style: TextStyle(color: AppColors.textPrimary)),
+                  title:  Text(LanguageService.tr('report_ad'), style: TextStyle(color: AppColors.textPrimary)),
                   content: TextField(
                     controller: reasonCtrl,
                     maxLines: 3,
                     style:  TextStyle(color: AppColors.textPrimary),
                     decoration:  InputDecoration(
-                      hintText: 'اكتب سبب الإبلاغ هنا...',
+                      hintText: LanguageService.tr('report_reason_hint'),
                       hintStyle: TextStyle(color: AppColors.textSecondary),
                       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.24))),
                       focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accent)),
                     ),
                   ),
                   actions: [
-                    TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                    TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text(LanguageService.tr('cancel'), style: TextStyle(color: AppColors.textSecondary))),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                       onPressed: () => Navigator.pop(ctx, true),
-                      child:  Text('إبلاغ', style: TextStyle(color: AppColors.textPrimary)),
+                      child:  Text(LanguageService.tr('report'), style: TextStyle(color: AppColors.textPrimary)),
                     ),
                   ],
                 ),
@@ -678,7 +678,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
               );
               if (!mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(done ? 'تم إرسال الإبلاغ، شكراً لك' : 'حدث خطأ، حاول مرة أخرى'),
+                content: Text(done ? LanguageService.tr('report_sent') : LanguageService.tr('error_try_again')),
               ));
             }
           })),
