@@ -47,7 +47,6 @@ class _AppDrawerState extends State<AppDrawer> {
     _DrawerItem('اكسسوارات', Icons.diamond_outlined),
     _DrawerItem('ملابس اخرى', Icons.shopping_bag_outlined),
     _DrawerItem('الخياطة والأزياء', Icons.cut_outlined),
-    _DrawerItem('خدمات', Icons.handyman_outlined),
     _DrawerItem('خدمات الصيانة', Icons.build_outlined),
     _DrawerItem('خدمات البناء', Icons.engineering_outlined),
     _DrawerItem('الخدمات الرقمية', Icons.computer_outlined),
@@ -70,7 +69,8 @@ class _AppDrawerState extends State<AppDrawer> {
     _DrawerItem('طيور', Icons.flutter_dash_outlined),
     _DrawerItem('مواشي ودواب', Icons.agriculture_outlined),
     _DrawerItem('حيوانات أخرى', Icons.pest_control_outlined),
-    _DrawerItem('الوظائف', Icons.work_outline),
+    _DrawerItem('وظائف متاحة', Icons.work_outline),
+    _DrawerItem('الباحثين عن عمل', Icons.person_search_outlined),
     _DrawerItem('التبرعات والعمل الخيري', Icons.volunteer_activism_outlined),
     _DrawerItem('المفقودات', Icons.search_outlined),
   ];
