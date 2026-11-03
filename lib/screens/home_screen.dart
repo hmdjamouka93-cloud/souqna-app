@@ -191,7 +191,7 @@ class HomeScreenState extends State<HomeScreen> {
             Icon(Icons.campaign_outlined, color: AppColors.accent, size: 32),
             SizedBox(height: 6),
             Text(
-              'مساحة إعلانية',
+              LanguageService.tr('ad_space'),
               style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
             ),
           ],

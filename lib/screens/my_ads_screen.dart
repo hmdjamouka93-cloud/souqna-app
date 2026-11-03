@@ -90,7 +90,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'إعلاناتي',
+            LanguageService.tr('my_ads'),
             style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,

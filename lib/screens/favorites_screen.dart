@@ -53,7 +53,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'المفضلة',
+            LanguageService.tr('favorites'),
             style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
@@ -82,7 +82,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             Text(LanguageService.tr('no_saved_ads'),
                 style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
             SizedBox(height: 8),
-            Text('أضف إعلانات إلى المفضلة لتجدها هنا',
+            Text(LanguageService.tr('add_ads_to_fav'),
                 style: TextStyle(
                     color: AppColors.textSecondary, fontSize: 13)),
           ],

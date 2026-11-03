@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import '../main.dart';
 
 class SparePartsScreen extends StatelessWidget {
@@ -120,7 +121,7 @@ class SparePartsScreen extends StatelessWidget {
           children: [
             Icon(Icons.campaign_outlined, color: AppColors.accent, size: 30),
             SizedBox(height: 6),
-            Text('مساحة إعلانية',
+            Text(LanguageService.tr('ad_space'),
               style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           ],
         ),

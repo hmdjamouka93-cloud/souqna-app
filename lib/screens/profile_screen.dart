@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: _card,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)),
-          title:  Text('اسم المعرض / المحل',
+          title:  Text(LanguageService.tr('store_name'),
               style: TextStyle(
                   color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: TextField(
@@ -272,7 +272,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         _infoTile(
                           icon: Icons.email_outlined,
-                          label: 'الإيميل',
+                          label: LanguageService.tr('email'),
                           value: _email ?? '—',
                         ),
                         const SizedBox(height: 12),
@@ -286,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (_proTypes.isNotEmpty) ...[
                           _infoTile(
                             icon: Icons.storefront,
-                            label: 'اسم المعرض / المحل',
+                            label: LanguageService.tr('store_name'),
                             value: (_storeName == null || _storeName!.isEmpty)
                                 ? 'لم يُحدَّد بعد'
                                 : _storeName!,
@@ -296,7 +296,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                         _infoTile(
                           icon: Icons.list_alt,
-                          label: 'عدد إعلاناتي',
+                          label: LanguageService.tr('my_ads_count'),
                           value: '$_count',
                         ),
 
@@ -317,7 +317,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               label: Text(
                                 _showroom == null
                                     ? 'إنشاء معرضي'
-                                    : 'إدارة معرضي',
+                                    : LanguageService.tr('manage_my_store'),
                                 style: const TextStyle(
                                     color: _accent,
                                     fontSize: 15,

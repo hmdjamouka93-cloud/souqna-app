@@ -140,7 +140,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      logged ? 'حسابي' : LanguageService.tr('login'),
+                      logged ? LanguageService.tr('my_account') : LanguageService.tr('login'),
                       style:  TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -526,7 +526,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
                   borderRadius: BorderRadius.circular(16),
                 ),
                 title:  Text(
-                  'تسجيل الخروج',
+                  LanguageService.tr('logout'),
                   style: TextStyle(
                     color: AppColors.textPrimary,
                     fontWeight: FontWeight.bold,
@@ -568,8 +568,8 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
           ),
         ),
         icon: const Icon(Icons.logout, color: Colors.redAccent),
-        label: const Text(
-          'تسجيل الخروج',
+        label: Text(
+                LanguageService.tr('logout'),
           style: TextStyle(
             color: Colors.redAccent,
             fontSize: 15,

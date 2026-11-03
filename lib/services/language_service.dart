@@ -74,6 +74,12 @@ class LanguageService {
     'register_now': {'ar': 'سجل الآن', 'en': 'Register now', 'fr': 'Inscrivez-vous'},
     'cancel': {'ar': 'إلغاء', 'en': 'Cancel', 'fr': 'Annuler'},
         'share_app_text': {'ar': 'حمل تطبيق سوقنا - السوق الجزائري بين يديك!\n', 'en': 'Download Souqna App - The Algerian Market in your hands!\n', 'fr': 'Téléchargez Souqna - Le marché algérien entre vos mains!\n'},
+    
+    'my_ads_count': {'ar': 'عدد اعلاناتي', 'en': 'My ads count', 'fr': 'Nombre de mes annonces'},
+    'manage_my_store': {'ar': 'إدارة معرضي', 'en': 'Manage my showroom', 'fr': 'Gérer mon showroom'},
+    'ad_space': {'ar': 'مساحة إعلانية', 'en': 'Ad Space', 'fr': 'Espace publicitaire'},
+    'add_ads_to_fav': {'ar': 'أضف إعلانات إلى المفضلة لتجدها هنا', 'en': 'Add ads to favorites to find them here', 'fr': 'Ajoutez des annonces aux favoris pour les retrouver ici'},
+
     'add_ad': {'ar': 'إضافة إعلان', 'en': 'Add Ad', 'fr': 'Ajouter une annonce'},
     'blocked_users': {'ar': 'المحظورين', 'en': 'Blocked Users', 'fr': 'Utilisateurs bloqués'},
     'language': {'ar': 'اللغة', 'en': 'Language', 'fr': 'Langue'},

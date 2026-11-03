@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import '../services/language_service.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
@@ -382,7 +383,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           children: [
             Icon(Icons.campaign_outlined, color: AppColors.accent, size: 30),
             SizedBox(height: 6),
-            Text('مساحة إعلانية',
+            Text(LanguageService.tr('ad_space'),
               style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           ],
         ),
