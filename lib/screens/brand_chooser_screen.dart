@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import '../services/language_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
@@ -168,7 +169,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            'اختر النوع - ${widget.categoryName}',
+            '${LanguageService.tr('choose_type')} - ${LanguageService.trCategory(widget.categoryName)}',
             style:  TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -191,7 +192,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
     if (_items.isEmpty) {
       return  Center(
         child: Text(
-          'لا توجد أنواع',
+          LanguageService.tr('no_categories'),
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       );
@@ -205,7 +206,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
           child: Align(
             alignment: Alignment.centerRight,
-            child: Text('الأقسام الفرعية', style: TextStyle(color: AppColors.textPrimary,
+            child: Text(LanguageService.tr('subcategories'), style: TextStyle(color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold)),
           ),

@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../services/language_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
@@ -230,7 +231,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                _currentStep == 0 ? 'الخطوة 1: تفاصيل السيارة' : 'الخطوة 2: الصور والنشر',
+                _currentStep == 0 ? LanguageService.tr('step1_car') : LanguageService.tr('step2_publish'),
                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
             ),
@@ -250,15 +251,15 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _label('الفئة *'),
+        _label(LanguageService.tr('category_star')),
         _dropdown('اختر الفئة', _categories, _selectedCategory, (v) => setState(() => _selectedCategory = v)),
         const SizedBox(height: 16),
 
-        _label('نوع القير *'),
+        _label(LanguageService.tr('gear_star')),
         _dropdown('اختر نوع القير', _gears, _selectedGear, (v) => setState(() => _selectedGear = v)),
         const SizedBox(height: 16),
 
-        _label('اللون *'),
+        _label(LanguageService.tr('color_star')),
         _dropdown('اختر اللون', _colors, _selectedColor, (v) => setState(() => _selectedColor = v)),
         const SizedBox(height: 16),
 
@@ -280,23 +281,23 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
           const SizedBox(height: 16),
         ],
 
-        _label('نوع الوقود *'),
+        _label(LanguageService.tr('fuel_star')),
         _dropdown('اختر نوع الوقود', _fuels, _selectedFuel, (v) => setState(() => _selectedFuel = v)),
         const SizedBox(height: 16),
 
-        _label('الحالة *'),
+        _label(LanguageService.tr('condition_star')),
         _dropdown('اختر الحالة', _conditions, _selectedCondition, (v) => setState(() => _selectedCondition = v)),
         const SizedBox(height: 16),
 
-        _label('تحت الضمان؟ *'),
+        _label(LanguageService.tr('warranty_star')),
         _dropdown('نعم / لا', _warranties, _selectedWarranty, (v) => setState(() => _selectedWarranty = v)),
         const SizedBox(height: 16),
 
-        _label('سنة الصنع *'),
+        _label(LanguageService.tr('year_star')),
         _textField(_yearCtrl, 'مثال: 2018', keyboard: TextInputType.number),
         const SizedBox(height: 16),
 
-        _label('العداد (كم) *'),
+        _label(LanguageService.tr('mileage_star')),
         _textField(_mileageCtrl, 'مثال: 50000', keyboard: TextInputType.number),
         const SizedBox(height: 24),
 
@@ -310,7 +311,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
             onPressed: _nextStep,
-            child:  Text('التالي', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+            child:  Text(LanguageService.tr('next'), style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
           ),
         ),
       ],
@@ -321,7 +322,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _label('الصور (${_images.length}/5) *'),
+        _label('${LanguageService.tr('images_count')} (${_images.length}/5) *'),
         const SizedBox(height: 8),
         SizedBox(
           height: 100,
@@ -379,19 +380,19 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         ),
         const SizedBox(height: 18),
 
-        _label('عنوان الإعلان *'),
+        _label(LanguageService.tr('ad_title_star')),
         _textField(_titleCtrl, 'مثال: تويوتا كورولا 2018'),
         const SizedBox(height: 16),
 
-        _label('السعر (د.ج) *'),
+        _label(LanguageService.tr('price_star')),
         _textField(_priceCtrl, '0', keyboard: TextInputType.number, ltr: true),
         const SizedBox(height: 16),
 
-        _label('الموقع *'),
+        _label(LanguageService.tr('location_star')),
         _textField(_locCtrl, 'مثال: الجزائر العاصمة'),
         const SizedBox(height: 16),
 
-        _label('الوصف'),
+        _label(LanguageService.tr('description')),
         _textField(_descCtrl, 'وصف تفصيلي...', maxLines: 4),
         const SizedBox(height: 24),
 
@@ -409,7 +410,8 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
                   side: const BorderSide(color: AppColors.accent),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                child: const Text('رجوع', style: TextStyle(color: AppColors.accent)),
+                child: Text(
+                LanguageService.tr('back'), style: TextStyle(color: AppColors.accent)),
               ),
             ),
             const SizedBox(width: 12),
@@ -423,7 +425,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
                 onPressed: _loading ? null : _submit,
                 child: _loading
                     ?  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
-                    :  Text('نشر الإعلان', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+                    :  Text(LanguageService.tr('publish_ad'), style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
               ),
             ),
           ],
