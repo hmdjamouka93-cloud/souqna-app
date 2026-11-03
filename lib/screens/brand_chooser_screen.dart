@@ -231,7 +231,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
 
   Widget _brandCard(Map<String, dynamic> brand) {
     final imageUrl = (brand['image'] ?? '').toString();
-    final brandName = (brand['name'] ?? '').toString().trim();
+    final brandName = LanguageService.trCategory((brand['name'] ?? '').toString().trim());
 
     // إلا كاين صورة → Stack (صورة + نص فوقها)
     if (imageUrl.isNotEmpty) {
