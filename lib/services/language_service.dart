@@ -245,6 +245,15 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
 
+    'اوبيل': {'ar': 'اوبيل', 'en': 'Opel', 'fr': 'Opel'},
+    'أوبل': {'ar': 'أوبل', 'en': 'Opel', 'fr': 'Opel'},
+    'مايباخ': {'ar': 'مايباخ', 'en': 'Maybach', 'fr': 'Maybach'},
+    'بروتون': {'ar': 'بروتون', 'en': 'Proton', 'fr': 'Proton'},
+    'بروتن': {'ar': 'بروتن', 'en': 'Proton', 'fr': 'Proton'},
+    'ايسوزو': {'ar': 'ايسوزو', 'en': 'Isuzu', 'fr': 'Isuzu'},
+    'ايسونو': {'ar': 'ايسونو', 'en': 'Isuzu', 'fr': 'Isuzu'},
+
+
     'أوبل': {'ar': 'أوبل', 'en': 'Opel', 'fr': 'Opel'},
     'داتسون': {'ar': 'داتسون', 'en': 'Datsun', 'fr': 'Datsun'},
     'ام جي': {'ar': 'ام جي', 'en': 'MG', 'fr': 'MG'},
