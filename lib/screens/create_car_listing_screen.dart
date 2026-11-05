@@ -215,7 +215,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            widget.brandName,
+            LanguageService.trCategory(widget.brandName),
             style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
