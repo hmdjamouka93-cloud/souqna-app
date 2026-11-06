@@ -195,7 +195,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            _isEdit ? 'تعديل المنتج' : 'إضافة منتج',
+            _isEdit ? LanguageService.trCategory('تعديل المنتج') : LanguageService.trCategory('إضافة منتج'),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
@@ -263,7 +263,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                           child: CircularProgressIndicator(
                               color: AppColors.textPrimary, strokeWidth: 2.5))
                       : Text(
-                          _isEdit ? 'حفظ التعديل' : 'إضافة المنتج',
+                          _isEdit ? 'حفظ التعديل' : LanguageService.trCategory('إضافة المنتج'),
                           style:  TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: 16,

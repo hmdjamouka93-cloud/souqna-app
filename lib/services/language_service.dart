@@ -264,6 +264,11 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'سيارة': {'ar': 'سيارة', 'en': 'car', 'fr': 'voiture'},
+    'واتساب': {'ar': 'واتساب', 'en': 'WhatsApp', 'fr': 'WhatsApp'},
+    'تقييمك:': {'ar': 'تقييمك:', 'en': 'Your rating:', 'fr': 'Votre note :'},
+    'التقييم': {'ar': 'التقييم', 'en': 'Rating', 'fr': 'Note'},
+    'هل أنت متأكد من حذف هذا الطلب نهائياً؟': {'ar': 'هل أنت متأكد من حذف هذا الطلب نهائياً؟', 'en': 'Are you sure you want to delete this order permanently?', 'fr': 'Êtes-vous sûr de vouloir supprimer définitivement cette commande ?'},
 
     'اتصال': {'ar': 'اتصال', 'en': 'Call', 'fr': 'Appeler'},
     'دردشة': {'ar': 'دردشة', 'en': 'Chat', 'fr': 'Discussion'},

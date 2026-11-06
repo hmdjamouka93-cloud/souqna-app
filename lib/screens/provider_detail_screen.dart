@@ -585,7 +585,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                    Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     child: Text(
-                      'التعليقات',
+                      LanguageService.trCategory('التعليقات'),
                       style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 16,

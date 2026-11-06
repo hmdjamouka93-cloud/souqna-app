@@ -282,7 +282,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                       ?  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
                       :  Icon(Icons.send, color: AppColors.textPrimary),
                   label: Text(
-                    _loading ? 'جاري الإرسال...' : 'إرسال الطلب',
+                    _loading ? LanguageService.trCategory('جاري الإرسال...') : LanguageService.trCategory('إرسال الطلب'),
                     style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),

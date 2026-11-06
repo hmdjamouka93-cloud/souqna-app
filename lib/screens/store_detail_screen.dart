@@ -580,7 +580,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
-                                      _myRating > 0 ? 'تقييمك: $_myRating' : 'التقييم',
+                                      _myRating > 0 ? '${LanguageService.trCategory('تقييمك:')} $_myRating' : LanguageService.trCategory('التقييم'),
                                       style:  TextStyle(
                                           color: AppColors.textSecondary,
                                           fontSize: 11)),
@@ -595,7 +595,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                       children: [
                         Expanded(
                           child: _actionBtn(
-                              Icons.phone_outlined, 'اتصال', _call,
+                              Icons.phone_outlined, LanguageService.trCategory('اتصال'), _call,
                               isPrimary: true),
                         ),
                     if (!['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال']
@@ -603,7 +603,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: _actionBtn(
-                          Icons.chat_outlined, 'واتساب', _whatsapp,
+                          Icons.chat_outlined, LanguageService.trCategory('واتساب'), _whatsapp,
                           isPrimary: false),
                       ),
                     ],

@@ -193,7 +193,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${_listings.length} سيارة',
+                              '${_listings.length} ${LanguageService.trCategory('سيارة')}',
                               style: const TextStyle(
                                   color: AppColors.accent,
                                   fontSize: 13,

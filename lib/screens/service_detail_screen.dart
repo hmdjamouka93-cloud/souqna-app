@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import '../main.dart';
 import 'request_service_screen.dart';
 
@@ -74,12 +75,12 @@ class ServiceDetailScreen extends StatelessWidget {
                     
                     // الوصف
                      Text(
-                      'وصف الخدمة',
+                      LanguageService.trCategory('وصف الخدمة'),
                       style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      desc.isNotEmpty ? desc : 'لا يوجد وصف لهذه الخدمة.',
+                      desc.isNotEmpty ? desc : LanguageService.trCategory('لا يوجد وصف لهذه الخدمة.'),
                       style:  TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.6),
                     ),
                     const SizedBox(height: 24),
@@ -88,7 +89,7 @@ class ServiceDetailScreen extends StatelessWidget {
 
                     // معلومات صاحب الخدمة
                      Text(
-                      'مقدم الخدمة',
+                      LanguageService.trCategory('مقدم الخدمة'),
                       style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 12),

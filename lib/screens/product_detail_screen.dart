@@ -669,7 +669,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           color: AppColors.textPrimary, strokeWidth: 2.5))
                   :  Icon(Icons.send, color: AppColors.textPrimary),
               label: Text(
-                _sending ? 'جاري الإرسال...' : 'إرسال الطلب',
+                _sending ? LanguageService.trCategory('جاري الإرسال...') : LanguageService.trCategory('إرسال الطلب'),
                 style:  TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 16,
@@ -724,7 +724,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           isExpanded: true,
           value: _dairaName,
           hint: Text(
-              _wilayaCode == null ? 'اختر الولاية أولاً' : 'اختر الدائرة',
+              _wilayaCode == null ? LanguageService.trCategory('اختر الولاية أولاً') : 'اختر الدائرة',
               style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),

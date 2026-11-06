@@ -392,7 +392,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                         (widget.ad['isPro'] == true &&
                                 (widget.ad['storeName'] ?? '').toString().isNotEmpty)
                             ? widget.ad['storeName'].toString()
-                            : 'مستخدم سوقنا',
+                            : LanguageService.trCategory('مستخدم سوقنا'),
                         style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 11),
                         maxLines: 1,
@@ -432,7 +432,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     if (otherUserId.isEmpty) return;
     final otherName = ((widget.ad['storeName'] ?? '').toString().isNotEmpty) 
         ? widget.ad['storeName'].toString() 
-        : 'مستخدم سوقنا';
+        : LanguageService.trCategory('مستخدم سوقنا');
     final otherAvatar = '';
 
     final chatId = await ChatService.getOrCreateChat(
@@ -627,16 +627,16 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         children: [
           Expanded(child: _reactionBtn(
             _isLiked ? Icons.thumb_up : Icons.thumb_up_alt_outlined,
-            'إعجاب ($_likes)',
+            '${LanguageService.trCategory('إعجاب')} ($_likes)',
             _toggleLike,
             active: _isLiked,
           )),
           const SizedBox(width: 8),
-          Expanded(child: _reactionBtn(Icons.share, 'مشاركة', () {
+          Expanded(child: _reactionBtn(Icons.share, LanguageService.trCategory('مشاركة'), () {
             Share.share('${LanguageService.trCategory('شوف هذه السيارة:')} $_title - $_price');
           })),
           const SizedBox(width: 8),
-          Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () async {
+          Expanded(child: _reactionBtn(Icons.report_problem_outlined, LanguageService.trCategory('تبليغ'), () async {
             if (AuthService.currentUser == null) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.tr('login_to_report'))));
               return;

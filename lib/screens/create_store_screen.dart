@@ -204,7 +204,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            _isEdit ? 'تعديل المتجر' : 'إنشاء متجر',
+            _isEdit ? LanguageService.trCategory('تعديل المتجر') : LanguageService.trCategory('إنشاء متجر'),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
@@ -389,7 +389,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           isExpanded: true,
           value: _dairaName,
           hint: Text(
-              _wilayaCode == null ? 'اختر الولاية أولاً' : 'اختر الدائرة',
+              _wilayaCode == null ? LanguageService.trCategory('اختر الولاية أولاً') : 'اختر الدائرة',
               style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),

@@ -319,7 +319,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
         children: [
           Expanded(child: _reactionBtn(
             _isLiked ? Icons.thumb_up : Icons.thumb_up_alt_outlined,
-            'إعجاب ($_likes)',
+            '${LanguageService.trCategory('إعجاب')} ($_likes)',
             () => setState(() {
               _isLiked = !_isLiked;
               _likes += _isLiked ? 1 : -1;
@@ -327,11 +327,11 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
             active: _isLiked,
           )),
           const SizedBox(width: 8),
-          Expanded(child: _reactionBtn(Icons.share, 'مشاركة', () {
+          Expanded(child: _reactionBtn(Icons.share, LanguageService.trCategory('مشاركة'), () {
             Share.share('${LanguageService.trCategory('شوف هذه السيارة للتأجير:')} ${_data['name']}');
           })),
           const SizedBox(width: 8),
-          Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () {
+          Expanded(child: _reactionBtn(Icons.report_problem_outlined, LanguageService.trCategory('تبليغ'), () {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(LanguageService.trCategory('تم إرسال التبليغ'))));
           })),
