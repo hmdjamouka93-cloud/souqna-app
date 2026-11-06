@@ -210,10 +210,10 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
 
         if (_propertyType == 'شقة' || _propertyType == 'فيلا') ...[
           _label(LanguageService.trCategory('عدد الغرف')),
-          _dropdown('اختر', ['1', '2', '3', '4', '5+'], _rooms, (v) => setState(() => _rooms = v)),
+          _dropdown(LanguageService.trCategory('اختر'), ['1', '2', '3', '4', '5+'], _rooms, (v) => setState(() => _rooms = v)),
           const SizedBox(height: 16),
           _label(LanguageService.trCategory('الطابق')),
-          _dropdown('اختر', ['طابق أرضي', '1', '2', '3', '4', '5+'], _floor, (v) => setState(() => _floor = v)),
+          _dropdown(LanguageService.trCategory('اختر'), ['طابق أرضي', '1', '2', '3', '4', '5+'], _floor, (v) => setState(() => _floor = v)),
           const SizedBox(height: 16),
         ],
 
@@ -276,7 +276,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                   dropdownColor: AppColors.card,
                   style:  TextStyle(color: AppColors.textPrimary),
                   icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
-                  items: dairas.map((d) => DropdownMenuItem<String>(value: d, child: Text(d))).toList(),
+                  items: dairas.map((d) => DropdownMenuItem<String>(value: d, child: Text(LanguageService.trCategory(d)))).toList(),
                   onChanged: _wilayaCode == null ? null : (v) => setState(() => _dairaName = v),
                 ),
               );
