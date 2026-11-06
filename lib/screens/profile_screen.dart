@@ -98,8 +98,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             controller: ctrl,
             maxLength: 40,
             style:  TextStyle(color: AppColors.textPrimary),
-            decoration: const InputDecoration(
-              hintText: 'مثال: معرض النخبة للسيارات',
+            decoration: InputDecoration(
+              hintText: LanguageService.trCategory('مثال: معرض النخبة للسيارات'),
               hintStyle: TextStyle(color: _textSec),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: _textSec),
@@ -132,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (!mounted) return;
     setState(() => _storeName = newName);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('تم تحديث اسم المحل')),
+      SnackBar(content: Text(LanguageService.trCategory('تم تحديث اسم المحل'))),
     );
   }
 

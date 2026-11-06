@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../services/service_order_service.dart';
 import '../services/location_service.dart';
@@ -33,7 +35,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
   Future<void> _submit() async {
     if (!AuthService.isLoggedIn) {
       await requireAuth(context, _submit,
-          message: 'يجب تسجيل الدخول لطلب الخدمة.');
+          message: LanguageService.trCategory('يجب تسجيل الدخول لطلب الخدمة.'));
       return;
     }
 

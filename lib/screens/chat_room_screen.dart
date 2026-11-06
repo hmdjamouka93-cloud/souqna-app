@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../services/chat_service.dart';
@@ -151,7 +153,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                           textInputAction: TextInputAction.send,
                           onSubmitted: (_) => _send(),
                           decoration:  InputDecoration(
-                            hintText: 'اكتب رسالة...',
+                            hintText: LanguageService.trCategory('اكتب رسالة...'),
                             hintStyle: TextStyle(color: AppColors.textSecondary),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),

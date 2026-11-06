@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 
@@ -146,8 +148,8 @@ class AboutScreen extends StatelessWidget {
                 child: OutlinedButton.icon(
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('الموقع الإلكتروني - قريباً'),
+                      SnackBar(
+                        content: Text(LanguageService.trCategory('الموقع الإلكتروني - قريباً')),
                       ),
                     );
                   },
@@ -222,12 +224,12 @@ class AboutScreen extends StatelessWidget {
         await launchUrl(uri);
       } else {
         messenger.showSnackBar(
-          SnackBar(content: Text('راسلنا على $_email')),
+          SnackBar(content: Text('${LanguageService.trCategory('راسلنا على')} $_email')),
         );
       }
     } catch (_) {
       messenger.showSnackBar(
-        SnackBar(content: Text('راسلنا على $_email')),
+        SnackBar(content: Text('${LanguageService.trCategory('راسلنا على')} $_email')),
       );
     }
   }

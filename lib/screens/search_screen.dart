@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../main.dart';
@@ -92,7 +94,7 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: _applySearch,
               style:  TextStyle(color: AppColors.textPrimary),
               decoration:  InputDecoration(
-                hintText: 'ابحث بالاسم، الوصف، أو الولاية...',
+                hintText: LanguageService.trCategory('ابحث بالاسم، الوصف، أو الولاية...'),
                 hintStyle: TextStyle(color: AppColors.textSecondary, fontSize: 14),
                 prefixIcon: Icon(Icons.search, color: AppColors.textSecondary),
                 border: InputBorder.none,

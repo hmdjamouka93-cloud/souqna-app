@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import 'rental_car_detail_screen.dart';
 
@@ -106,7 +108,7 @@ class CarRentalScreen extends StatelessWidget {
       child: TextField(
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
-          hintText: 'بحث',
+          hintText: LanguageService.trCategory('بحث'),
           hintStyle:  TextStyle(color: AppColors.textSecondary),
           prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary),
           filled: true,

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../services/auth_service.dart';
 import '../services/auth_gate.dart';
@@ -101,7 +103,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Future<void> _sendOrder() async {
     if (!AuthService.isLoggedIn) {
       await requireAuth(context, _sendOrder,
-          message: 'يجب تسجيل الدخول لإرسال الطلب.');
+          message: LanguageService.trCategory('يجب تسجيل الدخول لإرسال الطلب.'));
       return;
     }
     final fullName = _firstNameCtrl.text.trim();
@@ -216,7 +218,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Future<void> _toggleReaction(bool isLike) async {
     if (!AuthService.isLoggedIn) {
       await requireAuth(context, () => _toggleReaction(isLike),
-          message: 'يجب تسجيل الدخول للتفاعل مع المنتج.');
+          message: LanguageService.trCategory('يجب تسجيل الدخول للتفاعل مع المنتج.'));
       return;
     }
     final ok = await ProductLikeService.toggleReaction(
@@ -276,7 +278,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Future<void> _openReportDialog() async {
     if (!AuthService.isLoggedIn) {
       await requireAuth(context, _openReportDialog,
-          message: 'يجب تسجيل الدخول للإبلاغ عن المنتج.');
+          message: LanguageService.trCategory('يجب تسجيل الدخول للإبلاغ عن المنتج.'));
       return;
     }
     final reasonCtrl = TextEditingController();
@@ -293,7 +295,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             maxLines: 3,
             style:  TextStyle(color: AppColors.textPrimary),
             decoration:  InputDecoration(
-              hintText: 'اكتب سبب الإبلاغ هنا...',
+              hintText: LanguageService.trCategory('اكتب سبب الإبلاغ هنا...'),
               hintStyle: TextStyle(color: AppColors.textSecondary),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.24))),

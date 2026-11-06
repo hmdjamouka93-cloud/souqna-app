@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
@@ -55,7 +57,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     if (_isOwner) return;
     if (!AuthService.isLoggedIn) {
       await requireAuth(context, _openRatingDialog,
-          message: 'يجب تسجيل الدخول للتقييم.');
+          message: LanguageService.trCategory('يجب تسجيل الدخول للتقييم.'));
       return;
     }
 
@@ -64,8 +66,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     if (!hasOrdered) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('يجب عليك الطلب من هذا المتجر أولاً لتتمكن من تقييمه.'),
+        SnackBar(
+          content: Text(LanguageService.trCategory('يجب عليك الطلب من هذا المتجر أولاً لتتمكن من تقييمه.')),
           backgroundColor: Colors.redAccent,
           duration: Duration(seconds: 3),
         ),
@@ -124,7 +126,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     if (ok) {
       _loadRating();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم إرسال تقييمك، شكراً لك')),
+        SnackBar(content: Text(LanguageService.trCategory('تم إرسال تقييمك، شكراً لك'))),
       );
     }
   }
@@ -321,7 +323,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                     onSelected: (v) async {
                       if (v == 'report') {
                         if (AuthService.currentUser == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('يجب تسجيل الدخول للتبليغ')));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('يجب تسجيل الدخول للتبليغ'))));
                           return;
                         }
                         final reasonCtrl = TextEditingController();
@@ -337,7 +339,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 maxLines: 3,
                                 style:  TextStyle(color: AppColors.textPrimary),
                                 decoration:  InputDecoration(
-                                  hintText: 'اكتب سبب الإبلاغ هنا...',
+                                  hintText: LanguageService.trCategory('اكتب سبب الإبلاغ هنا...'),
                                   hintStyle: TextStyle(color: AppColors.textSecondary),
                                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.24))),
                                   focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accent)),
@@ -394,7 +396,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                   );
                                   if (ok) {
                                     if (mounted) {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم حظر المتجر')));
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('تم حظر المتجر'))));
                                       Navigator.pop(context);
                                     }
                                   }
@@ -408,8 +410,8 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                         );
                       } else if (v == 'share') {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('مشاركة المتجر قريباً')),
+                          SnackBar(
+                              content: Text(LanguageService.trCategory('مشاركة المتجر قريباً'))),
                         );
                       }
                     },

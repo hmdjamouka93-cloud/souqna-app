@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'car_detail_screen.dart';
@@ -106,7 +108,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
 
       // إذا ما لقى حتى حاجة
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('هذا الإعلان محذوف مسبقاً')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('هذا الإعلان محذوف مسبقاً'))));
       setState(() => _loading = false);
 
     } catch (e) {
@@ -147,7 +149,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
         _loadReports();
       } catch (e) {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('حدث خطأ أثناء الحذف')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('حدث خطأ أثناء الحذف'))));
         setState(() => _loading = false);
       }
     }

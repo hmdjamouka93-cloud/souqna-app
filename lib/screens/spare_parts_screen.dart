@@ -91,7 +91,7 @@ class SparePartsScreen extends StatelessWidget {
       child: TextField(
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
-          hintText: 'بحث',
+          hintText: LanguageService.trCategory('بحث'),
           hintStyle:  TextStyle(color: AppColors.textSecondary),
           prefixIcon:  Icon(Icons.search, color: AppColors.textSecondary),
           filled: true,

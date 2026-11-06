@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/product_service.dart';
@@ -77,7 +79,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     final total = _newImages.length + _existingImages.length;
     if (total >= 5) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('الحد الأقصى 5 صور')),
+        SnackBar(content: Text(LanguageService.trCategory('الحد الأقصى 5 صور'))),
       );
       return;
     }
@@ -427,7 +429,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                   controller: ctrl,
                   style:  TextStyle(color: AppColors.textPrimary, fontSize: 13),
                   decoration:  InputDecoration(
-                    hintText: 'أضف نوع آخر...',
+                    hintText: LanguageService.trCategory('أضف نوع آخر...'),
                     hintStyle: TextStyle(
                         color: AppColors.textSecondary, fontSize: 13),
                     border: InputBorder.none,

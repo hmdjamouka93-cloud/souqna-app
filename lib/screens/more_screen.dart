@@ -500,12 +500,12 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
         messenger.showSnackBar(
-          const SnackBar(content: Text('التطبيق لم يُنشر بعد في المتجر')),
+          SnackBar(content: Text(LanguageService.trCategory('التطبيق لم يُنشر بعد في المتجر'))),
         );
       }
     } catch (_) {
       messenger.showSnackBar(
-        const SnackBar(content: Text('التطبيق لم يُنشر بعد في المتجر')),
+        SnackBar(content: Text(LanguageService.trCategory('التطبيق لم يُنشر بعد في المتجر'))),
       );
     }
   }

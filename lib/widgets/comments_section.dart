@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
@@ -52,13 +54,13 @@ class _CommentsSectionState extends State<CommentsSection> {
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('فشل إرسال التعليق')),
+            SnackBar(content: Text(LanguageService.trCategory('فشل إرسال التعليق'))),
           );
         }
       } finally {
         if (mounted) setState(() => _sending = false);
       }
-    }, message: 'يجب تسجيل الدخول للتعليق');
+    }, message: LanguageService.trCategory('يجب تسجيل الدخول للتعليق'));
   }
 
   Future<void> _deleteComment(String commentId) async {
@@ -118,7 +120,7 @@ class _CommentsSectionState extends State<CommentsSection> {
             maxLines: 3,
             style:  TextStyle(color: AppColors.textPrimary),
             decoration:  InputDecoration(
-              hintText: 'اكتب التعديل...',
+              hintText: LanguageService.trCategory('اكتب التعديل...'),
               hintStyle: TextStyle(color: AppColors.textSecondary),
             ),
           ),
@@ -186,7 +188,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                   style:  TextStyle(color: AppColors.textPrimary),
                   maxLines: 3,
                   decoration:  InputDecoration(
-                    hintText: 'اكتب تعليقك',
+                    hintText: LanguageService.trCategory('اكتب تعليقك'),
                     hintStyle: TextStyle(color: AppColors.textSecondary),
                     border: InputBorder.none,
                   ),

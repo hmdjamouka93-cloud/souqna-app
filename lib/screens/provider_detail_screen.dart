@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
@@ -14,7 +16,6 @@ import 'chat_room_screen.dart';
 import '../services/chat_service.dart';
 import '../services/provider_like_service.dart';
 import '../services/provider_rating_service.dart';
-import '../services/block_service.dart';
 import '../widgets/comments_section.dart';
 import '../services/auth_gate.dart';
 
@@ -73,7 +74,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
   Future<void> _openRatingDialog() async {
     if (_isOwner) return;
     if (!AuthService.isLoggedIn) {
-      await requireAuth(context, _openRatingDialog, message: 'يجب تسجيل الدخول للتقييم.');
+      await requireAuth(context, _openRatingDialog, message: LanguageService.trCategory('يجب تسجيل الدخول للتقييم.'));
       return;
     }
     
@@ -81,7 +82,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     if (!hasOrdered) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('يجب عليك طلب خدمة أولاً لتتمكن من تقييمه.'), backgroundColor: Colors.redAccent),
+        SnackBar(content: Text(LanguageService.trCategory('يجب عليك طلب خدمة أولاً لتتمكن من تقييمه.')), backgroundColor: Colors.redAccent),
       );
       return;
     }
@@ -122,7 +123,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     if (!mounted) return;
     if (ok) {
       _loadRating();
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم إرسال تقييمك، شكراً لك')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('تم إرسال تقييمك، شكراً لك'))));
     }
   }
 
@@ -139,7 +140,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
   Future<void> _toggleReaction(bool isLike) async {
     if (!AuthService.isLoggedIn) {
       await requireAuth(context, () => _toggleReaction(isLike),
-          message: 'يجب تسجيل الدخول للتفاعل مع البروفايل.');
+          message: LanguageService.trCategory('يجب تسجيل الدخول للتفاعل مع البروفايل.'));
       return;
     }
     final ok = await ProviderLikeService.toggleReaction(
@@ -221,7 +222,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     if (chatId == null || !mounted) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('لا يمكن بدء محادثة مع نفسك')),
+          SnackBar(content: Text(LanguageService.trCategory('لا يمكن بدء محادثة مع نفسك'))),
         );
       }
       return;

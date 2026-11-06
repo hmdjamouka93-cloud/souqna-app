@@ -6,15 +6,15 @@ import '../main.dart';
 class MotorcyclesScreen extends StatelessWidget {
   const MotorcyclesScreen({super.key});
 
-  static const List<_BrandGroup> _groups = [
+  static final List<_BrandGroup> _groups = [
     _BrandGroup(
-      title: 'جميع الإعلانات',
+      title: LanguageService.trCategory('جميع الإعلانات'),
       brands: [
         _Brand(name: 'مشاهدة جميع الإعلانات', slug: '__all__'),
       ],
     ),
     _BrandGroup(
-      title: 'دراجات اقتصادية',
+      title: LanguageService.trCategory('دراجات اقتصادية'),
       brands: [
         _Brand(name: 'VMS', slug: '', asset: 'images/logos/vms.png'),
         _Brand(name: 'Keeway', slug: '', asset: 'images/logos/keeway.png'),
@@ -26,7 +26,7 @@ class MotorcyclesScreen extends StatelessWidget {
       ],
     ),
     _BrandGroup(
-      title: 'سكوترات',
+      title: LanguageService.trCategory('سكوترات'),
       brands: [
         _Brand(name: 'فيسبا', slug: 'vespa'),
         _Brand(name: 'بياجيو', slug: '', asset: 'images/logos/piaggio.png'),
@@ -36,7 +36,7 @@ class MotorcyclesScreen extends StatelessWidget {
       ],
     ),
     _BrandGroup(
-      title: 'دراجات رياضية',
+      title: LanguageService.trCategory('دراجات رياضية'),
       brands: [
         _Brand(name: 'KTM', slug: 'ktm'),
         _Brand(name: 'دوكاتي', slug: 'ducati'),
@@ -51,14 +51,14 @@ class MotorcyclesScreen extends StatelessWidget {
       ],
     ),
     _BrandGroup(
-      title: 'دراجات كهربائية',
+      title: LanguageService.trCategory('دراجات كهربائية'),
       brands: [
         _Brand(name: 'NIU', slug: '', asset: 'images/logos/niu.png'),
         _Brand(name: 'Sur-Ron', slug: '', asset: 'images/logos/surron.png'),
       ],
     ),
     _BrandGroup(
-      title: 'دراجات أخرى',
+      title: LanguageService.trCategory('دراجات أخرى'),
       brands: [
         _Brand(name: 'ماركات أخرى', slug: '__other__'),
       ],

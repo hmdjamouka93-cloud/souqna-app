@@ -98,7 +98,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
       // وضع الإضافة
       if (id == '__all__') {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('يجب اختيار الماركة للنشر')),
+          SnackBar(content: Text(LanguageService.trCategory('يجب اختيار الماركة للنشر'))),
         );
         return;
       }

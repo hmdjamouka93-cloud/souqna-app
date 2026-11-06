@@ -63,7 +63,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
 
   Future<void> _pickImage() async {
     if (_images.length >= 5) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('الحد الأقصى 5 صور')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('الحد الأقصى 5 صور'))));
       return;
     }
     final pickedList = await _picker.pickMultiImage(imageQuality: 70, maxWidth: 1280);
@@ -140,7 +140,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
       });
 
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم نشر الإعلان بنجاح')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('تم نشر الإعلان بنجاح'))));
       Navigator.pop(context, true);
     } catch (e) {
       if (!mounted) return;

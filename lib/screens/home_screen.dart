@@ -1029,7 +1029,7 @@ class HomeScreenState extends State<HomeScreen> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$name - قريباً')),
+        SnackBar(content: Text('$name - ${LanguageService.trCategory('قريباً')}')),
       );
     }
   }

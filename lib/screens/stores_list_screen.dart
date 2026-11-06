@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../widgets/ad_banner.dart';
 import '../services/store_service.dart';
@@ -53,7 +55,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
         ),
       );
       if (result == true) _load();
-    }, message: 'يجب تسجيل الدخول لإنشاء متجر');
+    }, message: LanguageService.trCategory('يجب تسجيل الدخول لإنشاء متجر'));
   }
 
   void _openStore(Map<String, dynamic> store) {

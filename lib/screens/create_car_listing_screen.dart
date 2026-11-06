@@ -90,7 +90,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
   Future<void> _pickImage() async {
     if (_images.length >= 5) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('الحد الأقصى 5 صور')),
+        SnackBar(content: Text(LanguageService.trCategory('الحد الأقصى 5 صور'))),
       );
       return;
     }
@@ -190,7 +190,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
 
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم نشر الإعلان بنجاح')),
+        SnackBar(content: Text(LanguageService.trCategory('تم نشر الإعلان بنجاح'))),
       );
       Navigator.pop(context, true);
     } catch (e) {

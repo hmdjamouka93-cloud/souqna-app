@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../widgets/ad_banner.dart';
 import '../services/showroom_service.dart';
@@ -43,7 +45,7 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
             builder: (_) => const CreateShowroomScreen(type: 'rental')),
       );
       if (result == true) _load();
-    }, message: 'يجب تسجيل الدخول لإنشاء وكالة');
+    }, message: LanguageService.trCategory('يجب تسجيل الدخول لإنشاء وكالة'));
   }
 
   void _openShowroom(Map<String, dynamic> showroom) {

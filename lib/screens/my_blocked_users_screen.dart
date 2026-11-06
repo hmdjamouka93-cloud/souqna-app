@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../services/block_service.dart';
 
@@ -22,7 +24,7 @@ class _MyBlockedUsersScreenState extends State<MyBlockedUsersScreen> {
   Future<void> _unblock(String docId) async {
     final ok = await BlockService.unblockUser(docId);
     if (!mounted) return;
-    if (ok) { ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تم إلغاء الحظر'))); _load(); }
+    if (ok) { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(LanguageService.trCategory('تم إلغاء الحظر')))); _load(); }
   }
   @override
   Widget build(BuildContext context) {

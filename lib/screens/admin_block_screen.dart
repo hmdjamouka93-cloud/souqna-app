@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 
@@ -115,7 +117,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                         controller: _searchCtrl,
                         style:  TextStyle(color: AppColors.textPrimary),
                         decoration:  InputDecoration(
-                          hintText: 'ابحث بالإيميل أو الهاتف لحظر مستخدم...',
+                          hintText: LanguageService.trCategory('ابحث بالإيميل أو الهاتف لحظر مستخدم...'),
                           hintStyle: TextStyle(color: AppColors.textSecondary),
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),

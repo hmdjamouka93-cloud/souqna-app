@@ -333,7 +333,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('تم إرسال التبليغ')));
+              SnackBar(content: Text(LanguageService.trCategory('تم إرسال التبليغ'))));
           })),
         ],
       ),

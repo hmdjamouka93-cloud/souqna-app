@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'language_service.dart';
-import '../main.dart';
 import 'auth_service.dart';
 import '../screens/login_screen.dart';
 
