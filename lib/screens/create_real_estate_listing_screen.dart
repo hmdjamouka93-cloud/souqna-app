@@ -236,7 +236,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: _wilayaCode,
-                  hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
+                  hint:  Text(LanguageService.tr('choose_wilaya'), style: TextStyle(color: AppColors.textSecondary)),
                   dropdownColor: AppColors.card,
                   style:  TextStyle(color: AppColors.textPrimary),
                   icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
@@ -272,7 +272,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                 child: DropdownButton<String>(
                   isExpanded: true,
                   value: _dairaName,
-                  hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
+                  hint:  Text(LanguageService.tr('choose_daira'), style: TextStyle(color: AppColors.textSecondary)),
                   dropdownColor: AppColors.card,
                   style:  TextStyle(color: AppColors.textPrimary),
                   icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
@@ -306,7 +306,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _label('الصور (${_images.length}/5) *'),
+        _label('${LanguageService.tr('images_label')} (${_images.length}/5) *'),
         const SizedBox(height: 8),
         SizedBox(
           height: 100,
@@ -324,12 +324,12 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: AppColors.accent.withValues(alpha: 0.5)),
                     ),
-                    child: const Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.add_a_photo_outlined, color: AppColors.accent, size: 28),
                         SizedBox(height: 6),
-                        Text('إضافة صورة', style: TextStyle(color: AppColors.accent, fontSize: 11)),
+                        Text(LanguageService.tr('add_image'), style: TextStyle(color: AppColors.accent, fontSize: 11)),
                       ],
                     ),
                   ),

@@ -240,6 +240,11 @@ class LanguageService {
     'choose_wilaya': {'ar': 'اختر الولاية', 'en': 'Choose Wilaya', 'fr': 'Choisir la wilaya'},
     'choose_daira': {'ar': 'اختر الدائرة', 'en': 'Choose Daira', 'fr': 'Choisir la daïra'},
 
+    
+    'images_label': {'ar': 'الصور', 'en': 'Images', 'fr': 'Images'},
+    'choose_wilaya': {'ar': 'اختر الولاية', 'en': 'Choose Wilaya', 'fr': 'Choisir la wilaya'},
+    'choose_daira': {'ar': 'اختر الدائرة', 'en': 'Choose Daira', 'fr': 'Choisir la daïra'},
+
     'add_ad': {'ar': 'إضافة إعلان', 'en': 'Add Ad', 'fr': 'Ajouter une annonce'},
     'blocked_users': {'ar': 'المحظورين', 'en': 'Blocked Users', 'fr': 'Utilisateurs bloqués'},
     'language': {'ar': 'اللغة', 'en': 'Language', 'fr': 'Langue'},
