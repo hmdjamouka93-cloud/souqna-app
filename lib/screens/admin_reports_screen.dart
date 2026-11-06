@@ -214,10 +214,10 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                               ],
                             ),
                             const SizedBox(height: 8),
-                            Text('السبب: ${r['reason']}',
+                            Text('${LanguageService.trCategory('السبب:')} ${r['reason']}',
                                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 14)),
                             const SizedBox(height: 4),
-                            Text('رقم الإعلان: ${r['productId']}',
+                            Text('${LanguageService.trCategory('رقم الإعلان:')} ${r['productId']}',
                                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             const SizedBox(height: 12),
                             Wrap(

@@ -141,7 +141,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 4),
-                    Text('$total دج',
+                    Text('$total ${LanguageService.trCategory('دج')}',
                         style: const TextStyle(
                             color: AppColors.accent,
                             fontSize: 14,

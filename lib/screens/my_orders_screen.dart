@@ -142,7 +142,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 4),
-                    Text('$total دج',
+                    Text('$total ${LanguageService.trCategory('دج')}',
                         style: const TextStyle(
                             color: AppColors.accent,
                             fontSize: 14,
@@ -181,7 +181,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                       color: AppColors.background,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Text('اللون: ${o['color']}',
+                    child: Text('${LanguageService.trCategory('اللون:')} ${o['color']}',
                         style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 11)),
                   ),
@@ -193,7 +193,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                       color: AppColors.background,
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Text('المقاس: ${o['size']}',
+                    child: Text('${LanguageService.trCategory('المقاس:')} ${o['size']}',
                         style:  TextStyle(
                             color: AppColors.textSecondary, fontSize: 11)),
                   ),
