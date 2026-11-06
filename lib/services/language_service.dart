@@ -226,6 +226,20 @@ class LanguageService {
     'ex_50000': {'ar': 'مثال: 50000', 'en': 'Ex: 50000', 'fr': 'Ex: 50000'},
     'ex_toyota': {'ar': 'مثال: تويوتا كورولا 2018', 'en': 'Ex: Toyota Corolla 2018', 'fr': 'Ex: Toyota Corolla 2018'},
     'ex_alger': {'ar': 'مثال: الجزائر العاصمة', 'en': 'Ex: Algiers', 'fr': 'Ex: Alger'},
+    
+    'step1_property': {'ar': 'الخطوة 1: تفاصيل العقار', 'en': 'Step 1: Property details', 'fr': 'Étape 1 : Détails du bien'},
+    'operation_type_star': {'ar': 'نوع العملية *', 'en': 'Operation type *', 'fr': 'Type d\'opération *'},
+    'property_type_star': {'ar': 'نوع العقار *', 'en': 'Property type *', 'fr': 'Type de bien *'},
+    'area_star': {'ar': 'المساحة (م²) *', 'en': 'Area (m²) *', 'fr': 'Surface (m²) *'},
+    'furnished_q': {'ar': 'مفروش؟', 'en': 'Furnished?', 'fr': 'Meublé ?'},
+    'wilaya_star': {'ar': 'الولاية *', 'en': 'Wilaya *', 'fr': 'Wilaya *'},
+    'daira_star': {'ar': 'الدائرة *', 'en': 'Daira *', 'fr': 'Daïra *'},
+    'ex_120': {'ar': 'مثال: 120', 'en': 'Ex: 120', 'fr': 'Ex: 120'},
+    'ex_apartment': {'ar': 'مثال: شقة للبيع 120م²', 'en': 'Ex: Apartment for sale 120m²', 'fr': 'Ex: Appartement à vendre 120m²'},
+    'ex_property_desc': {'ar': 'وصف تفصيلي للعقار...', 'en': 'Detailed property description...', 'fr': 'Description détaillée du bien...'},
+    'choose_wilaya': {'ar': 'اختر الولاية', 'en': 'Choose Wilaya', 'fr': 'Choisir la wilaya'},
+    'choose_daira': {'ar': 'اختر الدائرة', 'en': 'Choose Daira', 'fr': 'Choisir la daïra'},
+
     'add_ad': {'ar': 'إضافة إعلان', 'en': 'Add Ad', 'fr': 'Ajouter une annonce'},
     'blocked_users': {'ar': 'المحظورين', 'en': 'Blocked Users', 'fr': 'Utilisateurs bloqués'},
     'language': {'ar': 'اللغة', 'en': 'Language', 'fr': 'Langue'},
@@ -244,6 +258,19 @@ class LanguageService {
   }
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
+
+    'بيع': {'ar': 'بيع', 'en': 'Sale', 'fr': 'Vente'},
+    'إيجار': {'ar': 'إيجار', 'en': 'Rent', 'fr': 'Location'},
+    'بيع / إيجار': {'ar': 'بيع / إيجار', 'en': 'Sale / Rent', 'fr': 'Vente / Location'},
+    'شقة': {'ar': 'شقة', 'en': 'Apartment', 'fr': 'Appartement'},
+    'فيلا': {'ar': 'فيلا', 'en': 'Villa', 'fr': 'Villa'},
+    'منزل تقليدي': {'ar': 'منزل تقليدي', 'en': 'Traditional house', 'fr': 'Maison traditionnelle'},
+    'أرض': {'ar': 'أرض', 'en': 'Land', 'fr': 'Terrain'},
+    'محل تجاري': {'ar': 'محل تجاري', 'en': 'Commercial shop', 'fr': 'Local commercial'},
+    'مكتب': {'ar': 'مكتب', 'en': 'Office', 'fr': 'Bureau'},
+    'طابق أرضي': {'ar': 'طابق أرضي', 'en': 'Ground floor', 'fr': 'Rez-de-chaussée'},
+    'نعم / لا': {'ar': 'نعم / لا', 'en': 'Yes / No', 'fr': 'Oui / Non'},
+
 
     'اوبل': {'ar': 'اوبل', 'en': 'Opel', 'fr': 'Opel'},
     'أوبل': {'ar': 'أوبل', 'en': 'Opel', 'fr': 'Opel'},

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
@@ -175,7 +176,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                _currentStep == 0 ? 'الخطوة 1: تفاصيل العقار' : 'الخطوة 2: الصور والنشر',
+                _currentStep == 0 ? LanguageService.tr('step1_property') : LanguageService.tr('step2_publish'),
                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
             ),
@@ -195,16 +196,16 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _label('نوع العملية *'),
-        _dropdown('بيع / إيجار', ['بيع', 'إيجار'], _operation, (v) => setState(() => _operation = v)),
+        _label(LanguageService.tr('operation_type_star')),
+        _dropdown(LanguageService.tr('sale_rent'), ['بيع', 'إيجار'], _operation, (v) => setState(() => _operation = v)),
         const SizedBox(height: 16),
 
-        _label('نوع العقار *'),
+        _label(LanguageService.tr('property_type_star')),
         _dropdown('اختر النوع', ['شقة', 'فيلا', 'منزل تقليدي', 'أرض', 'محل تجاري', 'مكتب', 'أخرى'], _propertyType, (v) => setState(() => _propertyType = v)),
         const SizedBox(height: 16),
 
-        _label('المساحة (م²) *'),
-        _textField(_areaCtrl, 'مثال: 120', keyboard: TextInputType.number),
+        _label(LanguageService.tr('area_star')),
+        _textField(_areaCtrl, LanguageService.tr('ex_120'), keyboard: TextInputType.number),
         const SizedBox(height: 16),
 
         if (_propertyType == 'شقة' || _propertyType == 'فيلا') ...[
@@ -217,12 +218,12 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         ],
 
         if (_operation == 'إيجار') ...[
-          _label('مفروش؟'),
+          _label(LanguageService.tr('furnished_q')),
           _dropdown('نعم / لا', ['نعم', 'لا'], _furnished, (v) => setState(() => _furnished = v)),
           const SizedBox(height: 16),
         ],
 
-        _label('الولاية *'),
+        _label(LanguageService.tr('wilaya_star')),
         Container(
           decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -259,7 +260,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         ),
         const SizedBox(height: 16),
 
-        _label('الدائرة *'),
+        _label(LanguageService.tr('daira_star')),
         Container(
           decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -294,7 +295,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
             onPressed: _nextStep,
-            child:  Text('التالي', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+            child:  Text(LanguageService.tr('next'), style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
           ),
         ),
       ],
@@ -363,16 +364,16 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         ),
         const SizedBox(height: 18),
 
-        _label('عنوان الإعلان *'),
-        _textField(_titleCtrl, 'مثال: شقة للبيع 120م²'),
+        _label(LanguageService.tr('ad_title_star')),
+        _textField(_titleCtrl, LanguageService.tr('ex_apartment')),
         const SizedBox(height: 16),
 
-        _label('السعر (د.ج) *'),
+        _label(LanguageService.tr('price_star')),
         _textField(_priceCtrl, '0', keyboard: TextInputType.number, ltr: true),
         const SizedBox(height: 16),
 
-        _label('الوصف'),
-        _textField(_descCtrl, 'وصف تفصيلي للعقار...', maxLines: 4),
+        _label(LanguageService.tr('description')),
+        _textField(_descCtrl, LanguageService.tr('ex_property_desc'), maxLines: 4),
         const SizedBox(height: 24),
 
         if (_error != null) ...[
@@ -389,7 +390,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                   side: const BorderSide(color: AppColors.accent),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                child: const Text('رجوع', style: TextStyle(color: AppColors.accent)),
+                child: Text(LanguageService.tr('back'), style: TextStyle(color: AppColors.accent)),
               ),
             ),
             const SizedBox(width: 12),
@@ -403,7 +404,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                 onPressed: _loading ? null : _submit,
                 child: _loading
                     ?  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
-                    :  Text('نشر الإعلان', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+                    :  Text(LanguageService.tr('publish_ad'), style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
               ),
             ),
           ],
