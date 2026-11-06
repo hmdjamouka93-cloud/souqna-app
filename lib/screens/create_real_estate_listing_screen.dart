@@ -163,7 +163,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
             icon:  Icon(Icons.close, color: AppColors.textPrimary, size: 26),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text(widget.categoryName, style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+          title: Text(LanguageService.trCategory(widget.categoryName), style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
         ),
         body: Column(
           children: [
@@ -426,11 +426,11 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         child: DropdownButton<String>(
           isExpanded: true,
           value: val,
-          hint: Text(hint, style:  TextStyle(color: AppColors.textSecondary)),
+          hint: Text(LanguageService.trCategory(hint), style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary),
           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
-          items: items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+          items: items.map((e) => DropdownMenuItem(value: e, child: Text(LanguageService.trCategory(e)))).toList(),
           onChanged: onChanged,
         ),
       ),
