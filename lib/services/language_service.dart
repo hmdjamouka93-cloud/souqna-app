@@ -259,6 +259,12 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
 
+    'اختر النوع': {'ar': 'اختر النوع', 'en': 'Choose type', 'fr': 'Choisir le type'},
+    'اختر الولاية': {'ar': 'اختر الولاية', 'en': 'Choose Wilaya', 'fr': 'Choisir la wilaya'},
+    'اختر الدائرة': {'ar': 'اختر الدائرة', 'en': 'Choose Daira', 'fr': 'Choisir la daïra'},
+    'نعم / لا': {'ar': 'نعم / لا', 'en': 'Yes / No', 'fr': 'Oui / Non'},
+
+
     'بيع': {'ar': 'بيع', 'en': 'Sale', 'fr': 'Vente'},
     'إيجار': {'ar': 'إيجار', 'en': 'Rent', 'fr': 'Location'},
     'بيع / إيجار': {'ar': 'بيع / إيجار', 'en': 'Sale / Rent', 'fr': 'Vente / Location'},
