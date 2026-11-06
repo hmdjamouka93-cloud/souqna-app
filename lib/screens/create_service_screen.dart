@@ -36,15 +36,15 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
     final price = int.tryParse(priceStr);
 
     if (title.isEmpty) {
-      setState(() => _error = 'اكتب عنوان الخدمة');
+      setState(() => _error = LanguageService.trCategory('اكتب عنوان الخدمة'));
       return;
     }
     if (priceStr.isEmpty || price == null || price <= 0) {
-      setState(() => _error = 'اكتب سعر صحيح');
+      setState(() => _error = LanguageService.trCategory('اكتب سعر صحيح'));
       return;
     }
     if (_image == null) {
-      setState(() => _error = 'أضف صورة للخدمة');
+      setState(() => _error = LanguageService.trCategory('أضف صورة للخدمة'));
       return;
     }
 
@@ -67,7 +67,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'حدث خطأ، حاول مرة أخرى';
+        _error = LanguageService.trCategory('حدث خطأ، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -123,15 +123,15 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
               ),
               const SizedBox(height: 20),
               
-              _label('عنوان الخدمة'),
+              _label(LanguageService.trCategory('عنوان الخدمة')),
               _field(_titleCtrl, 'مثال: تركيب سخان'),
               const SizedBox(height: 16),
 
-              _label('الوصف (اختياري)'),
+              _label(LanguageService.trCategory('الوصف (اختياري)')),
               _field(_descCtrl, 'اكتب تفاصيل الخدمة هنا...', maxLines: 3),
               const SizedBox(height: 16),
 
-              _label('السعر (د.ج)'),
+              _label(LanguageService.trCategory('السعر (د.ج)')),
               _field(_priceCtrl, 'مثال: 2000', keyboard: TextInputType.number),
               
               if (_error != null) ...[

@@ -210,11 +210,11 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           const SizedBox(height: 10),
           Row(
             children: [
-              _priceItem('اليوم', _data['pricePerDay']),
+              _priceItem(LanguageService.trCategory('اليوم'), _data['pricePerDay']),
               const SizedBox(width: 8),
-              _priceItem('الأسبوع', _data['pricePerWeek']),
+              _priceItem(LanguageService.trCategory('الأسبوع'), _data['pricePerWeek']),
               const SizedBox(width: 8),
-              _priceItem('الشهر', _data['pricePerMonth']),
+              _priceItem(LanguageService.trCategory('الشهر'), _data['pricePerMonth']),
             ],
           ),
         ],
@@ -267,9 +267,9 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
               style:  TextStyle(color: AppColors.textPrimary, fontSize: 14,
                 fontWeight: FontWeight.bold)),
           ),
-          _smallBtn('تابع', () {}),
+          _smallBtn(LanguageService.trCategory('تابع'), () {}),
           const SizedBox(width: 6),
-          _smallBtn('اتصال', () async {
+          _smallBtn(LanguageService.trCategory('اتصال'), () async {
             final uri = Uri.parse('tel:${_data['phone']}');
             if (await canLaunchUrl(uri)) await launchUrl(uri);
           }),
@@ -328,7 +328,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           )),
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.share, 'مشاركة', () {
-            Share.share('شوف هذه السيارة للتأجير: ${_data['name']}');
+            Share.share('${LanguageService.trCategory('شوف هذه السيارة للتأجير:')} ${_data['name']}');
           })),
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () {

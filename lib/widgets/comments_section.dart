@@ -32,7 +32,7 @@ class _CommentsSectionState extends State<CommentsSection> {
       final user = AuthService.currentUser;
       if (user == null) return;
       final userData = await AuthService.getUserData();
-      final name = (userData?['name'] ?? 'مستخدم').toString();
+      final name = (userData?['name'] ?? LanguageService.trCategory('مستخدم')).toString();
 
       setState(() => _sending = true);
       try {
@@ -150,13 +150,13 @@ class _CommentsSectionState extends State<CommentsSection> {
   }
 
   String _timeAgo(Timestamp? ts) {
-    if (ts == null) return 'الآن';
+    if (ts == null) return LanguageService.trCategory('الآن');
     final diff = DateTime.now().difference(ts.toDate());
-    if (diff.inMinutes < 1) return 'الآن';
-    if (diff.inMinutes < 60) return 'قبل ${diff.inMinutes} دقيقة';
-    if (diff.inHours < 24) return 'قبل ${diff.inHours} ساعة';
-    if (diff.inDays < 30) return 'قبل ${diff.inDays} يوم';
-    return 'قبل ${(diff.inDays / 30).floor()} شهر';
+    if (diff.inMinutes < 1) return LanguageService.trCategory('الآن');
+    if (diff.inMinutes < 60) return '${LanguageService.trCategory('قبل')} ${diff.inMinutes} ${LanguageService.trCategory('دقيقة')}';
+    if (diff.inHours < 24) return '${LanguageService.trCategory('قبل')} ${diff.inHours} ${LanguageService.trCategory('ساعة')}';
+    if (diff.inDays < 30) return '${LanguageService.trCategory('قبل')} ${diff.inDays} ${LanguageService.trCategory('يوم')}';
+    return '${LanguageService.trCategory('قبل')} ${(diff.inDays / 30).floor()} ${LanguageService.trCategory('شهر')}';
   }
 
   @override
@@ -273,7 +273,7 @@ class _CommentsSectionState extends State<CommentsSection> {
   Widget _commentItem(String commentId, Map<String, dynamic> x) {
     final isOwner =
         AuthService.currentUser?.uid == (x['userId'] ?? '').toString();
-    final name = (x['name'] ?? 'مستخدم').toString();
+    final name = (x['name'] ?? LanguageService.trCategory('مستخدم')).toString();
     final text = (x['text'] ?? '').toString();
     final time = _timeAgo(x['createdAt'] as Timestamp?);
 

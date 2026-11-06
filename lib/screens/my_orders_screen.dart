@@ -42,10 +42,10 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   }
 
   String _statusLabel(String s) {
-    if (s == 'confirmed') return 'مؤكد';
-    if (s == 'rejected') return 'مرفوض';
-    if (s == 'delivered') return 'تم التسليم';
-    return 'قيد الانتظار';
+    if (s == 'confirmed') return LanguageService.trCategory('مؤكد');
+    if (s == 'rejected') return LanguageService.trCategory('مرفوض');
+    if (s == 'delivered') return LanguageService.trCategory('تم التسليم');
+    return LanguageService.trCategory('قيد الانتظار');
   }
 
   @override

@@ -112,15 +112,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final phone = _phoneCtrl.text.trim();
 
     if (fn.isEmpty) {
-      setState(() => _error = 'اكتب الاسم واللقب');
+      setState(() => _error = LanguageService.trCategory('اكتب الاسم واللقب'));
       return;
     }
     if (phone.length < 9) {
-      setState(() => _error = 'رقم الهاتف قصير');
+      setState(() => _error = LanguageService.trCategory('رقم الهاتف قصير'));
       return;
     }
     if (_wilayaCode == null || _dairaName == null) {
-      setState(() => _error = 'اختر الولاية والدائرة');
+      setState(() => _error = LanguageService.trCategory('اختر الولاية والدائرة'));
       return;
     }
 
@@ -150,7 +150,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       if (!mounted) return;
       if (id == null) {
         setState(() {
-          _error = 'فشل إرسال الطلب، حاول مرة أخرى';
+          _error = LanguageService.trCategory('فشل إرسال الطلب، حاول مرة أخرى');
           _sending = false;
         });
         return;
@@ -198,7 +198,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ: $e';
+        _error = LanguageService.trCategory('خطأ: $e');
         _sending = false;
       });
     }

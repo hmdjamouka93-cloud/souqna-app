@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/showroom_service.dart';
@@ -82,15 +84,15 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
       return;
     }
     if (loc.isEmpty) {
-      setState(() => _error = 'اكتب العنوان');
+      setState(() => _error = LanguageService.trCategory('اكتب العنوان'));
       return;
     }
     if (phone.length < 9) {
-      setState(() => _error = 'رقم الهاتف قصير');
+      setState(() => _error = LanguageService.trCategory('رقم الهاتف قصير'));
       return;
     }
     if (!_isEdit && _newLogo == null) {
-      setState(() => _error = 'أضف شعار المعرض');
+      setState(() => _error = LanguageService.trCategory('أضف شعار المعرض'));
       return;
     }
 
@@ -125,7 +127,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
     } catch (_) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ، حاول مرة أخرى';
+        _error = LanguageService.trCategory('خطأ، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -200,11 +202,11 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
                   : 'مثال: معرض النخبة للسيارات'),
               const SizedBox(height: 16),
 
-              _label('العنوان'),
+              _label(LanguageService.trCategory('العنوان')),
               _field(_locCtrl, 'مثال: وهران، حي المدينة'),
               const SizedBox(height: 16),
 
-              _label('رقم الهاتف'),
+              _label(LanguageService.trCategory('رقم الهاتف')),
               _field(_phoneCtrl, '0555 12 34 56',
                   keyboard: TextInputType.phone, ltr: true),
 

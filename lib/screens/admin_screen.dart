@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import 'admin_block_screen.dart';
 import 'admin_reports_screen.dart';
@@ -19,21 +21,21 @@ class AdminScreen extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'لوحة التحكم (Admin)',
+            LanguageService.trCategory(LanguageService.trCategory('لوحة التحكم (Admin)')),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _menuCard(Icons.report, 'البلاغات', 'مراجعة إعلانات ومستخدمين', () {
+            _menuCard(Icons.report, LanguageService.trCategory('البلاغات'), LanguageService.trCategory('مراجعة إعلانات ومستخدمين'), () {
               Navigator.push(context, MaterialPageRoute(builder: (_) => const AdminReportsScreen()));
             }),
-            _menuCard(Icons.block, 'الحظر', 'حظر مستخدمين أو متاجر', () {
+            _menuCard(Icons.block, LanguageService.trCategory('الحظر'), LanguageService.trCategory('حظر مستخدمين أو متاجر'), () {
               Navigator.push(context, MaterialPageRoute(builder: (_) => const AdminBlockScreen()));
             }),
-            _menuCard(Icons.restore, 'استرجاع', 'استرجاع متجر أو بروفايل محذوف', () {}),
-            _menuCard(Icons.star, 'إدارة VIP', 'ترقية إعلانات لمدة معينة', () {}),
+            _menuCard(Icons.restore, LanguageService.trCategory('استرجاع'), LanguageService.trCategory('استرجاع متجر أو بروفايل محذوف'), () {}),
+            _menuCard(Icons.star, LanguageService.trCategory('إدارة VIP'), LanguageService.trCategory('ترقية إعلانات لمدة معينة'), () {}),
           ],
         ),
       ),

@@ -114,27 +114,27 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     final totalImgs = _newImages.length + _existingImages.length;
 
     if (name.isEmpty) {
-      setState(() => _error = 'اكتب اسم المنتج');
+      setState(() => _error = LanguageService.trCategory('اكتب اسم المنتج'));
       return;
     }
     if (price <= 0) {
-      setState(() => _error = 'أدخل سعراً صحيحاً');
+      setState(() => _error = LanguageService.trCategory('أدخل سعراً صحيحاً'));
       return;
     }
     if (totalImgs == 0) {
-      setState(() => _error = 'أضف صورة واحدة على الأقل');
+      setState(() => _error = LanguageService.trCategory('أضف صورة واحدة على الأقل'));
       return;
     }
     if (_colors.isEmpty) {
-      setState(() => _error = 'أضف لون واحد على الأقل');
+      setState(() => _error = LanguageService.trCategory('أضف لون واحد على الأقل'));
       return;
     }
     if (_sizes.isEmpty) {
-      setState(() => _error = 'أضف مقاس واحد على الأقل');
+      setState(() => _error = LanguageService.trCategory('أضف مقاس واحد على الأقل'));
       return;
     }
     if (qty <= 0) {
-      setState(() => _error = 'الكمية يجب أن تكون 1 على الأقل');
+      setState(() => _error = LanguageService.trCategory('الكمية يجب أن تكون 1 على الأقل'));
       return;
     }
 
@@ -176,7 +176,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ: $e';
+        _error = LanguageService.trCategory('خطأ: $e');
         _loading = false;
       });
     }
@@ -207,28 +207,28 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _label('الصور (${_newImages.length + _existingImages.length}/5)'),
+              _label(LanguageService.trCategory('الصور (${_newImages.length + _existingImages.length}/5)')),
               _imagesGrid(),
               const SizedBox(height: 16),
-              _label('اسم المنتج'),
+              _label(LanguageService.trCategory('اسم المنتج')),
               _field(_nameCtrl, 'مثال: فستان أحمر'),
               const SizedBox(height: 16),
-              _label('الوصف'),
+              _label(LanguageService.trCategory('الوصف')),
               _field(_descCtrl, 'وصف تفصيلي...', maxLines: 4),
               const SizedBox(height: 16),
-              _label('السعر (د.ج)'),
+              _label(LanguageService.trCategory('السعر (د.ج)')),
               _field(_priceCtrl, '0',
                   keyboard: TextInputType.number, ltr: true),
               const SizedBox(height: 16),
-              _label('الكمية المتوفرة'),
+              _label(LanguageService.trCategory('الكمية المتوفرة')),
               _field(_qtyCtrl, '1',
                   keyboard: TextInputType.number, ltr: true),
               const SizedBox(height: 16),
-              _label('الألوان المتوفرة'),
+              _label(LanguageService.trCategory('الألوان المتوفرة')),
               _chipsInput(_colorCtrl, _suggestedColors, _addColor, _colors,
                   (c) => setState(() => _colors.remove(c))),
               const SizedBox(height: 16),
-              _label('المقاسات المتوفرة'),
+              _label(LanguageService.trCategory('المقاسات المتوفرة')),
               _chipsInput(_sizeCtrl, _suggestedSizes, _addSize, _sizes,
                   (s) => setState(() => _sizes.remove(s))),
               const SizedBox(height: 24),

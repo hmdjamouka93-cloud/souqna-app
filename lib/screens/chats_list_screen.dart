@@ -85,7 +85,7 @@ class ChatsListScreen extends StatelessWidget {
                 final usersMap = chatData['users'] as Map<String, dynamic>? ?? {};
                 final otherUserData = usersMap[otherUserId] as Map<String, dynamic>? ?? {};
                 
-                final otherName = (otherUserData['name'] ?? 'مستخدم').toString();
+                final otherName = (otherUserData['name'] ?? LanguageService.trCategory('مستخدم')).toString();
                 final otherAvatar = (otherUserData['avatar'] ?? '').toString();
                 final lastMessage = (chatData['lastMessage'] ?? '').toString();
                 

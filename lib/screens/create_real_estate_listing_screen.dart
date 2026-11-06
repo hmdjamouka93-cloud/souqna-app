@@ -77,7 +77,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
 
   void _nextStep() {
     if (_operation == null || _propertyType == null || _areaCtrl.text.isEmpty || _wilayaName == null || _dairaName == null) {
-      setState(() => _error = 'يرجى تعبئة جميع الخانات الإجبارية');
+      setState(() => _error = LanguageService.trCategory('يرجى تعبئة جميع الخانات الإجبارية'));
       return;
     }
     setState(() {
@@ -92,7 +92,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
     final price = int.tryParse(_priceCtrl.text.trim()) ?? 0;
 
     if (title.isEmpty || price <= 0 || _images.isEmpty) {
-      setState(() => _error = 'أدخل العنوان، السعر، وصورة واحدة على الأقل');
+      setState(() => _error = LanguageService.trCategory('أدخل العنوان، السعر، وصورة واحدة على الأقل'));
       return;
     }
 
@@ -145,7 +145,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'حدث خطأ أثناء النشر، حاول مرة أخرى';
+        _error = LanguageService.trCategory('حدث خطأ أثناء النشر، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -209,10 +209,10 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         const SizedBox(height: 16),
 
         if (_propertyType == 'شقة' || _propertyType == 'فيلا') ...[
-          _label('عدد الغرف'),
+          _label(LanguageService.trCategory('عدد الغرف')),
           _dropdown('اختر', ['1', '2', '3', '4', '5+'], _rooms, (v) => setState(() => _rooms = v)),
           const SizedBox(height: 16),
-          _label('الطابق'),
+          _label(LanguageService.trCategory('الطابق')),
           _dropdown('اختر', ['طابق أرضي', '1', '2', '3', '4', '5+'], _floor, (v) => setState(() => _floor = v)),
           const SizedBox(height: 16),
         ],

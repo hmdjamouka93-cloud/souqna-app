@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'order_service.dart';
+import 'language_service.dart';
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin = FlutterLocalNotificationsPlugin();
@@ -46,17 +47,17 @@ class NotificationService {
           // Status changed!
           String body = '';
           if (currentStatus == 'confirmed') {
-            body = 'تم تأكيد طلبك: $productName';
+            body = '${LanguageService.trCategory('تم تأكيد طلبك:')} $productName';
           } else if (currentStatus == 'rejected') {
-            body = 'تم رفض طلبك: $productName';
+            body = '${LanguageService.trCategory('تم رفض طلبك:')} $productName';
           } else if (currentStatus == 'delivered') {
-            body = 'تم تسليم طلبك: $productName';
+            body = '${LanguageService.trCategory('تم تسليم طلبك:')} $productName';
           }
 
           if (body.isNotEmpty) {
             await showNotification(
               id.hashCode,
-              'تحديث حالة الطلب',
+              LanguageService.trCategory('تحديث حالة الطلب'),
               body,
             );
           }

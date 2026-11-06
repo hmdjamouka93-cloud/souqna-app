@@ -91,19 +91,19 @@ class _AddListingScreenState extends State<AddListingScreen> {
     final loc = _locCtrl.text.trim();
 
     if (title.isEmpty) {
-      setState(() => _error = 'أدخل عنوان الإعلان');
+      setState(() => _error = LanguageService.trCategory('أدخل عنوان الإعلان'));
       return;
     }
     if (price <= 0) {
-      setState(() => _error = 'أدخل سعراً صحيحاً');
+      setState(() => _error = LanguageService.trCategory('أدخل سعراً صحيحاً'));
       return;
     }
     if (loc.isEmpty) {
-      setState(() => _error = 'أدخل الموقع');
+      setState(() => _error = LanguageService.trCategory('أدخل الموقع'));
       return;
     }
     if (_images.isEmpty) {
-      setState(() => _error = 'أضف صورة واحدة على الأقل');
+      setState(() => _error = LanguageService.trCategory('أضف صورة واحدة على الأقل'));
       return;
     }
 
@@ -126,7 +126,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
 
       if (allUrls.isEmpty) {
         setState(() {
-          _error = 'أضف صورة واحدة على الأقل';
+          _error = LanguageService.trCategory('أضف صورة واحدة على الأقل');
           _loading = false;
         });
         return;

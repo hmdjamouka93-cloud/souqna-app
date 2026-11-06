@@ -217,11 +217,11 @@ class CarRentalScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      _priceChip('اليوم', c.pricePerDay),
+                      _priceChip(LanguageService.trCategory('اليوم'), c.pricePerDay),
                       const SizedBox(width: 6),
-                      _priceChip('الأسبوع', c.pricePerWeek),
+                      _priceChip(LanguageService.trCategory('الأسبوع'), c.pricePerWeek),
                       const SizedBox(width: 6),
-                      _priceChip('الشهر', c.pricePerMonth),
+                      _priceChip(LanguageService.trCategory('الشهر'), c.pricePerMonth),
                     ],
                   ),
                 ],

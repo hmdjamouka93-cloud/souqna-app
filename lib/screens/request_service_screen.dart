@@ -43,15 +43,15 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
     final phone = _phoneCtrl.text.trim();
 
     if (name.isEmpty) {
-      setState(() => _error = 'اكتب اسمك الكامل');
+      setState(() => _error = LanguageService.trCategory('اكتب اسمك الكامل'));
       return;
     }
     if (phone.length < 9) {
-      setState(() => _error = 'رقم الهاتف قصير');
+      setState(() => _error = LanguageService.trCategory('رقم الهاتف قصير'));
       return;
     }
     if (_wilayaName == null || _dairaName == null) {
-      setState(() => _error = 'اختر الولاية والدائرة');
+      setState(() => _error = LanguageService.trCategory('اختر الولاية والدائرة'));
       return;
     }
 
@@ -75,7 +75,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
 
       if (id == null) {
         setState(() {
-          _error = 'حدث خطأ أثناء إرسال الطلب';
+          _error = LanguageService.trCategory('حدث خطأ أثناء إرسال الطلب');
           _loading = false;
         });
         return;
@@ -115,7 +115,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ: $e';
+        _error = LanguageService.trCategory('خطأ: $e');
         _loading = false;
       });
     }
@@ -182,15 +182,15 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               ),
               const SizedBox(height: 16),
 
-              _label('الاسم الكامل'),
+              _label(LanguageService.trCategory('الاسم الكامل')),
               _field(_nameCtrl, 'الاسم واللقب'),
               const SizedBox(height: 16),
 
-              _label('رقم الهاتف'),
+              _label(LanguageService.trCategory('رقم الهاتف')),
               _field(_phoneCtrl, '0xx xx xx xx', keyboard: TextInputType.phone, ltr: true),
               const SizedBox(height: 16),
 
-              _label('الولاية'),
+              _label(LanguageService.trCategory('الولاية')),
               Container(
                 decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -229,7 +229,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               ),
               const SizedBox(height: 16),
 
-              _label('الدائرة'),
+              _label(LanguageService.trCategory('الدائرة')),
               Container(
                 decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.symmetric(horizontal: 12),

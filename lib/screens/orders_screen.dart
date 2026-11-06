@@ -45,10 +45,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   String _statusLabel(String s) {
-    if (s == 'confirmed') return 'مؤكد';
-    if (s == 'rejected') return 'مرفوض';
-    if (s == 'delivered') return 'تم التسليم';
-    return 'قيد الانتظار';
+    if (s == 'confirmed') return LanguageService.trCategory('مؤكد');
+    if (s == 'rejected') return LanguageService.trCategory('مرفوض');
+    if (s == 'delivered') return LanguageService.trCategory('تم التسليم');
+    return LanguageService.trCategory('قيد الانتظار');
   }
 
   @override
@@ -167,15 +167,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
           const SizedBox(height: 10),
            Divider(color: AppColors.textSecondary.withValues(alpha: 0.12), height: 1),
           const SizedBox(height: 10),
-          _infoRow('الاسم', '${o['firstName']} ${o['lastName']}'),
-          _infoRow('الهاتف', (o['phone'] ?? '').toString()),
-          _infoRow('الولاية',
+          _infoRow(LanguageService.trCategory('الاسم'), '${o['firstName']} ${o['lastName']}'),
+          _infoRow(LanguageService.trCategory('الهاتف'), (o['phone'] ?? '').toString()),
+          _infoRow(LanguageService.trCategory('الولاية'),
               '${o['wilaya']} - ${o['daira']}'),
           if ((o['color'] ?? '').toString().isNotEmpty)
-            _infoRow('اللون', (o['color'] ?? '').toString()),
+            _infoRow(LanguageService.trCategory('اللون'), (o['color'] ?? '').toString()),
           if ((o['size'] ?? '').toString().isNotEmpty)
-            _infoRow('المقاس', (o['size'] ?? '').toString()),
-          _infoRow('الكمية', '$qty'),
+            _infoRow(LanguageService.trCategory('المقاس'), (o['size'] ?? '').toString()),
+          _infoRow(LanguageService.trCategory('الكمية'), '$qty'),
           const SizedBox(height: 10),
           if (status == 'pending')
             Row(

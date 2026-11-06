@@ -123,19 +123,19 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
     final phone = _phoneCtrl.text.trim();
 
     if (name.isEmpty) {
-      setState(() => _error = 'اكتب اسم المتجر');
+      setState(() => _error = LanguageService.trCategory('اكتب اسم المتجر'));
       return;
     }
     if (phone.length < 9) {
-      setState(() => _error = 'رقم الهاتف قصير');
+      setState(() => _error = LanguageService.trCategory('رقم الهاتف قصير'));
       return;
     }
     if (_wilayaCode == null || _dairaName == null) {
-      setState(() => _error = 'اختر الولاية والدائرة');
+      setState(() => _error = LanguageService.trCategory('اختر الولاية والدائرة'));
       return;
     }
     if (!_isEdit && _newCover == null) {
-      setState(() => _error = 'أضف صورة الغلاف');
+      setState(() => _error = LanguageService.trCategory('أضف صورة الغلاف'));
       return;
     }
 
@@ -163,7 +163,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
       if (existing != null) {
         if (!mounted) return;
         setState(() {
-          _error = 'عندك متجر في هذا القسم من قبل';
+          _error = LanguageService.trCategory('عندك متجر في هذا القسم من قبل');
           _loading = false;
         });
         return;
@@ -185,7 +185,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
     } catch (e) { print("SUBMIT_ERR: $e");
       if (!mounted) return;
       setState(() {
-        _error = 'خطأ، حاول مرة أخرى';
+        _error = LanguageService.trCategory('خطأ، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -219,27 +219,27 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _label('صورة الغلاف (إجبارية)'),
+                    _label(LanguageService.trCategory('صورة الغلاف (إجبارية)')),
                     _coverPicker(),
                     const SizedBox(height: 16),
-                    _label('شعار المتجر (اختياري)'),
+                    _label(LanguageService.trCategory('شعار المتجر (اختياري)')),
                     _logoPicker(),
                     const SizedBox(height: 16),
-                    _label('اسم المتجر'),
+                    _label(LanguageService.trCategory('اسم المتجر')),
                     _field(_nameCtrl, 'مثال: متجر الأناقة'),
                     const SizedBox(height: 16),
-                    _label('نبذة (اختياري)'),
+                    _label(LanguageService.trCategory('نبذة (اختياري)')),
                     _field(_bioCtrl, 'مثال: أحسن ملابس في وهران',
                         maxLines: 3),
                     const SizedBox(height: 16),
-                    _label('رقم الهاتف'),
+                    _label(LanguageService.trCategory('رقم الهاتف')),
                     _field(_phoneCtrl, '0555 12 34 56',
                         keyboard: TextInputType.phone, ltr: true),
                     const SizedBox(height: 16),
-                    _label('الولاية (إجبارية)'),
+                    _label(LanguageService.trCategory('الولاية (إجبارية)')),
                     _wilayaDropdown(),
                     const SizedBox(height: 16),
-                    _label('الدائرة (إجبارية)'),
+                    _label(LanguageService.trCategory('الدائرة (إجبارية)')),
                     _dairaDropdown(),
                     const SizedBox(height: 24),
                     if (_error != null) ...[

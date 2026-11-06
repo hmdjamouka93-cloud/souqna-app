@@ -118,7 +118,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         (widget.categoryName == 'شاحنات' && _selectedPayload == null) ||
         (widget.categoryName == 'حافلات' && _selectedSeats == null) ||
         (widget.categoryName == 'دراجات' && _selectedEngineCC == null)) {
-      setState(() => _error = 'يرجى تعبئة جميع الخانات الإجبارية');
+      setState(() => _error = LanguageService.trCategory('يرجى تعبئة جميع الخانات الإجبارية'));
       return;
     }
     setState(() {
@@ -134,7 +134,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
     final loc = _locCtrl.text.trim();
 
     if (title.isEmpty || price <= 0 || loc.isEmpty || _images.isEmpty) {
-      setState(() => _error = 'أدخل العنوان، السعر، الموقع، وصورة واحدة على الأقل');
+      setState(() => _error = LanguageService.trCategory('أدخل العنوان، السعر، الموقع، وصورة واحدة على الأقل'));
       return;
     }
 
@@ -196,7 +196,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'حدث خطأ أثناء النشر، حاول مرة أخرى';
+        _error = LanguageService.trCategory('حدث خطأ أثناء النشر، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -264,19 +264,19 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         const SizedBox(height: 16),
 
         if (widget.categoryName == 'شاحنات') ...[
-          _label('الحمولة'),
+          _label(LanguageService.trCategory('الحمولة')),
           _dropdown('اختر الحمولة', ['1-5 طن', '5-20 طن', 'فوق 20 طن'], _selectedPayload, (v) => setState(() => _selectedPayload = v)),
           const SizedBox(height: 16),
         ],
 
         if (widget.categoryName == 'حافلات') ...[
-          _label('عدد المقاعد'),
+          _label(LanguageService.trCategory('عدد المقاعد')),
           _dropdown('اختر عدد المقاعد', ['14', '18', '24', '30', '45', '50', 'فوق 50'], _selectedSeats, (v) => setState(() => _selectedSeats = v)),
           const SizedBox(height: 16),
         ],
 
         if (widget.categoryName == 'دراجات') ...[
-          _label('سعة المحرك'),
+          _label(LanguageService.trCategory('سعة المحرك')),
           _dropdown('اختر سعة المحرك', ['50cc', '100cc', '125cc', '150cc', '250cc', '400cc', '600cc', '1000cc وفوق'], _selectedEngineCC, (v) => setState(() => _selectedEngineCC = v)),
           const SizedBox(height: 16),
         ],

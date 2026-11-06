@@ -54,9 +54,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         final rem = s.length - 1 - i;
         if (rem > 0 && rem % 3 == 0) buf.write(',');
       }
-      return '${buf.toString()} د.ج';
+      return LanguageService.trCategory('${buf.toString()} د.ج');
     }
-    return '$p د.ج';
+    return LanguageService.trCategory('$p د.ج');
   }
 
   @override
@@ -409,8 +409,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             runSpacing: 6,
             alignment: WrapAlignment.end,
             children: [
-              _smallBtn('دردشة', _openChat),
-              _smallBtn('اتصال', () async {
+              _smallBtn(LanguageService.trCategory('دردشة'), _openChat),
+              _smallBtn(LanguageService.trCategory('اتصال'), () async {
                 final phone = (widget.ad['phone'] ?? '').toString();
                 if (phone.isEmpty) return;
                 final uri = Uri.parse('tel:$phone');
@@ -481,26 +481,26 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
 
     // قاموس الترجمة
     final labels = {
-      'brand': 'الماركة',
-      'category': 'الفئة',
-      'gear': 'نوع القير',
-      'color': 'اللون',
-      'fuel': 'الوقود',
-      'condition': 'الحالة',
-      'warranty': 'تحت الضمان',
-      'year': 'سنة الصنع',
-      'mileage': 'العداد',
-      'operation': 'نوع العملية',
-      'propertyType': 'نوع العقار',
-      'area': 'المساحة',
-      'rooms': 'عدد الغرف',
-      'floor': 'الطابق',
-      'furnished': 'مفروش',
-      'wilaya': 'الولاية',
-      'daira': 'الدائرة',
-      'payload': 'الحمولة',
-      'seats': 'عدد المقاعد',
-      'engineCC': 'سعة المحرك',
+      'brand': LanguageService.trCategory('الماركة'),
+      'category': LanguageService.trCategory('الفئة'),
+      'gear': LanguageService.trCategory('نوع القير'),
+      'color': LanguageService.trCategory('اللون'),
+      'fuel': LanguageService.trCategory('الوقود'),
+      'condition': LanguageService.trCategory('الحالة'),
+      'warranty': LanguageService.trCategory('تحت الضمان'),
+      'year': LanguageService.trCategory('سنة الصنع'),
+      'mileage': LanguageService.trCategory('العداد'),
+      'operation': LanguageService.trCategory('نوع العملية'),
+      'propertyType': LanguageService.trCategory('نوع العقار'),
+      'area': LanguageService.trCategory('المساحة'),
+      'rooms': LanguageService.trCategory('عدد الغرف'),
+      'floor': LanguageService.trCategory('الطابق'),
+      'furnished': LanguageService.trCategory('مفروش'),
+      'wilaya': LanguageService.trCategory('الولاية'),
+      'daira': LanguageService.trCategory('الدائرة'),
+      'payload': LanguageService.trCategory('الحمولة'),
+      'seats': LanguageService.trCategory('عدد المقاعد'),
+      'engineCC': LanguageService.trCategory('سعة المحرك'),
     };
 
     final items = <MapEntry<String, String>>[];
@@ -633,7 +633,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           )),
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.share, 'مشاركة', () {
-            Share.share('شوف هذه السيارة: $_title - $_price');
+            Share.share('${LanguageService.trCategory('شوف هذه السيارة:')} $_title - $_price');
           })),
           const SizedBox(width: 8),
           Expanded(child: _reactionBtn(Icons.report_problem_outlined, 'تبليغ', () async {

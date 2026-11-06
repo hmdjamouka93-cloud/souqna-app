@@ -36,11 +36,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     if (ts == null) return '';
     final now = DateTime.now();
     final diff = now.difference(ts.toDate());
-    if (diff.inMinutes < 1) return 'دوك';
-    if (diff.inMinutes < 60) return 'قبل ${diff.inMinutes} دقيقة';
-    if (diff.inHours < 24) return 'قبل ${diff.inHours} ساعة';
-    if (diff.inDays < 30) return 'قبل ${diff.inDays} يوم';
-    return 'قبل ${(diff.inDays / 30).floor()} شهر';
+    if (diff.inMinutes < 1) return LanguageService.trCategory('دوك');
+    if (diff.inMinutes < 60) return '${LanguageService.trCategory('قبل')} ${diff.inMinutes} ${LanguageService.trCategory('دقيقة')}';
+    if (diff.inHours < 24) return '${LanguageService.trCategory('قبل')} ${diff.inHours} ${LanguageService.trCategory('ساعة')}';
+    if (diff.inDays < 30) return '${LanguageService.trCategory('قبل')} ${diff.inDays} ${LanguageService.trCategory('يوم')}';
+    return '${LanguageService.trCategory('قبل')} ${(diff.inDays / 30).floor()} ${LanguageService.trCategory('شهر')}';
   }
 
   IconData _iconForType(String? type) {

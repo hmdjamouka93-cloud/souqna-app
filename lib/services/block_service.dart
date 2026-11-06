@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'auth_service.dart';
+import 'language_service.dart';
 
 class BlockService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -19,7 +20,7 @@ class BlockService {
     if (user == null) return [];
     try {
       final snap = await _db.collection('user_blocks').where('blockerId', isEqualTo: user.uid).get();
-      return snap.docs.map((d) => {'id': d.id, 'blockedId': (d.data()['blockedId'] ?? '').toString(), 'blockedName': (d.data()['blockedName'] ?? 'مستخدم').toString()}).toList();
+      return snap.docs.map((d) => {'id': d.id, 'blockedId': (d.data()['blockedId'] ?? '').toString(), 'blockedName': (d.data()['blockedName'] ?? LanguageService.trCategory('مستخدم')).toString()}).toList();
     } catch (_) { return []; }
   }
 }

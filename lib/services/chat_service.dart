@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'auth_service.dart';
+import 'language_service.dart';
 
 class ChatService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -27,7 +28,7 @@ class ChatService {
 
       // إذا ماكانتش، نصنعوها
       final userData = await AuthService.getUserData();
-      final myName = (userData?['name'] ?? 'مستخدم').toString();
+      final myName = (userData?['name'] ?? LanguageService.trCategory('مستخدم')).toString();
       final myAvatar = ''; // نقدرو نزيدوه من بعد
 
       await _db.collection('chats').doc(chatId).set({
@@ -36,7 +37,7 @@ class ChatService {
           user.uid: {'name': myName, 'avatar': myAvatar},
           otherUserId: {'name': otherUserName, 'avatar': otherUserAvatar},
         },
-        'lastMessage': 'بدأت المحادثة',
+        'lastMessage': LanguageService.trCategory('بدأت المحادثة'),
         'lastMessageTime': FieldValue.serverTimestamp(),
       });
 

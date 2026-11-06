@@ -44,10 +44,10 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
   }
 
   String _statusLabel(String s) {
-    if (s == 'accepted') return 'مقبول';
-    if (s == 'rejected') return 'مرفوض';
-    if (s == 'completed') return 'مكتمل';
-    return 'قيد الانتظار';
+    if (s == 'accepted') return LanguageService.trCategory('مقبول');
+    if (s == 'rejected') return LanguageService.trCategory('مرفوض');
+    if (s == 'completed') return LanguageService.trCategory('مكتمل');
+    return LanguageService.trCategory('قيد الانتظار');
   }
 
   @override
@@ -124,9 +124,9 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
           const SizedBox(height: 12),
            Divider(color: AppColors.textSecondary.withValues(alpha: 0.12), height: 1),
           const SizedBox(height: 12),
-          _infoRow('الاسم', (o['clientName'] ?? '').toString()),
-          _infoRow('الهاتف', (o['clientPhone'] ?? '').toString()),
-          _infoRow('الموقع', '${o['wilaya']} - ${o['daira']}'),
+          _infoRow(LanguageService.trCategory('الاسم'), (o['clientName'] ?? '').toString()),
+          _infoRow(LanguageService.trCategory('الهاتف'), (o['clientPhone'] ?? '').toString()),
+          _infoRow(LanguageService.trCategory('الموقع'), '${o['wilaya']} - ${o['daira']}'),
           const SizedBox(height: 12),
           
           if (status == 'pending')

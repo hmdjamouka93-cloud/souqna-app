@@ -34,7 +34,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
           'id': d.id,
           'productId': (x['productId'] ?? '').toString(),
           'userId': (x['userId'] ?? '').toString(),
-          'reason': (x['reason'] ?? 'بدون سبب').toString(),
+          'reason': (x['reason'] ?? LanguageService.trCategory('بدون سبب')).toString(),
           'createdAt': x['createdAt'],
         };
       }).toList();

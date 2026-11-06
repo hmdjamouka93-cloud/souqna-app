@@ -91,19 +91,19 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
     final phone = _phoneCtrl.text.trim();
 
     if (name.isEmpty || trade == null || trade.isEmpty) {
-      setState(() => _error = 'اكتب الاسم والمهنة');
+      setState(() => _error = LanguageService.trCategory('اكتب الاسم والمهنة'));
       return;
     }
     if (phone.length < 9) {
-      setState(() => _error = 'رقم الهاتف قصير');
+      setState(() => _error = LanguageService.trCategory('رقم الهاتف قصير'));
       return;
     }
     if (_wilayaName == null || _dairaName == null) {
-      setState(() => _error = 'اختر الولاية والدائرة');
+      setState(() => _error = LanguageService.trCategory('اختر الولاية والدائرة'));
       return;
     }
     if (!_isEdit && _newAvatar == null) {
-      setState(() => _error = 'أضف صورة شخصية أو شعار');
+      setState(() => _error = LanguageService.trCategory('أضف صورة شخصية أو شعار'));
       return;
     }
 
@@ -146,7 +146,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = 'حدث خطأ، حاول مرة أخرى';
+        _error = LanguageService.trCategory('حدث خطأ، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -230,11 +230,11 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
               ),
               const SizedBox(height: 24),
 
-              _label('الاسم الكامل'),
+              _label(LanguageService.trCategory('الاسم الكامل')),
               _field(_nameCtrl, 'مثال: محمد بن علي'),
               const SizedBox(height: 16),
 
-              _label('المهنة'),
+              _label(LanguageService.trCategory('المهنة')),
               Container(
                 decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -257,15 +257,15 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
               ),
               const SizedBox(height: 16),
 
-              _label('نبذة عنك (اختياري)'),
+              _label(LanguageService.trCategory('نبذة عنك (اختياري)')),
               _field(_bioCtrl, 'اكتب وصف قصير عن خدماتك...', maxLines: 3),
               const SizedBox(height: 16),
 
-              _label('رقم الهاتف'),
+              _label(LanguageService.trCategory('رقم الهاتف')),
               _field(_phoneCtrl, '0xx xx xx xx', keyboard: TextInputType.phone, ltr: true),
               const SizedBox(height: 16),
 
-              _label('الولاية'),
+              _label(LanguageService.trCategory('الولاية')),
               Container(
                 decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -304,7 +304,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
               ),
               const SizedBox(height: 16),
 
-              _label('الدائرة'),
+              _label(LanguageService.trCategory('الدائرة')),
               Container(
                 decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.symmetric(horizontal: 12),

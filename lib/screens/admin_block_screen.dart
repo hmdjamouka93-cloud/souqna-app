@@ -44,7 +44,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
 
       if (foundDoc == null) {
         setState(() {
-          _error = 'لم يتم العثور على مستخدم بهذا الإيميل أو الهاتف';
+          _error = LanguageService.trCategory('لم يتم العثور على مستخدم بهذا الإيميل أو الهاتف');
           _searching = false;
         });
         return;
@@ -57,7 +57,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
       });
     } catch (e) {
       setState(() {
-        _error = 'حدث خطأ أثناء البحث';
+        _error = LanguageService.trCategory('حدث خطأ أثناء البحث');
         _searching = false;
       });
     }
@@ -165,7 +165,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text((_foundUser!['name'] ?? 'بدون اسم').toString(),
+                                Text((_foundUser!['name'] ?? LanguageService.trCategory('بدون اسم')).toString(),
                                     style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text((_foundUser!['email'] ?? '').toString(),
                                     style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
@@ -241,7 +241,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                           ),
                           child: ListTile(
                             leading: const Icon(Icons.block, color: Colors.redAccent),
-                            title: Text((data['name'] ?? 'بدون اسم').toString(),
+                            title: Text((data['name'] ?? LanguageService.trCategory('بدون اسم')).toString(),
                                 style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
                             subtitle: Text((data['email'] ?? '').toString(),
                                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
