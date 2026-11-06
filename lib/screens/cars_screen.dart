@@ -174,7 +174,7 @@ class _CarsScreenState extends State<CarsScreen> {
       return  Padding(
         padding: EdgeInsets.all(32),
         child: Center(
-          child: Text('لا توجد ماركات',
+          child: Text(LanguageService.trCategory('لا توجد ماركات'),
               style: TextStyle(color: Colors.white, fontSize: 16)),
         ),
       );

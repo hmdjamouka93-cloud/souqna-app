@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -88,7 +90,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                   if (r == true) _load();
                 },
                 icon:  Icon(Icons.add, color: AppColors.textPrimary),
-                label:  Text('أضف سيارة', style: TextStyle(color: AppColors.textPrimary)),
+                label:  Text(LanguageService.trCategory('أضف سيارة'), style: TextStyle(color: AppColors.textPrimary)),
               )
             : null,
         appBar: AppBar(
@@ -250,7 +252,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
             Icon(Icons.directions_car,
                 size: 80, color: AppColors.iconInactive),
             SizedBox(height: 16),
-            Text('لا توجد سيارات بعد',
+            Text(LanguageService.trCategory('لا توجد سيارات بعد'),
                 style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
           ],
         ),

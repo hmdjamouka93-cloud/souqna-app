@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import 'provider_detail_screen.dart';
@@ -128,7 +130,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _providers.isEmpty
                 ?  Center(
-                    child: Text('لا يوجد صانعو خدمات في هذا القسم بعد',
+                    child: Text(LanguageService.trCategory('لا يوجد صانعو خدمات في هذا القسم بعد'),
                         style: TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
                 : ListView.builder(

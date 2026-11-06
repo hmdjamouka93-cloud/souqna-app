@@ -137,7 +137,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               backgroundColor: AppColors.card,
-              title:  Text('لا يمكنك الإعلان هنا',
+              title:  Text(LanguageService.trCategory('لا يمكنك الإعلان هنا'),
                   style: TextStyle(color: AppColors.textPrimary)),
               content:  Text(
                 'لا يمكنك إضافة إعلان في هذا القسم إلا إذا كنت تملك متجراً.\n\n'
@@ -148,7 +148,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(ctx),
-                  child:  Text('إلغاء',
+                  child:  Text(LanguageService.trCategory('إلغاء'),
                       style: TextStyle(color: AppColors.textSecondary)),
                 ),
                 ElevatedButton(
@@ -165,7 +165,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
                       ),
                     );
                   },
-                  child:  Text('إنشاء متجر',
+                  child:  Text(LanguageService.trCategory('إنشاء متجر'),
                       style: TextStyle(color: AppColors.textPrimary)),
                 ),
               ],

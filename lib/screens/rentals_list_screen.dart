@@ -136,13 +136,13 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('أنت صاحب وكالة إيجار؟',
+                        Text(LanguageService.trCategory('أنت صاحب وكالة إيجار؟'),
                             style: TextStyle(
                                 color: AppColors.textPrimary,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(height: 3),
-                        Text('أنشئ وكالتك واعرض سياراتك للكراء',
+                        Text(LanguageService.trCategory('أنشئ وكالتك واعرض سياراتك للكراء'),
                             style: TextStyle(
                                 color: AppColors.textPrimary, fontSize: 12)),
                       ],
@@ -164,11 +164,11 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
                     Icon(Icons.storefront_outlined,
                         size: 80, color: AppColors.iconInactive),
                     SizedBox(height: 16),
-                    Text('لا توجد وكالات إيجار بعد',
+                    Text(LanguageService.trCategory('لا توجد وكالات إيجار بعد'),
                         style:
                             TextStyle(color: AppColors.textPrimary, fontSize: 16)),
                     SizedBox(height: 8),
-                    Text('كن أول وكالة إيجار!',
+                    Text(LanguageService.trCategory('كن أول وكالة إيجار!'),
                         style: TextStyle(
                             color: AppColors.textSecondary, fontSize: 13)),
                   ],

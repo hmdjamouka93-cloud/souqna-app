@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/service_provider_service.dart';
@@ -194,7 +196,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                             children: [
                               Icon(Icons.add_photo_alternate, color: AppColors.textSecondary, size: 32),
                               SizedBox(height: 8),
-                              Text('أضف صورة غلاف', style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                              Text(LanguageService.trCategory('أضف صورة غلاف'), style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             ],
                           ),
                         )
@@ -242,7 +244,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           value: _selectedTrade,
-                          hint:  Text('اختر مهنتك', style: TextStyle(color: AppColors.textSecondary)),
+                          hint:  Text(LanguageService.trCategory('اختر مهنتك'), style: TextStyle(color: AppColors.textSecondary)),
                           dropdownColor: AppColors.card,
                           style:  TextStyle(color: AppColors.textPrimary),
                           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
@@ -276,7 +278,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: _wilayaCode,
-                        hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
+                        hint:  Text(LanguageService.trCategory('اختر الولاية'), style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
                         style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
@@ -314,7 +316,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: _dairaName,
-                        hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
+                        hint:  Text(LanguageService.trCategory('اختر الدائرة'), style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
                         style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),

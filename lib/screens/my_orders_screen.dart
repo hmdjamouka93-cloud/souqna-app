@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../services/order_service.dart';
 import '../services/notification_service.dart';
@@ -72,7 +74,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                 child: CircularProgressIndicator(color: AppColors.accent))
             : _orders.isEmpty
                 ?  Center(
-                    child: Text('لا توجد طلبات',
+                    child: Text(LanguageService.trCategory('لا توجد طلبات'),
                         style:
                             TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )

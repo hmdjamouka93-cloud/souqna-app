@@ -124,17 +124,17 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title:  Text('حذف الإعلان', style: TextStyle(color: AppColors.textPrimary)),
-          content:  Text('هل أنت متأكد من حذف الإعلان المبلغ عنه نهائياً؟', style: TextStyle(color: AppColors.textSecondary)),
+          title:  Text(LanguageService.trCategory('حذف الإعلان'), style: TextStyle(color: AppColors.textPrimary)),
+          content:  Text(LanguageService.trCategory('هل أنت متأكد من حذف الإعلان المبلغ عنه نهائياً؟'), style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary)),
+              child:  Text(LanguageService.trCategory('إلغاء'), style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('حذف', style: TextStyle(color: AppColors.textPrimary)),
+              child:  Text(LanguageService.trCategory('حذف'), style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -187,7 +187,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _reports.isEmpty
                 ?  Center(
-                    child: Text('لا توجد بلاغات حالياً.', style: TextStyle(color: AppColors.textSecondary)),
+                    child: Text(LanguageService.trCategory('لا توجد بلاغات حالياً.'), style: TextStyle(color: AppColors.textSecondary)),
                   )
                 : ListView.builder(
                     padding: const EdgeInsets.all(16),
@@ -209,7 +209,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                               children: [
                                 const Icon(Icons.report_problem, color: Colors.redAccent),
                                 const SizedBox(width: 8),
-                                 Text('بلاغ جديد',
+                                 Text(LanguageService.trCategory('بلاغ جديد'),
                                     style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
                               ],
                             ),
@@ -232,11 +232,11 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                                   ),
                                   onPressed: () => _viewAd(r['productId']),
                                   icon: const Icon(Icons.visibility, color: AppColors.accent, size: 18),
-                                  label: const Text('عرض الإعلان', style: TextStyle(color: AppColors.accent)),
+                                  label: Text(LanguageService.trCategory('عرض الإعلان'), style: TextStyle(color: AppColors.accent)),
                                 ),
                                 TextButton(
                                   onPressed: () => _dismissReport(r['id']),
-                                  child:  Text('تجاهل', style: TextStyle(color: AppColors.textSecondary)),
+                                  child:  Text(LanguageService.trCategory('تجاهل'), style: TextStyle(color: AppColors.textSecondary)),
                                 ),
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(
@@ -245,7 +245,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
                                   ),
                                   onPressed: () => _deleteItemAndReport(r['productId'], r['id']),
                                   icon:  Icon(Icons.delete, color: AppColors.textPrimary, size: 18),
-                                  label:  Text('حذف', style: TextStyle(color: AppColors.textPrimary)),
+                                  label:  Text(LanguageService.trCategory('حذف'), style: TextStyle(color: AppColors.textPrimary)),
                                 ),
                               ],
                             ),

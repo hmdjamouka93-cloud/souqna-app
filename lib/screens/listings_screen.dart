@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -150,7 +152,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                   Text('الفلترة بالسعر',
+                   Text(LanguageService.trCategory('الفلترة بالسعر'),
                       style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 18,
@@ -177,7 +179,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                       Navigator.pop(ctx);
                       _applyFilters();
                     },
-                    child:  Text('تطبيق الفلترة',
+                    child:  Text(LanguageService.trCategory('تطبيق الفلترة'),
                         style: TextStyle(
                             color: AppColors.textPrimary,
                             fontSize: 16,
@@ -258,7 +260,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
           const SizedBox(height: 16),
            Expanded(
             child: Center(
-              child: Text('لا توجد إعلانات',
+              child: Text(LanguageService.trCategory('لا توجد إعلانات'),
                   style: TextStyle(color: AppColors.textPrimary, fontSize: 16)),
             ),
           ),
@@ -285,7 +287,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   child: Row(
                     children: [
                       ChoiceChip(
-                        label: const Text('الأحدث',
+                        label: Text(LanguageService.trCategory('الأحدث'),
                             style: TextStyle(fontSize: 12)),
                         selected: _sortBy == 'newest',
                         selectedColor: AppColors.accent,
@@ -300,7 +302,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                       ),
                       const SizedBox(width: 8),
                       ChoiceChip(
-                        label: const Text('الأرخص',
+                        label: Text(LanguageService.trCategory('الأرخص'),
                             style: TextStyle(fontSize: 12)),
                         selected: _sortBy == 'price_asc',
                         selectedColor: AppColors.accent,
@@ -315,7 +317,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                       ),
                       const SizedBox(width: 8),
                       ChoiceChip(
-                        label: const Text('الأغلى',
+                        label: Text(LanguageService.trCategory('الأغلى'),
                             style: TextStyle(fontSize: 12)),
                         selected: _sortBy == 'price_desc',
                         selectedColor: AppColors.accent,

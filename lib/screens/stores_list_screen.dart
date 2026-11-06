@@ -111,11 +111,11 @@ class _StoresListScreenState extends State<StoresListScreen> {
                               Icon(Icons.storefront_outlined,
                                   size: 80, color: AppColors.iconInactive),
                               SizedBox(height: 16),
-                              Text('لا توجد متاجر بعد',
+                              Text(LanguageService.trCategory('لا توجد متاجر بعد'),
                                   style: TextStyle(
                                       color: AppColors.textPrimary, fontSize: 16)),
                               SizedBox(height: 8),
-                              Text('كن أول من يفتح متجر!',
+                              Text(LanguageService.trCategory('كن أول من يفتح متجر!'),
                                   style: TextStyle(
                                       color: AppColors.textSecondary,
                                       fontSize: 13)),

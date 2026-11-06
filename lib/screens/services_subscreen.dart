@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -89,7 +91,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                     padding: EdgeInsets.only(top: 16, right: 16, left: 16),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Text('الأقسام الفرعية', style: TextStyle(color: AppColors.textPrimary,
+                      child: Text(LanguageService.trCategory('الأقسام الفرعية'), style: TextStyle(color: AppColors.textPrimary,
                               fontSize: 16,
                               fontWeight: FontWeight.bold)),
                     ),

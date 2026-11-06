@@ -60,7 +60,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('الإشعارات', style: TextStyle(color: AppColors.textPrimary)),
+        title: Text(LanguageService.trCategory('الإشعارات'), style: TextStyle(color: AppColors.textPrimary)),
         backgroundColor: AppColors.card,
         iconTheme: IconThemeData(color: AppColors.textPrimary),
         actions: [
@@ -70,7 +70,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 await FirestoreNotificationService.markAllAsRead();
                 _load();
               },
-              child: Text('تحديد الكل كمقروء', style: TextStyle(color: AppColors.accent)),
+              child: Text(LanguageService.trCategory('تحديد الكل كمقروء'), style: TextStyle(color: AppColors.accent)),
             ),
         ],
       ),

@@ -370,13 +370,13 @@ class _AddListingScreenState extends State<AddListingScreen> {
                     width: 1.5,
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.add_a_photo_outlined,
                         color: AppColors.accent, size: 28),
                     SizedBox(height: 6),
-                    Text('إضافة صورة',
+                    Text(LanguageService.trCategory('إضافة صورة'),
                         style: TextStyle(
                             color: AppColors.accent, fontSize: 11)),
                   ],

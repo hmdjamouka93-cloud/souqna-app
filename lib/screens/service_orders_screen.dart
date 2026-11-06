@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../services/service_order_service.dart';
 
@@ -69,7 +71,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _orders.isEmpty
                 ?  Center(
-                    child: Text('لا توجد طلبات بعد',
+                    child: Text(LanguageService.trCategory('لا توجد طلبات بعد'),
                         style: TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
                 : RefreshIndicator(
@@ -134,7 +136,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
                     onPressed: () => _setStatus(o['id'], 'accepted'),
-                    child:  Text('قبول', style: TextStyle(color: AppColors.textPrimary)),
+                    child:  Text(LanguageService.trCategory('قبول'), style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -142,7 +144,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     onPressed: () => _setStatus(o['id'], 'rejected'),
-                    child:  Text('رفض', style: TextStyle(color: AppColors.textPrimary)),
+                    child:  Text(LanguageService.trCategory('رفض'), style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
               ],
@@ -153,7 +155,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () => _setStatus(o['id'], 'completed'),
-                child:  Text('تم الإنجاز', style: TextStyle(color: AppColors.textPrimary)),
+                child:  Text(LanguageService.trCategory('تم الإنجاز'), style: TextStyle(color: AppColors.textPrimary)),
               ),
             ),
         ],

@@ -169,7 +169,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               children: [
                 Icon(Icons.check_circle, color: Colors.green, size: 28),
                 SizedBox(width: 8),
-                Text('تم إرسال الطلب',
+                Text(LanguageService.trCategory('تم إرسال الطلب'),
                     style: TextStyle(
                         color: AppColors.textPrimary,
                         fontWeight: FontWeight.bold)),
@@ -188,7 +188,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Navigator.pop(ctx);
                   Navigator.pop(context);
                 },
-                child:  Text('حسناً',
+                child:  Text(LanguageService.trCategory('حسناً'),
                     style: TextStyle(color: AppColors.textPrimary)),
               ),
             ],
@@ -288,7 +288,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title:  Text('الإبلاغ عن المنتج',
+          title:  Text(LanguageService.trCategory('الإبلاغ عن المنتج'),
               style: TextStyle(color: AppColors.textPrimary)),
           content: TextField(
             controller: reasonCtrl,
@@ -306,13 +306,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child:  Text('إلغاء',
+              child:  Text(LanguageService.trCategory('إلغاء'),
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('إبلاغ',
+              child:  Text(LanguageService.trCategory('إبلاغ'),
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
@@ -348,7 +348,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title:  Text('تفاصيل المنتج',
+          title:  Text(LanguageService.trCategory('تفاصيل المنتج'),
               style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 16,
@@ -376,7 +376,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       const SizedBox(height: 12),
                        Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text('معلومات الطلب',
+                        child: Text(LanguageService.trCategory('معلومات الطلب'),
                             style: TextStyle(
                                 color: AppColors.textPrimary,
                                 fontSize: 16,
@@ -490,7 +490,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text('اللون',
+           Text(LanguageService.trCategory('اللون'),
               style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 15,
@@ -537,7 +537,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text('المقاس',
+           Text(LanguageService.trCategory('المقاس'),
               style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 15,
@@ -584,7 +584,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Row(
         children: [
-           Text('الكمية:',
+           Text(LanguageService.trCategory('الكمية:'),
               style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 15,
@@ -693,7 +693,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         child: DropdownButton<String>(
           isExpanded: true,
           value: _wilayaCode,
-          hint:  Text('اختر الولاية',
+          hint:  Text(LanguageService.trCategory('اختر الولاية'),
               style: TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),

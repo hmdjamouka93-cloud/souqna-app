@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../services/auth_service.dart';
@@ -36,7 +38,7 @@ class ChatsListScreen extends StatelessWidget {
 
             if (snapshot.hasError) {
               return  Center(
-                child: Text('حدث خطأ أثناء تحميل الرسائل',
+                child: Text(LanguageService.trCategory('حدث خطأ أثناء تحميل الرسائل'),
                     style: TextStyle(color: AppColors.textSecondary)),
               );
             }
@@ -48,7 +50,7 @@ class ChatsListScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.chat_bubble_outline, size: 60, color: AppColors.textSecondary),
                     SizedBox(height: 16),
-                    Text('لا توجد رسائل بعد',
+                    Text(LanguageService.trCategory('لا توجد رسائل بعد'),
                         style: TextStyle(color: AppColors.textSecondary, fontSize: 16)),
                   ],
                 ),

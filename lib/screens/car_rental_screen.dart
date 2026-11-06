@@ -91,7 +91,7 @@ class CarRentalScreen extends StatelessWidget {
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title:  Text('تأجير السيارات',
+      title:  Text(LanguageService.trCategory('تأجير السيارات'),
         style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
       actions: [
         IconButton(
@@ -149,10 +149,10 @@ class CarRentalScreen extends StatelessWidget {
                 color: AppColors.textPrimary,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('جميع سيارات التأجير',
+                  Text(LanguageService.trCategory('جميع سيارات التأجير'),
                     style: TextStyle(color: AppColors.accent, fontSize: 14,
                       fontWeight: FontWeight.bold)),
                   SizedBox(width: 8),

@@ -221,7 +221,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                     }
                     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                       return  Center(
-                        child: Text('لا يوجد مستخدمون محظورون حالياً.',
+                        child: Text(LanguageService.trCategory('لا يوجد مستخدمون محظورون حالياً.'),
                             style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
                       );
                     }
@@ -247,7 +247,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                                 style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                             trailing: TextButton(
                               onPressed: () => _toggleBlock(id, true),
-                              child: const Text('إلغاء الحظر', style: TextStyle(color: Colors.green)),
+                              child: Text(LanguageService.trCategory('إلغاء الحظر'), style: TextStyle(color: Colors.green)),
                             ),
                           ),
                         );

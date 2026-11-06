@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/service_listing_service.dart';
@@ -112,7 +114,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                             children: [
                               Icon(Icons.add_photo_alternate, color: AppColors.textSecondary, size: 40),
                               SizedBox(height: 8),
-                              Text('أضف صورة الخدمة', style: TextStyle(color: AppColors.textSecondary)),
+                              Text(LanguageService.trCategory('أضف صورة الخدمة'), style: TextStyle(color: AppColors.textSecondary)),
                             ],
                           ),
                         )
@@ -157,7 +159,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                   ),
                   child: _loading
                       ?  SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
-                      :  Text('إضافة الخدمة', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+                      :  Text(LanguageService.trCategory('إضافة الخدمة'), style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],

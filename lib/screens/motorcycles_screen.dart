@@ -187,13 +187,13 @@ class MotorcyclesScreen extends StatelessWidget {
             color: AppColors.card,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Center(
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.more_horiz, color: AppColors.accent, size: 32),
                 SizedBox(height: 6),
-                Text('دراجات أخرى',
+                Text(LanguageService.trCategory('دراجات أخرى'),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: AppColors.accent, fontSize: 12,
                     fontWeight: FontWeight.bold)),

@@ -119,7 +119,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
         icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
-      title:  Text('تفاصيل التأجير',
+      title:  Text(LanguageService.trCategory('تفاصيل التأجير'),
         style: TextStyle(color: AppColors.textPrimary, fontSize: 16,
           fontWeight: FontWeight.bold)),
       actions: [
@@ -204,7 +204,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text('أسعار التأجير',
+           Text(LanguageService.trCategory('أسعار التأجير'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 14,
               fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
@@ -300,7 +300,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text('الوصف',
+           Text(LanguageService.trCategory('الوصف'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 15,
               fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),

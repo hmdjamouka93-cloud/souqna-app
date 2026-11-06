@@ -70,20 +70,20 @@ class _CommentsSectionState extends State<CommentsSection> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title:  Text('حذف التعليق',
+          title:  Text(LanguageService.trCategory('حذف التعليق'),
               style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
-          content:  Text('هل أنت متأكد؟',
+          content:  Text(LanguageService.trCategory('هل أنت متأكد؟'),
               style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child:  Text('إلغاء',
+              child:  Text(LanguageService.trCategory('إلغاء'),
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('حذف',
+              child:  Text(LanguageService.trCategory('حذف'),
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
@@ -113,7 +113,7 @@ class _CommentsSectionState extends State<CommentsSection> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title:  Text('تعديل التعليق',
+          title:  Text(LanguageService.trCategory('تعديل التعليق'),
               style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
           content: TextField(
             controller: ctrl,
@@ -127,13 +127,13 @@ class _CommentsSectionState extends State<CommentsSection> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child:  Text('إلغاء',
+              child:  Text(LanguageService.trCategory('إلغاء'),
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
               onPressed: () => Navigator.pop(ctx, ctrl.text.trim()),
-              child:  Text('حفظ',
+              child:  Text(LanguageService.trCategory('حفظ'),
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
@@ -168,7 +168,7 @@ class _CommentsSectionState extends State<CommentsSection> {
         children: [
            Padding(
             padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-            child: Text('التعليقات',
+            child: Text(LanguageService.trCategory('التعليقات'),
                 style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 15,
@@ -210,7 +210,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                             height: 16,
                             child: CircularProgressIndicator(
                                 color: AppColors.textPrimary, strokeWidth: 2))
-                        :  Text('إرسال',
+                        :  Text(LanguageService.trCategory('إرسال'),
                             style: TextStyle(
                                 color: AppColors.textPrimary, fontSize: 13)),
                   ),
@@ -239,7 +239,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                 return  Padding(
                   padding: EdgeInsets.all(16),
                   child: Center(
-                    child: Text('لا توجد تعليقات',
+                    child: Text(LanguageService.trCategory('لا توجد تعليقات'),
                         style: TextStyle(color: AppColors.textSecondary)),
                   ),
                 );

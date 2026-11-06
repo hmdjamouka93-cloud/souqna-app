@@ -83,7 +83,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
         child: StatefulBuilder(
           builder: (ctx, setD) => AlertDialog(
             backgroundColor: AppColors.card,
-            title:  Text('قيّم المتجر',
+            title:  Text(LanguageService.trCategory('قيّم المتجر'),
                 style: TextStyle(color: AppColors.textPrimary)),
             content: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -102,14 +102,14 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx),
-                child:  Text('إلغاء',
+                child:  Text(LanguageService.trCategory('إلغاء'),
                     style: TextStyle(color: AppColors.textSecondary)),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.accent),
                 onPressed: () => Navigator.pop(ctx, temp),
-                child:  Text('إرسال',
+                child:  Text(LanguageService.trCategory('إرسال'),
                     style: TextStyle(color: AppColors.textPrimary)),
               ),
             ],
@@ -171,7 +171,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title:  Text('حذف المتجر',
+          title:  Text(LanguageService.trCategory('حذف المتجر'),
               style: TextStyle(color: AppColors.textPrimary)),
           content:  Text(
             'هل أنت متأكد من حذف متجرك؟\n\n'
@@ -182,13 +182,13 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child:  Text('إلغاء',
+              child:  Text(LanguageService.trCategory('إلغاء'),
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('حذف',
+              child:  Text(LanguageService.trCategory('حذف'),
                   style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
@@ -244,7 +244,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                   if (r == true) setState(() {});
                 },
                 icon:  Icon(Icons.add, color: AppColors.textPrimary),
-                label:  Text('أضف منتج',
+                label:  Text(LanguageService.trCategory('أضف منتج'),
                     style: TextStyle(color: AppColors.textPrimary)),
               )
             : null,
@@ -333,7 +333,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                             textDirection: TextDirection.rtl,
                             child: AlertDialog(
                               backgroundColor: AppColors.card,
-                              title:  Text('الإبلاغ عن المتجر', style: TextStyle(color: AppColors.textPrimary)),
+                              title:  Text(LanguageService.trCategory('الإبلاغ عن المتجر'), style: TextStyle(color: AppColors.textPrimary)),
                               content: TextField(
                                 controller: reasonCtrl,
                                 maxLines: 3,
@@ -346,11 +346,11 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 ),
                               ),
                               actions: [
-                                TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+                                TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text(LanguageService.trCategory('إلغاء'), style: TextStyle(color: AppColors.textSecondary))),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                                   onPressed: () => Navigator.pop(ctx, true),
-                                  child:  Text('إبلاغ', style: TextStyle(color: AppColors.textPrimary)),
+                                  child:  Text(LanguageService.trCategory('إبلاغ'), style: TextStyle(color: AppColors.textPrimary)),
                                 ),
                               ],
                             ),
@@ -373,7 +373,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                             textDirection: TextDirection.rtl,
                             child: AlertDialog(
                               backgroundColor: AppColors.card,
-                              title:  Text('حظر المتجر',
+                              title:  Text(LanguageService.trCategory('حظر المتجر'),
                                   style: TextStyle(color: AppColors.textPrimary)),
                               content:  Text(
                                   'هل أنت متأكد من حظر هذا المتجر؟',
@@ -381,7 +381,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(ctx),
-                                  child:  Text('إلغاء',
+                                  child:  Text(LanguageService.trCategory('إلغاء'),
                                       style: TextStyle(
                                           color: AppColors.textSecondary)),
                                 ),
@@ -401,7 +401,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                     }
                                   }
                                 },
-                                  child:  Text('حظر',
+                                  child:  Text(LanguageService.trCategory('حظر'),
                                       style: TextStyle(color: AppColors.textPrimary)),
                                 ),
                               ],
@@ -418,17 +418,17 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                     itemBuilder: (_) =>  [
                       PopupMenuItem(
                         value: 'report',
-                        child: Text('إبلاغ',
+                        child: Text(LanguageService.trCategory('إبلاغ'),
                             style: TextStyle(color: AppColors.textPrimary)),
                       ),
                       PopupMenuItem(
                         value: 'block',
-                        child: Text('حظر',
+                        child: Text(LanguageService.trCategory('حظر'),
                             style: TextStyle(color: AppColors.textPrimary)),
                       ),
                       PopupMenuItem(
                         value: 'share',
-                        child: Text('نشر المتجر',
+                        child: Text(LanguageService.trCategory('نشر المتجر'),
                             style: TextStyle(color: AppColors.textPrimary)),
                       ),
                     ],
@@ -544,7 +544,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 2),
-                                 Text('منتج',
+                                 Text(LanguageService.trCategory('منتج'),
                                     style: TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 11)),
@@ -618,7 +618,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
              SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16, 20, 16, 12),
-                child: Text('المنتجات',
+                child: Text(LanguageService.trCategory('المنتجات'),
                     style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 17,
@@ -646,7 +646,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                         Icon(Icons.inventory_2_outlined,
                             size: 60, color: AppColors.iconInactive),
                         SizedBox(height: 12),
-                        Text('لا توجد منتجات بعد',
+                        Text(LanguageService.trCategory('لا توجد منتجات بعد'),
                             style: TextStyle(
                                 color: AppColors.textPrimary, fontSize: 15)),
                       ],
@@ -745,11 +745,11 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                 textDirection: TextDirection.rtl,
                                 child: AlertDialog(
                                   backgroundColor: AppColors.card,
-                                  title:  Text('حذف المنتج', style: TextStyle(color: AppColors.textPrimary)),
-                                  content:  Text('هل أنت متأكد من حذف هذا المنتج؟', style: TextStyle(color: AppColors.textSecondary)),
+                                  title:  Text(LanguageService.trCategory('حذف المنتج'), style: TextStyle(color: AppColors.textPrimary)),
+                                  content:  Text(LanguageService.trCategory('هل أنت متأكد من حذف هذا المنتج؟'), style: TextStyle(color: AppColors.textSecondary)),
                                   actions: [
-                                    TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
-                                    ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.red), onPressed: () => Navigator.pop(ctx, true), child:  Text('حذف', style: TextStyle(color: AppColors.textPrimary))),
+                                    TextButton(onPressed: () => Navigator.pop(ctx, false), child:  Text(LanguageService.trCategory('إلغاء'), style: TextStyle(color: AppColors.textSecondary))),
+                                    ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.red), onPressed: () => Navigator.pop(ctx, true), child:  Text(LanguageService.trCategory('حذف'), style: TextStyle(color: AppColors.textPrimary))),
                                   ],
                                 ),
                               ),

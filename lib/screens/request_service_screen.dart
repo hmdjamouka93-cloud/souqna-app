@@ -93,7 +93,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               children: [
                 Icon(Icons.check_circle, color: Colors.green, size: 28),
                 SizedBox(width: 8),
-                Text('تم إرسال الطلب', style: TextStyle(color: AppColors.textPrimary)),
+                Text(LanguageService.trCategory('تم إرسال الطلب'), style: TextStyle(color: AppColors.textPrimary)),
               ],
             ),
             content:  Text(
@@ -106,7 +106,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                   Navigator.pop(ctx);
                   Navigator.pop(context); // نرجعو لصفحة الخدمة
                 },
-                child: const Text('حسناً', style: TextStyle(color: AppColors.accent, fontWeight: FontWeight.bold)),
+                child: Text(LanguageService.trCategory('حسناً'), style: TextStyle(color: AppColors.accent, fontWeight: FontWeight.bold)),
               ),
             ],
           ),
@@ -203,7 +203,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: _wilayaCode,
-                        hint:  Text('اختر الولاية', style: TextStyle(color: AppColors.textSecondary)),
+                        hint:  Text(LanguageService.trCategory('اختر الولاية'), style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
                         style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
@@ -241,7 +241,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                       child: DropdownButton<String>(
                         isExpanded: true,
                         value: _dairaName,
-                        hint:  Text('اختر الدائرة', style: TextStyle(color: AppColors.textSecondary)),
+                        hint:  Text(LanguageService.trCategory('اختر الدائرة'), style: TextStyle(color: AppColors.textSecondary)),
                         dropdownColor: AppColors.card,
                         style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),

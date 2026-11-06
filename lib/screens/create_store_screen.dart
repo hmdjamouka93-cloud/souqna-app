@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import '../services/store_service.dart';
@@ -303,14 +305,14 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
             ? Image.file(_newCover!, fit: BoxFit.cover)
             : (_existingCover.isNotEmpty
                 ? CachedNetworkImage(imageUrl: _existingCover, fit: BoxFit.cover)
-                : const Center(
+                : Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.add_photo_alternate_outlined,
                             color: AppColors.accent, size: 32),
                         SizedBox(height: 6),
-                        Text('اضغط لاختيار غلاف',
+                        Text(LanguageService.trCategory('اضغط لاختيار غلاف'),
                             style: TextStyle(
                                 color: AppColors.accent, fontSize: 12)),
                       ],
@@ -356,7 +358,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
         child: DropdownButton<String>(
           isExpanded: true,
           value: _wilayaCode,
-          hint:  Text('اختر الولاية',
+          hint:  Text(LanguageService.trCategory('اختر الولاية'),
               style: TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),

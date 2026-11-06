@@ -239,7 +239,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListTile(
-                    title: Text('العربية', style: TextStyle(color: AppColors.textPrimary)),
+                    title: Text(LanguageService.trCategory('العربية'), style: TextStyle(color: AppColors.textPrimary)),
                     trailing: LanguageService.currentLocale.value.languageCode == 'ar' ? Icon(Icons.check, color: AppColors.accent) : null,
                     onTap: () {
                       LanguageService.changeLanguage('ar');
@@ -277,12 +277,12 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
             textDirection: TextDirection.rtl,
             child: AlertDialog(
               backgroundColor: AppColors.card,
-              title: Text('اختر الوضع', style: TextStyle(color: AppColors.textPrimary)),
+              title: Text(LanguageService.trCategory('اختر الوضع'), style: TextStyle(color: AppColors.textPrimary)),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   RadioListTile<bool>(
-                    title: Text('الوضع الداكن', style: TextStyle(color: AppColors.textPrimary)),
+                    title: Text(LanguageService.trCategory('الوضع الداكن'), style: TextStyle(color: AppColors.textPrimary)),
                     value: true,
                     groupValue: isDark,
                     activeColor: AppColors.accent,
@@ -292,7 +292,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
                     },
                   ),
                   RadioListTile<bool>(
-                    title: Text('الوضع الفاتح (بيج)', style: TextStyle(color: AppColors.textPrimary)),
+                    title: Text(LanguageService.trCategory('الوضع الفاتح (بيج)'), style: TextStyle(color: AppColors.textPrimary)),
                     value: false,
                     groupValue: isDark,
                     activeColor: AppColors.accent,

@@ -95,7 +95,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
         child: StatefulBuilder(
           builder: (ctx, setD) => AlertDialog(
             backgroundColor: AppColors.card,
-            title:  Text('قيّم مقدم الخدمة', style: TextStyle(color: AppColors.textPrimary)),
+            title:  Text(LanguageService.trCategory('قيّم مقدم الخدمة'), style: TextStyle(color: AppColors.textPrimary)),
             content: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(5, (i) {
@@ -107,11 +107,11 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
               }),
             ),
             actions: [
-              TextButton(onPressed: () => Navigator.pop(ctx), child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary))),
+              TextButton(onPressed: () => Navigator.pop(ctx), child:  Text(LanguageService.trCategory('إلغاء'), style: TextStyle(color: AppColors.textSecondary))),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: AppColors.accent),
                 onPressed: () => Navigator.pop(ctx, temp),
-                child:  Text('إرسال', style: TextStyle(color: AppColors.textPrimary)),
+                child:  Text(LanguageService.trCategory('إرسال'), style: TextStyle(color: AppColors.textPrimary)),
               ),
             ],
           ),
@@ -267,17 +267,17 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
         textDirection: TextDirection.rtl,
         child: AlertDialog(
           backgroundColor: AppColors.card,
-          title:  Text('حذف البروفايل', style: TextStyle(color: AppColors.textPrimary)),
-          content:  Text('هل أنت متأكد من حذف بروفايل الخدمات نهائياً؟', style: TextStyle(color: AppColors.textSecondary)),
+          title:  Text(LanguageService.trCategory('حذف البروفايل'), style: TextStyle(color: AppColors.textPrimary)),
+          content:  Text(LanguageService.trCategory('هل أنت متأكد من حذف بروفايل الخدمات نهائياً؟'), style: TextStyle(color: AppColors.textSecondary)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx, false),
-              child:  Text('إلغاء', style: TextStyle(color: AppColors.textSecondary)),
+              child:  Text(LanguageService.trCategory('إلغاء'), style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('حذف', style: TextStyle(color: AppColors.textPrimary)),
+              child:  Text(LanguageService.trCategory('حذف'), style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
@@ -319,7 +319,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                   if (r == true) _loadServices();
                 },
                 icon:  Icon(Icons.add, color: AppColors.textPrimary),
-                label:  Text('أضف خدمة', style: TextStyle(color: AppColors.textPrimary)),
+                label:  Text(LanguageService.trCategory('أضف خدمة'), style: TextStyle(color: AppColors.textPrimary)),
               )
             : null,
         body: CustomScrollView(
@@ -462,7 +462,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                               ),
                               onPressed: _call,
                               icon:  Icon(Icons.phone, color: AppColors.textPrimary),
-                              label:  Text('اتصال', style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+                              label:  Text(LanguageService.trCategory('اتصال'), style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                             ),
                           ),
                         ),
@@ -478,7 +478,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                 ),
                                 onPressed: _openChat,
                                 icon: const Icon(Icons.chat_bubble_outline, color: AppColors.accent),
-                                label: const Text('دردشة', style: TextStyle(color: AppColors.accent, fontSize: 16, fontWeight: FontWeight.bold)),
+                                label: Text(LanguageService.trCategory('دردشة'), style: TextStyle(color: AppColors.accent, fontSize: 16, fontWeight: FontWeight.bold)),
                               ),
                             ),
                           ),
@@ -492,7 +492,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child:  Text('الخدمات المقدمة',
+                child:  Text(LanguageService.trCategory('الخدمات المقدمة'),
                     style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 16,
@@ -507,7 +507,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
             else if (_services.isEmpty)
                SliverToBoxAdapter(
                   child: Center(
-                      child: Text('لا توجد خدمات مضافة',
+                      child: Text(LanguageService.trCategory('لا توجد خدمات مضافة'),
                           style: TextStyle(color: AppColors.textSecondary))))
             else
               SliverPadding(

@@ -136,13 +136,13 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('أنت صاحب معرض؟',
+                        Text(LanguageService.trCategory('أنت صاحب معرض؟'),
                             style: TextStyle(
                                 color: AppColors.textPrimary,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(height: 3),
-                        Text('أنشئ معرضك واعرض سياراتك',
+                        Text(LanguageService.trCategory('أنشئ معرضك واعرض سياراتك'),
                             style: TextStyle(
                                 color: AppColors.textPrimary, fontSize: 12)),
                       ],
@@ -164,11 +164,11 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
                     Icon(Icons.storefront_outlined,
                         size: 80, color: AppColors.iconInactive),
                     SizedBox(height: 16),
-                    Text('لا توجد معارض بعد',
+                    Text(LanguageService.trCategory('لا توجد معارض بعد'),
                         style:
                             TextStyle(color: AppColors.textPrimary, fontSize: 16)),
                     SizedBox(height: 8),
-                    Text('كن أول صاحب معرض!',
+                    Text(LanguageService.trCategory('كن أول صاحب معرض!'),
                         style: TextStyle(
                             color: AppColors.textSecondary, fontSize: 13)),
                   ],

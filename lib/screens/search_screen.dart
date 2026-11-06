@@ -106,7 +106,7 @@ class _SearchScreenState extends State<SearchScreen> {
         body: _loading
             ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
             : _filteredItems.isEmpty
-                ?  Center(child: Text('لا توجد نتائج مطابقة', style: TextStyle(color: AppColors.textSecondary)))
+                ?  Center(child: Text(LanguageService.trCategory('لا توجد نتائج مطابقة'), style: TextStyle(color: AppColors.textSecondary)))
                 : GridView.builder(
                     padding: const EdgeInsets.all(12),
                     itemCount: _filteredItems.length,

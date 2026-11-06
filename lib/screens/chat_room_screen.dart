@@ -90,7 +90,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
 
                   if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
                     return  Center(
-                      child: Text('لا توجد رسائل بعد، ابدأ المحادثة',
+                      child: Text(LanguageService.trCategory('لا توجد رسائل بعد، ابدأ المحادثة'),
                           style: TextStyle(color: AppColors.textSecondary)),
                     );
                   }

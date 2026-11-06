@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/language_service.dart';
+
 import '../main.dart';
 import '../services/order_service.dart';
 
@@ -75,7 +77,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 child: CircularProgressIndicator(color: AppColors.accent))
             : _orders.isEmpty
                 ?  Center(
-                    child: Text('لا توجد طلبات بعد',
+                    child: Text(LanguageService.trCategory('لا توجد طلبات بعد'),
                         style:
                             TextStyle(color: AppColors.textSecondary, fontSize: 15)),
                   )
@@ -183,7 +185,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green),
                     onPressed: () => _setStatus(o['id'], 'confirmed'),
-                    child:  Text('تأكيد',
+                    child:  Text(LanguageService.trCategory('تأكيد'),
                         style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
@@ -193,7 +195,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red),
                     onPressed: () => _setStatus(o['id'], 'rejected'),
-                    child:  Text('رفض',
+                    child:  Text(LanguageService.trCategory('رفض'),
                         style: TextStyle(color: AppColors.textPrimary)),
                   ),
                 ),
@@ -206,7 +208,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 style:
                     ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () => _setStatus(o['id'], 'delivered'),
-                child:  Text('تم التسليم',
+                child:  Text(LanguageService.trCategory('تم التسليم'),
                     style: TextStyle(color: AppColors.textPrimary)),
               ),
             ),
@@ -221,7 +223,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       textDirection: TextDirection.rtl,
                       child: AlertDialog(
                         backgroundColor: AppColors.card,
-                        title:  Text('حذف الطلب',
+                        title:  Text(LanguageService.trCategory('حذف الطلب'),
                             style: TextStyle(color: AppColors.textPrimary)),
                         content:  Text(
                             'هل أنت متأكد من حذف هذا الطلب نهائياً؟',
@@ -229,7 +231,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(ctx, false),
-                            child:  Text('إلغاء',
+                            child:  Text(LanguageService.trCategory('إلغاء'),
                                 style: TextStyle(
                                     color: AppColors.textSecondary)),
                           ),
@@ -237,7 +239,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red),
                             onPressed: () => Navigator.pop(ctx, true),
-                            child:  Text('حذف',
+                            child:  Text(LanguageService.trCategory('حذف'),
                                 style: TextStyle(color: AppColors.textPrimary)),
                           ),
                         ],
@@ -251,7 +253,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 },
                 icon: const Icon(Icons.delete_outline,
                     color: Colors.red, size: 18),
-                label: const Text('حذف الطلب',
+                label: Text(LanguageService.trCategory('حذف الطلب'),
                     style: TextStyle(color: Colors.red)),
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Colors.red),

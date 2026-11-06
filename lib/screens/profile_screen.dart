@@ -214,7 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
               onPressed: () => Navigator.pop(ctx, true),
-              child:  Text('خروج', style: TextStyle(color: AppColors.textPrimary)),
+              child:  Text(LanguageService.trCategory('خروج'), style: TextStyle(color: AppColors.textPrimary)),
             ),
           ],
         ),
