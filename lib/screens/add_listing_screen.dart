@@ -245,7 +245,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
               const SizedBox(height: 16),
 
               _label(LanguageService.tr('location')),
-              _textField(_locCtrl, 'المدينة أو الولاية...'),
+              _textField(_locCtrl, LanguageService.trCategory('المدينة أو الولاية...')),
               const SizedBox(height: 20),
 
               if (_error != null) ...[
