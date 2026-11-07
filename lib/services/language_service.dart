@@ -264,6 +264,20 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+
+    'طاولات': {'ar': 'طاولات', 'en': 'Tables', 'fr': 'Tables'},
+    'غرف نوم': {'ar': 'غرف نوم', 'en': 'Bedrooms', 'fr': 'Chambres à coucher'},
+    'الأرائك والكراسي': {'ar': 'الأرائك والكراسي', 'en': 'Sofas & Chairs', 'fr': 'Canapés et chaises'},
+    'ستائر': {'ar': 'ستائر', 'en': 'Curtains', 'fr': 'Rideaux'},
+    'الإضاءة': {'ar': 'الإضاءة', 'en': 'Lighting', 'fr': 'Éclairage'},
+    'منتجات الحمام': {'ar': 'منتجات الحمام', 'en': 'Bathroom products', 'fr': 'Produits de salle de bain'},
+    'سرير ومفرش': {'ar': 'سرير ومفرش', 'en': 'Bed & Mattress', 'fr': 'Lit et matelas'},
+    'الخزائن': {'ar': 'الخزائن', 'en': 'Cabinets', 'fr': 'Armoires'},
+    'السجاد والحصائر والمفروشات': {'ar': 'السجاد والحصائر والمفروشات', 'en': 'Carpets, Rugs & Furnishings', 'fr': 'Tapis et ameublement'},
+    'أدوات المطبخ': {'ar': 'أدوات المطبخ', 'en': 'Kitchen tools', 'fr': 'Ustensiles de cuisine'},
+    'اثاث المكاتب': {'ar': 'اثاث المكاتب', 'en': 'Office furniture', 'fr': 'Mobilier de bureau'},
+    'اثاث أخرى': {'ar': 'اثاث أخرى', 'en': 'Other furniture', 'fr': 'Autres meubles'},
+    'اثاث التلفزيون والألعاب': {'ar': 'اثاث التلفزيون والألعاب', 'en': 'TV & Games furniture', 'fr': 'Meubles TV et jeux'},
     'أدرار': {'ar': 'أدرار', 'en': 'Adrar', 'fr': 'Adrar'},
     'الشلف': {'ar': 'الشلف', 'en': 'Chlef', 'fr': 'Chlef'},
     'الأغواط': {'ar': 'الأغواط', 'en': 'Laghouat', 'fr': 'Laghouat'},
