@@ -242,7 +242,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
                   icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                   items: wilayas.map((w) => DropdownMenuItem<String>(
                     value: w['code'].toString(),
-                    child: Text('${w['name']} - ${w['code']}'),
+                    child: Text('${LanguageService.trCategory(w['name'])} - ${w['code']}'),
                   )).toList(),
                   onChanged: (v) {
                     if (v == null) return;
