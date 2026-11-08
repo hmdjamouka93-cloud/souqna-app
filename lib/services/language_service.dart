@@ -265,6 +265,14 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'بينيللي': {'ar': 'بينيللي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'بينلي': {'ar': 'بينلي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'بنلي': {'ar': 'بنلي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'بينالي': {'ar': 'بينالي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'بينيللي': {'ar': 'بينيللي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'BENELLI': {'ar': 'BENELLI', 'en': 'Benelli', 'fr': 'Benelli'},
+    'Benelli': {'ar': 'Benelli', 'en': 'Benelli', 'fr': 'Benelli'},
+
     'سكوتر كهربائي': {'ar': 'سكوتر كهربائي', 'en': 'Electric Scooter', 'fr': 'Trottinette électrique'},
     'دراجات هوائية': {'ar': 'دراجات هوائية', 'en': 'Bicycles', 'fr': 'Vélos'},
 
