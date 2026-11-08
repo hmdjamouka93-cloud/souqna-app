@@ -1084,7 +1084,15 @@ class LanguageService {
 
     final cleanName = sanitize(name);
 
-    // نقلبو في القاموس بالكلمة النظيفة
+    // 1. Hardcoded fallback for problematic strings
+    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) {
+        return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
+    }
+    if (cleanName.contains('بينلي') || cleanName.contains('بينيللي') || cleanName.contains('بنلي')) {
+        return 'Benelli';
+    }
+
+    // 2. Lookup in dictionary
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
