@@ -265,6 +265,23 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'أبويليا': {'ar': 'أبويليا', 'en': 'Aprilia', 'fr': 'Aprilia'},
+    'فيسبا': {'ar': 'فيسبا', 'en': 'Vespa', 'fr': 'Vespa'},
+    'هوندا': {'ar': 'هوندا', 'en': 'Honda', 'fr': 'Honda'},
+    'ياماها': {'ar': 'ياماها', 'en': 'Yamaha', 'fr': 'Yamaha'},
+    'دوكاتي': {'ar': 'دوكاتي', 'en': 'Ducati', 'fr': 'Ducati'},
+    'بياجيو': {'ar': 'بياجيو', 'en': 'Piaggio', 'fr': 'Piaggio'},
+    'كاواساكي': {'ar': 'كاواساكي', 'en': 'Kawasaki', 'fr': 'Kawasaki'},
+    'MV أجوستا': {'ar': 'MV أجوستا', 'en': 'MV Agusta', 'fr': 'MV Agusta'},
+    'رويال إنفيلد': {'ar': 'رويال إنفيلد', 'en': 'Royal Enfield', 'fr': 'Royal Enfield'},
+    'بينيللي': {'ar': 'بينيللي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'رياضية': {'ar': 'رياضية', 'en': 'Sport', 'fr': 'Sportive'},
+    'كلاسيكية': {'ar': 'كلاسيكية', 'en': 'Classic', 'fr': 'Classique'},
+    'طرقية': {'ar': 'طرقية', 'en': 'Off-road', 'fr': 'Tout-terrain'},
+    'سكوتر': {'ar': 'سكوتر', 'en': 'Scooter', 'fr': 'Scooter'},
+    'ربع (Quad)': {'ar': 'ربع (Quad)', 'en': 'Quad', 'fr': 'Quad'},
+    'اختر سعة المحرك': {'ar': 'اختر سعة المحرك', 'en': 'Choose engine capacity', 'fr': 'Choisir la cylindrée'},
+
     'إيفيكو': {'ar': 'إيفيكو', 'en': 'Iveco', 'fr': 'Iveco'},
     'ايفيكو': {'ar': 'ايفيكو', 'en': 'Iveco', 'fr': 'Iveco'},
     'سكانيا': {'ar': 'سكانيا', 'en': 'Scania', 'fr': 'Scania'},
