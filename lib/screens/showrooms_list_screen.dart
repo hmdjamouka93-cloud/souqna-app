@@ -71,7 +71,7 @@ class _ShowroomsListScreenState extends State<ShowroomsListScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'معارض السيارات',
+            LanguageService.trCategory('معارض السيارات'),
             style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,

@@ -80,7 +80,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
     if (name.isEmpty) {
       setState(() => _error = widget.type == 'rental'
           ? 'اكتب اسم الوكالة'
-          : 'اكتب اسم المعرض');
+          : LanguageService.trCategory('اكتب اسم المعرض'));
       return;
     }
     if (loc.isEmpty) {
@@ -148,7 +148,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
           title: Text(
             _isEdit
                 ? (widget.type == 'rental' ? 'تعديل وكالة الإيجار' : 'تعديل المعرض')
-                : (widget.type == 'rental' ? 'إنشاء وكالة إيجار' : 'إنشاء معرض'),
+                : (widget.type == 'rental' ? 'إنشاء وكالة إيجار' : LanguageService.trCategory('إنشاء معرض')),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
@@ -189,24 +189,24 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
               const SizedBox(height: 10),
               Center(
                 child: Text(
-                  widget.type == 'rental' ? 'شعار الوكالة' : 'شعار المعرض',
+                  widget.type == 'rental' ? 'شعار الوكالة' : LanguageService.trCategory('شعار المعرض'),
                   style:  TextStyle(
                       color: AppColors.textSecondary, fontSize: 12),
                 ),
               ),
               const SizedBox(height: 24),
 
-              _label(widget.type == 'rental' ? 'اسم الوكالة' : 'اسم المعرض'),
+              _label(widget.type == 'rental' ? 'اسم الوكالة' : LanguageService.trCategory('اسم المعرض')),
               _field(_nameCtrl, widget.type == 'rental'
                   ? 'مثال: أس في موتورز'
-                  : 'مثال: معرض النخبة للسيارات'),
+                  : LanguageService.trCategory('مثال: معرض النخبة للسيارات')),
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('العنوان')),
-              _field(_locCtrl, 'مثال: وهران، حي المدينة'),
+              _field(_locCtrl, LanguageService.trCategory('مثال: وهران، حي المدينة')),
               const SizedBox(height: 16),
 
-              _label(LanguageService.trCategory('رقم الهاتف')),
+              _label(LanguageService.trCategory(LanguageService.trCategory('رقم الهاتف'))),
               _field(_phoneCtrl, '0555 12 34 56',
                   keyboard: TextInputType.phone, ltr: true),
 
@@ -247,7 +247,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
                               ? 'حفظ التعديل'
                               : (widget.type == 'rental'
                                   ? 'إنشاء الوكالة'
-                                  : 'إنشاء المعرض'),
+                                  : LanguageService.trCategory('إنشاء المعرض')),
                           style:  TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: 16,
