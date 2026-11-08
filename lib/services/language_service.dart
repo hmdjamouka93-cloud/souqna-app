@@ -1068,21 +1068,23 @@ class LanguageService {
     final lang = currentLocale.value.languageCode;
     if (lang == 'ar') return name;
 
+    // دالة تنظيف قوية: تحيد المسافات، الرموز المخفية، وتوحد الحروف العربية
     String sanitize(String input) {
       return input
           .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
           .replaceAll('\u00A0', ' ')
+          .replaceAll('أ', 'ا')
+          .replaceAll('إ', 'ا')
+          .replaceAll('آ', 'ا')
+          .replaceAll('ة', 'ه')
+          .replaceAll('ى', 'ي')
+          .replaceAll(RegExp(r'\s+'), '') // نحيّدو كل المسافات
           .trim();
     }
 
     final cleanName = sanitize(name);
 
-    // Check exact match first
-    if (_categoryTranslations[name]?[lang] != null) {
-        return _categoryTranslations[name]![lang]!;
-    }
-
-    // Check sanitized match
+    // نقلبو في القاموس بالكلمة النظيفة
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
