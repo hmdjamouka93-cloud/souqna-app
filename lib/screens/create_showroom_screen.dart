@@ -147,8 +147,8 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
           ),
           title: Text(
             _isEdit
-                ? (widget.type == 'rental' ? 'تعديل وكالة الإيجار' : 'تعديل المعرض')
-                : (widget.type == 'rental' ? 'إنشاء وكالة إيجار' : LanguageService.trCategory('إنشاء معرض')),
+                ? (widget.type == 'rental' ? LanguageService.trCategory('تعديل وكالة الإيجار') : LanguageService.trCategory('تعديل المعرض'))
+                : (widget.type == 'rental' ? LanguageService.trCategory('إنشاء وكالة إيجار') : LanguageService.trCategory('إنشاء معرض')),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
@@ -189,14 +189,14 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
               const SizedBox(height: 10),
               Center(
                 child: Text(
-                  widget.type == 'rental' ? 'شعار الوكالة' : LanguageService.trCategory('شعار المعرض'),
+                  widget.type == 'rental' ? LanguageService.trCategory('شعار الوكالة') : LanguageService.trCategory('شعار المعرض'),
                   style:  TextStyle(
                       color: AppColors.textSecondary, fontSize: 12),
                 ),
               ),
               const SizedBox(height: 24),
 
-              _label(widget.type == 'rental' ? 'اسم الوكالة' : LanguageService.trCategory('اسم المعرض')),
+              _label(widget.type == 'rental' ? LanguageService.trCategory('اسم الوكالة') : LanguageService.trCategory('اسم المعرض')),
               _field(_nameCtrl, widget.type == 'rental'
                   ? 'مثال: أس في موتورز'
                   : LanguageService.trCategory('مثال: معرض النخبة للسيارات')),
