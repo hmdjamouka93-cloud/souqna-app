@@ -265,6 +265,9 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'سكوتر كهربائي': {'ar': 'سكوتر كهربائي', 'en': 'Electric Scooter', 'fr': 'Trottinette électrique'},
+    'دراجات هوائية': {'ar': 'دراجات هوائية', 'en': 'Bicycles', 'fr': 'Vélos'},
+
     'يوتونغ': {'ar': 'يوتونغ', 'en': 'Yutong', 'fr': 'Yutong'},
     'هيغر': {'ar': 'هيغر', 'en': 'Higer', 'fr': 'Higer'},
     'غولدن دراغون': {'ar': 'غولدن دراغون', 'en': 'Golden Dragon', 'fr': 'Golden Dragon'},
