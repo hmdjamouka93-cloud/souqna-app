@@ -447,7 +447,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         child: DropdownButton<String>(
           isExpanded: true,
           value: val,
-          hint: Text(hint, style:  TextStyle(color: AppColors.textSecondary)),
+          hint: Text(LanguageService.trCategory(hint), style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary),
           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
