@@ -265,6 +265,15 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'يوتونغ': {'ar': 'يوتونغ', 'en': 'Yutong', 'fr': 'Yutong'},
+    'هيغر': {'ar': 'هيغر', 'en': 'Higer', 'fr': 'Higer'},
+    'غولدن دراغون': {'ar': 'غولدن دراغون', 'en': 'Golden Dragon', 'fr': 'Golden Dragon'},
+    'كينغ لونغ': {'ar': 'كينغ لونغ', 'en': 'King Long', 'fr': 'King Long'},
+    'سيترا': {'ar': 'سيترا', 'en': 'Setra', 'fr': 'Setra'},
+    'أبريليا': {'ar': 'أبريليا', 'en': 'Aprilia', 'fr': 'Aprilia'},
+    'ابريليا': {'ar': 'ابريليا', 'en': 'Aprilia', 'fr': 'Aprilia'},
+    'بينيللي': {'ar': 'بينيللي', 'en': 'Benelli', 'fr': 'Benelli'},
+
     'أبويليا': {'ar': 'أبويليا', 'en': 'Aprilia', 'fr': 'Aprilia'},
     'فيسبا': {'ar': 'فيسبا', 'en': 'Vespa', 'fr': 'Vespa'},
     'هوندا': {'ar': 'هوندا', 'en': 'Honda', 'fr': 'Honda'},
