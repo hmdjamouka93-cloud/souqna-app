@@ -210,7 +210,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                       Expanded(
                         child: _actionBtn(
                           Icons.phone_outlined,
-                          'اتصال',
+                          LanguageService.tr('اتصال'),
                           _call,
                           isPrimary: true,
                         ),
@@ -219,7 +219,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                       Expanded(
                         child: _actionBtn(
                           Icons.chat_outlined,
-                          'واتساب',
+                          LanguageService.tr('واتساب'),
                           _whatsapp,
                           isPrimary: false,
                         ),
@@ -319,7 +319,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis),
                   const SizedBox(height: 6),
-                  Text('${item['price']} د.ج',
+                  Text('${item['price']} ${LanguageService.trCategory('currency')}',
                       style: const TextStyle(
                           color: AppColors.accent,
                           fontSize: 16,

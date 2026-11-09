@@ -265,6 +265,8 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'currency': {'ar': 'د.ج', 'en': 'DZD', 'fr': 'DA'},
+
     'بينيللي': {'ar': 'بينيللي', 'en': 'Benelli', 'fr': 'Benelli'},
     'بينلي': {'ar': 'بينلي', 'en': 'Benelli', 'fr': 'Benelli'},
     'بنلي': {'ar': 'بنلي', 'en': 'Benelli', 'fr': 'Benelli'},
