@@ -215,7 +215,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            (widget.brandName.isNotEmpty ? LanguageService.trCategory(widget.brandName) : (widget.categoryName.isNotEmpty ? LanguageService.trCategory(widget.categoryName) : LanguageService.trCategory('إعلان جديد'))),
+            (widget.brandName.isNotEmpty ? widget.brandName == 'معرض السيارات' ? LanguageService.tr('car_showrooms') : LanguageService.trCategory(widget.brandName) : (widget.categoryName.isNotEmpty ? widget.categoryName == 'دراجات هوائية وسكوتر' ? LanguageService.tr('bicycles_scooters') : LanguageService.trCategory(widget.categoryName) : LanguageService.trCategory('إعلان جديد'))),
             style:  TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
