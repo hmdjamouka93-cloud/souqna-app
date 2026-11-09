@@ -71,7 +71,7 @@ class _RentalsListScreenState extends State<RentalsListScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'إيجار السيارات',
+            LanguageService.trCategory('إيجار السيارات'),
             style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,

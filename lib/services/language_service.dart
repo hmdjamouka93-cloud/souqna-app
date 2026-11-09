@@ -265,6 +265,10 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'إيجار السيارات': {'ar': 'إيجار السيارات', 'en': 'Car Rental', 'fr': 'Location de voitures'},
+    'مثال: أس في موتورز': {'ar': 'مثال: أس في موتورز', 'en': 'Ex: SF Motors', 'fr': 'Ex : SF Motors'},
+    'إنشاء الوكالة': {'ar': 'إنشاء الوكالة', 'en': 'Create Agency', 'fr': 'Créer l\'agence'},
+
     'رباعية الدفع': {'ar': 'رباعية الدفع', 'en': 'ATVs (Quads)', 'fr': 'Quads'},
     'دراجات رباعية الدفع': {'ar': 'دراجات رباعية الدفع', 'en': 'ATVs (Quads)', 'fr': 'Quads'},
     'سيارات': {'ar': 'سيارات', 'en': 'Cars', 'fr': 'Voitures'},
