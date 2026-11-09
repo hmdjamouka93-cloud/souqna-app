@@ -265,6 +265,10 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'دراجات هوائية وسكوتر': {'ar': 'دراجات هوائية وسكوتر', 'en': 'Bicycles & Scooters', 'fr': 'Vélos et Trottinettes'},
+    'رقم الهاتف': {'ar': 'رقم الهاتف', 'en': 'Phone Number', 'fr': 'Numéro de téléphone'},
+    'معرض السيارات': {'ar': 'معرض السيارات', 'en': 'Car Showrooms', 'fr': 'Showrooms'},
+
     'إيجار السيارات': {'ar': 'إيجار السيارات', 'en': 'Car Rental', 'fr': 'Location de voitures'},
     'مثال: أس في موتورز': {'ar': 'مثال: أس في موتورز', 'en': 'Ex: SF Motors', 'fr': 'Ex : SF Motors'},
     'إنشاء الوكالة': {'ar': 'إنشاء الوكالة', 'en': 'Create Agency', 'fr': 'Créer l\'agence'},
@@ -1093,17 +1097,24 @@ class LanguageService {
 
     final cleanName = sanitize(name);
 
-    // Brute force checks for problematic strings
+    // === BRUTE FORCE FALLBACKS ===
     if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) {
         return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
+    }
+    if (cleanName.contains('رقم') && cleanName.contains('هاتف')) {
+        return lang == 'en' ? 'Phone Number' : 'Numéro de téléphone';
+    }
+    if (cleanName.contains('معرض') && cleanName.contains('سيارات')) {
+        return lang == 'en' ? 'Car Showrooms' : 'Showrooms';
     }
     if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) {
         return 'Benelli';
     }
     if (cleanName.contains('وهـران') || cleanName.contains('وهران')) {
-        return lang == 'en' ? 'Oran' : 'Oran';
+        return 'Oran';
     }
 
+    // Standard Dictionary Lookup
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
