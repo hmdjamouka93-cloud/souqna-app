@@ -79,8 +79,8 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
 
     if (name.isEmpty) {
       setState(() => _error = widget.type == 'rental'
-          ? LanguageService.trCategory('اكتب اسم الوكالة')
-          : LanguageService.trCategory('اكتب اسم المعرض'));
+          ? LanguageService.tr('enter_agency_name')
+          : LanguageService.tr('enter_showroom_name'));
       return;
     }
     if (loc.isEmpty) {
@@ -147,8 +147,8 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
           ),
           title: Text(
             _isEdit
-                ? (widget.type == 'rental' ? LanguageService.trCategory(LanguageService.trCategory('تعديل وكالة الإيجار')) : LanguageService.trCategory(LanguageService.trCategory('تعديل المعرض')))
-                : (widget.type == 'rental' ? LanguageService.trCategory(LanguageService.trCategory('إنشاء وكالة إيجار')) : LanguageService.trCategory('إنشاء معرض')),
+                ? (widget.type == 'rental' ? LanguageService.tr('edit_rental_agency') : LanguageService.tr('edit_showroom'))
+                : (widget.type == 'rental' ? LanguageService.tr('create_rental_agency') : LanguageService.tr('create_showroom')),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,

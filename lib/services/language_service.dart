@@ -18,6 +18,20 @@ class LanguageService {
 
   // قاموس الترجمة - راح نزيدو فيه الكلمات شاشة بشاشة
   static final Map<String, Map<String, String>> _translations = {
+
+    'edit_rental_agency': {'ar': 'تعديل وكالة الإيجار', 'en': 'Edit Rental Agency', 'fr': 'Modifier l\'agence de location'},
+    'edit_showroom': {'ar': 'تعديل المعرض', 'en': 'Edit Showroom', 'fr': 'Modifier le showroom'},
+    'create_rental_agency': {'ar': 'إنشاء وكالة إيجار', 'en': 'Create Rental Agency', 'fr': 'Créer une agence de location'},
+    'create_showroom': {'ar': 'إنشاء معرض', 'en': 'Create Showroom', 'fr': 'Créer un showroom'},
+    'phone_number': {'ar': 'رقم الهاتف', 'en': 'Phone Number', 'fr': 'Numéro de téléphone'},
+    'enter_agency_name': {'ar': 'اكتب اسم الوكالة', 'en': 'Enter agency name', 'fr': 'Entrez le nom de l\'agence'},
+    'enter_showroom_name': {'ar': 'اكتب اسم المعرض', 'en': 'Enter showroom name', 'fr': 'Entrez le nom du showroom'},
+    'ex_sf_motors': {'ar': 'مثال: أس في موتورز', 'en': 'Ex: SF Motors', 'fr': 'Ex : SF Motors'},
+    'create_agency': {'ar': 'إنشاء الوكالة', 'en': 'Create Agency', 'fr': 'Créer l\'agence'},
+    'car_rental': {'ar': 'إيجار السيارات', 'en': 'Car Rental', 'fr': 'Location de voitures'},
+    'bicycles_scooters': {'ar': 'دراجات هوائية وسكوتر', 'en': 'Bicycles & Scooters', 'fr': 'Vélos et Trottinettes'},
+    'car_showrooms': {'ar': 'معرض السيارات', 'en': 'Car Showrooms', 'fr': 'Showrooms'},
+
     'app_name': {'ar': 'سوقنا', 'en': 'Souqna', 'fr': 'Souqna'},
     'home': {'ar': 'الرئيسية', 'en': 'Home', 'fr': 'Accueil'},
     'more': {'ar': 'المزيد', 'en': 'More', 'fr': 'Plus'},

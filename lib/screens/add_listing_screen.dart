@@ -213,7 +213,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            _isEdit ? LanguageService.tr('edit_ad') : widget.categoryName,
+            _isEdit ? LanguageService.tr('edit_ad') : LanguageService.trCategory(widget.categoryName),
             style:  TextStyle(
               color: AppColors.textPrimary,
               fontSize: 18,
