@@ -210,7 +210,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                       Expanded(
                         child: _actionBtn(
                           Icons.phone_outlined,
-                          LanguageService.tr('اتصال'),
+                          LanguageService.tr(LanguageService.trCategory('اتصال')),
                           _call,
                           isPrimary: true,
                         ),
@@ -219,7 +219,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                       Expanded(
                         child: _actionBtn(
                           Icons.chat_outlined,
-                          LanguageService.tr('واتساب'),
+                          LanguageService.tr(LanguageService.trCategory('واتساب')),
                           _whatsapp,
                           isPrimary: false,
                         ),
