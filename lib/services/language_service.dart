@@ -1068,7 +1068,6 @@ class LanguageService {
     final lang = currentLocale.value.languageCode;
     if (lang == 'ar') return name;
 
-    // دالة تنظيف قوية: تحيد المسافات، الرموز المخفية، وتوحد الحروف العربية
     String sanitize(String input) {
       return input
           .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
@@ -1078,21 +1077,23 @@ class LanguageService {
           .replaceAll('آ', 'ا')
           .replaceAll('ة', 'ه')
           .replaceAll('ى', 'ي')
-          .replaceAll(RegExp(r'\s+'), '') // نحيّدو كل المسافات
+          .replaceAll(RegExp(r'\s+'), '')
           .trim();
     }
 
     final cleanName = sanitize(name);
 
-    // 1. Hardcoded fallback for problematic strings
+    // Brute force checks for problematic strings
     if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) {
         return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
     }
-    if (cleanName.contains('بينلي') || cleanName.contains('بينيللي') || cleanName.contains('بنلي')) {
+    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) {
         return 'Benelli';
     }
+    if (cleanName.contains('وهـران') || cleanName.contains('وهران')) {
+        return lang == 'en' ? 'Oran' : 'Oran';
+    }
 
-    // 2. Lookup in dictionary
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
