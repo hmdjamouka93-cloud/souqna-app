@@ -1097,29 +1097,20 @@ class LanguageService {
 
     final cleanName = sanitize(name);
 
-    // === BRUTE FORCE FALLBACKS ===
-    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) {
-        return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
-    }
-    if (cleanName.contains('رقم') && cleanName.contains('هاتف')) {
-        return lang == 'en' ? 'Phone Number' : 'Numéro de téléphone';
-    }
-    if (cleanName.contains('معرض') && cleanName.contains('سيارات')) {
-        return lang == 'en' ? 'Car Showrooms' : 'Showrooms';
-    }
-    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) {
-        return 'Benelli';
-    }
-    if (cleanName.contains('وهـران') || cleanName.contains('وهران')) {
-        return 'Oran';
-    }
-
-    // Standard Dictionary Lookup
+    // 1. Check _categoryTranslations
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
       }
     }
+
+    // 2. Check _translations (UI dictionary)
+    for (final key in _translations.keys) {
+      if (sanitize(_translations[key]!['ar']!) == cleanName) {
+        return _translations[key]![lang] ?? name;
+      }
+    }
+
     return name;
   }
 }
