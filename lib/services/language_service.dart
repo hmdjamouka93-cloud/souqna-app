@@ -279,6 +279,9 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'صحراوية': {'ar': 'صحراوية', 'en': 'Desert', 'fr': 'Désert'},
+    'رباعية الدفع': {'ar': 'رباعية الدفع', 'en': '4x4 (ATV)', 'fr': '4x4 (Quad)'},
+
     'دراجات هوائية وسكوتر': {'ar': 'دراجات هوائية وسكوتر', 'en': 'Bicycles & Scooters', 'fr': 'Vélos et Trottinettes'},
     'رقم الهاتف': {'ar': 'رقم الهاتف', 'en': 'Phone Number', 'fr': 'Numéro de téléphone'},
     'معرض السيارات': {'ar': 'معرض السيارات', 'en': 'Car Showrooms', 'fr': 'Showrooms'},
