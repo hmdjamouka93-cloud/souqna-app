@@ -206,7 +206,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
               _field(_locCtrl, LanguageService.trCategory('مثال: وهران، حي المدينة')),
               const SizedBox(height: 16),
 
-              _label(LanguageService.trCategory(LanguageService.trCategory('رقم الهاتف'))),
+              _label(LanguageService.trCategory('رقم الهاتف')),
               _field(_phoneCtrl, '0555 12 34 56',
                   keyboard: TextInputType.phone, ltr: true),
 
