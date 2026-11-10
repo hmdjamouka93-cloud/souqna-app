@@ -279,6 +279,13 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'الرافعات الشوكية': {'ar': 'الرافعات الشوكية', 'en': 'Forklifts', 'fr': 'Chariots élévateurs'},
+    'ثلاجات': {'ar': 'ثلاجات', 'en': 'Refrigerators', 'fr': 'Réfrigérateurs'},
+    'الرافعات': {'ar': 'الرافعات', 'en': 'Cranes', 'fr': 'Grues'},
+    'معدات الخرسانة': {'ar': 'معدات الخرسانة', 'en': 'Concrete Equipment', 'fr': 'Équipements à béton'},
+    'قلابات وحفارات': {'ar': 'قلابات وحفارات', 'en': 'Tippers & Excavators', 'fr': 'Bennes et excavatrices'},
+    'معدات أخرى': {'ar': 'معدات أخرى', 'en': 'Other Equipment', 'fr': 'Autres équipements'},
+
     'صحراوية': {'ar': 'صحراوية', 'en': 'Desert', 'fr': 'Désert'},
     'رباعية الدفع': {'ar': 'رباعية الدفع', 'en': '4x4 (ATV)', 'fr': '4x4 (Quad)'},
 
