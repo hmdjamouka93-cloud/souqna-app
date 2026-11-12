@@ -278,6 +278,15 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'مشونش': {'ar': 'مشونش', 'en': 'M\'Chouneche', 'fr': 'M\'Chouneche'},
+    'فوغالة': {'ar': 'فوغالة', 'en': 'Foughala', 'fr': 'Foughala'},
+    'طولقة': {'ar': 'طولقة', 'en': 'Tolga', 'fr': 'Tolga'},
+    'سيدي عقبة': {'ar': 'سيدي عقبة', 'en': 'Sidi Okba', 'fr': 'Sidi Okba'},
+    'زريبة الوادي': {'ar': 'زريبة الوادي', 'en': 'Zeribet El Oued', 'fr': 'Zeribet El Oued'},
+    'جمورة': {'ar': 'جمورة', 'en': 'Djemorah', 'fr': 'Djemorah'},
+    'الوطاية': {'ar': 'الوطاية', 'en': 'El Outaya', 'fr': 'El Outaya'},
+    'القنطرة': {'ar': 'القنطرة', 'en': 'El Kantara', 'fr': 'El Kantara'},
+'أورلال': {'ar': 'أورلال', 'en': 'Ourlal', 'fr': 'Ourlal'},
 
     'الهيكل الخارجي': {'ar': 'الهيكل الخارجي', 'en': 'Exterior Body', 'fr': 'Carrosserie extérieure'},
     'الهيكل الخارجي وقطع الغيار': {'ar': 'الهيكل الخارجي وقطع الغيار', 'en': 'Body & Spare Parts', 'fr': 'Carrosserie et pièces'},
