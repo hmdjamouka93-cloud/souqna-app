@@ -279,6 +279,20 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'ساعات ذكية': {'ar': 'ساعات ذكية', 'en': 'Smartwatches', 'fr': 'Montres connectées'},
+    'تلفازات ذكية': {'ar': 'تلفازات ذكية', 'en': 'Smart TVs', 'fr': 'TV connectées'},
+    'اجهزة المنزل الذكي': {'ar': 'اجهزة المنزل الذكي', 'en': 'Smart Home Devices', 'fr': 'Appareils de maison connectée'},
+    'مكبرات صوت ذكية': {'ar': 'مكبرات صوت ذكية', 'en': 'Smart Speakers', 'fr': 'Enceintes connectées'},
+    'إضاءة ذكية': {'ar': 'إضاءة ذكية', 'en': 'Smart Lighting', 'fr': 'Éclairage connecté'},
+    'سماعات ذكية': {'ar': 'سماعات ذكية', 'en': 'Smart Headphones', 'fr': 'Écouteurs connectés'},
+    'اجهزة ذكية اخرى': {'ar': 'اجهزة ذكية اخرى', 'en': 'Other Smart Devices', 'fr': 'Autres appareils connectés'},
+    'اجهزة ذكية أخرى': {'ar': 'اجهزة ذكية أخرى', 'en': 'Other Smart Devices', 'fr': 'Autres appareils connectés'},
+    'ابل ووتش': {'ar': 'ابل ووتش', 'en': 'Apple Watch', 'fr': 'Apple Watch'},
+    'سامسونج جالاكسي ووتش': {'ar': 'سامسونج جالاكسي ووتش', 'en': 'Samsung Galaxy Watch', 'fr': 'Samsung Galaxy Watch'},
+    'امازون إيكو': {'ar': 'امازون إيكو', 'en': 'Amazon Echo', 'fr': 'Amazon Echo'},
+    'جوجل نست': {'ar': 'جوجل نست', 'en': 'Google Nest', 'fr': 'Google Nest'},
+    'شاومي مي باند': {'ar': 'شاومي مي باند', 'en': 'Xiaomi Mi Band', 'fr': 'Xiaomi Mi Band'},
+
     'كاميرات احترافية': {'ar': 'كاميرات احترافية', 'en': 'Professional Cameras', 'fr': 'Caméras professionnelles'},
     'كاميرات رقمية': {'ar': 'كاميرات رقمية', 'en': 'Digital Cameras', 'fr': 'Appareils photo numériques'},
     'كاميرات مراقبة': {'ar': 'كاميرات مراقبة', 'en': 'Security Cameras', 'fr': 'Caméras de surveillance'},
