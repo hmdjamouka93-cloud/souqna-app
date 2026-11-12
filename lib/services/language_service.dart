@@ -279,6 +279,28 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'مكابح': {'ar': 'مكابح', 'en': 'Brakes', 'fr': 'Freins'},
+    'نظام تبريد': {'ar': 'نظام تبريد', 'en': 'Cooling System', 'fr': 'Système de refroidissement'},
+    'بطاريات و اكسسوارات': {'ar': 'بطاريات و اكسسوارات', 'en': 'Batteries & Accessories', 'fr': 'Batteries et accessoires'},
+    'تروس وناقل حركة': {'ar': 'تروس وناقل حركة', 'en': 'Gears & Transmission', 'fr': 'Engrenages et transmission'},
+    'زيوت و سوائل': {'ar': 'زيوت و سوائل', 'en': 'Oils & Fluids', 'fr': 'Huiles et liquides'},
+    'كابلات': {'ar': 'كابلات', 'en': 'Cables', 'fr': 'Câbles'},
+    'زجاج ومرايات': {'ar': 'زجاج ومرايات', 'en': 'Glass & Mirrors', 'fr': 'Vitres et rétroviseurs'},
+    'صالون واكسسوارات': {'ar': 'صالون واكسسوارات', 'en': 'Interior & Accessories', 'fr': 'Intérieur et accessoires'},
+    'فلاتر': {'ar': 'فلاتر', 'en': 'Filters', 'fr': 'Filtres'},
+    'إطارات': {'ar': 'إطارات', 'en': 'Tires', 'fr': 'Pneus'},
+    'قطع كهربائية': {'ar': 'قطع كهربائية', 'en': 'Electrical Parts', 'fr': 'Pièces électriques'},
+    'الهيكل الخارجي وقطع الغيار': {'ar': 'الهيكل الخارجي وقطع الغيار', 'en': 'Body & Spare Parts', 'fr': 'Carrosserie et pièces'},
+    'مصابيح': {'ar': 'مصابيح', 'en': 'Lights', 'fr': 'Phares'},
+    'رنجات': {'ar': 'رنجات', 'en': 'Rims', 'fr': 'Jantes'},
+    'محرك': {'ar': 'محرك', 'en': 'Engine', 'fr': 'Moteur'},
+    'ورش وكراجات': {'ar': 'ورش وكراجات', 'en': 'Workshops & Garages', 'fr': 'Ateliers et garages'},
+    'قطع أخرى': {'ar': 'قطع أخرى', 'en': 'Other Parts', 'fr': 'Autres pièces'},
+    'قوارب': {'ar': 'قوارب', 'en': 'Boats', 'fr': 'Bateaux'},
+    'جيت سكي': {'ar': 'جيت سكي', 'en': 'Jet Ski', 'fr': 'Jet Ski'},
+    'يخوت': {'ar': 'يخوت', 'en': 'Yachts', 'fr': 'Yachts'},
+    'محركات بحرية': {'ar': 'محركات بحرية', 'en': 'Marine Engines', 'fr': 'Moteurs marins'},
+
     'الرافعات الشوكية': {'ar': 'الرافعات الشوكية', 'en': 'Forklifts', 'fr': 'Chariots élévateurs'},
     'ثلاجات': {'ar': 'ثلاجات', 'en': 'Refrigerators', 'fr': 'Réfrigérateurs'},
     'الرافعات': {'ar': 'الرافعات', 'en': 'Cranes', 'fr': 'Grues'},
@@ -1120,6 +1142,12 @@ class LanguageService {
     }
 
     final cleanName = sanitize(name);
+
+    // === BRUTE FORCE FALLBACKS ===
+    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
+    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
+    if (cleanName.contains('معرض') && cleanName.contains('سيارات')) return lang == 'en' ? 'Car Showrooms' : 'Showrooms';
+    if (cleanName.contains('وهـران') || cleanName.contains('وهران')) return 'Oran';
 
     // 1. Check _categoryTranslations
     for (final key in _categoryTranslations.keys) {

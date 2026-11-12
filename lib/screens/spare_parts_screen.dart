@@ -232,8 +232,7 @@ class SparePartsScreen extends StatelessWidget {
               top: 8,
               right: 8,
               left: 8,
-              child: Text(
-                item.name,
+              child: Text(LanguageService.trCategory(item.name),
                 textAlign: TextAlign.center,
                 style:  TextStyle(
                   color: AppColors.textPrimary,
