@@ -140,9 +140,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
               title:  Text(LanguageService.trCategory('لا يمكنك الإعلان هنا'),
                   style: TextStyle(color: AppColors.textPrimary)),
               content:  Text(
-                'لا يمكنك إضافة إعلان في هذا القسم إلا إذا كنت تملك متجراً.\n\n'
-                'قم بإنشاء متجرك أولاً لعرض منتجاتك هنا.\n\n'
-                'إذا لم ترغب في إنشاء متجر، يمكنك إضافة منتجاتك في قسم "ملابس أخرى".',
+                LanguageService.trCategory('store_required_msg'),
                 style: TextStyle(color: AppColors.textSecondary, height: 1.6),
               ),
               actions: [

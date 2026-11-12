@@ -278,6 +278,15 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+
+    'خياطة رجالية': {'ar': 'خياطة رجالية', 'en': 'Men Tailoring', 'fr': 'Couture homme'},
+    'خياطة نسائية': {'ar': 'خياطة نسائية', 'en': 'Women Tailoring', 'fr': 'Couture femme'},
+    'ازياء تقليدية': {'ar': 'ازياء تقليدية', 'en': 'Traditional Clothes', 'fr': 'Vêtements traditionnels'},
+    'تعديل واصلاح الملابس': {'ar': 'تعديل واصلاح الملابس', 'en': 'Clothing Alteration', 'fr': 'Retouche de vêtements'},
+    'الصور': {'ar': 'الصور', 'en': 'Images', 'fr': 'Images'},
+    'اسم المنتج': {'ar': 'اسم المنتج', 'en': 'Product Name', 'fr': 'Nom du produit'},
+    'وردي': {'ar': 'وردي', 'en': 'Pink', 'fr': 'Rose'},
+    'store_required_msg': {'ar': 'لا يمكنك إضافة إعلان في هذا القسم إلا إذا كنت تملك متجراً.\n\nقم بإنشاء متجرك أولاً لعرض منتجاتك هنا.\n\nإذا لم ترغب في إنشاء متجر، يمكنك إضافة منتجاتك في قسم "ملابس أخرى".', 'en': 'You cannot post here unless you own a store.\n\nCreate your store first to display your products here.\n\nIf you do not want to create a store, you can add your products in the "Other Clothing" section.', 'fr': 'Vous ne pouvez pas publier ici sauf si vous possédez une boutique.\n\nCréez d\'abord votre boutique pour afficher vos produits ici.\n\nSi vous ne souhaitez pas créer de boutique, vous pouvez ajouter vos produits dans la section "Autres vêtements".'},
     'سماعات لاسلكية': {'ar': 'سماعات لاسلكية', 'en': 'Wireless Headphones', 'fr': 'Écouteurs sans fil'},
     'نظارات vr': {'ar': 'نظارات vr', 'en': 'VR Glasses', 'fr': 'Lunettes VR'},
     'لايكا': {'ar': 'لايكا', 'en': 'Leica', 'fr': 'Leica'},
@@ -1270,27 +1279,24 @@ class LanguageService {
           .replaceAll('ة', 'ه')
           .replaceAll('ى', 'ي')
           .replaceAll(RegExp(r'\s+'), '')
-          .trim();
+          .trim()
+          .toLowerCase();
     }
 
     final cleanName = sanitize(name);
 
-    // === BRUTE FORCE FOR STUBBORN ITEMS ===
-    if (cleanName.contains('اكسيسوارات') || cleanName.contains('اكسسوارات')) {
-        if (cleanName.contains('حاسوب') || cleanName.contains('كمبيوتر')) {
-            return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
-        }
-    }
-    if (cleanName.contains('العاب')) {
-        if (cleanName.contains('حاسوب') || cleanName.contains('كمبيوتر')) {
-            return lang == 'en' ? 'PC Games' : 'Jeux PC';
-        }
-    }
-    if (cleanName.contains('نظارات')) {
-        if (cleanName.contains('vr')) {
-            return lang == 'en' ? 'VR Glasses' : 'Lunettes VR';
-        }
-    }
+    // === BRUTE FORCE FALLBACKS ===
+    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
+    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
+    if (cleanName.contains('معرض') && cleanName.contains('سيارات')) return lang == 'en' ? 'Car Showrooms' : 'Showrooms';
+    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
+    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
+    if (cleanName.contains('جيت') && cleanName.contains('سكي')) return 'Jet Ski';
+    if (cleanName.contains('قارب') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Boat' : 'Bateau de pêche';
+    if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
+    if (cleanName.contains('ادوات') && cleanName.contains('غوص')) return lang == 'en' ? 'Diving Gear' : 'Matériel de plongée';
+    if (cleanName.contains('نظارات') && cleanName.contains('vr')) return lang == 'en' ? 'VR Glasses' : 'Lunettes VR';
+    if (cleanName.contains('هيكل') && cleanName.contains('خارجي')) return lang == 'en' ? 'Exterior Body' : 'Carrosserie extérieure';
 
     // === STANDARD DICTIONARY LOOKUP ===
     for (final key in _categoryTranslations.keys) {
