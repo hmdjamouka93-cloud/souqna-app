@@ -279,6 +279,24 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'كاميرات احترافية': {'ar': 'كاميرات احترافية', 'en': 'Professional Cameras', 'fr': 'Caméras professionnelles'},
+    'كاميرات رقمية': {'ar': 'كاميرات رقمية', 'en': 'Digital Cameras', 'fr': 'Appareils photo numériques'},
+    'كاميرات مراقبة': {'ar': 'كاميرات مراقبة', 'en': 'Security Cameras', 'fr': 'Caméras de surveillance'},
+    'عدسات': {'ar': 'عدسات', 'en': 'Lenses', 'fr': 'Objectifs'},
+    'حوامل': {'ar': 'حوامل', 'en': 'Tripods', 'fr': 'Trépieds'},
+    'كاميرات اخرى': {'ar': 'كاميرات اخرى', 'en': 'Other Cameras', 'fr': 'Autres caméras'},
+    'كاميرات أخرى': {'ar': 'كاميرات أخرى', 'en': 'Other Cameras', 'fr': 'Autres caméras'},
+    'كانون': {'ar': 'كانون', 'en': 'Canon', 'fr': 'Canon'},
+    'نيكون': {'ar': 'نيكون', 'en': 'Nikon', 'fr': 'Nikon'},
+    'سوني': {'ar': 'سوني', 'en': 'Sony', 'fr': 'Sony'},
+    'فوجي فيلم': {'ar': 'فوجي فيلم', 'en': 'Fujifilm', 'fr': 'Fujifilm'},
+    'باناسونيك': {'ar': 'باناسونيك', 'en': 'Panasonic', 'fr': 'Panasonic'},
+    'جوبرو': {'ar': 'جوبرو', 'en': 'GoPro', 'fr': 'GoPro'},
+    'دي جي اي': {'ar': 'دي جي اي', 'en': 'DJI', 'fr': 'DJI'},
+    'كاميرات فورية': {'ar': 'كاميرات فورية', 'en': 'Instant Cameras', 'fr': 'Appareils photo instantanés'},
+    'درون': {'ar': 'درون', 'en': 'Drones', 'fr': 'Drones'},
+    'اكسسوارات الكاميرات': {'ar': 'اكسسوارات الكاميرات', 'en': 'Camera Accessories', 'fr': 'Accessoires photo'},
+
     'بلايستيشن': {'ar': 'بلايستيشن', 'en': 'PlayStation', 'fr': 'PlayStation'},
     'بلاي ستيشن': {'ar': 'بلاي ستيشن', 'en': 'PlayStation', 'fr': 'PlayStation'},
     'اكس بوكس': {'ar': 'اكس بوكس', 'en': 'Xbox', 'fr': 'Xbox'},
