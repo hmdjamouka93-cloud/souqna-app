@@ -278,6 +278,22 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+
+    'ايفون': {'ar': 'ايفون', 'en': 'iPhone', 'fr': 'iPhone'},
+    'آيفون': {'ar': 'آيفون', 'en': 'iPhone', 'fr': 'iPhone'},
+    'سامسونج': {'ar': 'سامسونج', 'en': 'Samsung', 'fr': 'Samsung'},
+    'هواوي': {'ar': 'هواوي', 'en': 'Huawei', 'fr': 'Huawei'},
+    'ريلمي': {'ar': 'ريلمي', 'en': 'Realme', 'fr': 'Realme'},
+    'ايباد': {'ar': 'ايباد', 'en': 'iPad', 'fr': 'iPad'},
+    'تابلت': {'ar': 'تابلت', 'en': 'Tablet', 'fr': 'Tablette'},
+    'هواتف اخرى': {'ar': 'هواتف اخرى', 'en': 'Other Phones', 'fr': 'Autres téléphones'},
+    'هواتف أخرى': {'ar': 'هواتف أخرى', 'en': 'Other Phones', 'fr': 'Autres téléphones'},
+    'شاومي': {'ar': 'شاومي', 'en': 'Xiaomi', 'fr': 'Xiaomi'},
+    'أوبو': {'ar': 'أوبو', 'en': 'Oppo', 'fr': 'Oppo'},
+    'فيفو': {'ar': 'فيفو', 'en': 'Vivo', 'fr': 'Vivo'},
+    'ون بلس': {'ar': 'ون بلس', 'en': 'OnePlus', 'fr': 'OnePlus'},
+    'نوكيا': {'ar': 'نوكيا', 'en': 'Nokia', 'fr': 'Nokia'},
+    'جوجل بكسل': {'ar': 'جوجل بكسل', 'en': 'Google Pixel', 'fr': 'Google Pixel'},
     'مشونش': {'ar': 'مشونش', 'en': 'M\'Chouneche', 'fr': 'M\'Chouneche'},
     'فوغالة': {'ar': 'فوغالة', 'en': 'Foughala', 'fr': 'Foughala'},
     'طولقة': {'ar': 'طولقة', 'en': 'Tolga', 'fr': 'Tolga'},
