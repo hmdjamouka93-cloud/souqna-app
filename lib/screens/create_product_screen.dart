@@ -211,10 +211,10 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               _imagesGrid(),
               const SizedBox(height: 16),
               _label(LanguageService.trCategory('اسم المنتج')),
-              _field(_nameCtrl, 'مثال: فستان أحمر'),
+              _field(_nameCtrl, LanguageService.trCategory('مثال: فستان أحمر')),
               const SizedBox(height: 16),
               _label(LanguageService.trCategory('الوصف')),
-              _field(_descCtrl, 'وصف تفصيلي...', maxLines: 4),
+              _field(_descCtrl, LanguageService.trCategory('وصف تفصيلي...'), maxLines: 4),
               const SizedBox(height: 16),
               _label(LanguageService.trCategory('السعر (د.ج)')),
               _field(_priceCtrl, '0',
@@ -466,7 +466,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                         border: Border.all(
                             color: AppColors.accent.withValues(alpha: 0.4)),
                       ),
-                      child: Text(s,
+                      child: Text(LanguageService.trCategory(s),
                           style:  TextStyle(
                               color: AppColors.textSecondary,
                               fontSize: 12)),
@@ -480,7 +480,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
 
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
-        child: Text(t,
+        child: Text(LanguageService.trCategory(t),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 14,
