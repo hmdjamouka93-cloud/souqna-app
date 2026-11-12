@@ -278,6 +278,21 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'سماعات لاسلكية': {'ar': 'سماعات لاسلكية', 'en': 'Wireless Headphones', 'fr': 'Écouteurs sans fil'},
+    'نظارات vr': {'ar': 'نظارات vr', 'en': 'VR Glasses', 'fr': 'Lunettes VR'},
+    'لايكا': {'ar': 'لايكا', 'en': 'Leica', 'fr': 'Leica'},
+    'فوجي': {'ar': 'فوجي', 'en': 'Fuji', 'fr': 'Fuji'},
+    'العاب حاسوب': {'ar': 'العاب حاسوب', 'en': 'PC Games', 'fr': 'Jeux PC'},
+    'العاب نيتاندو': {'ar': 'العاب نيتاندو', 'en': 'Nintendo Games', 'fr': 'Jeux Nintendo'},
+    'نيتاندو': {'ar': 'نيتاندو', 'en': 'Nintendo', 'fr': 'Nintendo'},
+    'العاب wii': {'ar': 'العاب wii', 'en': 'Wii Games', 'fr': 'Jeux Wii'},
+    'العاب اكس بوكس': {'ar': 'العاب اكس بوكس', 'en': 'Xbox Games', 'fr': 'Jeux Xbox'},
+    'العاب بلايستيشن': {'ar': 'العاب بلايستيشن', 'en': 'PlayStation Games', 'fr': 'Jeux PlayStation'},
+    'اكسيسوارات الحاسوب': {'ar': 'اكسيسوارات الحاسوب', 'en': 'Computer Accessories', 'fr': 'Accessoires informatiques'},
+    'لابتوب': {'ar': 'لابتوب', 'en': 'Laptop', 'fr': 'Ordinateur portable'},
+    'كمبيوتر': {'ar': 'كمبيوتر', 'en': 'Computer', 'fr': 'Ordinateur'},
+    'تابليت': {'ar': 'تابليت', 'en': 'Tablet', 'fr': 'Tablette'},
+    'ريدمي': {'ar': 'ريدمي', 'en': 'Redmi', 'fr': 'Redmi'},
 
     'ساعات ذكية': {'ar': 'ساعات ذكية', 'en': 'Smartwatches', 'fr': 'Montres connectées'},
     'تلفازات ذكية': {'ar': 'تلفازات ذكية', 'en': 'Smart TVs', 'fr': 'TV connectées'},
