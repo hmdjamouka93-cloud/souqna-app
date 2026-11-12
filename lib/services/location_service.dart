@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'language_service.dart';
 
 class LocationService {
   static List<Map<String, dynamic>>? _allData;
@@ -17,9 +18,13 @@ class LocationService {
   static Future<List<Map<String, String>>> getWilayas() async {
     final data = await _load();
     final map = <String, String>{}; // code -> name
+    final lang = LanguageService.currentLocale.value.languageCode;
     for (final row in data) {
       final code = (row['wilaya_code'] ?? '').toString();
-      final name = (row['wilaya_name'] ?? '').toString();
+      String name = (row['wilaya_name'] ?? '').toString();
+      if (lang == 'en') name = (row['wilaya_name_en'] ?? name).toString();
+      else if (lang == 'fr') name = (row['wilaya_name_fr'] ?? name).toString();
+
       if (code.isNotEmpty && name.isNotEmpty) {
         map[code] = name;
       }
