@@ -279,6 +279,20 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'اكسيسوارات الحاسوب': {'ar': 'اكسيسوارات الحاسوب', 'en': 'Computer Accessories', 'fr': 'Accessoires informatiques'},
+    'العاب الحاسوب': {'ar': 'العاب الحاسوب', 'en': 'PC Games', 'fr': 'Jeux PC'},
+    'كلاب': {'ar': 'كلاب', 'en': 'Dogs', 'fr': 'Chiens'},
+    'قطط': {'ar': 'قطط', 'en': 'Cats', 'fr': 'Chats'},
+    'كلاب وقطط': {'ar': 'كلاب وقطط', 'en': 'Dogs & Cats', 'fr': 'Chiens et chats'},
+    'طيور': {'ar': 'طيور', 'en': 'Birds', 'fr': 'Oiseaux'},
+    'الطيور': {'ar': 'الطيور', 'en': 'Birds', 'fr': 'Oiseaux'},
+    'دجاج': {'ar': 'دجاج', 'en': 'Chickens', 'fr': 'Poulets'},
+    'حمام': {'ar': 'حمام', 'en': 'Pigeons', 'fr': 'Pigeons'},
+    'ببغاء': {'ar': 'ببغاء', 'en': 'Parrots', 'fr': 'Perroquets'},
+    'عصافير': {'ar': 'عصافير', 'en': 'Small birds', 'fr': 'Petits oiseaux'},
+    'مواشي': {'ar': 'مواشي', 'en': 'Livestock', 'fr': 'Bétail'},
+    'دواب': {'ar': 'دواب', 'en': 'Animals', 'fr': 'Animaux'},
+
     'خياطة رجالية': {'ar': 'خياطة رجالية', 'en': 'Men Tailoring', 'fr': 'Couture homme'},
     'خياطة نسائية': {'ar': 'خياطة نسائية', 'en': 'Women Tailoring', 'fr': 'Couture femme'},
     'ازياء تقليدية': {'ar': 'ازياء تقليدية', 'en': 'Traditional Clothes', 'fr': 'Vêtements traditionnels'},
@@ -1297,6 +1311,10 @@ class LanguageService {
     if (cleanName.contains('ادوات') && cleanName.contains('غوص')) return lang == 'en' ? 'Diving Gear' : 'Matériel de plongée';
     if (cleanName.contains('نظارات') && cleanName.contains('vr')) return lang == 'en' ? 'VR Glasses' : 'Lunettes VR';
     if (cleanName.contains('هيكل') && cleanName.contains('خارجي')) return lang == 'en' ? 'Exterior Body' : 'Carrosserie extérieure';
+    
+    // RESTORED RULES
+    if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
+    if (cleanName.contains('العاب') && cleanName.contains('حاسوب')) return lang == 'en' ? 'PC Games' : 'Jeux PC';
 
     // === STANDARD DICTIONARY LOOKUP ===
     for (final key in _categoryTranslations.keys) {
