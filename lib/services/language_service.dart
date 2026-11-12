@@ -279,6 +279,17 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'الهيكل الخارجي': {'ar': 'الهيكل الخارجي', 'en': 'Exterior Body', 'fr': 'Carrosserie extérieure'},
+    'الهيكل الخارجي وقطع الغيار': {'ar': 'الهيكل الخارجي وقطع الغيار', 'en': 'Body & Spare Parts', 'fr': 'Carrosserie et pièces'},
+    'طراد': {'ar': 'طراد', 'en': 'Cruiser', 'fr': 'Croiseur'},
+    'يخت': {'ar': 'يخت', 'en': 'Yacht', 'fr': 'Yacht'},
+    'يخوت': {'ar': 'يخوت', 'en': 'Yachts', 'fr': 'Yachts'},
+    'قارب صيد': {'ar': 'قارب صيد', 'en': 'Fishing Boat', 'fr': 'Bateau de pêche'},
+    'قوارب صيد': {'ar': 'قوارب صيد', 'en': 'Fishing Boats', 'fr': 'Bateaux de pêche'},
+    'أدوات صيد': {'ar': 'أدوات صيد', 'en': 'Fishing Gear', 'fr': 'Matériel de pêche'},
+    'أدوات الغوص': {'ar': 'أدوات الغوص', 'en': 'Diving Gear', 'fr': 'Matériel de plongée'},
+    'أدوات أخرى': {'ar': 'أدوات أخرى', 'en': 'Other Gear', 'fr': 'Autres outils'},
+
     'مكابح': {'ar': 'مكابح', 'en': 'Brakes', 'fr': 'Freins'},
     'نظام تبريد': {'ar': 'نظام تبريد', 'en': 'Cooling System', 'fr': 'Système de refroidissement'},
     'بطاريات و اكسسوارات': {'ar': 'بطاريات و اكسسوارات', 'en': 'Batteries & Accessories', 'fr': 'Batteries et accessoires'},
