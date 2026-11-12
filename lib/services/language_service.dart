@@ -279,6 +279,18 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'غسالات': {'ar': 'غسالات', 'en': 'Washing Machines', 'fr': 'Machines à laver'},
+    'الثلاجات والبرادات': {'ar': 'الثلاجات والبرادات', 'en': 'Refrigerators & Coolers', 'fr': 'Réfrigérateurs et refroidisseurs'},
+    'اجهزة المطبخ': {'ar': 'اجهزة المطبخ', 'en': 'Kitchen Appliances', 'fr': 'Appareils de cuisine'},
+    'اجهزة تسخين الماء': {'ar': 'اجهزة تسخين الماء', 'en': 'Water Heaters', 'fr': 'Chauffe-eau'},
+    'تلفاز وملحقاته': {'ar': 'تلفاز وملحقاته', 'en': 'TV & Accessories', 'fr': 'TV et accessoires'},
+    'المواقد والافران والميكروويف': {'ar': 'المواقد والافران والميكروويف', 'en': 'Stoves, Ovens & Microwaves', 'fr': 'Cuisinières, fours et micro-ondes'},
+    'غسالات الاطباق': {'ar': 'غسالات الاطباق', 'en': 'Dishwashers', 'fr': 'Lave-vaisselle'},
+    'مكانس كهربائية': {'ar': 'مكانس كهربائية', 'en': 'Vacuum Cleaners', 'fr': 'Aspirateurs'},
+    'اجهزة اخرى': {'ar': 'اجهزة اخرى', 'en': 'Other Appliances', 'fr': 'Autres appareils'},
+    'فلايات هوائية': {'ar': 'فلايات هوائية', 'en': 'Air Fryers', 'fr': 'Friteuses sans huile'},
+    'قلايات هوائية': {'ar': 'قلايات هوائية', 'en': 'Air Fryers', 'fr': 'Friteuses sans huile'},
+
     'حواسيب محمولة': {'ar': 'حواسيب محمولة', 'en': 'Laptops', 'fr': 'Ordinateurs portables'},
     'حواسيب مكتبية': {'ar': 'حواسيب مكتبية', 'en': 'Desktops', 'fr': 'Ordinateurs de bureau'},
     'مكونات الحاسوب': {'ar': 'مكونات الحاسوب', 'en': 'PC Components', 'fr': 'Composants PC'},
