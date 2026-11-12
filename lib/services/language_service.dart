@@ -1154,26 +1154,35 @@ class LanguageService {
 
     final cleanName = sanitize(name);
 
-    // === BRUTE FORCE FALLBACKS ===
+    // === BRUTE FORCE FOR STUBBORN WORDS ===
+    
+    // Marine (Bahri)
+    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
+    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return lang == 'en' ? 'Yacht' : 'Yacht';
+    if (cleanName.contains('جيت') && cleanName.contains('سكي')) return 'Jet Ski';
+    if (cleanName.contains('قارب') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Boat' : 'Bateau de pêche';
+    if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
+    if (cleanName.contains('ادوات') && cleanName.contains('غوص')) return lang == 'en' ? 'Diving Gear' : 'Matériel de plongée';
+    if (cleanName.contains('ادوات') && cleanName.contains('اخري')) return lang == 'en' ? 'Other Gear' : 'Autres outils';
+
+    // Spare Parts
+    if (cleanName.contains('هيكل') && cleanName.contains('خارجي')) return lang == 'en' ? 'Exterior Body' : 'Carrosserie extérieure';
+
+    // Other known issues
     if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
     if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
-    if (cleanName.contains('معرض') && cleanName.contains('سيارات')) return lang == 'en' ? 'Car Showrooms' : 'Showrooms';
-    if (cleanName.contains('وهـران') || cleanName.contains('وهران')) return 'Oran';
 
-    // 1. Check _categoryTranslations
+    // === STANDARD DICTIONARY LOOKUP ===
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
       }
     }
-
-    // 2. Check _translations (UI dictionary)
     for (final key in _translations.keys) {
       if (sanitize(_translations[key]!['ar']!) == cleanName) {
         return _translations[key]![lang] ?? name;
       }
     }
-
     return name;
   }
 }
