@@ -279,6 +279,18 @@ class LanguageService {
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
 
+    'بلايستيشن': {'ar': 'بلايستيشن', 'en': 'PlayStation', 'fr': 'PlayStation'},
+    'بلاي ستيشن': {'ar': 'بلاي ستيشن', 'en': 'PlayStation', 'fr': 'PlayStation'},
+    'اكس بوكس': {'ar': 'اكس بوكس', 'en': 'Xbox', 'fr': 'Xbox'},
+    'إكس بوكس': {'ar': 'إكس بوكس', 'en': 'Xbox', 'fr': 'Xbox'},
+    'نينتندو': {'ar': 'نينتندو', 'en': 'Nintendo', 'fr': 'Nintendo'},
+    'العاب': {'ar': 'العاب', 'en': 'Games', 'fr': 'Jeux'},
+    'ألعاب': {'ar': 'ألعاب', 'en': 'Games', 'fr': 'Jeux'},
+    'أجهزة العاب': {'ar': 'أجهزة العاب', 'en': 'Consoles', 'fr': 'Consoles'},
+    'اكسسوارات': {'ar': 'اكسسوارات', 'en': 'Accessories', 'fr': 'Accessoires'},
+    'العاب فيديو أخرى': {'ar': 'العاب فيديو أخرى', 'en': 'Other Video Games', 'fr': 'Autres jeux vidéo'},
+    'العاب اخرى': {'ar': 'العاب اخرى', 'en': 'Other Games', 'fr': 'Autres jeux'},
+
     'غسالات': {'ar': 'غسالات', 'en': 'Washing Machines', 'fr': 'Machines à laver'},
     'الثلاجات والبرادات': {'ar': 'الثلاجات والبرادات', 'en': 'Refrigerators & Coolers', 'fr': 'Réfrigérateurs et refroidisseurs'},
     'اجهزة المطبخ': {'ar': 'اجهزة المطبخ', 'en': 'Kitchen Appliances', 'fr': 'Appareils de cuisine'},
