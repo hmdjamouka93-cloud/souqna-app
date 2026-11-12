@@ -40,9 +40,13 @@ class LocationService {
   static Future<List<String>> getDairas(String wilayaCode) async {
     final data = await _load();
     final set = <String>{};
+    final lang = LanguageService.currentLocale.value.languageCode;
     for (final row in data) {
       final code = (row['wilaya_code'] ?? '').toString();
-      final daira = (row['daira_name'] ?? '').toString();
+      String daira = (row['daira_name'] ?? '').toString();
+      if (lang == 'en') daira = (row['daira_name_en'] ?? daira).toString();
+      else if (lang == 'fr') daira = (row['daira_name_fr'] ?? daira).toString();
+
       if (code == wilayaCode && daira.isNotEmpty) {
         set.add(daira);
       }
@@ -57,9 +61,13 @@ class LocationService {
       String wilayaCode, String dairaName) async {
     final data = await _load();
     final list = <String>[];
+    final lang = LanguageService.currentLocale.value.languageCode;
     for (final row in data) {
       final code = (row['wilaya_code'] ?? '').toString();
-      final daira = (row['daira_name'] ?? '').toString();
+      String daira = (row['daira_name'] ?? '').toString();
+      if (lang == 'en') daira = (row['daira_name_en'] ?? daira).toString();
+      else if (lang == 'fr') daira = (row['daira_name_fr'] ?? daira).toString();
+
       final commune = (row['commune_name'] ?? '').toString();
       if (code == wilayaCode && daira == dairaName && commune.isNotEmpty) {
         list.add(commune);
