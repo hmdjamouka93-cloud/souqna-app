@@ -45,10 +45,11 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
         final targetId = widget.mainCategoryId.trim();
         final targetName = widget.mainCategoryName.trim();
 
+        final targetEn = LanguageService.mapMainToId(targetName);
         final list = snap.docs.where((d) {
           final x = d.data();
           final mId = (x['mainCategoryId'] ?? '').toString().trim();
-          return mId == targetId || mId == targetName;
+          return mId == targetId || mId == targetName || mId == targetEn;
         }).map((d) {
           final x = d.data();
           return {

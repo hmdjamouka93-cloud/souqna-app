@@ -1415,4 +1415,18 @@ class LanguageService {
     }
     return name;
   }
+
+  static String mapMainToId(String name) {
+    final clean = name.trim();
+    if (clean.contains('تبرع') || clean.contains('خير')) return 'charity';
+    if (clean.contains('وظيف') || clean.contains('عمل')) return 'jobs';
+    if (clean.contains('لكترون')) return 'electronics';
+    if (clean.contains('ملابس')) return 'clothing';
+    if (clean.contains('خدمات')) return 'services';
+    if (clean.contains('حيوان') || clean.contains('طيور')) return 'animals';
+    if (clean.contains('مركب') || clean.contains('سيار')) return 'vehicles';
+    if (clean.contains('عقار')) return 'real_estate';
+    return clean;
+  }
+
 }
