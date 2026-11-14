@@ -278,6 +278,10 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'كناري': {'ar': 'كناري', 'en': 'Canary', 'fr': 'Canari'},
+    'أمازوني': {'ar': 'أمازوني', 'en': 'Amazon Parrot', 'fr': 'Perroquet Amazone'},
+    'امازوني': {'ar': 'امازوني', 'en': 'Amazon Parrot', 'fr': 'Perroquet Amazone'},
+'بلبل': {'ar': 'بلبل', 'en': 'Bulbul', 'fr': 'Bulbul'},
     'صيانة ألواح شمسية': {'ar': 'صيانة ألواح شمسية', 'en': 'Solar Panel Maintenance', 'fr': 'Entretien de panneaux solaires'},
     'تركيب ألواح شمسية': {'ar': 'تركيب ألواح شمسية', 'en': 'Solar Panel Installation', 'fr': 'Installation de panneaux solaires'},
     'رعاية مسنين': {'ar': 'رعاية مسنين', 'en': 'Elderly Care', 'fr': 'Soins aux personnes âgées'},
