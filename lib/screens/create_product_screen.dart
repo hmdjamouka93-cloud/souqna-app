@@ -207,7 +207,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _label(LanguageService.trCategory('الصور (${_newImages.length + _existingImages.length}/5)')),
+              _label('${LanguageService.trCategory('الصور')} (${_newImages.length + _existingImages.length}/5)'),
               _imagesGrid(),
               const SizedBox(height: 16),
               _label(LanguageService.trCategory('اسم المنتج')),

@@ -278,6 +278,27 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'حسون': {'ar': 'حسون', 'en': 'Goldfinch', 'fr': 'Chardonneret'},
+    'كنيور': {'ar': 'كنيور', 'en': 'Canary', 'fr': 'Canari'},
+    'طيور أخرى': {'ar': 'طيور أخرى', 'en': 'Other Birds', 'fr': 'Autres oiseaux'},
+    'كاسكو': {'ar': 'كاسكو', 'en': 'African Grey Parrot', 'fr': 'Gris du Gabon'},
+    'كوكاتو': {'ar': 'كوكاتو', 'en': 'Cockatoo', 'fr': 'Cacatoès'},
+    'كاري': {'ar': 'كاري', 'en': 'Canary', 'fr': 'Canari'},
+    'دجاج ودواجن': {'ar': 'دجاج ودواجن', 'en': 'Chickens & Poultry', 'fr': 'Poulets et volailles'},
+    'مكاو': {'ar': 'مكاو', 'en': 'Macaw', 'fr': 'Ara'},
+    'مينا': {'ar': 'مينا', 'en': 'Myna', 'fr': 'Martins'},
+    'ببل': {'ar': 'ببل', 'en': 'Bulbul', 'fr': 'Bulbul'},
+    'أماروني': {'ar': 'أماروني', 'en': 'Amazon Parrot', 'fr': 'Perroquet Amazone'},
+    'بادجي': {'ar': 'بادجي', 'en': 'Budgies', 'fr': 'Perruches'},
+    'خيول': {'ar': 'خيول', 'en': 'Horses', 'fr': 'Chevaux'},
+    'جمال': {'ar': 'جمال', 'en': 'Camels', 'fr': 'Chameaux'},
+    'خرفان': {'ar': 'خرفان', 'en': 'Sheep', 'fr': 'Moutons'},
+    'بقر': {'ar': 'بقر', 'en': 'Cows', 'fr': 'Vaches'},
+    'قوارض': {'ar': 'قوارض', 'en': 'Rodents', 'fr': 'Rongeurs'},
+    'أسماك': {'ar': 'أسماك', 'en': 'Fish', 'fr': 'Poissons'},
+    'أقفاص ومستلزمات': {'ar': 'أقفاص ومستلزمات', 'en': 'Cages & Accessories', 'fr': 'Cages et accessoires'},
+    'زواحف وبرمائيات': {'ar': 'زواحف وبرمائيات', 'en': 'Reptiles & Amphibians', 'fr': 'Reptiles et amphibiens'},
+    'أرانب': {'ar': 'أرانب', 'en': 'Rabbits', 'fr': 'Lapins'},
 
     'اكسيسوارات الحاسوب': {'ar': 'اكسيسوارات الحاسوب', 'en': 'Computer Accessories', 'fr': 'Accessoires informatiques'},
     'العاب الحاسوب': {'ar': 'العاب الحاسوب', 'en': 'PC Games', 'fr': 'Jeux PC'},
