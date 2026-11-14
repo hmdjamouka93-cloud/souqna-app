@@ -278,6 +278,15 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'شاحنات نقل': {'ar': 'شاحنات نقل', 'en': 'Transport Trucks', 'fr': 'Camions de transport'},
+    'شاحنات النقل': {'ar': 'شاحنات النقل', 'en': 'Transport Trucks', 'fr': 'Camions de transport'},
+    'الأوركيسترا والفرق': {'ar': 'الأوركيسترا والفرق', 'en': 'Orchestra & Bands', 'fr': 'Orchestres et groupes'},
+    'كراء الكراسي والخيام': {'ar': 'كراء الكراسي والخيام', 'en': 'Chair & Tent Rental', 'fr': 'Location de chaises et tentes'},
+    'بطاقات الدعوة': {'ar': 'بطاقات الدعوة', 'en': 'Invitation Cards', 'fr': 'Cartes d\'invitation'},
+    'فساتين وبدل': {'ar': 'فساتين وبدل', 'en': 'Dresses & Suits', 'fr': 'Robes et costumes'},
+    'كوافير وماكياج': {'ar': 'كوافير وماكياج', 'en': 'Hairdresser & Makeup', 'fr': 'Coiffure et maquillage'},
+    'ديكور وورود': {'ar': 'ديكور وورود', 'en': 'Decor & Flowers', 'fr': 'Décoration et fleurs'},
+'التصوير الفوتوغرافي والفيديو': {'ar': 'التصوير الفوتوغرافي والفيديو', 'en': 'Photography & Video', 'fr': 'Photographie et vidéo'},
     'كناري': {'ar': 'كناري', 'en': 'Canary', 'fr': 'Canari'},
     'أمازوني': {'ar': 'أمازوني', 'en': 'Amazon Parrot', 'fr': 'Perroquet Amazone'},
     'امازوني': {'ar': 'امازوني', 'en': 'Amazon Parrot', 'fr': 'Perroquet Amazone'},
