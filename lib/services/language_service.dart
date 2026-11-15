@@ -278,6 +278,21 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'تمريض منزلي': {'ar': 'تمريض منزلي', 'en': 'Home Nursing', 'fr': 'Soins infirmiers'},
+    'حفلات شواء': {'ar': 'حفلات شواء', 'en': 'BBQ', 'fr': 'Barbecue'},
+    'وجبات سريعة': {'ar': 'وجبات سريعة', 'en': 'Fast Food', 'fr': 'Restauration rapide'},
+    'مشروبات': {'ar': 'مشروبات', 'en': 'Beverages', 'fr': 'Boissons'},
+    'حلويات': {'ar': 'حلويات', 'en': 'Sweets', 'fr': 'Pâtisseries'},
+    'الخدمات القانونية والادارية': {'ar': 'الخدمات القانونية والادارية', 'en': 'Legal & Admin Services', 'fr': 'Services juridiques et administratifs'},
+    'الخدمات القانونية والإدارية': {'ar': 'الخدمات القانونية والإدارية', 'en': 'Legal & Admin Services', 'fr': 'Services juridiques et administratifs'},
+    'النظافة ومكافحة الحشرات': {'ar': 'النظافة ومكافحة الحشرات', 'en': 'Cleaning & Pest Control', 'fr': 'Nettoyage et dératisation'},
+    'السفر والسياحة': {'ar': 'السفر والسياحة', 'en': 'Travel & Tourism', 'fr': 'Voyage et tourisme'},
+    'الصحة والجمال': {'ar': 'الصحة والجمال', 'en': 'Health & Beauty', 'fr': 'Santé et beauté'},
+    'الرياضة واللياقة البدنية': {'ar': 'الرياضة واللياقة البدنية', 'en': 'Sports & Fitness', 'fr': 'Sports et fitness'},
+    'التعليم والدروس الخصوصية': {'ar': 'التعليم والدروس الخصوصية', 'en': 'Education & Tutoring', 'fr': 'Éducation et soutien'},
+    'المأكولات والمشروبات': {'ar': 'المأكولات والمشروبات', 'en': 'Food & Beverages', 'fr': 'Restauration'},
+    'الاوركيسترا والفرق': {'ar': 'الاوركيسترا والفرق', 'en': 'Orchestra & Bands', 'fr': 'Orchestres et groupes'},
+    'الأوركسترا والفرق': {'ar': 'الأوركسترا والفرق', 'en': 'Orchestra & Bands', 'fr': 'Orchestres et groupes'},
     'شاحنات نقل': {'ar': 'شاحنات نقل', 'en': 'Transport Trucks', 'fr': 'Camions de transport'},
     'شاحنات النقل': {'ar': 'شاحنات النقل', 'en': 'Transport Trucks', 'fr': 'Camions de transport'},
     'الأوركيسترا والفرق': {'ar': 'الأوركيسترا والفرق', 'en': 'Orchestra & Bands', 'fr': 'Orchestres et groupes'},
