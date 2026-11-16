@@ -278,6 +278,11 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    "تنظيف المنازل": {"ar": "تنظيف المنازل", "en": "Home Cleaning", "fr": "Nettoyage de maisons"},
+    "مكافحة الحشرات": {"ar": "مكافحة الحشرات", "en": "Pest Control", "fr": "Lutte contre les nuisibles"},
+    "ديبناج وسمكرة": {"ar": "ديبناج وسمكرة", "en": "Towing & Bodywork", "fr": "Dépannage et carrosserie"},
+    "تنظيف واجهات المباني": {"ar": "تنظيف واجهات المباني", "en": "Building Facades Cleaning", "fr": "Nettoyage de façades"},
+    "تنظيف السجاد والأثاث": {"ar": "تنظيف السجاد والأثاث", "en": "Carpet & Furniture Cleaning", "fr": "Nettoyage de tapis et meubles"},
     "ديباناج وسمكرة": {"ar": "ديباناج وسمكرة", "en": "Towing & Bodywork", "fr": "Dépannage et carrosserie"},
     "غسيل وتنظيف": {"ar": "غسيل وتنظيف", "en": "Car Wash & Cleaning", "fr": "Lavage et nettoyage"},
     "حجز تذاكر الطيران": {"ar": "حجز تذاكر الطيران", "en": "Flight Ticket Booking", "fr": "Réservation de billets d'avion"},
