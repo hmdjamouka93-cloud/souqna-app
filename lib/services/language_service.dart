@@ -18,6 +18,7 @@ class LanguageService {
 
   // قاموس الترجمة - راح نزيدو فيه الكلمات شاشة بشاشة
   static final Map<String, Map<String, String>> _translations = {
+    'agency_name': {'ar': 'اسم الوكالة', 'en': 'Agency Name', 'fr': 'Nom de l\'agence'},
 
     'edit_rental_agency': {'ar': 'تعديل وكالة الإيجار', 'en': 'Edit Rental Agency', 'fr': 'Modifier l\'agence de location'},
     'edit_showroom': {'ar': 'تعديل المعرض', 'en': 'Edit Showroom', 'fr': 'Modifier le showroom'},
@@ -1465,29 +1466,30 @@ class LanguageService {
     final lang = currentLocale.value.languageCode;
     if (lang == 'ar') return name;
 
-    // الدالة النووية: تمسح أي حاجة ماشي حرف عربي (كيما الفواصل، المسافات، الرموز المخفية)
     String sanitize(String input) {
       return input
-          .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '') // كيخلي غير الحروف العربية
+          .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '') // Keeps ONLY Arabic letters
           .replaceAll('أ', 'ا')
           .replaceAll('إ', 'ا')
           .replaceAll('آ', 'ا')
           .replaceAll('ة', 'ه')
           .replaceAll('ى', 'ي')
-          .trim();
+          .trim()
+          .toLowerCase();
     }
 
     final cleanName = sanitize(name);
+    if (cleanName.isEmpty) return name; // If no Arabic letters, return as is (fixes English/numbers)
 
-    // === BRUTE FORCE FALLBACKS (باش نضمنو الكلمات اللي عيت معانا) ===
-    if (cleanName.contains('مالح') && cleanName.contains('تقليدي')) return lang == 'en' ? 'Salty (Traditional Dishes)' : 'Salé (Plats traditionnels)';
-
+    // === BRUTE FORCE FALLBACKS ===
     if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
     if (cleanName.contains('العاب') && cleanName.contains('حاسوب')) return lang == 'en' ? 'PC Games' : 'Jeux PC';
     if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
     if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
     if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
     if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
+    if (cleanName.contains('مالح') && cleanName.contains('تقليدي')) return lang == 'en' ? 'Salty (Traditional Dishes)' : 'Salé (Plats traditionnels)';
+    if (cleanName.contains('ميكانيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
 
     // === STANDARD DICTIONARY LOOKUP ===
     for (final key in _categoryTranslations.keys) {
