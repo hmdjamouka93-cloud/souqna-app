@@ -278,6 +278,20 @@ class LanguageService {
   }
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
+    // BRANDS_START
+    // BRANDS_END
+    // BATCH_1_START
+
+    'agency_name': {'ar': 'اسم الوكالة', 'en': 'Agency Name', 'fr': 'Nom de l\'agence'},
+    'enter_agency_name': {'ar': 'اكتب اسم الوكالة', 'en': 'Enter agency name', 'fr': 'Entrez le nom de l\'agence'},
+    'create_agency': {'ar': 'إنشاء الوكالة', 'en': 'Create Agency', 'fr': 'Créer l\'agence'},
+    'phone_number': {'ar': 'رقم الهاتف', 'en': 'Phone Number', 'fr': 'Numéro de téléphone'},
+    'طراد': {'ar': 'طراد', 'en': 'Cruiser', 'fr': 'Croiseur'},
+    'يخت': {'ar': 'يخت', 'en': 'Yacht', 'fr': 'Yacht'},
+    'يخوت': {'ar': 'يخوت', 'en': 'Yachts', 'fr': 'Yachts'},
+    'أدوات صيد': {'ar': 'أدوات صيد', 'en': 'Fishing Gear', 'fr': 'Matériel de pêche'},
+    'الهيكل الخارجي': {'ar': 'الهيكل الخارجي', 'en': 'Exterior Body', 'fr': 'Carrosserie extérieure'},
+    // BATCH_1_END
     // AUTO_TRANSLATIONS_START
     "ميكانيك": {"ar": "ميكانيك", "en": "Mechanics", "fr": "Mécanique"},
     "ميكانيكي": {"ar": "ميكانيكي", "en": "Mechanic", "fr": "Mécanicien"},
@@ -1467,31 +1481,12 @@ class LanguageService {
     if (lang == 'ar') return name;
 
     String sanitize(String input) {
-      return input
-          .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '') // Keeps ONLY Arabic letters
-          .replaceAll('أ', 'ا')
-          .replaceAll('إ', 'ا')
-          .replaceAll('آ', 'ا')
-          .replaceAll('ة', 'ه')
-          .replaceAll('ى', 'ي')
-          .trim()
-          .toLowerCase();
+      return input.replaceAll(RegExp(r'[^\u0600-\u06FF]'), '').replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا').replaceAll('ة', 'ه').replaceAll('ى', 'ي').trim().toLowerCase();
     }
 
     final cleanName = sanitize(name);
-    if (cleanName.isEmpty) return name; // If no Arabic letters, return as is (fixes English/numbers)
+    if (cleanName.isEmpty) return name;
 
-    // === BRUTE FORCE FALLBACKS ===
-    if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
-    if (cleanName.contains('العاب') && cleanName.contains('حاسوب')) return lang == 'en' ? 'PC Games' : 'Jeux PC';
-    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
-    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
-    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
-    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
-    if (cleanName.contains('مالح') && cleanName.contains('تقليدي')) return lang == 'en' ? 'Salty (Traditional Dishes)' : 'Salé (Plats traditionnels)';
-    if (cleanName.contains('ميكانيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
-
-    // === STANDARD DICTIONARY LOOKUP ===
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
