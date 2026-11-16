@@ -278,6 +278,13 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'صالونات ومراكز تجميل': {'ar': 'صالونات ومراكز تجميل', 'en': 'Salons & Beauty Centers', 'fr': 'Salons et centres de beauté'},
+    'مستلزمات ذوي الاحتياجات الخاصة': {'ar': 'مستلزمات ذوي الاحتياجات الخاصة', 'en': 'Special Needs Supplies', 'fr': 'Fournitures pour besoins spéciaux'},
+    'الصحة الغذائية والتخسيس': {'ar': 'الصحة الغذائية والتخسيس', 'en': 'Nutritional Health & Weight Loss', 'fr': 'Santé nutritionnelle et perte de poids'},
+    'أدوات التجميل والعناية': {'ar': 'أدوات التجميل والعناية', 'en': 'Cosmetics & Care Tools', 'fr': 'Outils de beauté et de soin'},
+    'ادوات التجميل والعناية': {'ar': 'ادوات التجميل والعناية', 'en': 'Cosmetics & Care Tools', 'fr': 'Outils de beauté et de soin'},
+    'أجهزة ومستلزمات طبية': {'ar': 'أجهزة ومستلزمات طبية', 'en': 'Medical Devices & Supplies', 'fr': 'Appareils et fournitures médicales'},
+'الطب البديل': {'ar': 'الطب البديل', 'en': 'Alternative Medicine', 'fr': 'Médecine alternative'},
     'ملابس وأحذية رياضية': {'ar': 'ملابس وأحذية رياضية', 'en': 'Sports Clothing & Shoes', 'fr': 'Vêtements et chaussures de sport'},
     'ألعاب وترفيه': {'ar': 'ألعاب وترفيه', 'en': 'Games & Entertainment', 'fr': 'Jeux et divertissements'},
     'معدات وأجهزة رياضية': {'ar': 'معدات وأجهزة رياضية', 'en': 'Sports Equipment & Machines', 'fr': 'Équipements et machines de sport'},
