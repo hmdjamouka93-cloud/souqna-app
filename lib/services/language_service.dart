@@ -278,6 +278,10 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'ملابس وأحذية رياضية': {'ar': 'ملابس وأحذية رياضية', 'en': 'Sports Clothing & Shoes', 'fr': 'Vêtements et chaussures de sport'},
+    'ألعاب وترفيه': {'ar': 'ألعاب وترفيه', 'en': 'Games & Entertainment', 'fr': 'Jeux et divertissements'},
+    'معدات وأجهزة رياضية': {'ar': 'معدات وأجهزة رياضية', 'en': 'Sports Equipment & Machines', 'fr': 'Équipements et machines de sport'},
+'مكملات غذائية': {'ar': 'مكملات غذائية', 'en': 'Nutritional Supplements', 'fr': 'Compléments alimentaires'},
     'دورات وتكوينات': {'ar': 'دورات وتكوينات', 'en': 'Courses & Training', 'fr': 'Cours et formations'},
     'دروس ثانوي': {'ar': 'دروس ثانوي', 'en': 'High School Tutoring', 'fr': 'Cours secondaires'},
     'دروس متوسط': {'ar': 'دروس متوسط', 'en': 'Middle School Tutoring', 'fr': 'Cours moyens'},
