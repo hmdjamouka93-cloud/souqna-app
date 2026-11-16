@@ -278,6 +278,12 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    "ديباناج وسمكرة": {"ar": "ديباناج وسمكرة", "en": "Towing & Bodywork", "fr": "Dépannage et carrosserie"},
+    "غسيل وتنظيف": {"ar": "غسيل وتنظيف", "en": "Car Wash & Cleaning", "fr": "Lavage et nettoyage"},
+    "حجز تذاكر الطيران": {"ar": "حجز تذاكر الطيران", "en": "Flight Ticket Booking", "fr": "Réservation de billets d'avion"},
+    "وكالات السفر": {"ar": "وكالات السفر", "en": "Travel Agencies", "fr": "Agences de voyage"},
+    "تأشيرات والعمرة": {"ar": "تأشيرات والعمرة", "en": "Visas & Umrah", "fr": "Visas et Omra"},
+    "حجز الفنادق": {"ar": "حجز الفنادق", "en": "Hotel Booking", "fr": "Réservation d'hôtels"},
     "سخانات ماء شمسية": {"ar": "سخانات ماء شمسية", "en": "Solar Water Heaters", "fr": "Chauffe-eau solaires"},
     "ألواح شمسية": {"ar": "ألواح شمسية", "en": "Solar Panels", "fr": "Panneaux solaires"},
     "تركيب وصيانة": {"ar": "تركيب وصيانة", "en": "Installation & Maintenance", "fr": "Installation et maintenance"},
