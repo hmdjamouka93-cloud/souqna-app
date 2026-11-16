@@ -278,6 +278,12 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'تبرع بالأثاث': {'ar': 'تبرع بالأثاث', 'en': 'Furniture Donation', 'fr': 'Don de meubles'},
+    'تبرع بالاثاث': {'ar': 'تبرع بالاثاث', 'en': 'Furniture Donation', 'fr': 'Don de meubles'},
+    'تبرعات أخرى': {'ar': 'تبرعات أخرى', 'en': 'Other Donations', 'fr': 'Autres dons'},
+    'تبرعات اخرى': {'ar': 'تبرعات اخرى', 'en': 'Other Donations', 'fr': 'Autres dons'},
+    'تبرع بالملابس': {'ar': 'تبرع بالملابس', 'en': 'Clothes Donation', 'fr': 'Don de vêtements'},
+'تبرع بالغذاء': {'ar': 'تبرع بالغذاء', 'en': 'Food Donation', 'fr': 'Don de nourriture'},
     'تمريض منزلي': {'ar': 'تمريض منزلي', 'en': 'Home Nursing', 'fr': 'Soins infirmiers'},
     'حفلات شواء': {'ar': 'حفلات شواء', 'en': 'BBQ', 'fr': 'Barbecue'},
     'وجبات سريعة': {'ar': 'وجبات سريعة', 'en': 'Fast Food', 'fr': 'Restauration rapide'},
