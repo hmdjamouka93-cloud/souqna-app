@@ -278,6 +278,10 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'دورات وتكوينات': {'ar': 'دورات وتكوينات', 'en': 'Courses & Training', 'fr': 'Cours et formations'},
+    'دروس ثانوي': {'ar': 'دروس ثانوي', 'en': 'High School Tutoring', 'fr': 'Cours secondaires'},
+    'دروس متوسط': {'ar': 'دروس متوسط', 'en': 'Middle School Tutoring', 'fr': 'Cours moyens'},
+'دروس ابتدائي': {'ar': 'دروس ابتدائي', 'en': 'Primary Tutoring', 'fr': 'Cours primaires'},
 'المالح (أطباق تقليدية)': {'ar': 'المالح (أطباق تقليدية)', 'en': 'Salty (Traditional Dishes)', 'fr': 'Salé (Plats traditionnels)'},
     'الحلويات': {'ar': 'الحلويات', 'en': 'Sweets', 'fr': 'Pâtisseries'},
     'الطبخ': {'ar': 'الطبخ', 'en': 'Cooking', 'fr': 'Cuisine'},
