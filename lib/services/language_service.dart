@@ -278,6 +278,14 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    'الحلويات': {'ar': 'الحلويات', 'en': 'Sweets', 'fr': 'Pâtisseries'},
+    'الطبخ': {'ar': 'الطبخ', 'en': 'Cooking', 'fr': 'Cuisine'},
+    'المأكولات السريعة': {'ar': 'المأكولات السريعة', 'en': 'Fast Food', 'fr': 'Restauration rapide'},
+    'الوجبات السريعة': {'ar': 'الوجبات السريعة', 'en': 'Fast Food', 'fr': 'Restauration rapide'},
+    'المشروبات': {'ar': 'المشروبات', 'en': 'Beverages', 'fr': 'Boissons'},
+    'الطبخ المنزلي': {'ar': 'الطبخ المنزلي', 'en': 'Home Cooking', 'fr': 'Cuisine maison'},
+    'الحلويات والكيك': {'ar': 'الحلويات والكيك', 'en': 'Sweets & Cakes', 'fr': 'Pâtisseries et gâteaux'},
+'المالح': {'ar': 'المالح', 'en': 'Salty', 'fr': 'Salé'},
     'تبرع بالأثاث': {'ar': 'تبرع بالأثاث', 'en': 'Furniture Donation', 'fr': 'Don de meubles'},
     'تبرع بالاثاث': {'ar': 'تبرع بالاثاث', 'en': 'Furniture Donation', 'fr': 'Don de meubles'},
     'تبرعات أخرى': {'ar': 'تبرعات أخرى', 'en': 'Other Donations', 'fr': 'Autres dons'},
@@ -1408,38 +1416,27 @@ class LanguageService {
     final lang = currentLocale.value.languageCode;
     if (lang == 'ar') return name;
 
+    // الدالة النووية: تمسح أي حاجة ماشي حرف عربي (كيما الفواصل، المسافات، الرموز المخفية)
     String sanitize(String input) {
       return input
-          .replaceAll(RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'), '')
-          .replaceAll('\u00A0', ' ')
+          .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '') // كيخلي غير الحروف العربية
           .replaceAll('أ', 'ا')
           .replaceAll('إ', 'ا')
           .replaceAll('آ', 'ا')
           .replaceAll('ة', 'ه')
           .replaceAll('ى', 'ي')
-          .replaceAll(RegExp(r'\s+'), '')
-          .trim()
-          .toLowerCase();
+          .trim();
     }
 
     final cleanName = sanitize(name);
 
-    // === BRUTE FORCE FALLBACKS ===
-    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
-    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
-    if (cleanName.contains('معرض') && cleanName.contains('سيارات')) return lang == 'en' ? 'Car Showrooms' : 'Showrooms';
-    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
-    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
-    if (cleanName.contains('جيت') && cleanName.contains('سكي')) return 'Jet Ski';
-    if (cleanName.contains('قارب') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Boat' : 'Bateau de pêche';
-    if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
-    if (cleanName.contains('ادوات') && cleanName.contains('غوص')) return lang == 'en' ? 'Diving Gear' : 'Matériel de plongée';
-    if (cleanName.contains('نظارات') && cleanName.contains('vr')) return lang == 'en' ? 'VR Glasses' : 'Lunettes VR';
-    if (cleanName.contains('هيكل') && cleanName.contains('خارجي')) return lang == 'en' ? 'Exterior Body' : 'Carrosserie extérieure';
-    
-    // RESTORED RULES
+    // === BRUTE FORCE FALLBACKS (باش نضمنو الكلمات اللي عيت معانا) ===
     if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
     if (cleanName.contains('العاب') && cleanName.contains('حاسوب')) return lang == 'en' ? 'PC Games' : 'Jeux PC';
+    if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
+    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
+    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
+    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
 
     // === STANDARD DICTIONARY LOOKUP ===
     for (final key in _categoryTranslations.keys) {
