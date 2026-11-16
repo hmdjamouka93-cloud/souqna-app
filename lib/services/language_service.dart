@@ -278,6 +278,7 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+'المالح (أطباق تقليدية)': {'ar': 'المالح (أطباق تقليدية)', 'en': 'Salty (Traditional Dishes)', 'fr': 'Salé (Plats traditionnels)'},
     'الحلويات': {'ar': 'الحلويات', 'en': 'Sweets', 'fr': 'Pâtisseries'},
     'الطبخ': {'ar': 'الطبخ', 'en': 'Cooking', 'fr': 'Cuisine'},
     'المأكولات السريعة': {'ar': 'المأكولات السريعة', 'en': 'Fast Food', 'fr': 'Restauration rapide'},
@@ -1431,6 +1432,8 @@ class LanguageService {
     final cleanName = sanitize(name);
 
     // === BRUTE FORCE FALLBACKS (باش نضمنو الكلمات اللي عيت معانا) ===
+    if (cleanName.contains('مالح') && cleanName.contains('تقليدي')) return lang == 'en' ? 'Salty (Traditional Dishes)' : 'Salé (Plats traditionnels)';
+
     if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
     if (cleanName.contains('العاب') && cleanName.contains('حاسوب')) return lang == 'en' ? 'PC Games' : 'Jeux PC';
     if (cleanName.contains('دراجات') && cleanName.contains('سكوتر')) return lang == 'en' ? 'Bicycles & Scooters' : 'Vélos et Trottinettes';
