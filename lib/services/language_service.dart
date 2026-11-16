@@ -278,6 +278,8 @@ class LanguageService {
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
     // AUTO_TRANSLATIONS_START
+    "ميكانيك": {"ar": "ميكانيك", "en": "Mechanics", "fr": "Mécanique"},
+    "ميكانيكي": {"ar": "ميكانيكي", "en": "Mechanic", "fr": "Mécanicien"},
     "تنظيف المنازل": {"ar": "تنظيف المنازل", "en": "Home Cleaning", "fr": "Nettoyage de maisons"},
     "مكافحة الحشرات": {"ar": "مكافحة الحشرات", "en": "Pest Control", "fr": "Lutte contre les nuisibles"},
     "ديبناج وسمكرة": {"ar": "ديبناج وسمكرة", "en": "Towing & Bodywork", "fr": "Dépannage et carrosserie"},
