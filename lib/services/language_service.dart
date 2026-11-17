@@ -1541,6 +1541,14 @@ class LanguageService {
     final cleanName = sanitize(name);
     if (cleanName.isEmpty) return name;
 
+    // القواعد القسرية (Brute-Force) للكلمات اللي عيت معانا
+    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
+    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
+    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
+    if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
+    if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
+    if (cleanName.contains('ميكانيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
+
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
         return _categoryTranslations[key]![lang] ?? name;
