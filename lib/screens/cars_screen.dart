@@ -158,7 +158,7 @@ class _CarsScreenState extends State<CarsScreen> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-      child: Text(title,
+      child: Text(LanguageService.trCategory(title),
           style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
     );
   }
@@ -280,8 +280,7 @@ class _CarsScreenState extends State<CarsScreen> {
                 bottom: 8,
                 right: 6,
                 left: 6,
-                child: Text(
-                  name,
+                child: Text(LanguageService.trCategory(name),
                   textAlign: TextAlign.center,
                   style:  TextStyle(
                     color: Colors.white,
@@ -360,7 +359,7 @@ class _CarsScreenState extends State<CarsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8, left: 4, right: 4),
-                child: Text(name,
+                child: Text(LanguageService.trCategory(name),
                     style:  TextStyle(
                         color: Colors.white,
                         fontSize: 12,
