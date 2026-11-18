@@ -1535,7 +1535,13 @@ class LanguageService {
     if (lang == 'ar') return name;
 
     String sanitize(String input) {
-      return input.replaceAll(RegExp(r'[^\u0600-\u06FF]'), '').replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا').replaceAll('ة', 'ه').replaceAll('ى', 'ي').trim().toLowerCase();
+      return input
+          .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '')
+          .replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا')
+          .replaceAll('ة', 'ه').replaceAll('ى', 'ي')
+          .replaceAll('ّ', '') // Remove Shadda
+          .replaceAll('َ', '').replaceAll('ُ', '').replaceAll('ِ', '').replaceAll('ْ', '') // Remove Tashkeel
+          .trim().toLowerCase();
     }
 
     final cleanName = sanitize(name);
@@ -1546,8 +1552,10 @@ class LanguageService {
     if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
     if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
     if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
-    if (cleanName.contains('اكسيسوارات') && cleanName.contains('حاسوب')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
-    if (cleanName.contains('ميكانيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
+    
+    // Fix for Computer Accessories and Mechanics (multiple spellings)
+    if (cleanName.contains('اكسسوارات') || cleanName.contains('اكسيسوارات')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
+    if (cleanName.contains('ميكانيك') || cleanName.contains('ميكنيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
 
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
