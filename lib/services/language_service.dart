@@ -1539,21 +1539,30 @@ class LanguageService {
           .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '')
           .replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا')
           .replaceAll('ة', 'ه').replaceAll('ى', 'ي')
-          .replaceAll('ّ', '') // Remove Shadda
-          .replaceAll('َ', '').replaceAll('ُ', '').replaceAll('ِ', '').replaceAll('ْ', '') // Remove Tashkeel
+          .replaceAll('ّ', '').replaceAll('َ', '').replaceAll('ُ', '').replaceAll('ِ', '').replaceAll('ْ', '')
           .trim().toLowerCase();
     }
 
     final cleanName = sanitize(name);
     if (cleanName.isEmpty) return name;
 
-    // القواعد القسرية (Brute-Force) للكلمات اللي عيت معانا
+    // === REAL ESTATE BRUTE-FORCE ===
+    if (cleanName.contains('سكن') && cleanName.contains('للايجار')) return lang == 'en' ? 'Housing for Rent' : 'Logement à louer';
+    if (cleanName.contains('سكن') && cleanName.contains('للبيع')) return lang == 'en' ? 'Housing for Sale' : 'Logement à vendre';
+    if (cleanName.contains('محلات') && cleanName.contains('للايجار')) return lang == 'en' ? 'Shops for Rent' : 'Locaux à louer';
+    if (cleanName.contains('محلات') && cleanName.contains('للبيع')) return lang == 'en' ? 'Shops for Sale' : 'Locaux à vendre';
+    if (cleanName.contains('اراضي') || cleanName.contains('ارض')) return lang == 'en' ? 'Lands' : 'Terrains';
+    if (cleanName.contains('شقة') || cleanName.contains('شقق')) return lang == 'en' ? 'Apartment' : 'Appartement';
+    if (cleanName.contains('فيلا')) return lang == 'en' ? 'Villa' : 'Villa';
+    if (cleanName.contains('منزل')) return lang == 'en' ? 'Traditional house' : 'Maison traditionnelle';
+    if (cleanName.contains('محل') && cleanName.contains('تجاري')) return lang == 'en' ? 'Commercial shop' : 'Local commercial';
+    if (cleanName.contains('مكتب')) return lang == 'en' ? 'Office' : 'Bureau';
+
+    // === OTHER BRUTE-FORCE (Cars/Marine/etc) ===
     if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
     if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
     if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
     if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
-    
-    // Fix for Computer Accessories and Mechanics (multiple spellings)
     if (cleanName.contains('اكسسوارات') || cleanName.contains('اكسيسوارات')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
     if (cleanName.contains('ميكانيك') || cleanName.contains('ميكنيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
 
