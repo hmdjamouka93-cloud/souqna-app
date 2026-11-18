@@ -174,9 +174,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
           title:  Text(LanguageService.trCategory('حذف المتجر'),
               style: TextStyle(color: AppColors.textPrimary)),
           content:  Text(
-            'هل أنت متأكد من حذف متجرك؟\n\n'
-            'يمكنك استرجاعه خلال 7 أيام من خلال التواصل معنا.\n'
-            'بعد 7 أيام سيتم حذفه نهائياً.',
+            LanguageService.tr('store_delete_msg'),
             style: TextStyle(color: AppColors.textSecondary, height: 1.6),
           ),
           actions: [

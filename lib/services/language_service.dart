@@ -18,6 +18,8 @@ class LanguageService {
 
   // قاموس الترجمة - راح نزيدو فيه الكلمات شاشة بشاشة
   static final Map<String, Map<String, String>> _translations = {
+    "store_delete_msg": {"ar": "هل أنت متأكد من حذف متجرك؟\n\nيمكنك استرجاعه خلال 7 أيام من خلال التواصل معنا.\nبعد 7 أيام سيتم حذفه نهائياً.", "en": "Are you sure you want to delete your store?\n\nYou can recover it within 7 days by contacting us.\nAfter 7 days, it will be permanently deleted.", "fr": "Êtes-vous sûr de vouloir supprimer votre boutique ?\n\nVous pouvez la récupérer dans les 7 jours en nous contactant.\nAprès 7 jours, elle sera définitivement supprimée."},
+
     'agency_name': {'ar': 'اسم الوكالة', 'en': 'Agency Name', 'fr': 'Nom de l\'agence'},
 
     'edit_rental_agency': {'ar': 'تعديل وكالة الإيجار', 'en': 'Edit Rental Agency', 'fr': 'Modifier l\'agence de location'},
@@ -278,6 +280,18 @@ class LanguageService {
   }
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
+
+    'سكن أخرى': {'ar': 'سكن أخرى', 'en': 'Other Housing', 'fr': 'Autres logements'},
+    'عمارات': {'ar': 'عمارات', 'en': 'Buildings', 'fr': 'Immeubles'},
+    'بيوت شعبية': {'ar': 'بيوت شعبية', 'en': 'Popular Houses', 'fr': 'Maisons populaires'},
+    'طراد ويخوت': {'ar': 'طراد ويخوت', 'en': 'Cruisers & Yachts', 'fr': 'Croiseurs et yachts'},
+    'قوارب صيد': {'ar': 'قوارب صيد', 'en': 'Fishing Boats', 'fr': 'Bateaux de pêche'},
+    'جيت سكي': {'ar': 'جيت سكي', 'en': 'Jet Ski', 'fr': 'Jet Ski'},
+    'أدوات الغوص': {'ar': 'أدوات الغوص', 'en': 'Diving Gear', 'fr': 'Matériel de plongée'},
+    'أدوات الصيد': {'ar': 'أدوات الصيد', 'en': 'Fishing Gear', 'fr': 'Matériel de pêche'},
+    'أدوات أخرى': {'ar': 'أدوات أخرى', 'en': 'Other Gear', 'fr': 'Autres outils'},
+    'بحري': {'ar': 'بحري', 'en': 'Marine', 'fr': 'Marine'},
+
     // HOME_SUBS_START
     "سيارات": {"ar": "سيارات", "en": "Cars", "fr": "Voitures"},
     "شاحنات": {"ar": "شاحنات", "en": "Trucks", "fr": "Camions"},
