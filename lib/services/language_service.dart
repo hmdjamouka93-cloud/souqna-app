@@ -280,6 +280,19 @@ class LanguageService {
   }
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
+    // FIX_SCREENSHOTS_START
+
+    'الأقسام الفرعية': {'ar': 'الأقسام الفرعية', 'en': 'Subcategories', 'fr': 'Sous-catégories'},
+    'متجري': {'ar': 'متجري', 'en': 'My Store', 'fr': 'Ma Boutique'},
+    'حفظ التعديل': {'ar': 'حفظ التعديل', 'en': 'Save Changes', 'fr': 'Enregistrer'},
+    'الطلبات': {'ar': 'الطلبات', 'en': 'Orders', 'fr': 'Commandes'},
+    'إنشاء المتجر': {'ar': 'إنشاء المتجر', 'en': 'Create Store', 'fr': 'Créer la boutique'},
+    'أنشئ متجرك': {'ar': 'أنشئ متجرك', 'en': 'Create your store', 'fr': 'Créez votre boutique'},
+    'اعرض منتجاتك في سوقنا': {'ar': 'اعرض منتجاتك في سوقنا', 'en': 'Display your products on Souqna', 'fr': 'Affichez vos produits'},
+    'مكاتب': {'ar': 'مكاتب', 'en': 'Offices', 'fr': 'Bureaux'},
+    'محلات أخرى': {'ar': 'محلات أخرى', 'en': 'Other shops', 'fr': 'Autres locaux'},
+    'مستودعات': {'ar': 'مستودعات', 'en': 'Warehouses', 'fr': 'Entrepôts'},
+    // FIX_SCREENSHOTS_END
 
     'سكن أخرى': {'ar': 'سكن أخرى', 'en': 'Other Housing', 'fr': 'Autres logements'},
     'عمارات': {'ar': 'عمارات', 'en': 'Buildings', 'fr': 'Immeubles'},

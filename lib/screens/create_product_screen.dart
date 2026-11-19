@@ -263,7 +263,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                           child: CircularProgressIndicator(
                               color: AppColors.textPrimary, strokeWidth: 2.5))
                       : Text(
-                          _isEdit ? 'حفظ التعديل' : LanguageService.trCategory('إضافة المنتج'),
+                          _isEdit ? LanguageService.trCategory('حفظ التعديل') : LanguageService.trCategory('إضافة المنتج'),
                           style:  TextStyle(
                               color: AppColors.textPrimary,
                               fontSize: 16,

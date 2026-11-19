@@ -29,7 +29,7 @@ class ClothingSubscreen extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'الأقسام الفرعية',
+            LanguageService.trCategory('الأقسام الفرعية'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),

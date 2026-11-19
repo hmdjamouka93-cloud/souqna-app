@@ -65,7 +65,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'الطلبات',
+            LanguageService.trCategory('الطلبات'),
             style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,

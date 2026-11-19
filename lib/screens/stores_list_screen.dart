@@ -165,7 +165,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(hasStore ? 'متجري' : 'أنشئ متجرك',
+                  Text(hasStore ? LanguageService.trCategory('متجري') : LanguageService.trCategory('أنشئ متجرك'),
                       style:  TextStyle(
                           color: Colors.white,
                           fontSize: 15,
@@ -174,7 +174,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                   Text(
                     hasStore
                         ? (_myStore!['name'] ?? '').toString()
-                        : 'اعرض منتجاتك في سوقنا',
+                        : LanguageService.trCategory('اعرض منتجاتك في سوقنا'),
                     style:  TextStyle(
                         color: AppColors.textPrimary, fontSize: 12),
                     maxLines: 1,

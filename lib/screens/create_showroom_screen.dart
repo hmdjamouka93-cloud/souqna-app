@@ -189,7 +189,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
               const SizedBox(height: 10),
               Center(
                 child: Text(
-                  widget.type == 'rental' ? LanguageService.trCategory(LanguageService.trCategory('شعار الوكالة')) : LanguageService.trCategory('شعار المعرض'),
+                  widget.type == 'rental' ? LanguageService.trCategory('شعار الوكالة') : LanguageService.trCategory('شعار المعرض'),
                   style:  TextStyle(
                       color: AppColors.textSecondary, fontSize: 12),
                 ),
