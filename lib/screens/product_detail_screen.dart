@@ -515,7 +515,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ? AppColors.accent
                                   : AppColors.textSecondary.withValues(alpha: 0.24)),
                         ),
-                        child: Text(c,
+                        child: Text(LanguageService.trCategory(c),
                             style: TextStyle(
                                 color: _selectedColor == c
                                     ? AppColors.textPrimary
@@ -563,7 +563,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ? AppColors.accent
                                   : AppColors.textSecondary.withValues(alpha: 0.24)),
                         ),
-                        child: Text(s,
+                        child: Text(LanguageService.trCategory(s),
                             style: TextStyle(
                                 color: _selectedSize == s
                                     ? AppColors.textPrimary
@@ -733,7 +733,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           items: _dairas
               .map((d) => DropdownMenuItem<String>(
                     value: d,
-                    child: Text(d,
+                    child: Text(LanguageService.trCategory(d),
                         style:  TextStyle(color: AppColors.textPrimary)),
                   ))
               .toList(),

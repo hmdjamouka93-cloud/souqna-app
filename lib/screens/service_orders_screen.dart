@@ -170,7 +170,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
         children: [
           Text('$label: ', style:  TextStyle(color: AppColors.textSecondary, fontSize: 13)),
           Expanded(
-            child: Text(value, style:  TextStyle(color: AppColors.textPrimary, fontSize: 13)),
+            child: Text(LanguageService.trCategory(value), style:  TextStyle(color: AppColors.textPrimary, fontSize: 13)),
           ),
         ],
       ),

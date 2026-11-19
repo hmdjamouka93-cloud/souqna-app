@@ -235,7 +235,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text(widget.brandName,
+          title: Text(LanguageService.trCategory(widget.brandName),
               style:  TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 18,

@@ -468,7 +468,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
           border: Border.all(color: AppColors.accent, width: 1.5),
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Text(label,
+        child: Text(LanguageService.trCategory(label),
             style: const TextStyle(color: AppColors.accent, fontSize: 12,
                 fontWeight: FontWeight.bold)),
       ),

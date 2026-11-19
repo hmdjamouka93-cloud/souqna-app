@@ -264,7 +264,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
 
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
-        child: Text(t,
+        child: Text(LanguageService.trCategory(t),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 14,

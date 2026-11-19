@@ -164,7 +164,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
                                 ? const Icon(Icons.person, color: AppColors.accent)
                                 : null,
                           ),
-                          title: Text(p['name'],
+                          title: Text(LanguageService.trCategory(p['name']),
                               style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
                           subtitle: Text('${p['wilaya']} - ${p['daira']}',
                               style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),

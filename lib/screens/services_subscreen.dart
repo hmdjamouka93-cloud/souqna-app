@@ -72,8 +72,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
             icon:  Icon(Icons.arrow_back_ios_new, color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text(
-            widget.categoryName,
+          title: Text(LanguageService.trCategory(widget.categoryName),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
@@ -181,8 +180,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                                   bottom: 10,
                                   right: 8,
                                   left: 8,
-                                  child: Text(
-                                    name,
+                                  child: Text(LanguageService.trCategory(name),
                                     textAlign: TextAlign.center,
                                     style:  TextStyle(
                                       color: AppColors.textPrimary,

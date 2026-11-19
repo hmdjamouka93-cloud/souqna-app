@@ -105,8 +105,7 @@ class ChatsListScreen extends StatelessWidget {
                   ),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      lastMessage,
+                    child: Text(LanguageService.trCategory(lastMessage),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style:  TextStyle(color: AppColors.textSecondary, fontSize: 13),

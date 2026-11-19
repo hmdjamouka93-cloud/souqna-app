@@ -415,7 +415,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
 
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
-        child: Text(t, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
+        child: Text(LanguageService.trCategory(t), style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
       );
 
   Widget _dropdown(String hint, List<String> items, String? val, Function(String?) onChanged) {

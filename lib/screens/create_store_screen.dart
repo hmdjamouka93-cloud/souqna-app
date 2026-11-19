@@ -398,7 +398,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           items: _dairas
               .map((d) => DropdownMenuItem<String>(
                     value: d,
-                    child: Text(d, style:  TextStyle(color: AppColors.textPrimary)),
+                    child: Text(LanguageService.trCategory(d), style:  TextStyle(color: AppColors.textPrimary)),
                   ))
               .toList(),
           onChanged: _wilayaCode == null
@@ -411,7 +411,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
 
   Widget _label(String t) => Padding(
         padding: const EdgeInsets.only(bottom: 8, right: 4),
-        child: Text(t,
+        child: Text(LanguageService.trCategory(t),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 14,

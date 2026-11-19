@@ -444,7 +444,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
-                        child: Text(bio, style:  TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.5)),
+                        child: Text(LanguageService.trCategory(bio), style:  TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.5)),
                       ),
                     ],
                     const SizedBox(height: 16),

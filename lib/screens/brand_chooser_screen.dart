@@ -257,7 +257,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(6),
-                        child: Text(brandName,
+                        child: Text(LanguageService.trCategory(brandName),
                           textAlign: TextAlign.center,
                           style:  TextStyle(
                             color: Colors.white,
@@ -286,7 +286,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   bottom: 8,
                   right: 4,
                   left: 4,
-                  child: Text(brandName,
+                  child: Text(LanguageService.trCategory(brandName),
                     textAlign: TextAlign.center,
                     style:  TextStyle(
                       color: Colors.white,
@@ -324,7 +324,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(brandName,
+              child: Text(LanguageService.trCategory(brandName),
                 textAlign: TextAlign.center,
                 style:  TextStyle(
                   color: Colors.white,

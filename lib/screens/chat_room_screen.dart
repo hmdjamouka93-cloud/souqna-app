@@ -122,8 +122,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                               bottomEnd: isMe ? const Radius.circular(16) : const Radius.circular(4),
                             ),
                           ),
-                          child: Text(
-                            text,
+                          child: Text(LanguageService.trCategory(text),
                             style:  TextStyle(color: AppColors.textPrimary, fontSize: 15),
                           ),
                         ),

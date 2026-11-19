@@ -174,7 +174,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(_data['name'],
+          Text(LanguageService.trCategory(_data['name']),
             style:  TextStyle(color: AppColors.textPrimary, fontSize: 18,
               fontWeight: FontWeight.bold)),
           const SizedBox(height: 6),
@@ -287,7 +287,7 @@ class _RentalCarDetailScreenState extends State<RentalCarDetailScreen> {
           border: Border.all(color: AppColors.accent, width: 1.5),
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Text(label,
+        child: Text(LanguageService.trCategory(label),
           style: const TextStyle(color: AppColors.accent, fontSize: 12,
             fontWeight: FontWeight.bold)),
       ),

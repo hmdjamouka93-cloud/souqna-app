@@ -172,7 +172,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, right: 4),
-      child: Text(text, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(LanguageService.trCategory(text), style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
     );
   }
 

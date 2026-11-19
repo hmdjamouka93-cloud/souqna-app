@@ -231,8 +231,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(
-        title,
+      child: Text(LanguageService.trCategory(title),
         textAlign: TextAlign.right,
         style:  TextStyle(
           color: AppColors.textPrimary,

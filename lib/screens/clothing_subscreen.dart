@@ -69,8 +69,7 @@ class ClothingSubscreen extends StatelessWidget {
                         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
                       ),
                       child: Center(
-                        child: Text(
-                          catName,
+                        child: Text(LanguageService.trCategory(catName),
                           textAlign: TextAlign.center,
                           style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                         ),

@@ -160,8 +160,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                                     color: AppColors.accent, size: 18),
                                 const SizedBox(width: 4),
                                 Flexible(
-                                  child: Text(
-                                    name,
+                                  child: Text(LanguageService.trCategory(name),
                                     style:  TextStyle(
                                         color: AppColors.textPrimary,
                                         fontSize: 17,
@@ -180,8 +179,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
                                     size: 14),
                                 const SizedBox(width: 4),
                                 Expanded(
-                                  child: Text(
-                                    location,
+                                  child: Text(LanguageService.trCategory(location),
                                     style:  TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 13),

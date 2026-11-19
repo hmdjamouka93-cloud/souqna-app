@@ -171,7 +171,7 @@ class MotorcyclesScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Center(
-            child: Text(brand.name,
+            child: Text(LanguageService.trCategory(brand.name),
               textAlign: TextAlign.center,
               style: const TextStyle(color: AppColors.accent, fontSize: 13,
                 fontWeight: FontWeight.bold)),
@@ -214,7 +214,7 @@ class MotorcyclesScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 6),
-            Text(brand.name,
+            Text(LanguageService.trCategory(brand.name),
               style:  TextStyle(color: AppColors.textPrimary, fontSize: 12,
                 fontWeight: FontWeight.bold),
               textAlign: TextAlign.center),

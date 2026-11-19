@@ -275,7 +275,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               style:  TextStyle(
                   color: AppColors.textSecondary, fontSize: 12)),
           Expanded(
-            child: Text(value,
+            child: Text(LanguageService.trCategory(value),
                 style:  TextStyle(color: AppColors.textPrimary, fontSize: 12)),
           ),
         ],

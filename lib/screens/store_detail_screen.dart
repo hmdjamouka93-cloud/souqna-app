@@ -479,7 +479,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               Row(
                                 children: [
                                   Flexible(
-                                    child: Text(name,
+                                    child: Text(LanguageService.trCategory(name),
                                         style:  TextStyle(
                                             color: AppColors.textPrimary,
                                             fontSize: 20,

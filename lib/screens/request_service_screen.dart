@@ -246,7 +246,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                         style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: dairas.map((d) {
-                          return DropdownMenuItem<String>(value: d, child: Text(d));
+                          return DropdownMenuItem<String>(value: d, child: Text(LanguageService.trCategory(d)));
                         }).toList(),
                         onChanged: _wilayaCode == null ? null : (v) => setState(() => _dairaName = v),
                       ),
@@ -297,7 +297,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, right: 4),
-      child: Text(text, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(LanguageService.trCategory(text), style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
     );
   }
 

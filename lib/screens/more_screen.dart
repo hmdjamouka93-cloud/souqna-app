@@ -583,8 +583,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
   Widget _sectionTitle(String t) {
     return Padding(
       padding: const EdgeInsets.only(right: 6),
-      child: Text(
-        t,
+      child: Text(LanguageService.trCategory(t),
         style:  TextStyle(
           color: AppColors.textSecondary,
           fontSize: 13,

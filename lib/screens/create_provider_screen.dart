@@ -249,7 +249,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                           style:  TextStyle(color: AppColors.textPrimary),
                           icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                           items: _tradesList.map((t) {
-                            return DropdownMenuItem<String>(value: t, child: Text(t));
+                            return DropdownMenuItem<String>(value: t, child: Text(LanguageService.trCategory(t)));
                           }).toList(),
                           onChanged: (v) => setState(() => _selectedTrade = v),
                         ),
@@ -321,7 +321,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                         style:  TextStyle(color: AppColors.textPrimary),
                         icon:  Icon(Icons.keyboard_arrow_down, color: AppColors.textSecondary),
                         items: dairas.map((d) {
-                          return DropdownMenuItem<String>(value: d, child: Text(d));
+                          return DropdownMenuItem<String>(value: d, child: Text(LanguageService.trCategory(d)));
                         }).toList(),
                         onChanged: _wilayaCode == null ? null : (v) => setState(() => _dairaName = v),
                       ),
@@ -369,7 +369,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, right: 4),
-      child: Text(text, style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(LanguageService.trCategory(text), style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
     );
   }
 

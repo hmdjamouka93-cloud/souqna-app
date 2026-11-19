@@ -80,8 +80,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                 color: AppColors.textPrimary, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          title: Text(
-            widget.categoryName,
+          title: Text(LanguageService.trCategory(widget.categoryName),
             style:  TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,

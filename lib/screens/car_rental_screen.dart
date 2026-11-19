@@ -193,7 +193,7 @@ class CarRentalScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(c.name,
+                  Text(LanguageService.trCategory(c.name),
                     style:  TextStyle(color: AppColors.textPrimary, fontSize: 15,
                       fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
