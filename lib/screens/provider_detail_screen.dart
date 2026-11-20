@@ -562,7 +562,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                           color: AppColors.textPrimary,
                                           fontWeight: FontWeight.bold)),
                                   const SizedBox(height: 4),
-                                  Text('${s['price']} د.ج',
+                                  Text('${s['price']} ${LanguageService.currency()}',
                                       style: const TextStyle(
                                           color: AppColors.accent,
                                           fontWeight: FontWeight.bold)),

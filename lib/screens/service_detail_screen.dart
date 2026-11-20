@@ -66,7 +66,7 @@ class ServiceDetailScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     // السعر
                     Text(
-                      '$price د.ج',
+                      '$price ${LanguageService.currency()}',
                       style: const TextStyle(color: AppColors.accent, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 16),

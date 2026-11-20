@@ -114,7 +114,7 @@ class LanguageService {
     'ad_title_hint': {'ar': 'عنوان واضح للإعلان...', 'en': 'Clear ad title...', 'fr': 'Titre clair de l\'annonce...'},
     'description': {'ar': 'الوصف', 'en': 'Description', 'fr': 'Description'},
     'description_hint': {'ar': 'وصف تفصيلي...', 'en': 'Detailed description...', 'fr': 'Description détaillée...'},
-    'price_dzd': {'ar': 'السعر (د.ج)', 'en': 'Price (DZD)', 'fr': 'Prix (DA)'},
+    'price_dzd': {'ar': 'السعر (د.ج)', 'en': 'Price (DA)', 'fr': 'Prix (DA)'},
     'location': {'ar': 'الموقع', 'en': 'Location', 'fr': 'Emplacement'},
     'location_hint': {'ar': 'البلدية أو الولاية...', 'en': 'Municipality or Wilaya...', 'fr': 'Commune ou Wilaya...'},
     'save_edits': {'ar': 'حفظ التعديل', 'en': 'Save edits', 'fr': 'Enregistrer les modifications'},
@@ -187,7 +187,7 @@ class LanguageService {
     'back': {'ar': 'رجوع', 'en': 'Back', 'fr': 'Retour'},
     'images_count': {'ar': 'الصور', 'en': 'Images', 'fr': 'Images'},
     'ad_title_star': {'ar': 'عنوان الإعلان *', 'en': 'Ad title *', 'fr': 'Titre de l\'annonce *'},
-    'price_star': {'ar': 'السعر (د.ج) *', 'en': 'Price (DZD) *', 'fr': 'Prix (DA) *'},
+    'price_star': {'ar': 'السعر (د.ج) *', 'en': 'Price (DA) *', 'fr': 'Prix (DA) *'},
     'location_star': {'ar': 'الموقع *', 'en': 'Location *', 'fr': 'Emplacement *'},
     
     // Brands
@@ -787,7 +787,7 @@ class LanguageService {
     'دراجات رباعية الدفع': {'ar': 'دراجات رباعية الدفع', 'en': 'ATVs (Quads)', 'fr': 'Quads'},
     'سيارات': {'ar': 'سيارات', 'en': 'Cars', 'fr': 'Voitures'},
 
-    'currency': {'ar': 'د.ج', 'en': 'DZD', 'fr': 'DA'},
+    'currency': {'ar': 'د.ج', 'en': 'DA', 'fr': 'DA'},
 
     'بينيللي': {'ar': 'بينيللي', 'en': 'Benelli', 'fr': 'Benelli'},
     'بينلي': {'ar': 'بينلي', 'en': 'Benelli', 'fr': 'Benelli'},
@@ -974,7 +974,7 @@ class LanguageService {
     'اكتب تعليقك': {'ar': 'اكتب تعليقك', 'en': 'Write your comment', 'fr': 'Écrivez votre commentaire'},
     'قريباً': {'ar': 'قريباً', 'en': 'Coming soon', 'fr': 'Bientôt'},
     'راسلنا على': {'ar': 'راسلنا على', 'en': 'Email us at', 'fr': 'Contactez-nous à'},
-    'دج': {'ar': 'دج', 'en': 'DZD', 'fr': 'DA'},
+    'دج': {'ar': 'دج', 'en': 'DA', 'fr': 'DA'},
     'السبب:': {'ar': 'السبب:', 'en': 'Reason:', 'fr': 'Raison :'},
     'رقم الإعلان:': {'ar': 'رقم الإعلان:', 'en': 'Ad ID:', 'fr': 'ID de l\'annonce :'},
     'اللون:': {'ar': 'اللون:', 'en': 'Color:', 'fr': 'Couleur :'},
@@ -1105,7 +1105,7 @@ class LanguageService {
     'مثال: فستان أحمر': {'ar': 'مثال: فستان أحمر', 'en': 'Ex: Red dress', 'fr': 'Ex : Robe rouge'},
     'الوصف': {'ar': 'الوصف', 'en': 'Description', 'fr': 'Description'},
     'وصف تفصيلي...': {'ar': 'وصف تفصيلي...', 'en': 'Detailed description...', 'fr': 'Description détaillée...'},
-    'السعر (د.ج)': {'ar': 'السعر (د.ج)', 'en': 'Price (DZD)', 'fr': 'Prix (DA)'},
+    'السعر (د.ج)': {'ar': 'السعر (د.ج)', 'en': 'Price (DA)', 'fr': 'Prix (DA)'},
     'الكمية المتوفرة': {'ar': 'الكمية المتوفرة', 'en': 'Available quantity', 'fr': 'Quantité disponible'},
     'الألوان المتوفرة': {'ar': 'الألوان المتوفرة', 'en': 'Available colors', 'fr': 'Couleurs disponibles'},
     'المقاسات المتوفرة': {'ar': 'المقاسات المتوفرة', 'en': 'Available sizes', 'fr': 'Tailles disponibles'},
@@ -1346,7 +1346,7 @@ class LanguageService {
     'لا توجد تعليقات': {'ar': 'لا توجد تعليقات', 'en': 'No comments', 'fr': 'Aucun commentaire'},
     'قريباً': {'ar': 'قريباً', 'en': 'Coming soon', 'fr': 'Bientôt'},
     'راسلنا على': {'ar': 'راسلنا على', 'en': 'Email us at', 'fr': 'Contactez-nous à'},
-    'دج': {'ar': 'دج', 'en': 'DZD', 'fr': 'DA'},
+    'دج': {'ar': 'دج', 'en': 'DA', 'fr': 'DA'},
     'السبب:': {'ar': 'السبب:', 'en': 'Reason:', 'fr': 'Raison :'},
     'رقم الإعلان:': {'ar': 'رقم الإعلان:', 'en': 'Ad ID:', 'fr': 'ID de l\'annonce :'},
     'اللون:': {'ar': 'اللون:', 'en': 'Color:', 'fr': 'Couleur :'},
@@ -1587,6 +1587,14 @@ class LanguageService {
     'اختر الحالة': {'ar': 'اختر الحالة', 'en': 'Choose condition', 'fr': 'Choisir l\'état'},
     'نعم / لا': {'ar': 'نعم / لا', 'en': 'Yes / No', 'fr': 'Oui / Non'}
   };
+
+  
+  static String currency() {
+    final lang = currentLocale.value.languageCode;
+    if (lang == 'ar') return 'د.ج';
+    if (lang == 'fr') return 'DA';
+    return 'DA';
+  }
 
   static String trCategory(String name) {
     final lang = currentLocale.value.languageCode;

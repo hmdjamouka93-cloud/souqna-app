@@ -161,12 +161,12 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   Row(
                     children: [
                       Expanded(
-                          child: _sheetTextField('من (د.ج)', _minPrice, (v) {
+                          child: _sheetTextField('من (${LanguageService.currency()})', _minPrice, (v) {
                         _minPrice = double.tryParse(v);
                       })),
                       const SizedBox(width: 8),
                       Expanded(
-                          child: _sheetTextField('إلى (د.ج)', _maxPrice, (v) {
+                          child: _sheetTextField('إلى (${LanguageService.currency()})', _maxPrice, (v) {
                         _maxPrice = double.tryParse(v);
                       })),
                     ],
@@ -474,7 +474,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${item['price']} د.ج',
+                    '${item['price']} ${LanguageService.currency()}',
                     style: const TextStyle(
                         color: AppColors.accent,
                         fontSize: 13,

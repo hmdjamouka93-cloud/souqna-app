@@ -142,7 +142,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 children: [
                   Text(item['title'], style:  TextStyle(color: AppColors.textPrimary, fontSize: 13, fontWeight: FontWeight.bold), maxLines: 1, overflow: TextOverflow.ellipsis),
                   const SizedBox(height: 4),
-                  Text('${item['price']} د.ج', style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
+                  Text('${item['price']} ${LanguageService.currency()}', style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 4),
                   Text(item['location'], style:  TextStyle(color: AppColors.textSecondary, fontSize: 10), maxLines: 1, overflow: TextOverflow.ellipsis),
                 ],

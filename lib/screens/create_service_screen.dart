@@ -131,7 +131,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
               _field(_descCtrl, 'اكتب تفاصيل الخدمة هنا...', maxLines: 3),
               const SizedBox(height: 16),
 
-              _label(LanguageService.trCategory('السعر (د.ج)')),
+              _label('السعر (${LanguageService.currency()})'),
               _field(_priceCtrl, 'مثال: 2000', keyboard: TextInputType.number),
               
               if (_error != null) ...[

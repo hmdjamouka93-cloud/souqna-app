@@ -467,7 +467,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          Text('${widget.product['price']} د.ج',
+          Text('${widget.product['price']} ${LanguageService.currency()}',
               style: const TextStyle(
                   color: AppColors.accent,
                   fontSize: 24,

@@ -196,7 +196,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    '${item['price']} د.ج',
+                    '${item['price']} ${LanguageService.currency()}',
                     style: const TextStyle(
                       color: AppColors.accent,
                       fontSize: 16,

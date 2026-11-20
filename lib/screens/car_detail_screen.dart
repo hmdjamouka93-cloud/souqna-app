@@ -54,9 +54,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
         final rem = s.length - 1 - i;
         if (rem > 0 && rem % 3 == 0) buf.write(',');
       }
-      return LanguageService.trCategory('${buf.toString()} د.ج');
+      return '${buf.toString()} ${LanguageService.currency()}';
     }
-    return LanguageService.trCategory('$p د.ج');
+    return '$p ${LanguageService.currency()}';
   }
 
   @override
