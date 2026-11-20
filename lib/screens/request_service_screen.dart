@@ -183,7 +183,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('الاسم الكامل')),
-              _field(_nameCtrl, 'الاسم واللقب'),
+              _field(_nameCtrl, LanguageService.tr('الاسم واللقب')),
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('رقم الهاتف')),

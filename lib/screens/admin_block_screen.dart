@@ -70,7 +70,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
       });
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(currentStatus ? 'تم إلغاء الحظر' : 'تم حظر المستخدم')),
+        SnackBar(content: Text(currentStatus ? LanguageService.tr('تم إلغاء الحظر') : LanguageService.tr('تم حظر المستخدم'))),
       );
       if (_foundUser != null && _foundUser!['id'] == userId) {
         setState(() {

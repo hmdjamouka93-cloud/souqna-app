@@ -629,9 +629,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _field(_firstNameCtrl, 'الاسم الكامل (الاسم واللقب)'),
+          _field(_firstNameCtrl, LanguageService.tr('الاسم الكامل (الاسم واللقب)')),
                   const SizedBox(height: 12),
-          _field(_phoneCtrl, 'رقم الهاتف',
+          _field(_phoneCtrl, LanguageService.tr('رقم الهاتف'),
               keyboard: TextInputType.phone, ltr: true),
           const SizedBox(height: 12),
           _wilayaDropdown(),

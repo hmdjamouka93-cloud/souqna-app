@@ -124,15 +124,15 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
               const SizedBox(height: 20),
               
               _label(LanguageService.trCategory('عنوان الخدمة')),
-              _field(_titleCtrl, 'مثال: تركيب سخان'),
+              _field(_titleCtrl, LanguageService.tr('مثال: تركيب سخان')),
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('الوصف (اختياري)')),
-              _field(_descCtrl, 'اكتب تفاصيل الخدمة هنا...', maxLines: 3),
+              _field(_descCtrl, LanguageService.tr('اكتب تفاصيل الخدمة هنا...'), maxLines: 3),
               const SizedBox(height: 16),
 
               _label('السعر (${LanguageService.currency()})'),
-              _field(_priceCtrl, 'مثال: 2000', keyboard: TextInputType.number),
+              _field(_priceCtrl, LanguageService.tr('مثال: 2000'), keyboard: TextInputType.number),
               
               if (_error != null) ...[
                 const SizedBox(height: 16),
