@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'services/language_service.dart';
+import 'services/location_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'screens/splash_screen.dart';
@@ -18,6 +19,7 @@ void main() async {
   await Firebase.initializeApp();
   await ThemeService.init();
   await LanguageService.init();
+  await LocationService.preload();
   runApp(const SouqnaApp());
 }
 
