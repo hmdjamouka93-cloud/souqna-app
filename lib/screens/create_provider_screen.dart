@@ -165,7 +165,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            _isEdit ? 'تعديل البروفايل' : 'إنشاء بروفايل خدمة',
+            _isEdit ? LanguageService.tr('تعديل البروفايل') : LanguageService.tr('إنشاء بروفايل خدمة'),
             style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
@@ -231,7 +231,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
               const SizedBox(height: 24),
 
               _label(LanguageService.trCategory('الاسم الكامل')),
-              _field(_nameCtrl, 'مثال: محمد بن علي'),
+              _field(_nameCtrl, LanguageService.tr('مثال: محمد بن علي')),
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('المهنة')),
@@ -258,7 +258,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('نبذة عنك (اختياري)')),
-              _field(_bioCtrl, 'اكتب وصف قصير عن خدماتك...', maxLines: 3),
+              _field(_bioCtrl, LanguageService.tr('اكتب وصف قصير عن خدماتك...'), maxLines: 3),
               const SizedBox(height: 16),
 
               _label(LanguageService.trCategory('رقم الهاتف')),
@@ -355,7 +355,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
                   ),
                   child: _loading
                       ?  SizedBox(width: 24, height: 24, child: CircularProgressIndicator(color: AppColors.textPrimary, strokeWidth: 2.5))
-                      : Text(_isEdit ? 'حفظ التعديلات' : 'إنشاء البروفايل', style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+                      : Text(_isEdit ? LanguageService.tr('حفظ التعديلات') : LanguageService.tr('إنشاء البروفايل'), style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 32),

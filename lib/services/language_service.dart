@@ -18,6 +18,40 @@ class LanguageService {
 
   // قاموس الترجمة - راح نزيدو فيه الكلمات شاشة بشاشة
   static final Map<String, Map<String, String>> _translations = {
+    // ALL_TRANS_START
+    'سوقنا': {'ar': 'سوقنا', 'en': 'Souqna', 'fr': 'Souqna'},
+
+    'about_p1': {'ar': 'سوقنا هو سوق مغاربي شامل للإعلانات المبوبة، حيث يمكنك بيع وشراء أي شيء تريده مجاناً وبدون أي عمولة. يجمع سوقنا بين البائعين والمشترين في منصة واحدة سهلة الاستخدام وآمنة، في الجزائر وتونس والمغرب وليبيا.', 'en': 'Souqna is a comprehensive Maghreb marketplace for classified ads, where you can buy and sell anything you want for free and without any commission. Souqna brings together sellers and buyers on one easy-to-use and secure platform, in Algeria, Tunisia, Morocco and Libya.', 'fr': 'Souqna est une place de marché maghrébine complète pour les annonces classées, où vous pouvez acheter et vendre tout ce que vous voulez gratuitement et sans aucune commission. Souqna réunit vendeurs et acheteurs sur une plateforme unique, facile à utiliser et sécurisée, en Algérie, Tunisie, Maroc et Libye.'},
+    'about_p2': {'ar': 'يوفر سوقنا للبائع منصة قوية لعرض سلعه وخدماته، سواء كان فرداً أو شركة أو متجراً. كما يتيح للمشتري تصفح آلاف الإعلانات يومياً للعثور على أفضل العروض في كل المجالات — سيارات، عقارات، إلكترونيات، ملابس، والمزيد.', 'en': 'Souqna provides sellers with a powerful platform to showcase their goods and services, whether an individual, a company or a store. It also allows buyers to browse thousands of listings daily to find the best deals in all fields — cars, real estate, electronics, clothing, and more.', 'fr': 'Souqna offre aux vendeurs une plateforme puissante pour présenter leurs biens et services, qu il s agisse d un particulier, d une entreprise ou d une boutique. Elle permet également aux acheteurs de parcourir des milliers d annonces chaque jour pour trouver les meilleures offres dans tous les domaines — voitures, immobilier, électronique, vêtements, et plus encore.'},
+    'about_p3': {'ar': 'نهدف من خلال سوقنا إلى تسهيل التجارة الإلكترونية في المغرب العربي، وربط البائع بالمشتري بشكل مباشر وسريع، مع الحفاظ على الخصوصية والأمان. انضم إلينا اليوم واكتشف تجربة تسوق مختلفة!', 'en': 'Through Souqna, we aim to facilitate e-commerce in the Maghreb, connecting sellers with buyers directly and quickly, while preserving privacy and security. Join us today and discover a different shopping experience!', 'fr': 'À travers Souqna, nous visons à faciliter le commerce électronique au Maghreb, en connectant vendeurs et acheteurs de manière directe et rapide, tout en préservant la confidentialité et la sécurité. Rejoignez-nous aujourd hui et découvrez une expérience d achat différente !'},
+
+    'تم حظر حسابك': {'ar': 'تم حظر حسابك', 'en': 'Your account has been blocked', 'fr': 'Votre compte a été bloqué'},
+    'رقم الهاتف هذا مستعمل': {'ar': 'رقم الهاتف هذا مستعمل', 'en': 'This phone number is already in use', 'fr': 'Ce numéro de téléphone est déjà utilisé'},
+    'لم يُحدَّد بعد': {'ar': 'لم يُحدَّد بعد', 'en': 'Not specified yet', 'fr': 'Pas encore spécifié'},
+    'إنشاء معرضي': {'ar': 'إنشاء معرضي', 'en': 'Create my showroom', 'fr': 'Créer mon showroom'},
+    ' كم': {'ar': ' كم', 'en': ' km', 'fr': ' km'},
+    ' م²': {'ar': ' م²', 'en': ' m²', 'fr': ' m²'},
+    'هل أنت متأكد من حظر هذا المتجر؟': {'ar': 'هل أنت متأكد من حظر هذا المتجر؟', 'en': 'Are you sure you want to block this store?', 'fr': 'Êtes-vous sûr de vouloir bloquer cette boutique ?'},
+    'خطأ:': {'ar': 'خطأ:', 'en': 'Error:', 'fr': 'Erreur :'},
+    'اكتب الاسم والمهنة': {'ar': 'اكتب الاسم والمهنة', 'en': 'Enter name and profession', 'fr': 'Entrez le nom et la profession'},
+    'أضف صورة شخصية أو شعار': {'ar': 'أضف صورة شخصية أو شعار', 'en': 'Add a profile picture or logo', 'fr': 'Ajoutez une photo de profil ou un logo'},
+    'تعديل البروفايل': {'ar': 'تعديل البروفايل', 'en': 'Edit profile', 'fr': 'Modifier le profil'},
+    'إنشاء بروفايل خدمة': {'ar': 'إنشاء بروفايل خدمة', 'en': 'Create service profile', 'fr': 'Créer un profil de service'},
+    'الاسم الكامل': {'ar': 'الاسم الكامل', 'en': 'Full name', 'fr': 'Nom complet'},
+    'مثال: محمد بن علي': {'ar': 'مثال: محمد بن علي', 'en': 'Example: Mohamed Ben Ali', 'fr': 'Exemple : Mohamed Ben Ali'},
+    'المهنة': {'ar': 'المهنة', 'en': 'Profession', 'fr': 'Profession'},
+    'نبذة عنك (اختياري)': {'ar': 'نبذة عنك (اختياري)', 'en': 'About you (optional)', 'fr': 'À propos de vous (facultatif)'},
+    'اكتب وصف قصير عن خدماتك...': {'ar': 'اكتب وصف قصير عن خدماتك...', 'en': 'Write a short description of your services...', 'fr': 'Écrivez une courte description de vos services...'},
+    'حفظ التعديلات': {'ar': 'حفظ التعديلات', 'en': 'Save changes', 'fr': 'Enregistrer les modifications'},
+    'إنشاء البروفايل': {'ar': 'إنشاء البروفايل', 'en': 'Create profile', 'fr': 'Créer le profil'},
+    'يرجى تعبئة جميع الخانات الإجبارية': {'ar': 'يرجى تعبئة جميع الخانات الإجبارية', 'en': 'Please fill in all required fields', 'fr': 'Veuillez remplir tous les champs obligatoires'},
+    'أدخل العنوان، السعر، الموقع، وصورة واحدة على الأقل': {'ar': 'أدخل العنوان، السعر، الموقع، وصورة واحدة على الأقل', 'en': 'Enter title, price, location and at least one image', 'fr': 'Entrez le titre, le prix, la localisation et au moins une image'},
+    'أدخل العنوان، السعر، وصورة واحدة على الأقل': {'ar': 'أدخل العنوان، السعر، وصورة واحدة على الأقل', 'en': 'Enter title, price and at least one image', 'fr': 'Entrez le titre, le prix et au moins une image'},
+    'حدث خطأ أثناء النشر، حاول مرة أخرى': {'ar': 'حدث خطأ أثناء النشر، حاول مرة أخرى', 'en': 'An error occurred while publishing, please try again', 'fr': 'Une erreur est survenue lors de la publication, veuillez réessayer'},
+    'إعلان جديد': {'ar': 'إعلان جديد', 'en': 'New listing', 'fr': 'Nouvelle annonce'},
+    'هوائية': {'ar': 'هوائية', 'en': 'Air', 'fr': 'À air'},
+    'كهربائية': {'ar': 'كهربائية', 'en': 'Electric', 'fr': 'Électrique'},
+    // ALL_TRANS_END
     "store_delete_msg": {"ar": "هل أنت متأكد من حذف متجرك؟\n\nيمكنك استرجاعه خلال 7 أيام من خلال التواصل معنا.\nبعد 7 أيام سيتم حذفه نهائياً.", "en": "Are you sure you want to delete your store?\n\nYou can recover it within 7 days by contacting us.\nAfter 7 days, it will be permanently deleted.", "fr": "Êtes-vous sûr de vouloir supprimer votre boutique ?\n\nVous pouvez la récupérer dans les 7 jours en nous contactant.\nAprès 7 jours, elle sera définitivement supprimée."},
 
     'agency_name': {'ar': 'اسم الوكالة', 'en': 'Agency Name', 'fr': 'Nom de l\'agence'},

@@ -288,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             icon: Icons.storefront,
                             label: LanguageService.tr('store_name'),
                             value: (_storeName == null || _storeName!.isEmpty)
-                                ? 'لم يُحدَّد بعد'
+                                ? LanguageService.tr('لم يُحدَّد بعد')
                                 : _storeName!,
                             onEdit: _editStoreName,
                           ),
@@ -316,7 +316,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   color: _accent),
                               label: Text(
                                 _showroom == null
-                                    ? 'إنشاء معرضي'
+                                    ? LanguageService.tr('إنشاء معرضي')
                                     : LanguageService.tr('manage_my_store'),
                                 style: const TextStyle(
                                     color: _accent,

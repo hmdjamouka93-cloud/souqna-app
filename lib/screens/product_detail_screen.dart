@@ -198,7 +198,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() {
-        _error = LanguageService.trCategory('خطأ: $e');
+        _error = '${LanguageService.tr('خطأ:')} $e';
         _sending = false;
       });
     }

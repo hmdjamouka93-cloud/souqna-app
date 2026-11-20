@@ -51,7 +51,7 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 16),
                Center(
                 child: Text(
-                  'سوقنا',
+                  LanguageService.tr('سوقنا'),
                   style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 26,
@@ -71,21 +71,15 @@ class AboutScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               _paragraph(
-                'سوقنا هو سوق مغاربي شامل للإعلانات المبوبة، حيث يمكنك بيع وشراء أي شيء '
-                'تريده مجاناً وبدون أي عمولة. يجمع سوقنا بين البائعين والمشترين في منصة '
-                'واحدة سهلة الاستخدام وآمنة، في الجزائر وتونس والمغرب وليبيا.',
+                LanguageService.tr('about_p1'),
               ),
               const SizedBox(height: 16),
               _paragraph(
-                'يوفر سوقنا للبائع منصة قوية لعرض سلعه وخدماته، سواء كان فرداً أو شركة '
-                'أو متجراً. كما يتيح للمشتري تصفح آلاف الإعلانات يومياً للعثور على أفضل '
-                'العروض في كل المجالات — سيارات، عقارات، إلكترونيات، ملابس، والمزيد.',
+                LanguageService.tr('about_p2'),
               ),
               const SizedBox(height: 16),
               _paragraph(
-                'نهدف من خلال سوقنا إلى تسهيل التجارة الإلكترونية في المغرب العربي، وربط '
-                'البائع بالمشتري بشكل مباشر وسريع، مع الحفاظ على الخصوصية والأمان. '
-                'انضم إلينا اليوم واكتشف تجربة تسوق مختلفة!',
+                LanguageService.tr('about_p3'),
               ),
               const SizedBox(height: 34),
                Center(

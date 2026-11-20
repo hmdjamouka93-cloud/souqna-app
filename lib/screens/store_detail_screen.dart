@@ -374,7 +374,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                               title:  Text(LanguageService.trCategory('حظر المتجر'),
                                   style: TextStyle(color: AppColors.textPrimary)),
                               content:  Text(
-                                  'هل أنت متأكد من حظر هذا المتجر؟',
+                                  LanguageService.tr('هل أنت متأكد من حظر هذا المتجر؟'),
                                   style: TextStyle(color: AppColors.textSecondary)),
                               actions: [
                                 TextButton(
@@ -721,7 +721,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      '${p['price']} دج',
+                                      '${p['price']} ${LanguageService.currency()}',
                                       style: const TextStyle(
                                           color: AppColors.accent,
                                           fontWeight: FontWeight.bold),
