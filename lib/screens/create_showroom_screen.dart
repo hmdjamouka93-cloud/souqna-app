@@ -288,7 +288,7 @@ class _CreateShowroomScreenState extends State<CreateShowroomScreen> {
         textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
-          hintText: hint,
+          hintText: LanguageService.trCategory(hint),
           hintStyle:  TextStyle(
               color: AppColors.textSecondary, fontSize: 14),
           border: InputBorder.none,

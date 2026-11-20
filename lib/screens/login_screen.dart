@@ -248,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
         style:  TextStyle(color: AppColors.textPrimary),
         textDirection: TextDirection.ltr,
         decoration: InputDecoration(
-          hintText: hint,
+          hintText: LanguageService.trCategory(hint),
           hintStyle: const TextStyle(color: _textSec, fontSize: 14),
           prefixIcon: Icon(icon, color: _textSec, size: 20),
           suffixIcon: suffix,

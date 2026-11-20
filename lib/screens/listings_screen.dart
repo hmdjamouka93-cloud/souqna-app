@@ -205,7 +205,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
         keyboardType: TextInputType.number,
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
-          hintText: hint,
+          hintText: LanguageService.trCategory(hint),
           hintStyle:  TextStyle(color: AppColors.textSecondary),
           border: InputBorder.none,
           contentPadding:
