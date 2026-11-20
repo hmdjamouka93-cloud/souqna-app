@@ -19,6 +19,8 @@ class LanguageService {
   // قاموس الترجمة - راح نزيدو فيه الكلمات شاشة بشاشة
   static final Map<String, Map<String, String>> _translations = {
     // ALL_TRANS_START
+    'sale_rent': {'ar': 'بيع / إيجار', 'en': 'Sale / Rent', 'fr': 'Vente / Location'},
+
     'سوقنا': {'ar': 'سوقنا', 'en': 'Souqna', 'fr': 'Souqna'},
 
     'about_p1': {'ar': 'سوقنا هو سوق مغاربي شامل للإعلانات المبوبة، حيث يمكنك بيع وشراء أي شيء تريده مجاناً وبدون أي عمولة. يجمع سوقنا بين البائعين والمشترين في منصة واحدة سهلة الاستخدام وآمنة، في الجزائر وتونس والمغرب وليبيا.', 'en': 'Souqna is a comprehensive Maghreb marketplace for classified ads, where you can buy and sell anything you want for free and without any commission. Souqna brings together sellers and buyers on one easy-to-use and secure platform, in Algeria, Tunisia, Morocco and Libya.', 'fr': 'Souqna est une place de marché maghrébine complète pour les annonces classées, où vous pouvez acheter et vendre tout ce que vous voulez gratuitement et sans aucune commission. Souqna réunit vendeurs et acheteurs sur une plateforme unique, facile à utiliser et sécurisée, en Algérie, Tunisie, Maroc et Libye.'},
