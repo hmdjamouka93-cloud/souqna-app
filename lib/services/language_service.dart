@@ -280,6 +280,37 @@ class LanguageService {
   }
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
+    // MISSING_29_START
+    'TVS': {'ar': 'TVS', 'en': 'TVS', 'fr': 'TVS'},
+    'Bajaj': {'ar': 'Bajaj', 'en': 'Bajaj', 'fr': 'Bajaj'},
+    'Hero': {'ar': 'Hero', 'en': 'Hero', 'fr': 'Hero'},
+    'Haojue': {'ar': 'Haojue', 'en': 'Haojue', 'fr': 'Haojue'},
+    'Sur-Ron': {'ar': 'Sur-Ron', 'en': 'Sur-Ron', 'fr': 'Sur-Ron'},
+    'SYM': {'ar': 'SYM', 'en': 'SYM', 'fr': 'SYM'},
+    'KTM': {'ar': 'KTM', 'en': 'KTM', 'fr': 'KTM'},
+    'Keeway': {'ar': 'Keeway', 'en': 'Keeway', 'fr': 'Keeway'},
+    'VMS': {'ar': 'VMS', 'en': 'VMS', 'fr': 'VMS'},
+    'NIU': {'ar': 'NIU', 'en': 'NIU', 'fr': 'NIU'},
+    'Lifan': {'ar': 'Lifan', 'en': 'Lifan', 'fr': 'Lifan'},
+    'بينيلي': {'ar': 'بينيلي', 'en': 'Benelli', 'fr': 'Benelli'},
+    'wii': {'ar': 'wii', 'en': 'Wii', 'fr': 'Wii'},
+    'اراضي سكنية': {'ar': 'اراضي سكنية', 'en': 'Residential lands', 'fr': 'Terrains résidentiels'},
+    'اراضي صناعية': {'ar': 'اراضي صناعية', 'en': 'Industrial lands', 'fr': 'Terrains industriels'},
+    'اراضي زراعية': {'ar': 'اراضي زراعية', 'en': 'Agricultural lands', 'fr': 'Terrains agricoles'},
+    'اراضي تجارية': {'ar': 'اراضي تجارية', 'en': 'Commercial lands', 'fr': 'Terrains commerciaux'},
+    'اراضي اخرى': {'ar': 'اراضي اخرى', 'en': 'Other lands', 'fr': 'Autres terrains'},
+    'شقق': {'ar': 'شقق', 'en': 'Apartments', 'fr': 'Appartements'},
+    'سكن اخرى': {'ar': 'سكن اخرى', 'en': 'Other housing', 'fr': 'Autres logements'},
+    'محلات تجارية': {'ar': 'محلات تجارية', 'en': 'Commercial shops', 'fr': 'Locaux commerciaux'},
+    'محلات اخرى': {'ar': 'محلات اخرى', 'en': 'Other shops', 'fr': 'Autres locaux'},
+    'ميكنيك': {'ar': 'ميكنيك', 'en': 'Mechanic', 'fr': 'Mécanicien'},
+    'الطبخ المنزلي (Traiteur)': {'ar': 'الطبخ المنزلي (Traiteur)', 'en': 'Home Cooking (Catering)', 'fr': 'Cuisine maison (Traiteur)'},
+    'تعديل وإصلاح الملابس': {'ar': 'تعديل وإصلاح الملابس', 'en': 'Clothing Alteration & Repair', 'fr': 'Retouche et réparation de vêtements'},
+    'أزياء تقليدية': {'ar': 'أزياء تقليدية', 'en': 'Traditional Fashion', 'fr': 'Mode traditionnelle'},
+    'اثاث اخرى': {'ar': 'اثاث اخرى', 'en': 'Other furniture', 'fr': 'Autres meubles'},
+    'اكسسوارات الحاسوب': {'ar': 'اكسسوارات الحاسوب', 'en': 'Computer accessories', 'fr': 'Accessoires informatiques'},
+    'نظارات VR': {'ar': 'نظارات VR', 'en': 'VR Headsets', 'fr': 'Casques VR'},
+    // MISSING_29_END
     // FIX_SCREENSHOTS_START
 
     'الأقسام الفرعية': {'ar': 'الأقسام الفرعية', 'en': 'Subcategories', 'fr': 'Sous-catégories'},
