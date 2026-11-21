@@ -185,7 +185,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -216,7 +216,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               _label(LanguageService.trCategory('الوصف')),
               _field(_descCtrl, LanguageService.trCategory('وصف تفصيلي...'), maxLines: 4),
               const SizedBox(height: 16),
-              _label('السعر (${LanguageService.currency()})'),
+              _label('${LanguageService.trCategory('السعر')} (${LanguageService.currency()})'),
               _field(_priceCtrl, '0',
                   keyboard: TextInputType.number, ltr: true),
               const SizedBox(height: 16),
@@ -503,7 +503,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
         controller: c,
         maxLines: maxLines,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

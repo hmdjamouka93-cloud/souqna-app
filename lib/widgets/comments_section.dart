@@ -67,7 +67,7 @@ class _CommentsSectionState extends State<CommentsSection> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           title:  Text(LanguageService.trCategory('حذف التعليق'),
@@ -110,7 +110,7 @@ class _CommentsSectionState extends State<CommentsSection> {
     final newText = await showDialog<String>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           title:  Text(LanguageService.trCategory('تعديل التعليق'),
@@ -162,7 +162,7 @@ class _CommentsSectionState extends State<CommentsSection> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -154,7 +154,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -197,11 +197,11 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _label(LanguageService.tr('operation_type_star')),
-        _dropdown(LanguageService.tr('sale_rent'), ['بيع', 'إيجار'], _operation, (v) => setState(() => _operation = v)),
+        _dropdown(LanguageService.tr('sale_rent'), ['بيع', 'إيجار'], _operation, (v) => setState(() => _operation = v), translateItems: true),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('property_type_star')),
-        _dropdown('اختر النوع', ['شقة', 'فيلا', 'منزل تقليدي', 'أرض', 'محل تجاري', 'مكتب', 'أخرى'], _propertyType, (v) => setState(() => _propertyType = v)),
+        _dropdown(LanguageService.trCategory('اختر النوع'), ['شقة', 'فيلا', 'منزل تقليدي', 'أرض', 'محل تجاري', 'مكتب', 'أخرى'], _propertyType, (v) => setState(() => _propertyType = v), translateItems: true),
         const SizedBox(height: 16),
 
         _label(LanguageService.tr('area_star')),
@@ -213,13 +213,13 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
           _dropdown(LanguageService.trCategory('اختر'), ['1', '2', '3', '4', '5+'], _rooms, (v) => setState(() => _rooms = v)),
           const SizedBox(height: 16),
           _label(LanguageService.trCategory('الطابق')),
-          _dropdown(LanguageService.trCategory('اختر'), ['طابق أرضي', '1', '2', '3', '4', '5+'], _floor, (v) => setState(() => _floor = v)),
+          _dropdown(LanguageService.trCategory('اختر'), ['طابق أرضي', '1', '2', '3', '4', '5+'], _floor, (v) => setState(() => _floor = v), translateItems: true),
           const SizedBox(height: 16),
         ],
 
         if (_operation == 'إيجار') ...[
           _label(LanguageService.tr('furnished_q')),
-          _dropdown('نعم / لا', ['نعم', 'لا'], _furnished, (v) => setState(() => _furnished = v)),
+          _dropdown(LanguageService.trCategory('نعم / لا'), ['نعم', 'لا'], _furnished, (v) => setState(() => _furnished = v), translateItems: true),
           const SizedBox(height: 16),
         ],
 
@@ -418,7 +418,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         child: Text(LanguageService.trCategory(t), style:  TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
       );
 
-  Widget _dropdown(String hint, List<String> items, String? val, Function(String?) onChanged) {
+  Widget _dropdown(String hint, List<String> items, String? val, Function(String?) onChanged, {bool translateItems = false}) {
     return Container(
       decoration: BoxDecoration(color: AppColors.card, borderRadius: BorderRadius.circular(12)),
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -444,7 +444,7 @@ class _CreateRealEstateListingScreenState extends State<CreateRealEstateListingS
         controller: c,
         maxLines: maxLines,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

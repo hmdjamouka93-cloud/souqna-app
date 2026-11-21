@@ -15,7 +15,7 @@ class ChatsListScreen extends StatelessWidget {
     final currentUserId = AuthService.currentUser?.uid;
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -25,7 +25,7 @@ class ChatsListScreen extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'الرسائل',
+            LanguageService.tr('الرسائل'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),

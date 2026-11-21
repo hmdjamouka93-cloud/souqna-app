@@ -193,8 +193,8 @@ class _AddListingScreenState extends State<AddListingScreen> {
       if (!mounted) return;
       setState(() {
         _error = _isEdit
-            ? 'خطأ في التعديل، حاول مرة أخرى'
-            : 'خطأ في النشر، حاول مرة أخرى';
+            ? LanguageService.trCategory('خطأ في التعديل، حاول مرة أخرى')
+            : LanguageService.trCategory('خطأ في النشر، حاول مرة أخرى');
         _loading = false;
       });
     }
@@ -203,7 +203,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -451,7 +451,7 @@ class _AddListingScreenState extends State<AddListingScreen> {
         controller: c,
         maxLines: maxLines,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

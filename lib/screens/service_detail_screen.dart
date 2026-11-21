@@ -22,7 +22,7 @@ class ServiceDetailScreen extends StatelessWidget {
     final image = (service['image'] ?? '').toString();
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -32,7 +32,7 @@ class ServiceDetailScreen extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'تفاصيل الخدمة',
+            LanguageService.tr('تفاصيل الخدمة'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
@@ -142,7 +142,7 @@ class ServiceDetailScreen extends StatelessWidget {
                           );
                         },
                         child:  Text(
-                          'طلب الخدمة',
+                          LanguageService.tr('طلب الخدمة'),
                           style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),

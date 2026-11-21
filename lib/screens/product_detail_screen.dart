@@ -160,7 +160,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       showDialog(
         context: context,
         builder: (ctx) => Directionality(
-          textDirection: TextDirection.rtl,
+          textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
           child: AlertDialog(
             backgroundColor: AppColors.card,
             shape: RoundedRectangleBorder(
@@ -176,7 +176,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
             content:  Text(
-              'سيتواصل معك صاحب المتجر قريباً لتأكيد الطلب.',
+              LanguageService.tr('سيتواصل معك صاحب المتجر قريباً لتأكيد الطلب.'),
               style: TextStyle(
                   color: AppColors.textSecondary, fontSize: 14, height: 1.6),
             ),
@@ -285,7 +285,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           title:  Text(LanguageService.trCategory('الإبلاغ عن المنتج'),
@@ -328,8 +328,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text(success
-                  ? 'تم إرسال الإبلاغ، شكراً لك'
-                  : 'حدث خطأ، حاول مرة أخرى')),
+                  ? LanguageService.tr('تم إرسال الإبلاغ، شكراً لك')
+                  : LanguageService.tr('حدث خطأ، حاول مرة أخرى'))),
         );
       }
     }
@@ -338,7 +338,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -759,7 +759,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: TextField(
         controller: c,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

@@ -6,28 +6,28 @@ import '../main.dart';
 class BusesScreen extends StatelessWidget {
   const BusesScreen({super.key});
 
-  static const List<_Brand> _brands = [
-    _Brand(name: 'جميع الإعلانات', slug: ''),
-    _Brand(name: 'هيغر', slug: '', asset: 'images/logos/higer.png'),
-    _Brand(name: 'يوتونغ', slug: '', asset: 'images/logos/yutong.png'),
-    _Brand(name: 'كينغ لونغ', slug: '', asset: 'images/logos/kinglong.png'),
-    _Brand(name: 'غولدن دراغون', slug: '', asset: 'images/logos/goldendragon.png'),
-    _Brand(name: 'هيونداي', slug: 'hyundai'),
-    _Brand(name: 'تويوتا', slug: 'toyota'),
-    _Brand(name: 'مرسيدس', slug: '', asset: 'images/logos/mercedes.png'),
-    _Brand(name: 'فولفو', slug: 'volvo'),
-    _Brand(name: 'سكانيا', slug: 'scania'),
-    _Brand(name: 'مان', slug: 'man'),
-    _Brand(name: 'إيفيكو', slug: 'iveco'),
-    _Brand(name: 'سيترا', slug: '', asset: 'images/logos/setra.png'),
-    _Brand(name: 'دايو', slug: '', asset: 'images/logos/daewoo.png'),
-    _Brand(name: 'حافلات أخرى', slug: '__other__'),
+  static List<_Brand> get _brands => [
+    _Brand(name: LanguageService.trCategory('جميع الإعلانات'), slug: ''),
+    _Brand(name: LanguageService.trCategory('هيغر'), slug: '', asset: 'images/logos/higer.png'),
+    _Brand(name: LanguageService.trCategory('يوتونغ'), slug: '', asset: 'images/logos/yutong.png'),
+    _Brand(name: LanguageService.trCategory('كينغ لونغ'), slug: '', asset: 'images/logos/kinglong.png'),
+    _Brand(name: LanguageService.trCategory('غولدن دراغون'), slug: '', asset: 'images/logos/goldendragon.png'),
+    _Brand(name: LanguageService.trCategory('هيونداي'), slug: 'hyundai'),
+    _Brand(name: LanguageService.trCategory('تويوتا'), slug: 'toyota'),
+    _Brand(name: LanguageService.trCategory('مرسيدس'), slug: '', asset: 'images/logos/mercedes.png'),
+    _Brand(name: LanguageService.trCategory('فولفو'), slug: 'volvo'),
+    _Brand(name: LanguageService.trCategory('سكانيا'), slug: 'scania'),
+    _Brand(name: LanguageService.trCategory('مان'), slug: 'man'),
+    _Brand(name: LanguageService.trCategory('إيفيكو'), slug: 'iveco'),
+    _Brand(name: LanguageService.trCategory('سيترا'), slug: '', asset: 'images/logos/setra.png'),
+    _Brand(name: LanguageService.trCategory('دايو'), slug: '', asset: 'images/logos/daewoo.png'),
+    _Brand(name: LanguageService.trCategory('حافلات أخرى'), slug: '__other__'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: _buildAppBar(context),
         body: ListView(
@@ -110,7 +110,7 @@ class BusesScreen extends StatelessWidget {
 
   Widget _brandCard(_Brand brand) {
     // "جميع الإعلانات"
-    final isAll = brand.slug.isEmpty && brand.asset.isEmpty && brand.name != 'حافلات أخرى';
+    final isAll = brand.slug.isEmpty && brand.asset.isEmpty && brand.slug != '__other__';
     if (isAll) {
       return Container(
         decoration: BoxDecoration(

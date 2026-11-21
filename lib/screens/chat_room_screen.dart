@@ -49,7 +49,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
     final currentUserId = AuthService.currentUser?.uid;
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
           backgroundColor: AppColors.card,

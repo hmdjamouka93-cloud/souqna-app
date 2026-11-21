@@ -126,7 +126,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
           newCover: _newCover,
           newAvatar: _newAvatar,
         );
-        if (!ok) throw Exception('فشل التحديث');
+        if (!ok) throw Exception(LanguageService.tr('فشل التحديث'));
       } else {
         final id = await ServiceProviderService.createProvider(
           name: name,
@@ -138,7 +138,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
           cover: _newCover,
           avatar: _newAvatar,
         );
-        if (id == null) throw Exception('فشل الإنشاء');
+        if (id == null) throw Exception(LanguageService.tr('فشل الإنشاء'));
       }
 
       if (!mounted) return;
@@ -155,7 +155,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -380,7 +380,7 @@ class _CreateProviderScreenState extends State<CreateProviderScreen> {
         controller: c,
         maxLines: maxLines,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

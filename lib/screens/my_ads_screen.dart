@@ -79,7 +79,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -126,7 +126,7 @@ class _MyAdsScreenState extends State<MyAdsScreen> {
             ),
             const SizedBox(height: 8),
              Text(
-              'أضف إعلانك الأول الآن',
+              LanguageService.tr('أضف إعلانك الأول الآن'),
               style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
             ),
           ],

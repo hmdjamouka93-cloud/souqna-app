@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'language_service.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -58,7 +59,7 @@ class AuthService {
     final doc = await _db.collection('users').doc(cred.user!.uid).get();
     if (doc.exists && doc.data()?['isBlocked'] == true) {
       await _auth.signOut();
-      throw Exception('تم حظر حسابك من قبل الإدارة. يرجى التواصل مع الدعم.');
+      throw Exception(LanguageService.tr('account_blocked_contact_support'));
     }
 
     return cred;

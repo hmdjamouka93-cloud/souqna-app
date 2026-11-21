@@ -85,7 +85,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -95,7 +95,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'إدارة الحظر',
+            LanguageService.trCategory('إدارة الحظر'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
@@ -188,7 +188,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                           onPressed: () => _toggleBlock(_foundUser!['id'], _foundUser!['isBlocked'] == true),
                           icon: Icon(_foundUser!['isBlocked'] == true ? Icons.lock_open : Icons.block, color: AppColors.textPrimary),
                           label: Text(
-                            _foundUser!['isBlocked'] == true ? 'إلغاء الحظر' : 'حظر المستخدم',
+                            _foundUser!['isBlocked'] == true ? LanguageService.trCategory('إلغاء الحظر') : LanguageService.trCategory('حظر المستخدم'),
                             style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -203,7 +203,7 @@ class _AdminBlockScreenState extends State<AdminBlockScreen> {
                Padding(
                 padding: EdgeInsets.symmetric(vertical: 12),
                 child: Text(
-                  'قائمة المحظورين (الذين تم حظرهم حالياً):',
+                  LanguageService.trCategory('قائمة المحظورين (الذين تم حظرهم حالياً):'),
                   style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),

@@ -135,7 +135,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
         await showDialog(
           context: context,
           builder: (ctx) => Directionality(
-            textDirection: TextDirection.rtl,
+            textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: AlertDialog(
               backgroundColor: AppColors.card,
               title:  Text(LanguageService.trCategory('لا يمكنك الإعلان هنا'),
@@ -231,7 +231,7 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,

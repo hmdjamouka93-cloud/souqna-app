@@ -54,7 +54,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -220,13 +220,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   final ok = await showDialog<bool>(
                     context: context,
                     builder: (ctx) => Directionality(
-                      textDirection: TextDirection.rtl,
+                      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                       child: AlertDialog(
                         backgroundColor: AppColors.card,
                         title:  Text(LanguageService.trCategory('حذف الطلب'),
                             style: TextStyle(color: AppColors.textPrimary)),
                         content:  Text(
-                            'هل أنت متأكد من حذف هذا الطلب نهائياً؟',
+                            LanguageService.tr('هل أنت متأكد من حذف هذا الطلب نهائياً؟'),
                             style: TextStyle(color: AppColors.textSecondary)),
                         actions: [
                           TextButton(

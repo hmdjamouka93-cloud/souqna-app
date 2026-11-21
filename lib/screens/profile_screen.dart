@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final newName = await showDialog<String>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(
@@ -141,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final newPhone = await showDialog<String>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: _card,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -229,7 +229,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         backgroundColor: _bg,
         appBar: AppBar(

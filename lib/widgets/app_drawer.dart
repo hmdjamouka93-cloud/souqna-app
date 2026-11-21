@@ -101,8 +101,8 @@ class _AppDrawerState extends State<AppDrawer> {
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               leading: Icon(logged ? Icons.person_outline : Icons.login_outlined, color: AppColors.accent, size: 22),
-              title: Text(logged ? LanguageService.tr('my_account') : LanguageService.tr('login'), style:  TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.right),
-              trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
+              title: Text(logged ? LanguageService.tr('my_account') : LanguageService.tr('login'), style:  TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.start),
+              trailing:  Icon(Directionality.of(context) == TextDirection.rtl ? Icons.arrow_back_ios_new : Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 14),
               onTap: () {
                 Navigator.pop(context);
                 if (logged) { Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen())); }
@@ -133,8 +133,8 @@ class _AppDrawerState extends State<AppDrawer> {
         return ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           leading: Icon(item.icon, color: AppColors.accent, size: 22),
-          title: Text(LanguageService.trCategory(item.name), style:  TextStyle(color: AppColors.textPrimary, fontSize: 15), textAlign: TextAlign.right),
-          trailing:  Icon(Icons.arrow_back_ios_new, color: AppColors.textSecondary, size: 14),
+          title: Text(LanguageService.trCategory(item.name), style:  TextStyle(color: AppColors.textPrimary, fontSize: 15), textAlign: TextAlign.start),
+          trailing:  Icon(Directionality.of(context) == TextDirection.rtl ? Icons.arrow_back_ios_new : Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 14),
           onTap: () { Navigator.pop(context); widget.onCategoryTap(item.name); },
         );
       },

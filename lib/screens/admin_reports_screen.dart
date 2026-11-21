@@ -121,7 +121,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           title:  Text(LanguageService.trCategory('حذف الإعلان'), style: TextStyle(color: AppColors.textPrimary)),
@@ -169,7 +169,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -179,7 +179,7 @@ class _AdminReportsScreenState extends State<AdminReportsScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'البلاغات',
+            LanguageService.trCategory('البلاغات'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),

@@ -53,7 +53,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -63,7 +63,7 @@ class _ServiceOrdersScreenState extends State<ServiceOrdersScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'طلبات الخدمة',
+            LanguageService.tr('طلبات الخدمة'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),

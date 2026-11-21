@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/location_service.dart';
 import '../services/language_service.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -112,7 +113,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -166,7 +167,7 @@ class _ProvidersListScreenState extends State<ProvidersListScreen> {
                           ),
                           title: Text(LanguageService.trCategory(p['name']),
                               style:  TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
-                          subtitle: Text('${p['wilaya']} - ${p['daira']}',
+                          subtitle: Text('${LocationService.translateLocation((p['wilaya'] ?? '').toString())} - ${LocationService.translateLocation((p['daira'] ?? '').toString())}',
                               style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                           trailing:  Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 16),
                         ),

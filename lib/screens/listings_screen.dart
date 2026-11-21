@@ -161,12 +161,12 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   Row(
                     children: [
                       Expanded(
-                          child: _sheetTextField('من (${LanguageService.currency()})', _minPrice, (v) {
+                          child: _sheetTextField('${LanguageService.trCategory('من')} (${LanguageService.currency()})', _minPrice, (v) {
                         _minPrice = double.tryParse(v);
                       })),
                       const SizedBox(width: 8),
                       Expanded(
-                          child: _sheetTextField('إلى (${LanguageService.currency()})', _maxPrice, (v) {
+                          child: _sheetTextField('${LanguageService.trCategory('إلى')} (${LanguageService.currency()})', _maxPrice, (v) {
                         _maxPrice = double.tryParse(v);
                       })),
                     ],
@@ -225,7 +225,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,

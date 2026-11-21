@@ -205,7 +205,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -265,19 +265,19 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
 
         if (widget.categoryName == 'شاحنات') ...[
           _label(LanguageService.trCategory('الحمولة')),
-          _dropdown('اختر الحمولة', ['1-5 طن', '5-20 طن', 'فوق 20 طن'], _selectedPayload, (v) => setState(() => _selectedPayload = v)),
+          _dropdown(LanguageService.trCategory('اختر الحمولة'), ['1-5 طن', '5-20 طن', 'فوق 20 طن'], _selectedPayload, (v) => setState(() => _selectedPayload = v)),
           const SizedBox(height: 16),
         ],
 
         if (widget.categoryName == 'حافلات') ...[
           _label(LanguageService.trCategory('عدد المقاعد')),
-          _dropdown('اختر عدد المقاعد', ['14', '18', '24', '30', '45', '50', 'فوق 50'], _selectedSeats, (v) => setState(() => _selectedSeats = v)),
+          _dropdown(LanguageService.trCategory('اختر عدد المقاعد'), ['14', '18', '24', '30', '45', '50', 'فوق 50'], _selectedSeats, (v) => setState(() => _selectedSeats = v)),
           const SizedBox(height: 16),
         ],
 
         if (widget.categoryName == 'دراجات') ...[
           _label(LanguageService.trCategory('سعة المحرك')),
-          _dropdown('اختر سعة المحرك', ['50cc', '100cc', '125cc', '150cc', '250cc', '400cc', '600cc', '1000cc وفوق'], _selectedEngineCC, (v) => setState(() => _selectedEngineCC = v)),
+          _dropdown(LanguageService.trCategory('اختر سعة المحرك'), ['50cc', '100cc', '125cc', '150cc', '250cc', '400cc', '600cc', '1000cc وفوق'], _selectedEngineCC, (v) => setState(() => _selectedEngineCC = v)),
           const SizedBox(height: 16),
         ],
 
@@ -465,7 +465,7 @@ class _CreateCarListingScreenState extends State<CreateCarListingScreen> {
         controller: c,
         maxLines: maxLines,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

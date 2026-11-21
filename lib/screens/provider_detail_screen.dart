@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/location_service.dart';
 import '../services/language_service.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -91,7 +92,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     final result = await showDialog<int>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: StatefulBuilder(
           builder: (ctx, setD) => AlertDialog(
             backgroundColor: AppColors.card,
@@ -264,7 +265,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           title:  Text(LanguageService.trCategory('حذف البروفايل'), style: TextStyle(color: AppColors.textPrimary)),
@@ -302,7 +303,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
     final daira = (p['daira'] ?? '').toString();
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 floatingActionButton: _isOwner
             ? FloatingActionButton.extended(
@@ -429,7 +430,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen> {
                                     children: [
                                        Icon(Icons.location_on, color: AppColors.textSecondary, size: 14),
                                       const SizedBox(width: 4),
-                                      Text('$wilaya - $daira', style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                                      Text('${LocationService.translateLocation(wilaya)} - ${LocationService.translateLocation(daira)}', style:  TextStyle(color: AppColors.textSecondary, fontSize: 12)),
                                     ],
                                   ),
                                 ),

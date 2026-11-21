@@ -41,7 +41,7 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -231,7 +231,7 @@ class _MoreScreenState extends State<MoreScreen> {
         showDialog(
           context: context,
           builder: (ctx) => Directionality(
-            textDirection: TextDirection.rtl,
+            textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: AlertDialog(
               backgroundColor: AppColors.card,
               title: Text(LanguageService.tr('language'), style: TextStyle(color: AppColors.textPrimary)),
@@ -274,7 +274,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
         showDialog(
           context: context,
           builder: (ctx) => Directionality(
-            textDirection: TextDirection.rtl,
+            textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: AlertDialog(
               backgroundColor: AppColors.card,
               title: Text(LanguageService.trCategory('اختر الوضع'), style: TextStyle(color: AppColors.textPrimary)),
@@ -519,7 +519,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
           final ok = await showDialog<bool>(
             context: context,
             builder: (ctx) => Directionality(
-              textDirection: TextDirection.rtl,
+              textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
               child: AlertDialog(
                 backgroundColor: AppColors.card,
                 shape: RoundedRectangleBorder(
@@ -533,14 +533,14 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
                   ),
                 ),
                 content:  Text(
-                  'هل أنت متأكد من تسجيل الخروج؟',
+                  LanguageService.tr('هل أنت متأكد من تسجيل الخروج؟'),
                   style: TextStyle(color: AppColors.textSecondary),
                 ),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(ctx, false),
                     child:  Text(
-                      'إلغاء',
+                      LanguageService.tr('إلغاء'),
                       style: TextStyle(color: AppColors.textSecondary),
                     ),
                   ),
@@ -550,7 +550,7 @@ _GridItem(LanguageService.tr('theme_mode'), Icons.brightness_6_outlined, const C
                     ),
                     onPressed: () => Navigator.pop(ctx, true),
                     child:  Text(
-                      'خروج',
+                      LanguageService.tr('خروج'),
                       style: TextStyle(color: AppColors.textPrimary),
                     ),
                   ),

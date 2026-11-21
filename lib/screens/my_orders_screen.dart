@@ -51,7 +51,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -62,7 +62,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'طلباتي',
+            LanguageService.tr('طلباتي'),
             style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../services/location_service.dart';
 import '../services/language_service.dart';
 
 import '../main.dart';
@@ -70,7 +71,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -293,7 +294,7 @@ class _StoresListScreenState extends State<StoresListScreen> {
                                     color: AppColors.textSecondary,
                                     size: 12),
                                 const SizedBox(width: 2),
-                                Text(wilaya,
+                                Text(LocationService.translateLocation(wilaya),
                                     style:  TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 11)),

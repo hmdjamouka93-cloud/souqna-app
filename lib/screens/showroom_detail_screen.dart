@@ -70,7 +70,7 @@ class _ShowroomDetailScreenState extends State<ShowroomDetailScreen> {
     final location = (widget.showroom['location'] ?? '').toString();
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 floatingActionButton: (AuthService.currentUser?.uid == (widget.showroom['userId'] ?? '').toString())
             ? FloatingActionButton.extended(

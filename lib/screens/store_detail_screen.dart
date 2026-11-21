@@ -79,7 +79,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     final result = await showDialog<int>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: StatefulBuilder(
           builder: (ctx, setD) => AlertDialog(
             backgroundColor: AppColors.card,
@@ -168,7 +168,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           title:  Text(LanguageService.trCategory('حذف المتجر'),
@@ -225,7 +225,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
     final daira = (widget.store['daira'] ?? '').toString();
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 floatingActionButton: _isOwner
             ? FloatingActionButton.extended(
@@ -328,7 +328,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                         final ok = await showDialog<bool>(
                           context: context,
                           builder: (ctx) => Directionality(
-                            textDirection: TextDirection.rtl,
+                            textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                             child: AlertDialog(
                               backgroundColor: AppColors.card,
                               title:  Text(LanguageService.trCategory('الإبلاغ عن المتجر'), style: TextStyle(color: AppColors.textPrimary)),
@@ -361,14 +361,14 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                           );
                           if (!mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(done ? 'تم إرسال الإبلاغ، شكراً لك' : 'حدث خطأ، حاول مرة أخرى'),
+                            content: Text(done ? LanguageService.tr('تم إرسال الإبلاغ، شكراً لك') : LanguageService.tr('حدث خطأ، حاول مرة أخرى')),
                           ));
                         }
                       } else if (v == 'block') {
                         showDialog(
                           context: context,
                           builder: (ctx) => Directionality(
-                            textDirection: TextDirection.rtl,
+                            textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                             child: AlertDialog(
                               backgroundColor: AppColors.card,
                               title:  Text(LanguageService.trCategory('حظر المتجر'),
@@ -740,7 +740,7 @@ class _StoreDetailScreenState extends State<StoreDetailScreen> {
                             final ok = await showDialog<bool>(
                               context: context,
                               builder: (ctx) => Directionality(
-                                textDirection: TextDirection.rtl,
+                                textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                                 child: AlertDialog(
                                   backgroundColor: AppColors.card,
                                   title:  Text(LanguageService.trCategory('حذف المنتج'), style: TextStyle(color: AppColors.textPrimary)),

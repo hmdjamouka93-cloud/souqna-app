@@ -62,7 +62,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: _buildAppBar(),
         body: ListView(
@@ -142,7 +142,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
         child: AlertDialog(
           backgroundColor: AppColors.card,
           shape: RoundedRectangleBorder(
@@ -508,8 +508,8 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       if (value != null && value.toString().isNotEmpty) {
         final label = labels[key] ?? key;
         String displayValue = value.toString();
-        if (key == 'mileage') displayValue += ' كم';
-        if (key == 'area') displayValue += ' م²';
+        if (key == 'mileage') displayValue += ' ${LanguageService.trCategory('كم')}';
+        if (key == 'area') displayValue += ' ${LanguageService.trCategory('م²')}';
         items.add(MapEntry(label, displayValue));
       }
     });
@@ -645,7 +645,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
             final ok = await showDialog<bool>(
               context: context,
               builder: (ctx) => Directionality(
-                textDirection: TextDirection.rtl,
+                textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                 child: AlertDialog(
                   backgroundColor: AppColors.card,
                   title:  Text(LanguageService.tr('report_ad'), style: TextStyle(color: AppColors.textPrimary)),

@@ -12,13 +12,13 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
           iconTheme:  IconThemeData(color: AppColors.textPrimary),
           title:  Text(
-            'حول',
+            LanguageService.trCategory('حول'),
             style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -62,7 +62,7 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 6),
                Center(
                 child: Text(
-                  'الإصدار 1.0.0',
+                  '${LanguageService.trCategory('الإصدار')} 1.0.0',
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 13,
@@ -84,7 +84,7 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 34),
                Center(
                 child: Text(
-                  'منتج من',
+                  LanguageService.trCategory('منتج من'),
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 13,
@@ -124,7 +124,7 @@ class AboutScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            'للتكنولوجيا الرقمية',
+                            LanguageService.trCategory('للتكنولوجيا الرقمية'),
                             style: TextStyle(
                               color: AppColors.textSecondary,
                               fontSize: 11,
@@ -154,8 +154,8 @@ class AboutScreen extends StatelessWidget {
                     ),
                   ),
                   icon: const Icon(Icons.language, color: AppColors.accent),
-                  label: const Text(
-                    'تصفح موقعنا',
+                  label: Text(
+                    LanguageService.trCategory('تصفح موقعنا'),
                     style: TextStyle(
                       color: AppColors.accent,
                       fontSize: 15,
@@ -177,7 +177,7 @@ class AboutScreen extends StatelessWidget {
                   ),
                   icon:  Icon(Icons.email_outlined, color: AppColors.textPrimary),
                   label:  Text(
-                    'تواصل معنا',
+                    LanguageService.trCategory('تواصل معنا'),
                     style: TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: 15,
@@ -211,7 +211,7 @@ class AboutScreen extends StatelessWidget {
     final uri = Uri(
       scheme: 'mailto',
       path: _email,
-      query: 'subject=استفسار حول تطبيق سوقنا',
+      query: 'subject=${Uri.encodeComponent(LanguageService.trCategory('استفسار حول تطبيق سوقنا'))}',
     );
     try {
       if (await canLaunchUrl(uri)) {

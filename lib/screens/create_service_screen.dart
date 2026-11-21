@@ -76,7 +76,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -86,7 +86,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'إضافة خدمة',
+            LanguageService.tr('إضافة خدمة'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
@@ -131,7 +131,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
               _field(_descCtrl, LanguageService.tr('اكتب تفاصيل الخدمة هنا...'), maxLines: 3),
               const SizedBox(height: 16),
 
-              _label('السعر (${LanguageService.currency()})'),
+              _label('${LanguageService.trCategory('السعر')} (${LanguageService.currency()})'),
               _field(_priceCtrl, LanguageService.tr('مثال: 2000'), keyboard: TextInputType.number),
               
               if (_error != null) ...[

@@ -85,7 +85,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
       showDialog(
         context: context,
         builder: (ctx) => Directionality(
-          textDirection: TextDirection.rtl,
+          textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
           child: AlertDialog(
             backgroundColor: AppColors.card,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -97,7 +97,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               ],
             ),
             content:  Text(
-              'سيتواصل معك مقدم الخدمة في أقرب وقت لتأكيد الموعد.',
+              LanguageService.tr('سيتواصل معك مقدم الخدمة في أقرب وقت لتأكيد الموعد.'),
               style: TextStyle(color: AppColors.textSecondary, height: 1.6),
             ),
             actions: [
@@ -124,7 +124,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
                 appBar: AppBar(
                     elevation: 0,
@@ -134,7 +134,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
             onPressed: () => Navigator.pop(context),
           ),
           title:  Text(
-            'طلب الخدمة',
+            LanguageService.tr('طلب الخدمة'),
             style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
@@ -177,7 +177,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               const SizedBox(height: 24),
               
                Text(
-                'معلومات الطلب',
+                LanguageService.tr('معلومات الطلب'),
                 style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -307,7 +307,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
       child: TextField(
         controller: c,
         keyboardType: keyboard,
-        textDirection: ltr ? TextDirection.ltr : TextDirection.rtl,
+        textDirection: ltr ? TextDirection.ltr : (LanguageService.currentLocale.value.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr),
         style:  TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: LanguageService.trCategory(hint),

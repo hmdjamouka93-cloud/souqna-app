@@ -232,7 +232,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Text(LanguageService.trCategory(title),
-        textAlign: TextAlign.right,
+        textAlign: TextAlign.start,
         style:  TextStyle(
           color: AppColors.textPrimary,
           fontSize: 18,
@@ -1028,7 +1028,7 @@ class HomeScreenState extends State<HomeScreen> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$name - ${LanguageService.trCategory('قريباً')}')),
+        SnackBar(content: Text('${LanguageService.trCategory(name)} - ${LanguageService.trCategory('قريباً')}')),
       );
     }
   }
