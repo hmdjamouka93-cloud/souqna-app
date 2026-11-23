@@ -1410,25 +1410,69 @@ class LanguageService {
     final cleanName = sanitize(name);
     if (cleanName.isEmpty) return name;
 
-    // === REAL ESTATE BRUTE-FORCE ===
-    if (cleanName.contains('سكن') && cleanName.contains('للايجار')) return lang == 'en' ? 'Housing for Rent' : 'Logement à louer';
-    if (cleanName.contains('سكن') && cleanName.contains('للبيع')) return lang == 'en' ? 'Housing for Sale' : 'Logement à vendre';
-    if (cleanName.contains('محلات') && cleanName.contains('للايجار')) return lang == 'en' ? 'Shops for Rent' : 'Locaux à louer';
-    if (cleanName.contains('محلات') && cleanName.contains('للبيع')) return lang == 'en' ? 'Shops for Sale' : 'Locaux à vendre';
-    if (cleanName.contains('اراضي') || cleanName.contains('ارض')) return lang == 'en' ? 'Lands' : 'Terrains';
-    if (cleanName.contains('شقة') || cleanName.contains('شقق')) return lang == 'en' ? 'Apartment' : 'Appartement';
-    if (cleanName.contains('فيلا')) return lang == 'en' ? 'Villa' : 'Villa';
-    if (cleanName.contains('منزل')) return lang == 'en' ? 'Traditional house' : 'Maison traditionnelle';
-    if (cleanName.contains('محل') && cleanName.contains('تجاري')) return lang == 'en' ? 'Commercial shop' : 'Local commercial';
-    if (cleanName.contains('مكتب')) return lang == 'en' ? 'Office' : 'Bureau';
+    // === BRUTE FORCE FALLBACKS (Direct mapping) ===
+    final fb = {
+      'ابيض': {'en': 'White', 'fr': 'Blanc'},
+      'اسود': {'en': 'Black', 'fr': 'Noir'},
+      'فضي': {'en': 'Silver', 'fr': 'Argent'},
+      'رمادي': {'en': 'Grey', 'fr': 'Gris'},
+      'كحلي': {'en': 'Navy', 'fr': 'Bleu marine'},
+      'ازرق': {'en': 'Blue', 'fr': 'Bleu'},
+      'احمر': {'en': 'Red', 'fr': 'Rouge'},
+      'بني': {'en': 'Brown', 'fr': 'Marron'},
+      'بيج': {'en': 'Beige', 'fr': 'Beige'},
+      'ذهبي': {'en': 'Gold', 'fr': 'Or'},
+      'اخضر': {'en': 'Green', 'fr': 'Vert'},
+      'برتقالي': {'en': 'Orange', 'fr': 'Orange'},
+      'اصفر': {'en': 'Yellow', 'fr': 'Jaune'},
+      'بنفسجي': {'en': 'Purple', 'fr': 'Violet'},
+      'لون اخر': {'en': 'Other color', 'fr': 'Autre couleur'},
+      'بنزين': {'en': 'Petrol', 'fr': 'Essence'},
+      'مازوت': {'en': 'Diesel', 'fr': 'Diesel'},
+      'كهرباء': {'en': 'Electric', 'fr': 'Électrique'},
+      'غاز': {'en': 'Gas', 'fr': 'GPL'},
+      'جديد': {'en': 'New', 'fr': 'Neuf'},
+      'مستعمل ممتاز': {'en': 'Excellent used', 'fr': 'Occasion excellent'},
+      'مستعمل جيد': {'en': 'Good used', 'fr': 'Occasion bon'},
+      'لا يعمل': {'en': 'Not working', 'fr': 'Ne fonctionne pas'},
+      'اوتوماتيك': {'en': 'Automatic', 'fr': 'Automatique'},
+      'عادي': {'en': 'Manual', 'fr': 'Manuelle'},
+      'تبترونيك': {'en': 'Tiptronic', 'fr': 'Tiptronic'},
+      'سيدان': {'en': 'Sedan', 'fr': 'Berline'},
+      'هاتشباك': {'en': 'Hatchback', 'fr': 'Compacte'},
+      'بيك اب': {'en': 'Pickup', 'fr': 'Pick-up'},
+      'كوبيه': {'en': 'Coupe', 'fr': 'Coupé'},
+      'جميع الاعلانات': {'en': 'All Ads', 'fr': 'Toutes les annonces'},
+      'تويوتا': {'en': 'Toyota', 'fr': 'Toyota'},
+      'رونو': {'en': 'Renault', 'fr': 'Renault'},
+      'بيجو': {'en': 'Peugeot', 'fr': 'Peugeot'},
+      'سيتروين': {'en': 'Citroen', 'fr': 'Citroën'},
+      'فولكس فاجن': {'en': 'Volkswagen', 'fr': 'Volkswagen'},
+      'كيا': {'en': 'Kia', 'fr': 'Kia'},
+      'شيري': {'en': 'Chery', 'fr': 'Chery'},
+      'جيلي': {'en': 'Geely', 'fr': 'Geely'},
+      'نيسان': {'en': 'Nissan', 'fr': 'Nissan'},
+      'سيات': {'en': 'Seat', 'fr': 'Seat'},
+      'اوبل': {'en': 'Opel', 'fr': 'Opel'},
+      'شاحنات': {'en': 'Trucks', 'fr': 'Camions'},
+      'حافلات': {'en': 'Buses', 'fr': 'Bus'},
+      'دراجات': {'en': 'Motorcycles', 'fr': 'Motos'},
+      'دراجات هوائية وسكوتر': {'en': 'Bicycles & Scooters', 'fr': 'Vélos et Trottinettes'},
+      'بحري': {'en': 'Marine', 'fr': 'Marine'},
+      'قطع غيار': {'en': 'Spare Parts', 'fr': 'Pièces de rechange'},
+      'معدات ثقيلة': {'en': 'Heavy Equipment', 'fr': 'Engins lourds'},
+      'اخرى': {'en': 'Other', 'fr': 'Autre'},
+      'اختر الفئة': {'en': 'Choose category', 'fr': 'Choisir la catégorie'},
+      'اختر نوع القير': {'en': 'Choose gear', 'fr': 'Choisir la boîte'},
+      'اختر اللون': {'en': 'Choose color', 'fr': 'Choisir la couleur'},
+      'اختر نوع الوقود': {'en': 'Choose fuel', 'fr': 'Choisir le carburant'},
+      'اختر الحالة': {'en': 'Choose condition', 'fr': 'Choisir l\'état'},
+      'نعم / لا': {'en': 'Yes / No', 'fr': 'Oui / Non'}
+    };
 
-    // === OTHER BRUTE-FORCE (Cars/Marine/etc) ===
-    if (cleanName.contains('بينلي') || cleanName.contains('بينيلي') || cleanName.contains('بنلي')) return 'Benelli';
-    if (cleanName.contains('طراد')) return lang == 'en' ? 'Cruiser' : 'Croiseur';
-    if (cleanName.contains('يخت') || cleanName.contains('يخوت')) return 'Yacht';
-    if (cleanName.contains('ادوات') && cleanName.contains('صيد')) return lang == 'en' ? 'Fishing Gear' : 'Matériel de pêche';
-    if (cleanName.contains('اكسسوارات') || cleanName.contains('اكسيسوارات')) return lang == 'en' ? 'Computer Accessories' : 'Accessoires informatiques';
-    if (cleanName.contains('ميكانيك') || cleanName.contains('ميكنيك')) return lang == 'en' ? 'Mechanics' : 'Mécanique';
+    if (fb.containsKey(cleanName)) {
+      return fb[cleanName]![lang] ?? name;
+    }
 
     for (final key in _categoryTranslations.keys) {
       if (sanitize(key) == cleanName) {
