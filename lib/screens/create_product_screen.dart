@@ -406,7 +406,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
             runSpacing: 6,
             children: selected
                 .map((c) => Chip(
-                      label: Text(c,
+                      label: Text(LanguageService.trCategory(c),
                           style:  TextStyle(
                               color: AppColors.textPrimary, fontSize: 12)),
                       backgroundColor: AppColors.accent,

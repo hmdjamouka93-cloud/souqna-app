@@ -389,7 +389,7 @@ class _CreateStoreScreenState extends State<CreateStoreScreen> {
           isExpanded: true,
           value: _dairaName,
           hint: Text(
-              _wilayaCode == null ? LanguageService.trCategory('اختر الولاية أولاً') : 'اختر الدائرة',
+              _wilayaCode == null ? LanguageService.trCategory('اختر الولاية أولاً') : LanguageService.trCategory('اختر الدائرة'),
               style:  TextStyle(color: AppColors.textSecondary)),
           dropdownColor: AppColors.card,
           style:  TextStyle(color: AppColors.textPrimary, fontSize: 14),
