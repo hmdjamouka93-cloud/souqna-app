@@ -686,8 +686,8 @@ class HomeScreenState extends State<HomeScreen> {
         }
         final allDocs = snapshot.data?.docs ?? [];
       final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
-        final m = (d.data() as Map)['mainCategoryId'] ?? '';
-        return m.toString().trim() == 'jobs';
+        final m = ((d.data() as Map)['mainCategoryId'] ?? '').toString().trim().toLowerCase();
+        return m == 'jobs' || m == 'job' || m == 'الوظائف' || m == 'وظائف';
       }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
@@ -758,8 +758,8 @@ class HomeScreenState extends State<HomeScreen> {
         }
         final allDocs = snapshot.data?.docs ?? [];
       final docs = List<QueryDocumentSnapshot>.from(allDocs.where((d) {
-        final m = (d.data() as Map)['mainCategoryId'] ?? '';
-        return m.toString().trim() == 'charity';
+        final m = ((d.data() as Map)['mainCategoryId'] ?? '').toString().trim().toLowerCase();
+        return m == 'charity' || m == 'donations' || m == 'donation' || m == 'التبرعات والعمل الخيري' || m == 'التبرعات';
       }))
           ..sort((a, b) {
             final ao = (a.data() as Map)['order'] ?? 0;
