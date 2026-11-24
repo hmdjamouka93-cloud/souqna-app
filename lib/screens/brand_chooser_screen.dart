@@ -232,6 +232,9 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
   Widget _brandCard(Map<String, dynamic> brand) {
     final imageUrl = (brand['image'] ?? '').toString();
     final brandName = LanguageService.trCategory((brand['name'] ?? '').toString().trim());
+    String displayName = brandName;
+    if (displayName.contains('جميع الإعلانات') || displayName.contains('جميع الاعلانات')) displayName = 'All Ads';
+    if (displayName.contains('سيارات أخرى') || displayName.contains('سيارات اخري')) displayName = 'Other Cars';
 
     // إلا كاين صورة → Stack (صورة + نص فوقها)
     if (imageUrl.isNotEmpty) {
@@ -257,7 +260,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(6),
-                        child: Text(brandName,
+                        child: Text(displayName,
                           textAlign: TextAlign.center,
                           style:  TextStyle(
                             color: Colors.white,
@@ -286,7 +289,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   bottom: 8,
                   right: 4,
                   left: 4,
-                  child: Text(brandName,
+                  child: Text(displayName,
                     textAlign: TextAlign.center,
                     style:  TextStyle(
                       color: Colors.white,
@@ -324,7 +327,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(brandName,
+              child: Text(displayName,
                 textAlign: TextAlign.center,
                 style:  TextStyle(
                   color: Colors.white,
