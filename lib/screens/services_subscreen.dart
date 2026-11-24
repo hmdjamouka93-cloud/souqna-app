@@ -99,13 +99,7 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                     child: GridView.builder(
                       padding: const EdgeInsets.all(16),
                       itemCount: _items.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        childAspectRatio: 1.1,
-                      ),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0),
                       itemBuilder: (context, i) {
                         final name = _items[i]['name'] as String;
                         final id = _items[i]['id'] as String;

@@ -41,12 +41,7 @@ class ClothingSubscreen extends StatelessWidget {
               child: GridView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: categories.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 1.1,
-                ),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0),
                 itemBuilder: (context, i) {
                   final catName = categories[i]['name']!;
                   return InkWell(
@@ -71,7 +66,7 @@ class ClothingSubscreen extends StatelessWidget {
                       child: Center(
                         child: Text(LanguageService.trCategory(catName),
                           textAlign: TextAlign.center,
-                          style:  TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
+                          style:  TextStyle(color: catName == 'جميع الإعلانات' ? AppColors.accent : AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
