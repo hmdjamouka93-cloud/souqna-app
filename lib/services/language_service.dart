@@ -1399,38 +1399,44 @@ class LanguageService {
     if (lang == 'ar') return name;
 
     String sanitize(String input) {
-      return input
-          .replaceAll(RegExp(r'[^\u0600-\u06FF]'), '')
-          .replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا')
-          .replaceAll('ة', 'ه').replaceAll('ى', 'ي')
-          .replaceAll('ّ', '').replaceAll('َ', '').replaceAll('ُ', '').replaceAll('ِ', '').replaceAll('ْ', '')
-          .trim().toLowerCase();
+      return input.replaceAll(RegExp(r'[^\u0600-\u06FF]'), '').replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا').replaceAll('ة', 'ه').replaceAll('ى', 'ي').replaceAll('ّ', '').replaceAll('َ', '').replaceAll('ُ', '').replaceAll('ِ', '').replaceAll('ْ', '').trim().toLowerCase();
     }
 
     final cleanName = sanitize(name);
     if (cleanName.isEmpty) return name;
 
-    // === BRUTE FORCE FALLBACKS (باش نضمنو الكلمات اللي عيت معانا) ===
     final fb = {
-      'بيكاب': {'en': 'Pickup', 'fr': 'Pick-up'},
+      'عادي': {'en': 'Manual', 'fr': 'Manuelle'},
+      'اوتوماتيك': {'en': 'Automatic', 'fr': 'Automatique'},
+      'تبترونيك': {'en': 'Tiptronic', 'fr': 'Tiptronic'},
+      'ابيض': {'en': 'White', 'fr': 'Blanc'},
+      'اسود': {'en': 'Black', 'fr': 'Noir'},
+      'فضي': {'en': 'Silver', 'fr': 'Argent'},
+      'رمادي': {'en': 'Grey', 'fr': 'Gris'},
+      'كحلي': {'en': 'Navy', 'fr': 'Bleu marine'},
+      'ازرق': {'en': 'Blue', 'fr': 'Bleu'},
+      'احمر': {'en': 'Red', 'fr': 'Rouge'},
+      'بني': {'en': 'Brown', 'fr': 'Marron'},
+      'بيج': {'en': 'Beige', 'fr': 'Beige'},
+      'ذهبي': {'en': 'Gold', 'fr': 'Or'},
+      'اخضر': {'en': 'Green', 'fr': 'Vert'},
+      'برتقالي': {'en': 'Orange', 'fr': 'Orange'},
+      'اصفر': {'en': 'Yellow', 'fr': 'Jaune'},
+      'بنفسجي': {'en': 'Purple', 'fr': 'Violet'},
       'لوناخر': {'en': 'Other color', 'fr': 'Autre couleur'},
-      'جميعالاعلانات': {'en': 'All Ads', 'fr': 'Toutes les annonces'},
-      'فولكسفاجن': {'en': 'Volkswagen', 'fr': 'Volkswagen'},
+      'بنزين': {'en': 'Petrol', 'fr': 'Essence'},
+      'مازوت': {'en': 'Diesel', 'fr': 'Diesel'},
+      'كهرباء': {'en': 'Electric', 'fr': 'Électrique'},
+      'غاز': {'en': 'Gas', 'fr': 'GPL'},
+      'جديد': {'en': 'New', 'fr': 'Neuf'},
       'مستعملممتاز': {'en': 'Excellent used', 'fr': 'Occasion excellent'},
       'مستعملجيد': {'en': 'Good used', 'fr': 'Occasion bon'},
       'لايعمل': {'en': 'Not working', 'fr': 'Ne fonctionne pas'},
-      'تويوتا': {'en': 'Toyota', 'fr': 'Toyota'},
-      'رونو': {'en': 'Renault', 'fr': 'Renault'},
-      'بيجو': {'en': 'Peugeot', 'fr': 'Peugeot'},
-      'سيتروين': {'en': 'Citroen', 'fr': 'Citroën'},
-      'كيا': {'en': 'Kia', 'fr': 'Kia'},
-      'شيري': {'en': 'Chery', 'fr': 'Chery'},
-      'جيلي': {'en': 'Geely', 'fr': 'Geely'},
-      'نيسان': {'en': 'Nissan', 'fr': 'Nissan'},
-      'سيات': {'en': 'Seat', 'fr': 'Seat'},
-      'اوبل': {'en': 'Opel', 'fr': 'Opel'},
+      'نعم': {'en': 'Yes', 'fr': 'Oui'},
+      'لا': {'en': 'No', 'fr': 'Non'},
       'سيدان': {'en': 'Sedan', 'fr': 'Berline'},
       'هاتشباك': {'en': 'Hatchback', 'fr': 'Compacte'},
+      'بيكاب': {'en': 'Pickup', 'fr': 'Pick-up'},
       'كوبيه': {'en': 'Coupe', 'fr': 'Coupé'},
       'اخرى': {'en': 'Other', 'fr': 'Autre'}
     };
