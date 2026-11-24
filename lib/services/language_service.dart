@@ -325,6 +325,7 @@ class LanguageService {
   }
 
       static final Map<String, Map<String, String>> _categoryTranslations = {
+    'السعر': {'ar': 'السعر', 'en': 'Price', 'fr': 'Prix'},
     // BRANDS_EXTRA_START
     'ماركات أخرى': {'ar': 'ماركات أخرى', 'en': 'Other brands', 'fr': 'Autres marques'},
     'مشاهدة جميع الإعلانات': {'ar': 'مشاهدة جميع الإعلانات', 'en': 'View all listings', 'fr': 'Voir toutes les annonces'},

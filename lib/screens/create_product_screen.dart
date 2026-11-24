@@ -216,7 +216,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               _label(LanguageService.trCategory('الوصف')),
               _field(_descCtrl, LanguageService.trCategory('وصف تفصيلي...'), maxLines: 4),
               const SizedBox(height: 16),
-              _label('${LanguageService.trCategory('السعر')} (${LanguageService.currency()})'),
+              _label('${LanguageService.trCategory('السعر')} (${LanguageService.tr('currency')})'),
               _field(_priceCtrl, '0',
                   keyboard: TextInputType.number, ltr: true),
               const SizedBox(height: 16),
