@@ -1407,6 +1407,9 @@ class LanguageService {
     if (cleanName.isEmpty) return name;
 
     final fb = {
+      'سياراتاخري': {'en': 'Other Cars', 'fr': 'Autres voitures'},
+      'سياراتاخرى': {'en': 'Other Cars', 'fr': 'Autres voitures'},
+
       'عادي': {'en': 'Manual', 'fr': 'Manuelle'},
       'اوتوماتيك': {'en': 'Automatic', 'fr': 'Automatique'},
       'تبترونيك': {'en': 'Tiptronic', 'fr': 'Tiptronic'},
