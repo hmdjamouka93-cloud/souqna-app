@@ -44,6 +44,38 @@ class ClothingSubscreen extends StatelessWidget {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.0),
                 itemBuilder: (context, i) {
                   final catName = categories[i]['name']!;
+                  if (catName == 'جميع الإعلانات') {
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ListingsScreen(
+                            subCategoryId: catName,
+                            brandName: '',
+                            categoryName: catName,
+                          ),
+                        ),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.card,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            LanguageService.trCategory(catName),
+                            textAlign: TextAlign.center,
+                            style:  TextStyle(
+                              color: AppColors.accent,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                   return InkWell(
                     onTap: () {
                       Navigator.push(
