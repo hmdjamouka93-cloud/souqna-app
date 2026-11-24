@@ -209,11 +209,10 @@ class _CarsScreenState extends State<CarsScreen> {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: AppColors.accent.withValues(alpha: 0.3), width: 1),
           ),
-          child: const Center(
+          child: Center(
             child: Padding(
               padding: EdgeInsets.all(8),
-              child: Text(
-                'جميع الإعلانات',
+              child: Text(LanguageService.trCategory('جميع الإعلانات'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.accent,
@@ -318,7 +317,7 @@ class _CarsScreenState extends State<CarsScreen> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),
-                Text(name,
+                Text(LanguageService.trCategory(name),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: AppColors.accent,
