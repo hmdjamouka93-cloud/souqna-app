@@ -104,6 +104,37 @@ class _ServicesSubscreenState extends State<ServicesSubscreen> {
                         final name = _items[i]['name'] as String;
                         final id = _items[i]['id'] as String;
 
+                        if (name == 'جميع الإعلانات') {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ListingsScreen(
+                                    subCategoryId: name,
+                                    brandName: '',
+                                    categoryName: widget.categoryName,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.card,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  LanguageService.trCategory(name),
+                                  textAlign: TextAlign.center,
+                                  style:  TextStyle(color: AppColors.accent, fontSize: 14, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+
                         return InkWell(
                           onTap: () {
                             if (widget.categoryName == 'المناسبات والأعراس' || widget.categoryName == 'المأكولات والمشروبات' || widget.categoryName == 'التعليم والدروس الخصوصية' || widget.categoryName == 'الرياضة واللياقة البدنية' || widget.categoryName == 'الصحة والجمال' || widget.categoryName == 'السفر والسياحة' || widget.categoryName == 'خدمات السيارات' || widget.categoryName == 'النظافة ومكافحة الحشرات' || widget.categoryName == 'الخدمات القانونية والإدارية' || widget.categoryName == 'الفلاحة والثروة الحيوانية' || widget.categoryName == 'الدعاية والإعلان والطباعة' || widget.categoryName == 'الأمن والحراسة' || widget.categoryName == 'رعاية الأطفال والمسنين' || widget.categoryName == 'الطاقة الشمسية' || widget.categoryName == 'كلاب وقطط' || widget.categoryName == 'طيور' || widget.categoryName == 'مواشي ودواب' || widget.categoryName == 'حيوانات أخرى' || widget.categoryName == 'التبرع' || widget.categoryName == 'دراجات هوائية وسكوتر' || widget.categoryName == 'بحري') {
