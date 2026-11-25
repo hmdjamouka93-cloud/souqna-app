@@ -121,17 +121,17 @@ class ClothingSubscreen extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            bottom: 8,
-                            right: 4,
-                            left: 4,
+                            bottom: 10,
+                            right: 8,
+                            left: 8,
                             child: Text(
                               LanguageService.trCategory(catName),
                               textAlign: TextAlign.center,
                               style:  TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
+                                color: AppColors.textPrimary,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                shadows: [Shadow(blurRadius: 4, color: Colors.black87)],
+                                shadows: [Shadow(blurRadius: 6, color: Colors.black87)],
                               ),
                             ),
                           ),
