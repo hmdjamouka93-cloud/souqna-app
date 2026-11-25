@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../services/language_service.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
@@ -95,11 +96,46 @@ class ClothingSubscreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
                       ),
-                      child: Center(
-                        child: Text(LanguageService.trCategory(catName),
-                          textAlign: TextAlign.center,
-                          style:  TextStyle(color: catName == 'جميع الإعلانات' ? AppColors.accent : AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
+                      clipBehavior: Clip.antiAlias,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          if (categories[i]['image'] != null && categories[i]['image']!.isNotEmpty)
+                            CachedNetworkImage(
+                              imageUrl: categories[i]['image']!,
+                              fit: BoxFit.cover,
+                              errorWidget: (_, _, _) => Container(color: AppColors.card),
+                            )
+                          else
+                            Container(color: AppColors.card),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black.withValues(alpha: 0.75),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 8,
+                            right: 4,
+                            left: 4,
+                            child: Text(
+                              LanguageService.trCategory(catName),
+                              textAlign: TextAlign.center,
+                              style:  TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                shadows: [Shadow(blurRadius: 4, color: Colors.black87)],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );
