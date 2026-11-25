@@ -263,7 +263,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                         child: Text(displayName,
                           textAlign: TextAlign.center,
                           style:  TextStyle(
-                            color: Colors.white,
+                            color: displayName == 'All Ads' ? AppColors.accent : Colors.white,
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
@@ -292,7 +292,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   child: Text(displayName,
                     textAlign: TextAlign.center,
                     style:  TextStyle(
-                      color: Colors.white,
+                      color: displayName == 'All Ads' ? AppColors.accent : Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       shadows: [
@@ -330,7 +330,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
               child: Text(displayName,
                 textAlign: TextAlign.center,
                 style:  TextStyle(
-                  color: Colors.white,
+                  color: displayName == 'All Ads' ? AppColors.accent : Colors.white,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
