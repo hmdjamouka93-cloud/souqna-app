@@ -254,7 +254,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
               children: [
                 CachedNetworkImage(imageUrl: 
                   imageUrl,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   errorWidget: (_, _, _) => Container(
                     color: const Color(0xFF2A2E36),
                     child: Center(
