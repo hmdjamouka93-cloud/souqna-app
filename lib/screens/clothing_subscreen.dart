@@ -12,11 +12,11 @@ class ClothingSubscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = [
-      {'name': 'جميع الإعلانات'},
-      {'name': 'ملابس رجالية'},
-      {'name': 'ملابس نسائية'},
-      {'name': 'ملابس اطفال'},
-      {'name': 'اكسسوارات'},
+      {'name': 'جميع الإعلانات', 'image': ''},
+      {'name': 'ملابس رجالية', 'image': 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60'},
+      {'name': 'ملابس نسائية', 'image': 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&auto=format&fit=crop&q=60'},
+      {'name': 'ملابس اطفال', 'image': 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&auto=format&fit=crop&q=60'},
+      {'name': 'اكسسوارات', 'image': 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=500&auto=format&fit=crop&q=60'},
     ];
 
     return Directionality(
