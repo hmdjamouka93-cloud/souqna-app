@@ -232,6 +232,11 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
   Widget _brandCard(Map<String, dynamic> brand) {
     final imageUrl = (brand['image'] ?? '').toString();
     final brandName = LanguageService.trCategory((brand['name'] ?? '').toString().trim());
+    final rawName = (brand['name'] ?? '').toString();
+    double imgPadding = 24.0;
+    if (rawName.contains('ايفون') || rawName.contains('شاومي') || rawName.contains('هواوي') || rawName.contains('ايباد') || rawName.contains('اخرى') || rawName.contains('iPhone') || rawName.contains('Xiaomi') || rawName.contains('Huawei') || rawName.contains('iPad') || rawName.contains('Other')) {
+      imgPadding = 42.0;
+    }
     String displayName = brandName;
     if (displayName.contains('سيارات أخرى') || displayName.contains('سيارات اخري')) displayName = 'Other Cars';
 
@@ -251,7 +256,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Padding(padding: const EdgeInsets.all(24), child: CachedNetworkImage(imageUrl: 
+                Padding(padding: EdgeInsets.all(imgPadding), child: CachedNetworkImage(imageUrl: 
                   imageUrl,
                   fit: BoxFit.contain,
                   errorWidget: (_, _, _) => Container(
