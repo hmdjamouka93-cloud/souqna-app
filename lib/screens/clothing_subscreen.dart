@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'add_listing_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../services/language_service.dart';
 import '../main.dart';
@@ -7,8 +8,9 @@ import 'listings_screen.dart';
 
 class ClothingSubscreen extends StatelessWidget {
   final String categoryName;
-  const ClothingSubscreen({super.key, required this.categoryName});
-
+  final bool isAddMode;
+  const ClothingSubscreen({super.key, required this.categoryName, this.isAddMode = false});
+  
   @override
   Widget build(BuildContext context) {
     final categories = [

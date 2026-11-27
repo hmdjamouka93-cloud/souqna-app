@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../main.dart';
 import '../widgets/ad_banner.dart';
 import 'brand_chooser_screen.dart';
+import 'clothing_subscreen.dart';
 import 'add_listing_screen.dart';
 import 'create_car_listing_screen.dart';
 import 'create_real_estate_listing_screen.dart';
@@ -126,6 +127,16 @@ class _CategoryChooserScreenState extends State<CategoryChooserScreen> {
 
     if (!mounted) return;
 
+    // ==== ملابس اخرى تروح للشاشة الفرعية ====
+    if (targetName == 'ملابس اخرى') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ClothingSubscreen(categoryName: targetName, isAddMode: true),
+        ),
+      );
+      return;
+    }
     // ==== أقسام الملابس: نتحققو من وجود متجر ====
     const clothingCats = ['ملابس نسائية', 'ملابس رجالية', 'ملابس اطفال', 'اكسسوارات'];
     if (clothingCats.contains(targetName)) {
