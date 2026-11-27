@@ -81,16 +81,28 @@ class ClothingSubscreen extends StatelessWidget {
                   }
                   return InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ListingsScreen(
-                            subCategoryId: catName,
-                            brandName: '',
-                            categoryName: catName,
+                      if (isAddMode) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => AddListingScreen(
+                              categoryId: catName,
+                              categoryName: catName,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ListingsScreen(
+                              subCategoryId: catName,
+                              brandName: '',
+                              categoryName: catName,
+                            ),
+                          ),
+                        );
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
