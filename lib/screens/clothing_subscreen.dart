@@ -86,8 +86,9 @@ class ClothingSubscreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (_) => AddListingScreen(
-                              categoryId: catName,
-                              categoryName: catName,
+                              categoryId: categoryName,
+                              categoryName: categoryName,
+                              subCategoryId: catName,
                             ),
                           ),
                         );
