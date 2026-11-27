@@ -252,7 +252,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                CachedNetworkImage(imageUrl: 
+                Padding(padding: const EdgeInsets.all(24), child: CachedNetworkImage(imageUrl: 
                   imageUrl,
                   fit: BoxFit.contain,
                   errorWidget: (_, _, _) => Container(
@@ -271,7 +271,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                       ),
                     ),
                   ),
-                ),
+                )),
                 // تدرج أسود في الأسفل
                 Container(
                   decoration: BoxDecoration(
