@@ -233,7 +233,6 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
     final imageUrl = (brand['image'] ?? '').toString();
     final brandName = LanguageService.trCategory((brand['name'] ?? '').toString().trim());
     String displayName = brandName;
-    if (displayName.contains('جميع الإعلانات') || displayName.contains('جميع الاعلانات')) displayName = 'All Ads';
     if (displayName.contains('سيارات أخرى') || displayName.contains('سيارات اخري')) displayName = 'Other Cars';
 
     // إلا كاين صورة → Stack (صورة + نص فوقها)
@@ -263,7 +262,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                         child: Text(displayName,
                           textAlign: TextAlign.center,
                           style:  TextStyle(
-                            color: displayName == 'All Ads' ? AppColors.accent : Colors.white,
+                            color: (brand['name'] ?? '').toString().contains('جميع') ? AppColors.accent : Colors.white,
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
@@ -292,7 +291,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
                   child: Text(displayName,
                     textAlign: TextAlign.center,
                     style:  TextStyle(
-                      color: displayName == 'All Ads' ? AppColors.accent : Colors.white,
+                      color: (brand['name'] ?? '').toString().contains('جميع') ? AppColors.accent : Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       shadows: [
@@ -330,7 +329,7 @@ class _BrandChooserScreenState extends State<BrandChooserScreen> {
               child: Text(displayName,
                 textAlign: TextAlign.center,
                 style:  TextStyle(
-                  color: displayName == 'All Ads' ? AppColors.accent : Colors.white,
+                  color: (brand['name'] ?? '').toString().contains('جميع') ? AppColors.accent : Colors.white,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
